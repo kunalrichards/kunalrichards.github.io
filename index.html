@@ -29,9 +29,10 @@
 <!-- Favicon (inline SVG) -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
 
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
+<!-- Content Security Policy -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data: https:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
@@ -125,11 +126,18 @@ body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:radial-gradient(rgba(56,189,248,.05) 1px,transparent 1px);
   background-size:32px 32px;
+  transform:translateZ(0);
 }
 /* Single static top-centre radial highlight for depth */
 body::after{
   content:'';position:fixed;top:0;left:0;right:0;height:65vh;z-index:0;pointer-events:none;
   background:radial-gradient(ellipse 80% 100% at 50% -5%,rgba(56,189,248,.055) 0%,transparent 70%);
+  transform:translateZ(0);
+}
+/* ─── PERF: skip paint for off-screen sections until they scroll into view ─── */
+#about,#ai,#projects,#experience,#skills,#contact{
+  content-visibility:auto;
+  contain-intrinsic-size:0 600px;
 }
 
 /* ─── NAV ─── */
@@ -140,10 +148,12 @@ nav{
   padding:0 var(--pad-x);
   height:var(--nav-h);
   background:rgba(4,8,15,.92);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
   border-bottom:1px solid rgba(56,189,248,.08);
   transition:box-shadow .3s ease,background .3s ease;
+  will-change:transform;
+  transform:translateZ(0);
 }
 nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
 .nl{
@@ -186,12 +196,13 @@ nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
   top:var(--nav-h);left:0;right:0;
   z-index:998;
   background:rgba(4,8,15,.97);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid rgba(56,189,248,.1);
   max-height:0;
   overflow:hidden;
-  transition:max-height .35s cubic-bezier(.4,0,.2,1);
+  transition:max-height .3s cubic-bezier(.4,0,.2,1);
+  transform:translateZ(0);
 }
 .mob-drawer.open{max-height:520px;}
 .mob-drawer-inner{padding:.5rem 0 1rem;}
@@ -257,8 +268,8 @@ h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;line-height:1.05;color:var
 
 /* Hero photo card */
 .photo-wrap{position:relative;flex-shrink:0;width:300px;}
-.photo-glow{position:absolute;inset:-20px;border-radius:34px;background:var(--grd);opacity:.12;filter:blur(28px);}
-.photo-ring{position:absolute;inset:-3px;border-radius:25px;background:var(--grd);z-index:1;}
+.photo-glow{position:absolute;inset:-20px;border-radius:34px;background:var(--grd);opacity:.12;filter:blur(28px);will-change:transform;transform:translateZ(0);}
+.photo-ring{position:absolute;inset:-3px;border-radius:25px;background:var(--grd);z-index:1;transform:translateZ(0);}
 .hero-photo{width:300px;height:420px;border-radius:22px;object-fit:cover;object-position:center 20%;position:relative;z-index:2;pointer-events:none;cursor:default;}
 .photo-badge{
   position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);
@@ -294,8 +305,8 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 .about-grid{display:grid;grid-template-columns:240px 1fr;gap:3rem;align-items:start;}
 .about-photo-col{display:flex;flex-direction:column;gap:.9rem;}
 .about-photo-frame{position:relative;}
-.about-glow{position:absolute;inset:-18px;border-radius:24px;background:var(--grd);opacity:.10;filter:blur(18px);}
-.about-ring{position:absolute;inset:-3px;border-radius:19px;background:var(--grd);z-index:0;}
+.about-glow{position:absolute;inset:-18px;border-radius:24px;background:var(--grd);opacity:.10;filter:blur(18px);will-change:transform;transform:translateZ(0);}
+.about-ring{position:absolute;inset:-3px;border-radius:19px;background:var(--grd);z-index:0;transform:translateZ(0);}
 .about-photo{width:100%;height:270px;border-radius:16px;object-fit:cover;object-position:center 15%;position:relative;z-index:1;pointer-events:none;cursor:default;}
 .badge{background:var(--s2);border:1px solid var(--bd);border-radius:11px;padding:.8rem;text-align:center;transition:border-color .3s;}
 .badge:hover{border-color:rgba(167,139,250,.35);}
@@ -830,10 +841,10 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         </div>
       </div>
 
-      <!-- DEVFIT -->
+      <!-- WELLNESS APP -->
       <div class="proj-card rv">
         <div class="proj-icon">💪</div>
-        <div class="proj-title">DevFit — IT Wellness App <span class="proj-badge">Live</span></div>
+        <div class="proj-title">Kunal WellnessApp <span class="proj-badge">Live</span></div>
         <p class="proj-desc">Pomodoro timer + wellness tracker built for developers and QA engineers. Water intake, 20-20-20 eye breaks, posture checks, 6 desk exercises, and daily streaks. Zero dependencies, works fully offline.</p>
         <div class="proj-tags"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span><span class="ptag">LocalStorage</span><span class="ptag">Web Notifications</span></div>
         <div class="proj-links">
@@ -1005,27 +1016,39 @@ document.addEventListener('DOMContentLoaded', () => {
   document.documentElement.style.opacity = '1';
 });
 
-/* ── SCROLL: progress bar + nav shadow + mobile hire btn ── */
+/* ── SCROLL: all scroll effects — single rAF-throttled handler ── */
 const spb = document.getElementById('spb');
 const navEl = document.querySelector('nav');
 const mobHire = document.getElementById('mob-hire');
 const contactSec = document.getElementById('contact');
 const heroSec = document.querySelector('.hero');
+const btt = document.getElementById('btt');
 
-window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-  const total = document.documentElement.scrollHeight - window.innerHeight;
-  spb.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
-  navEl.classList.toggle('scrolled', scrolled > 20);
-  // Show mobile hire btn only AFTER hero is fully scrolled off-screen AND not near contact
-  if (mobHire) {
-    const heroBottom = heroSec ? heroSec.getBoundingClientRect().bottom : 0;
-    const contactTop = contactSec ? contactSec.getBoundingClientRect().top : 9999;
-    const show = heroBottom < 0 && contactTop > 200;
-    mobHire.style.opacity = show ? '1' : '0';
-    mobHire.style.pointerEvents = show ? 'all' : 'none';
-  }
-}, { passive: true });
+let _ticking = false;
+function handleScroll() {
+  if (_ticking) return;
+  _ticking = true;
+  requestAnimationFrame(() => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    // Progress bar
+    spb.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+    // Nav shadow
+    navEl.classList.toggle('scrolled', scrolled > 20);
+    // Back to top
+    btt.classList.toggle('show', scrolled > 350);
+    // Mobile hire bar — only after hero is fully scrolled off-screen
+    if (mobHire) {
+      const heroBottom = heroSec ? heroSec.getBoundingClientRect().bottom : 0;
+      const contactTop = contactSec ? contactSec.getBoundingClientRect().top : 9999;
+      const show = heroBottom < 0 && contactTop > 200;
+      mobHire.style.opacity = show ? '1' : '0';
+      mobHire.style.pointerEvents = show ? 'all' : 'none';
+    }
+    _ticking = false;
+  });
+}
+window.addEventListener('scroll', handleScroll, { passive: true });
 
 /* ── HAMBURGER NAV ── */
 const hmb = document.getElementById('hmb');
@@ -1157,11 +1180,7 @@ document.querySelectorAll('.proj-card').forEach(card => {
   });
 });
 
-/* ── BACK TO TOP ── */
-const btt = document.getElementById('btt');
-window.addEventListener('scroll', () => {
-  btt.classList.toggle('show', window.scrollY > 350);
-}, { passive: true });
+/* ── BACK TO TOP ── handled in unified scroll handler above ── */
 
 /* ── CONTACT FORM ── */
 function sendMsg(e) {
