@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevFit — Wellness Companion for IT Professionals</title>
+<style>
+:root {
+  --bg:#0a0f1e; --surface:#111827; --surface2:#1f2937; --border:#374151;
+  --accent:#10b981; --accent2:#3b82f6; --warn:#f59e0b; --danger:#ef4444;
+  --text:#e5e7eb; --dim:#9ca3af; --heading:#f9fafb;
+  --grad:linear-gradient(135deg,#10b981,#3b82f6);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;}
+
+/* HEADER */
+header{background:rgba(17,24,39,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.9rem 1.5rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;}
+.logo{font-size:1.3rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.logo span{font-size:.75rem;font-weight:400;color:var(--dim);-webkit-text-fill-color:var(--dim);}
+.header-right{display:flex;align-items:center;gap:1rem;}
+.streak-badge{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);color:var(--warn);padding:.3rem .8rem;border-radius:50px;font-size:.8rem;font-weight:600;}
+#notif-btn{background:var(--surface2);border:1px solid var(--border);color:var(--dim);padding:.4rem .9rem;border-radius:6px;cursor:pointer;font-size:.78rem;}
+#notif-btn.enabled{color:var(--accent);border-color:rgba(16,185,129,.3);}
+
+/* MAIN GRID */
+main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;gap:1.2rem;}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:border-color .3s;}
+.card:hover{border-color:rgba(16,185,129,.3);}
+.card-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--dim);margin-bottom:1rem;}
+.card-title span{margin-right:.4rem;}
+
+/* POMODORO — spans full width on top */
+.pomodoro-card{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;}
+.timer-side{display:flex;flex-direction:column;align-items:center;}
+.timer-ring-wrap{position:relative;width:180px;height:180px;margin-bottom:1.2rem;}
+.timer-ring-wrap svg{transform:rotate(-90deg);}
+.timer-bg{fill:none;stroke:var(--surface2);stroke-width:8;}
+.timer-fg{fill:none;stroke:url(#grad);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .5s linear;}
+.timer-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.timer-display{font-size:2.4rem;font-weight:800;color:var(--heading);line-height:1;}
+.timer-phase{font-size:.75rem;color:var(--dim);margin-top:.3rem;}
+.timer-controls{display:flex;gap:.8rem;margin-bottom:1rem;}
+.btn{padding:.55rem 1.2rem;border-radius:8px;border:none;cursor:pointer;font-size:.85rem;font-weight:600;transition:opacity .2s,transform .15s;}
+.btn:hover{opacity:.88;transform:translateY(-1px);}
+.btn-green{background:linear-gradient(135deg,#10b981,#059669);color:#fff;}
+.btn-gray{background:var(--surface2);border:1px solid var(--border);color:var(--text);}
+.btn-sm{padding:.4rem .9rem;font-size:.78rem;}
+.pomo-modes{display:flex;gap:.5rem;}
+.mode-btn{padding:.35rem .8rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--dim);cursor:pointer;font-size:.75rem;transition:all .2s;}
+.mode-btn.active{background:rgba(16,185,129,.1);border-color:var(--accent);color:var(--accent);}
+.pomo-info-side{}
+.pomo-info-side h3{font-size:1.2rem;font-weight:700;color:var(--heading);margin-bottom:.5rem;}
+.pomo-info-side p{font-size:.84rem;color:var(--dim);margin-bottom:1rem;line-height:1.6;}
+.pomo-stats{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1rem;}
+.pomo-stat{background:var(--surface2);border-radius:8px;padding:.8rem;text-align:center;}
+.pomo-stat-n{font-size:1.5rem;font-weight:800;color:var(--accent);}
+.pomo-stat-l{font-size:.7rem;color:var(--dim);}
+.sessions-dots{display:flex;gap:.4rem;flex-wrap:wrap;}
+.session-dot{width:14px;height:14px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);}
+.session-dot.done{background:var(--accent);}
+.session-dot.break{background:var(--accent2);}
+
+/* WATER */
+.water-card{}
+.water-goal-text{font-size:.82rem;color:var(--dim);margin-bottom:1rem;}
+.water-glasses{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:1rem;}
+.glass{aspect-ratio:1;border-radius:8px;border:2px solid var(--border);background:var(--surface2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:all .2s;}
+.glass.filled{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.5);}
+.glass:hover{border-color:var(--accent2);transform:scale(1.05);}
+.water-bar-wrap{background:var(--surface2);border-radius:50px;height:8px;overflow:hidden;}
+.water-bar{height:100%;border-radius:50px;background:linear-gradient(90deg,#3b82f6,#06b6d4);transition:width .4s ease;}
+.water-label{display:flex;justify-content:space-between;font-size:.75rem;color:var(--dim);margin-top:.5rem;}
+.water-btns{display:flex;gap:.5rem;margin-top:1rem;}
+
+/* EYES */
+.eye-card{}
+.eye-display{text-align:center;padding:1rem 0;}
+.eye-icon{font-size:2.5rem;margin-bottom:.5rem;}
+.eye-timer{font-size:1.8rem;font-weight:800;color:var(--heading);}
+.eye-msg{font-size:.82rem;color:var(--dim);margin-top:.3rem;}
+.eye-progress{background:var(--surface2);border-radius:50px;height:6px;overflow:hidden;margin-top:1rem;}
+.eye-bar{height:100%;border-radius:50px;background:linear-gradient(90deg,#8b5cf6,#ec4899);transition:width 1s linear;}
+
+/* POSTURE */
+.posture-card{}
+.posture-display{text-align:center;padding:.8rem 0;}
+.posture-icon{font-size:2.2rem;margin-bottom:.4rem;}
+.posture-msg{font-size:.88rem;color:var(--heading);font-weight:600;margin-bottom:.3rem;}
+.posture-next{font-size:.78rem;color:var(--dim);}
+.posture-tips{margin-top:1rem;display:flex;flex-direction:column;gap:.4rem;}
+.tip{background:var(--surface2);border-radius:6px;padding:.5rem .8rem;font-size:.78rem;color:var(--dim);}
+
+/* TODAY STATS — full width bottom */
+.stats-bar{grid-column:1/-1;display:flex;gap:1rem;flex-wrap:wrap;}
+.stat-pill{flex:1;min-width:150px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;display:flex;align-items:center;gap:.8rem;}
+.stat-pill-icon{font-size:1.6rem;}
+.stat-pill-n{font-size:1.4rem;font-weight:800;color:var(--heading);}
+.stat-pill-l{font-size:.72rem;color:var(--dim);}
+
+/* EXERCISE MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:none;align-items:center;justify-content:center;}
+.modal-overlay.show{display:flex;}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;max-width:480px;width:90%;position:relative;}
+.modal-close{position:absolute;top:1rem;right:1rem;background:var(--surface2);border:1px solid var(--border);color:var(--dim);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;}
+.modal-title{font-size:1.1rem;font-weight:700;color:var(--heading);margin-bottom:.3rem;}
+.modal-sub{font-size:.82rem;color:var(--dim);margin-bottom:1.5rem;}
+.exercise-card-big{background:var(--surface2);border-radius:12px;padding:1.5rem;text-align:center;margin-bottom:1rem;}
+.ex-icon{font-size:3rem;margin-bottom:.5rem;}
+.ex-name{font-size:1.1rem;font-weight:700;color:var(--heading);}
+.ex-duration{font-size:.85rem;color:var(--accent);margin:.2rem 0;}
+.ex-how{font-size:.82rem;color:var(--dim);line-height:1.6;}
+.modal-btns{display:flex;gap:.8rem;}
+
+/* NOTIFICATION TOAST */
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--surface);border:1px solid var(--accent);border-radius:10px;padding:1rem 1.3rem;font-size:.85rem;color:var(--heading);z-index:300;transform:translateY(100px);opacity:0;transition:all .3s;max-width:280px;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast-title{font-weight:700;margin-bottom:.2rem;}
+
+@media(max-width:720px){
+  main{grid-template-columns:1fr;}
+  .pomodoro-card{grid-column:1;grid-template-columns:1fr;text-align:center;}
+  .stats-bar{grid-column:1;}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<header>
+  <div>
+    <div class="logo">DevFit <span>— Wellness for IT Pros</span></div>
+  </div>
+  <div class="header-right">
+    <div class="streak-badge" id="streak-badge">🔥 0 day streak</div>
+    <button id="notif-btn" onclick="toggleNotifications()">🔔 Enable Alerts</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- POMODORO -->
+  <div class="card pomodoro-card">
+    <div class="timer-side">
+      <div class="timer-ring-wrap">
+        <svg width="180" height="180" viewBox="0 0 180 180">
+          <circle class="timer-bg" cx="90" cy="90" r="80"/>
+          <circle class="timer-fg" id="timer-ring" cx="90" cy="90" r="80" stroke-dasharray="502" stroke-dashoffset="0"/>
+        </svg>
+        <div class="timer-label">
+          <div class="timer-display" id="timer-display">25:00</div>
+          <div class="timer-phase" id="timer-phase">Focus Time</div>
+        </div>
+      </div>
+      <div class="timer-controls">
+        <button class="btn btn-green" id="start-btn" onclick="toggleTimer()">▶ Start</button>
+        <button class="btn btn-gray" onclick="resetTimer()">↺ Reset</button>
+        <button class="btn btn-gray btn-sm" onclick="openExercise()">💪 Exercises</button>
+      </div>
+      <div class="pomo-modes">
+        <button class="mode-btn active" onclick="setMode('focus',25,'Focus Time',this)">Focus 25m</button>
+        <button class="mode-btn" onclick="setMode('short',5,'Short Break',this)">Break 5m</button>
+        <button class="mode-btn" onclick="setMode('long',15,'Long Break',this)">Long 15m</button>
+      </div>
+    </div>
+
+    <div class="pomo-info-side">
+      <h3>Pomodoro Focus Timer</h3>
+      <p>Work for 25 minutes, then take a 5-minute break. After 4 sessions, take a 15-minute long break. Proven to boost focus and reduce burnout.</p>
+      <div class="pomo-stats">
+        <div class="pomo-stat"><div class="pomo-stat-n" id="sessions-done">0</div><div class="pomo-stat-l">Sessions Today</div></div>
+        <div class="pomo-stat"><div class="pomo-stat-n" id="focus-mins">0</div><div class="pomo-stat-l">Focus Minutes</div></div>
+      </div>
+      <div class="card-title" style="margin-bottom:.6rem"><span>🍅</span>Session Progress (4 = long break)</div>
+      <div class="sessions-dots" id="sessions-dots">
+        <div class="session-dot"></div><div class="session-dot"></div>
+        <div class="session-dot"></div><div class="session-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WATER -->
+  <div class="card water-card">
+    <div class="card-title"><span>💧</span>Hydration Tracker</div>
+    <div class="water-goal-text">Goal: <strong style="color:var(--heading)">8 glasses</strong> per day · Click a glass to log it</div>
+    <div class="water-glasses" id="glasses-grid"></div>
+    <div class="water-bar-wrap"><div class="water-bar" id="water-bar" style="width:0%"></div></div>
+    <div class="water-label"><span id="water-count">0 / 8 glasses</span><span id="water-pct">0%</span></div>
+    <div class="water-btns">
+      <button class="btn btn-gray btn-sm" onclick="addWater()">+ Add Glass</button>
+      <button class="btn btn-gray btn-sm" onclick="resetWater()">Reset</button>
+    </div>
+  </div>
+
+  <!-- EYE BREAK -->
+  <div class="card eye-card">
+    <div class="card-title"><span>👁</span>20-20-20 Eye Break</div>
+    <div class="eye-display">
+      <div class="eye-icon" id="eye-icon">👁</div>
+      <div class="eye-timer" id="eye-timer">20:00</div>
+      <div class="eye-msg" id="eye-msg">Look at something 20 feet away in 20 minutes</div>
+    </div>
+    <div class="eye-progress"><div class="eye-bar" id="eye-bar" style="width:100%"></div></div>
+    <p style="font-size:.75rem;color:var(--dim);margin-top:.8rem;line-height:1.5">Every 20 minutes, look 20 feet away for 20 seconds. Reduces digital eye strain caused by screen glare and focus fatigue.</p>
+    <div style="margin-top:1rem;display:flex;gap:.5rem;">
+      <button class="btn btn-gray btn-sm" onclick="triggerEyeBreak()">Take Break Now</button>
+      <button class="btn btn-gray btn-sm" onclick="snoozeEye()">Snooze 5m</button>
+    </div>
+  </div>
+
+  <!-- POSTURE -->
+  <div class="card posture-card" id="posture-card">
+    <div class="card-title"><span>🧍</span>Posture Check</div>
+    <div class="posture-display">
+      <div class="posture-icon" id="posture-icon">🪑</div>
+      <div class="posture-msg" id="posture-msg">Sit up straight, feet flat on floor</div>
+      <div class="posture-next" id="posture-next">Next check in 30 min</div>
+    </div>
+    <div class="posture-tips">
+      <div class="tip">📺 Screen at eye level, arm's length away</div>
+      <div class="tip">⌨️ Wrists straight, elbows at 90°</div>
+      <div class="tip">🦶 Feet flat on floor, knees at 90°</div>
+    </div>
+    <button class="btn btn-gray btn-sm" style="margin-top:1rem;width:100%;" onclick="checkPosture()">✓ Posture Looks Good</button>
+  </div>
+
+  <!-- TODAY STATS -->
+  <div class="stats-bar">
+    <div class="stat-pill"><div class="stat-pill-icon">🍅</div><div><div class="stat-pill-n" id="stat-sessions">0</div><div class="stat-pill-l">Pomodoros today</div></div></div>
+    <div class="stat-pill"><div class="stat-pill-icon">💧</div><div><div class="stat-pill-n" id="stat-water">0/8</div><div class="stat-pill-l">Glasses of water</div></div></div>
+    <div class="stat-pill"><div class="stat-pill-icon">👁</div><div><div class="stat-pill-n" id="stat-eye">0</div><div class="stat-pill-l">Eye breaks taken</div></div></div>
+    <div class="stat-pill"><div class="stat-pill-icon">⏱</div><div><div class="stat-pill-n" id="stat-focus">0m</div><div class="stat-pill-l">Total focus time</div></div></div>
+  </div>
+
+</main>
+
+<!-- EXERCISE MODAL -->
+<div class="modal-overlay" id="exercise-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeExercise()">✕</button>
+    <div class="modal-title">💪 Quick Desk Exercise</div>
+    <div class="modal-sub">Take 2 minutes. Your body will thank you.</div>
+    <div class="exercise-card-big">
+      <div class="ex-icon" id="ex-icon">🤸</div>
+      <div class="ex-name" id="ex-name">Loading...</div>
+      <div class="ex-duration" id="ex-duration"></div>
+      <div class="ex-how" id="ex-how"></div>
+    </div>
+    <div class="modal-btns">
+      <button class="btn btn-green" style="flex:1" onclick="nextExercise()">Next Exercise →</button>
+      <button class="btn btn-gray" onclick="closeExercise()">Done ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-title" id="toast-title">DevFit</div>
+  <div id="toast-msg"></div>
+</div>
+
+<script>
+// ─── STATE ───────────────────────────────────────────────────────
+const today = new Date().toDateString();
+let state = JSON.parse(localStorage.getItem('devfit_state') || '{}');
+if (state.date !== today) {
+  state = { date: today, sessions: 0, water: 0, eyeBreaks: 0, focusMins: 0, postureDone: 0, streak: state.streak || 0, lastDay: state.date };
+  // Check streak
+  const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+  if (state.lastDay === yesterday.toDateString()) state.streak++;
+  else state.streak = 1;
+}
+function save() { localStorage.setItem('devfit_state', JSON.stringify(state)); updateUI(); }
+
+// ─── TOAST ───────────────────────────────────────────────────────
+function toast(title, msg) {
+  document.getElementById('toast-title').textContent = title;
+  document.getElementById('toast-msg').textContent = msg;
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ─── NOTIFICATIONS ───────────────────────────────────────────────
+let notifEnabled = false;
+function toggleNotifications() {
+  if (!('Notification' in window)) { toast('Not supported', 'Browser notifications not available'); return; }
+  Notification.requestPermission().then(p => {
+    notifEnabled = p === 'granted';
+    const btn = document.getElementById('notif-btn');
+    btn.textContent = notifEnabled ? '🔔 Alerts ON' : '🔕 Alerts OFF';
+    btn.className = notifEnabled ? 'enabled' : '';
+    toast(notifEnabled ? 'Alerts Enabled' : 'Alerts Disabled', notifEnabled ? 'You will get break reminders' : 'Enable in browser settings');
+  });
+}
+function notify(title, body) {
+  if (notifEnabled && Notification.permission === 'granted') new Notification(title, { body, icon: '💪' });
+  toast(title, body);
+}
+
+// ─── POMODORO ───────────────────────────────────────────────────
+let timerInterval = null, timeLeft = 25 * 60, totalTime = 25 * 60, isRunning = false, currentMode = 'focus';
+const ring = document.getElementById('timer-ring'); const circumference = 2 * Math.PI * 80;
+ring.style.strokeDasharray = circumference;
+
+function setMode(mode, mins, label, btn) {
+  if (isRunning) return;
+  currentMode = mode;
+  totalTime = mins * 60; timeLeft = totalTime;
+  document.getElementById('timer-phase').textContent = label;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  updateTimerDisplay();
+}
+
+function toggleTimer() {
+  if (isRunning) {
+    clearInterval(timerInterval); isRunning = false;
+    document.getElementById('start-btn').textContent = '▶ Resume';
+  } else {
+    isRunning = true;
+    document.getElementById('start-btn').textContent = '⏸ Pause';
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      updateTimerDisplay();
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval); isRunning = false;
+        document.getElementById('start-btn').textContent = '▶ Start';
+        if (currentMode === 'focus') {
+          state.sessions++; state.focusMins += 25; save();
+          notify('🍅 Pomodoro Done!', 'Great work! Take a 5-minute break. Stretch it out!');
+          updateSessionDots();
+        } else {
+          notify('⏰ Break Over', 'Time to focus again. You got this!');
+        }
+        setMode('focus', 25, 'Focus Time', null);
+        document.querySelector('.mode-btn').classList.add('active');
+      }
+    }, 1000);
+  }
+}
+
+function resetTimer() {
+  clearInterval(timerInterval); isRunning = false;
+  timeLeft = totalTime;
+  document.getElementById('start-btn').textContent = '▶ Start';
+  updateTimerDisplay();
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(timeLeft / 60), s = timeLeft % 60;
+  document.getElementById('timer-display').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  const pct = timeLeft / totalTime;
+  ring.style.strokeDashoffset = circumference * pct;
+}
+
+function updateSessionDots() {
+  const dots = document.querySelectorAll('.session-dot');
+  const s = state.sessions % 4;
+  dots.forEach((d,i) => { d.className = 'session-dot' + (i < s ? ' done' : ''); });
+  document.getElementById('sessions-done').textContent = state.sessions;
+  document.getElementById('focus-mins').textContent = state.focusMins;
+}
+
+// ─── WATER ───────────────────────────────────────────────────────
+function buildGlasses() {
+  const grid = document.getElementById('glasses-grid'); grid.innerHTML = '';
+  for (let i = 0; i < 8; i++) {
+    const g = document.createElement('div');
+    g.className = 'glass' + (i < state.water ? ' filled' : '');
+    g.textContent = i < state.water ? '💧' : '🫙';
+    g.onclick = () => { if (i < state.water) { state.water = i; } else { state.water = i + 1; } save(); buildGlasses(); updateWater(); };
+    grid.appendChild(g);
+  }
+}
+function updateWater() {
+  const pct = Math.round((state.water / 8) * 100);
+  document.getElementById('water-bar').style.width = pct + '%';
+  document.getElementById('water-count').textContent = `${state.water} / 8 glasses`;
+  document.getElementById('water-pct').textContent = pct + '%';
+  document.getElementById('stat-water').textContent = `${state.water}/8`;
+  if (state.water >= 8) toast('💧 Goal Reached!', 'You have drunk 8 glasses of water today!');
+}
+function addWater() { if (state.water < 8) { state.water++; save(); buildGlasses(); updateWater(); } }
+function resetWater() { state.water = 0; save(); buildGlasses(); updateWater(); }
+
+// ─── EYE BREAK ───────────────────────────────────────────────────
+let eyeLeft = 20 * 60, eyeTotal = 20 * 60, eyeInterval = null, inEyeBreak = false;
+function startEyeClock() {
+  eyeInterval = setInterval(() => {
+    if (!inEyeBreak) { eyeLeft--; }
+    updateEyeDisplay();
+    if (eyeLeft <= 0 && !inEyeBreak) {
+      inEyeBreak = true; eyeLeft = 20;
+      document.getElementById('eye-icon').textContent = '😌';
+      document.getElementById('eye-msg').textContent = 'Look 20 feet away for 20 seconds!';
+      notify('👁 Eye Break!', 'Look 20 feet away for 20 seconds. Blink slowly.');
+    } else if (eyeLeft <= 0 && inEyeBreak) {
+      inEyeBreak = false; eyeLeft = eyeTotal;
+      state.eyeBreaks++; save();
+      document.getElementById('eye-icon').textContent = '👁';
+      document.getElementById('eye-msg').textContent = 'Good! Back to focus. Next break in 20 min.';
+      document.getElementById('stat-eye').textContent = state.eyeBreaks;
+    }
+  }, 1000);
+}
+function updateEyeDisplay() {
+  const m = Math.floor(eyeLeft / 60), s = eyeLeft % 60;
+  document.getElementById('eye-timer').textContent = inEyeBreak
+    ? `${eyeLeft}s`
+    : `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  const pct = inEyeBreak ? (eyeLeft / 20) * 100 : (eyeLeft / eyeTotal) * 100;
+  document.getElementById('eye-bar').style.width = pct + '%';
+}
+function triggerEyeBreak() { eyeLeft = 0; }
+function snoozeEye() { eyeLeft += 5 * 60; toast('Eye Timer Snoozed', 'Snoozed 5 minutes'); }
+
+// ─── POSTURE ─────────────────────────────────────────────────────
+let postureCountdown = 30 * 60;
+const postureTips = [
+  {icon:'🪑',msg:'Sit up straight, feet flat on the floor',sub:'Lower back against chair back'},
+  {icon:'📺',msg:'Screen at eye level, arm\'s length away',sub:'Raise monitor or use a stand'},
+  {icon:'⌨️',msg:'Wrists straight, elbows at 90 degrees',sub:'Use wrist rest if needed'},
+  {icon:'🦶',msg:'Feet flat on floor, knees at 90 degrees',sub:'Adjust chair height if needed'},
+  {icon:'🧘',msg:'Shoulders relaxed, not hunched forward',sub:'Roll shoulders back and down'},
+];
+let postureIdx = 0;
+setInterval(() => {
+  postureCountdown--;
+  const m = Math.floor(postureCountdown / 60), s = postureCountdown % 60;
+  document.getElementById('posture-next').textContent = `Next check in ${m}m ${String(s).padStart(2,'0')}s`;
+  if (postureCountdown <= 0) {
+    postureCountdown = 30 * 60; postureIdx = (postureIdx + 1) % postureTips.length;
+    const t = postureTips[postureIdx];
+    document.getElementById('posture-icon').textContent = t.icon;
+    document.getElementById('posture-msg').textContent = t.msg;
+    notify('🧍 Posture Check!', t.msg);
+    document.getElementById('posture-card').style.borderColor = 'rgba(245,158,11,.5)';
+  }
+}, 1000);
+function checkPosture() {
+  document.getElementById('posture-card').style.borderColor = 'rgba(16,185,129,.3)';
+  toast('✓ Posture Checked', 'Great! Keep it up. Reminder in 30 minutes.');
+  postureCountdown = 30 * 60;
+  state.postureDone++; save();
+}
+
+// ─── EXERCISES ───────────────────────────────────────────────────
+const exercises = [
+  {icon:'🤸',name:'Neck Rolls',duration:'30 seconds each side',how:'Slowly roll your head clockwise, then counter-clockwise. Keep shoulders relaxed. Do 3 full rotations each way. Relieves tension from looking at screens.'},
+  {icon:'💪',name:'Desk Push-Ups',duration:'10–15 reps',how:'Place hands shoulder-width on your desk edge. Step back, keeping body straight. Lower chest to desk, push back up. Activates chest and shoulders.'},
+  {icon:'🧘',name:'Seated Spinal Twist',duration:'30 seconds each side',how:'Sit up tall. Place right hand on left knee, left hand on chair back. Gently twist left and hold. Repeat right side. Releases lower back tension.'},
+  {icon:'🦵',name:'Seated Leg Raises',duration:'15 reps each leg',how:'While seated, straighten one leg and hold for 5 seconds. Lower slowly. Repeat with other leg. Strengthens core and improves circulation.'},
+  {icon:'👐',name:'Wrist Stretches',duration:'20 seconds each way',how:'Extend arm in front. With other hand, gently pull fingers back (stretch top of wrist). Then curl fingers down (stretch wrist bottom). Prevents RSI and carpal tunnel.'},
+  {icon:'🏃',name:'Stand & March in Place',duration:'1 minute',how:'Simply stand up and march in place for 60 seconds. Lift knees, swing arms. Boosts circulation and counteracts the effects of prolonged sitting.'},
+];
+let exIdx = 0;
+function openExercise() {
+  exIdx = Math.floor(Math.random() * exercises.length);
+  showExercise();
+  document.getElementById('exercise-modal').classList.add('show');
+}
+function showExercise() {
+  const e = exercises[exIdx];
+  document.getElementById('ex-icon').textContent = e.icon;
+  document.getElementById('ex-name').textContent = e.name;
+  document.getElementById('ex-duration').textContent = '⏱ ' + e.duration;
+  document.getElementById('ex-how').textContent = e.how;
+}
+function nextExercise() { exIdx = (exIdx + 1) % exercises.length; showExercise(); }
+function closeExercise() { document.getElementById('exercise-modal').classList.remove('show'); }
+
+// ─── GLOBAL UI UPDATE ─────────────────────────────────────────────
+function updateUI() {
+  document.getElementById('streak-badge').textContent = `🔥 ${state.streak} day streak`;
+  document.getElementById('sessions-done').textContent = state.sessions;
+  document.getElementById('focus-mins').textContent = state.focusMins;
+  document.getElementById('stat-sessions').textContent = state.sessions;
+  document.getElementById('stat-focus').textContent = state.focusMins + 'm';
+  document.getElementById('stat-eye').textContent = state.eyeBreaks;
+  updateSessionDots();
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────
+buildGlasses();
+updateWater();
+updateTimerDisplay();
+updateUI();
+startEyeClock();
+toast('Welcome to DevFit!', 'Your wellness companion is active. Stay hydrated and take breaks!');
+</script>
+</body>
+</html>

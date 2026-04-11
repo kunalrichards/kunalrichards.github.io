@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kunal Richards — CV 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#e8edf3;color:#2d3748;line-height:1.5;}
+.no-print{text-align:center;padding:1rem;background:#1e3a5f;display:flex;justify-content:center;gap:.8rem;align-items:center;}
+.np-btn{background:#fff;color:#1e3a5f;border:none;padding:.55rem 1.3rem;border-radius:6px;font-weight:700;cursor:pointer;font-size:.85rem;}
+.np-btn:hover{background:#e2e8f0;}
+.np-back{background:transparent;color:#94a3b8;border:1px solid #475569;padding:.5rem 1rem;border-radius:6px;font-size:.82rem;cursor:pointer;text-decoration:none;display:inline-block;}
+.cv{max-width:940px;margin:1.2rem auto 3rem;background:#fff;box-shadow:0 6px 50px rgba(0,0,0,.14);border-radius:4px;overflow:hidden;}
+
+/* HEADER */
+.cv-head{background:linear-gradient(135deg,#0f2748 0%,#1e4d8c 100%);color:#fff;padding:2rem 2.5rem;display:flex;gap:1.8rem;align-items:flex-start;}
+.cv-photo{width:100px;height:120px;border-radius:10px;object-fit:cover;object-position:center top;flex-shrink:0;border:3px solid rgba(255,255,255,.25);}
+.cv-head-text{flex:1;}
+.cv-name{font-size:1.9rem;font-weight:900;letter-spacing:-.4px;margin-bottom:.2rem;}
+.cv-title-line{font-size:.82rem;opacity:.82;margin-bottom:.5rem;line-height:1.5;}
+.cv-loc{font-size:.75rem;opacity:.6;margin-bottom:.8rem;}
+.cv-contacts{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;}
+.cv-ci{font-size:.73rem;opacity:.8;}
+.cv-ci a{color:#fff;text-decoration:none;}
+.ai-strip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:.5rem 1rem;margin-top:.8rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;}
+.ai-strip-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:.6;margin-right:.3rem;}
+.ai-chip{background:rgba(56,189,248,.2);border:1px solid rgba(56,189,248,.3);color:#7dd3fc;padding:.18rem .5rem;border-radius:4px;font-size:.65rem;font-weight:600;}
+
+/* BODY */
+.cv-body{display:grid;grid-template-columns:250px 1fr;}
+
+/* SIDEBAR */
+.cv-sb{background:#f7fafc;border-right:1px solid #e2e8f0;padding:1.6rem 1.3rem;}
+.sb-sec{margin-bottom:1.6rem;}
+.sb-h{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1.8px;color:#1e4d8c;margin-bottom:.65rem;padding-bottom:.3rem;border-bottom:2px solid #1e4d8c;}
+.sb-group{font-size:.63rem;font-weight:700;color:#2563a0;margin:.65rem 0 .22rem;text-transform:uppercase;letter-spacing:.7px;}
+.sbi{font-size:.76rem;color:#4a5568;padding:.18rem 0;border-bottom:1px solid #edf2f7;}
+.cert{margin-bottom:.75rem;}
+.cert strong{font-size:.77rem;color:#2d3748;display:block;font-weight:700;}
+.cert span{font-size:.7rem;color:#718096;line-height:1.4;}
+.lang-row{display:flex;justify-content:space-between;font-size:.75rem;color:#4a5568;margin-bottom:.32rem;}
+.lang-row span{color:#718096;font-size:.7rem;}
+.proj-sb{margin-bottom:.75rem;}
+.proj-sb-name{font-size:.77rem;font-weight:700;color:#2d3748;}
+.proj-sb-tags{display:flex;flex-wrap:wrap;gap:.2rem;margin:.2rem 0;}
+.proj-sb-tag{background:#ebf4ff;color:#2563a0;font-size:.6rem;padding:.08rem .3rem;border-radius:3px;font-weight:600;}
+.proj-sb-desc{font-size:.69rem;color:#718096;line-height:1.35;}
+
+/* MAIN */
+.cv-main{padding:1.6rem 2rem;}
+.ms{margin-bottom:1.5rem;}
+.ms-h{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1.8px;color:#1e4d8c;margin-bottom:.75rem;padding-bottom:.3rem;border-bottom:2px solid #1e4d8c;}
+.summary{font-size:.81rem;color:#4a5568;line-height:1.75;}
+summary strong{color:#2d3748;}
+
+/* EXP */
+.exp{margin-bottom:1.25rem;}
+.exp-top{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;}
+.exp-co{font-size:.9rem;font-weight:800;color:#2d3748;}
+.exp-per{font-size:.7rem;color:#718096;white-space:nowrap;flex-shrink:0;}
+.exp-role{font-size:.78rem;color:#1e4d8c;font-weight:700;margin:.1rem 0 .38rem;}
+.exp-ul{list-style:none;}
+.exp-ul li{font-size:.76rem;color:#4a5568;padding:.1rem 0 .1rem .9rem;position:relative;line-height:1.5;}
+.exp-ul li::before{content:'▸';position:absolute;left:0;color:#2563a0;}
+
+/* EDU */
+.edu{margin-bottom:.8rem;}
+.edu-deg{font-size:.81rem;font-weight:700;color:#2d3748;}
+.edu-sch{font-size:.77rem;color:#4a5568;}
+.edu-yr{font-size:.7rem;color:#718096;}
+
+@media print{
+  body{background:#fff;}
+  .cv{box-shadow:none;margin:0;border-radius:0;}
+  .no-print{display:none;}
+}
+@media(max-width:700px){
+  .cv-body{grid-template-columns:1fr;}
+  .cv-head{flex-direction:column;}
+  .cv-photo{width:80px;height:95px;}
+}
+</style>
+</head>
+<body>
+
+<div class="no-print">
+  <a href="portfolio.html" class="np-back">← Back to Portfolio</a>
+  <button class="np-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+</div>
+
+<div class="cv">
+
+  <!-- HEADER -->
+  <div class="cv-head">
+    <img src="kunal-photo.jpg" alt="Kunal Richards" class="cv-photo">
+    <div class="cv-head-text">
+      <div class="cv-name">Kunal Richards</div>
+      <div class="cv-title-line">Senior QA Engineer &nbsp;|&nbsp; ISTQB CTFL &nbsp;|&nbsp; Automation (Selenium + Python + Java) &nbsp;|&nbsp; AI Tool Builder &nbsp;|&nbsp; Vibe Coder &nbsp;|&nbsp; Insurance Domain Expert</div>
+      <div class="cv-loc">📍 Ahmedabad, Gujarat, India</div>
+      <div class="cv-contacts">
+        <div class="cv-ci">✉ <a href="mailto:kunalrichards4@gmail.com">kunalrichards4@gmail.com</a></div>
+        <div class="cv-ci">📱 +91 82003 79330</div>
+        <div class="cv-ci">💼 <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank">linkedin.com/in/kunal-richards-qa</a></div>
+        <div class="cv-ci">🐙 <a href="https://github.com/kunalrichards" target="_blank">github.com/kunalrichards</a></div>
+      </div>
+      <div class="ai-strip">
+        <span class="ai-strip-label">AI Stack:</span>
+        <span class="ai-chip">Claude AI</span>
+        <span class="ai-chip">GitHub Copilot</span>
+        <span class="ai-chip">Cursor IDE</span>
+        <span class="ai-chip">OpenAI APIs</span>
+        <span class="ai-chip">MCP Servers</span>
+        <span class="ai-chip">Vibe Coding</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-body">
+
+    <!-- SIDEBAR -->
+    <div class="cv-sb">
+
+      <div class="sb-sec">
+        <div class="sb-h">Core Skills</div>
+        <div class="sb-group">Testing</div>
+        <div class="sbi">Manual &amp; Functional Testing</div>
+        <div class="sbi">Regression &amp; Integration Testing</div>
+        <div class="sbi">API Testing (Postman)</div>
+        <div class="sbi">E2E &amp; Usability Testing</div>
+        <div class="sbi">Full STLC Ownership</div>
+        <div class="sb-group">Automation</div>
+        <div class="sbi">Selenium WebDriver (Python)</div>
+        <div class="sbi">Selenium + Java (TestNG)</div>
+        <div class="sbi">RestAssured · Maven · Allure</div>
+        <div class="sb-group">AI &amp; Vibe Coding · 2026</div>
+        <div class="sbi">Claude AI + Claude Code CLI</div>
+        <div class="sbi">GitHub Copilot · Cursor IDE</div>
+        <div class="sbi">OpenAI APIs · MCP Servers</div>
+        <div class="sbi">Vibe Coding (AI-driven builds)</div>
+        <div class="sb-group">Tools &amp; Platforms</div>
+        <div class="sbi">JIRA · Zephyr · Xray · TestRail</div>
+        <div class="sbi">Confluence · Allure · Bugzilla</div>
+        <div class="sbi">Node.js · React · TypeScript</div>
+        <div class="sbi">Git · SQLite · REST APIs</div>
+      </div>
+
+      <div class="sb-sec">
+        <div class="sb-h">Certifications</div>
+        <div class="cert"><strong>ISTQB CTFL</strong><span>Certified Tester Foundation Level<br>December 2024</span></div>
+        <div class="cert"><strong>Selenium WebDriver Automation</strong><span>Unicode Technologies · 2020</span></div>
+        <div class="cert"><strong>Software Testing</strong><span>TOPS Technologies · 2018</span></div>
+      </div>
+
+      <div class="sb-sec">
+        <div class="sb-h">Languages</div>
+        <div class="lang-row"><span>English</span><span>Full Professional</span></div>
+        <div class="lang-row"><span>Hindi</span><span>Native</span></div>
+        <div class="lang-row"><span>Gujarati</span><span>Native</span></div>
+      </div>
+
+      <div class="sb-sec">
+        <div class="sb-h">Key Projects</div>
+        <div class="proj-sb">
+          <div class="proj-sb-name">AI Bug Reporter</div>
+          <div class="proj-sb-tags"><span class="proj-sb-tag">Node.js</span><span class="proj-sb-tag">React</span><span class="proj-sb-tag">Claude AI</span></div>
+          <div class="proj-sb-desc">Jira → Claude AI → structured bug report in 30 seconds</div>
+        </div>
+        <div class="proj-sb">
+          <div class="proj-sb-name">Test Coverage Analyser</div>
+          <div class="proj-sb-tags"><span class="proj-sb-tag">React</span><span class="proj-sb-tag">Zephyr API</span><span class="proj-sb-tag">GitHub API</span></div>
+          <div class="proj-sb-desc">Coverage gap dashboard with AI-generated QA reports</div>
+        </div>
+        <div class="proj-sb">
+          <div class="proj-sb-name">Selenium Framework (Java)</div>
+          <div class="proj-sb-tags"><span class="proj-sb-tag">Java</span><span class="proj-sb-tag">TestNG</span><span class="proj-sb-tag">Allure</span></div>
+          <div class="proj-sb-desc">JSON-driven, 12 actions, Allure + RestAssured</div>
+        </div>
+        <div class="proj-sb">
+          <div class="proj-sb-name">DevFit — IT Wellness App</div>
+          <div class="proj-sb-tags"><span class="proj-sb-tag">HTML/JS</span><span class="proj-sb-tag">GitHub Pages</span></div>
+          <div class="proj-sb-desc">Pomodoro + water + eye breaks for developers</div>
+        </div>
+      </div>
+
+      <div class="sb-sec">
+        <div class="sb-h">Domain</div>
+        <div class="sbi">Insurance · Nexsure Platform</div>
+        <div class="sbi">SaaS · Enterprise Web Apps</div>
+        <div class="sbi">eCommerce · Mobile Apps</div>
+      </div>
+
+    </div>
+
+    <!-- MAIN -->
+    <div class="cv-main">
+
+      <div class="ms">
+        <div class="ms-h">Professional Summary</div>
+        <p class="summary">Senior QA Engineer with <strong>7+ years of experience</strong> across enterprise web apps, automation testing, and the insurance domain. Currently at <strong>Dyad Tech</strong>, leading QA for the <strong>Nexsure Insurance Platform</strong>. Built 4 <strong>AI-powered QA tools</strong> using Vibe Coding (Claude AI, GitHub Copilot, Cursor) — a bug reporter, coverage analyser, test case generator, and Selenium framework — all actively used by the team. ISTQB CTFL certified (Dec 2024). Strong in full STLC ownership, Agile sprints, API testing, and mentoring junior engineers. Passionate about making QA smarter through AI.</p>
+      </div>
+
+      <div class="ms">
+        <div class="ms-h">Experience</div>
+
+        <div class="exp">
+          <div class="exp-top"><div class="exp-co">Dyad Tech</div><div class="exp-per">Aug 2024 – Present · Ahmedabad</div></div>
+          <div class="exp-role">Senior QA Engineer — Nexsure Insurance Platform</div>
+          <ul class="exp-ul">
+            <li>Lead full STLC for complex insurance workflows: requirements, test planning, execution, defect tracking, release sign-off</li>
+            <li>Built 4 AI-powered QA tools (AI Bug Reporter, Test Coverage Analyser, AI Test Case Generator, Selenium Framework) using Vibe Coding — Claude AI, Copilot, Cursor — all in active team use</li>
+            <li>Saved 2+ hours per bug report via AI automation; team now generates structured reports in 30 seconds</li>
+            <li>Own QA process documentation in Confluence; drive sprint milestones in Agile/Scrum</li>
+            <li>Conduct root cause analysis on defects, provide detailed reports, coordinate resolution with dev team</li>
+          </ul>
+        </div>
+
+        <div class="exp">
+          <div class="exp-top"><div class="exp-co">Crest Data Systems</div><div class="exp-per">Feb 2023 – Jul 2024 · Ahmedabad</div></div>
+          <div class="exp-role">Senior QA Engineer — ServiceNow &amp; Morphisec</div>
+          <ul class="exp-ul">
+            <li>Certified ServiceNow and Morphisec enterprise web applications through full QA process</li>
+            <li>Built and maintained Selenium WebDriver + Python automation suite for regression coverage</li>
+            <li>Mentored junior QA engineers and interns; attended regular client calls; drove sprint delivery</li>
+          </ul>
+        </div>
+
+        <div class="exp">
+          <div class="exp-top"><div class="exp-co">Secomind.AI</div><div class="exp-per">Aug 2022 – Feb 2023 · Ahmedabad</div></div>
+          <div class="exp-role">Sr QA Engineer — 30mins.com (Web &amp; Mobile)</div>
+          <ul class="exp-ul">
+            <li>Spearheaded QA for 30mins.com web and mobile application through all phases of STLC</li>
+          </ul>
+        </div>
+
+        <div class="exp">
+          <div class="exp-top"><div class="exp-co">Codal Inc.</div><div class="exp-per">Sep 2021 – Aug 2022 · Ahmedabad</div></div>
+          <div class="exp-role">QA Engineer — GOREWEAR eCommerce</div>
+          <ul class="exp-ul">
+            <li>Managed all testing for GOREWEAR eCommerce ecosystem; created test cases in TestRail</li>
+            <li>Executed milestone-linked test runs; generated comprehensive sprint-wise test reports</li>
+          </ul>
+        </div>
+
+        <div class="exp">
+          <div class="exp-top"><div class="exp-co">KudosIntech Software Pvt. Ltd.</div><div class="exp-per">Nov 2018 – Sep 2021 · Ahmedabad</div></div>
+          <div class="exp-role">QA Engineer — Multiple Enterprise Projects</div>
+          <ul class="exp-ul">
+            <li>Project Honeywich: system, regression, functional, and E2E testing for enterprise platform</li>
+            <li>Project Fastline: smoke, sanity, functional, regression, and non-functional testing</li>
+            <li>Diplomakids Mobile App: full mobile application QA and certification from scratch</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ms">
+        <div class="ms-h">Education</div>
+        <div class="edu">
+          <div class="edu-deg">Bachelor of Computer Application (BCA) — Computer Software Engineering</div>
+          <div class="edu-sch">St. Xavier's College, Ahmedabad</div>
+          <div class="edu-yr">2015 – 2017</div>
+        </div>
+        <div class="edu">
+          <div class="edu-deg">Selenium WebDriver Automation Training</div>
+          <div class="edu-sch">Unicode Technologies Pvt. Ltd.</div>
+          <div class="edu-yr">January 2020 – June 2020</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

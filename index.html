@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kunal Richards | Senior QA Engineer & AI Tool Builder</title>
+<meta name="description" content="Senior QA Engineer with 7+ years experience. ISTQB CTFL certified. AI Tool Builder. Vibe Coder. Ahmedabad, India.">
+<style>
+:root{
+  --bg:#04080f;--s1:#0a1020;--s2:#111827;--s3:#1a2235;
+  --ac:#38bdf8;--ac2:#a78bfa;--gr:#34d399;--yw:#fbbf24;
+  --tx:#c8d5e8;--dim:#526070;--hd:#f0f5fc;--bd:#1a2d45;
+  --grd:linear-gradient(135deg,#38bdf8,#a78bfa);
+  --grd2:linear-gradient(135deg,#34d399,#38bdf8);
+  --grd3:linear-gradient(135deg,#a78bfa,#ec4899);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.6;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:var(--ac);border-radius:2px;}
+
+/* AURORA BACKGROUND */
+.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.12;animation:drift linear infinite;}
+.o1{width:600px;height:600px;background:#38bdf8;top:-150px;left:-150px;animation-duration:30s;}
+.o2{width:500px;height:500px;background:#a78bfa;bottom:-100px;right:-100px;animation-duration:25s;animation-delay:-8s;}
+.o3{width:400px;height:400px;background:#34d399;top:40%;left:40%;animation-duration:35s;animation-delay:-15s;}
+.o4{width:350px;height:350px;background:#ec4899;bottom:30%;left:-50px;animation-duration:28s;animation-delay:-5s;}
+@keyframes drift{0%{transform:translate(0,0) scale(1);}33%{transform:translate(60px,-40px) scale(1.08);}66%{transform:translate(-40px,60px) scale(.95);}100%{transform:translate(0,0) scale(1);}}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:.7rem 2.5rem;background:rgba(4,8,15,.88);backdrop-filter:blur(24px);border-bottom:1px solid rgba(56,189,248,.08);}
+.nl{font-size:1.4rem;font-weight:900;background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-1px;}
+.nv{display:flex;gap:1.8rem;list-style:none;align-items:center;}
+.nv a{color:var(--dim);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s;}
+.nv a:hover{color:var(--ac);}
+.nv .ncv{background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;border:1px solid rgba(56,189,248,.25);padding:.3rem .9rem;border-radius:6px;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;z-index:1;padding:5rem 2.5rem 3rem;}
+.hi{max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:5rem;align-items:center;width:100%;}
+.hero-text{}
+.hero-chip{display:inline-flex;align-items:center;gap:.5rem;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);color:var(--gr);padding:.38rem .9rem;border-radius:50px;font-size:.73rem;font-weight:700;margin-bottom:1.4rem;letter-spacing:.3px;}
+.hc-dot{width:6px;height:6px;background:var(--gr);border-radius:50%;animation:gp 2s infinite;}
+@keyframes gp{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.6);}70%{box-shadow:0 0 0 6px rgba(52,211,153,0);}}
+h1{font-size:clamp(3rem,5.5vw,5rem);font-weight:900;line-height:1.02;color:var(--hd);margin-bottom:.5rem;letter-spacing:-2px;}
+.anim-name{background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:ga 4s ease infinite;}
+@keyframes ga{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+.ht{font-size:1.1rem;color:var(--dim);min-height:1.6rem;margin-bottom:1rem;font-weight:400;}
+.pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.8rem;}
+.pill{padding:.24rem .62rem;border-radius:4px;font-size:.7rem;font-weight:700;border:1px solid;cursor:default;transition:all .2s;}
+.pill-b{background:rgba(56,189,248,.07);border-color:rgba(56,189,248,.2);color:var(--ac);}
+.pill-v{background:rgba(167,139,250,.07);border-color:rgba(167,139,250,.2);color:var(--ac2);}
+.pill-g{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.2);color:var(--gr);}
+.pill:hover{transform:translateY(-2px);opacity:.85;}
+.ctas{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2rem;}
+.btn{padding:.68rem 1.6rem;border-radius:9px;font-weight:700;font-size:.87rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;transition:all .22s;border:none;cursor:pointer;letter-spacing:.2px;}
+.bg{background:var(--grd);color:#fff;box-shadow:0 4px 20px rgba(56,189,248,.25);}
+.bg:hover{box-shadow:0 6px 30px rgba(56,189,248,.4);transform:translateY(-2px);}
+.bo{background:transparent;border:1.5px solid var(--bd);color:var(--hd);}
+.bo:hover{border-color:var(--ac);color:var(--ac);transform:translateY(-2px);}
+.socrow{display:flex;gap:1rem;flex-wrap:wrap;}
+.sc{display:flex;align-items:center;gap:.32rem;color:var(--dim);text-decoration:none;font-size:.78rem;transition:color .2s;}
+.sc:hover{color:var(--ac);}
+
+/* HERO PHOTO */
+.photo-col{position:relative;flex-shrink:0;}
+.pg1{position:absolute;inset:-20px;border-radius:34px;background:var(--grd);opacity:.2;filter:blur(30px);animation:gp2 4s ease infinite;}
+@keyframes gp2{0%,100%{opacity:.18;transform:scale(1);}50%{opacity:.28;transform:scale(1.03);}}
+.pr{position:absolute;inset:-4px;border-radius:26px;background:var(--grd);z-index:1;animation:gr2 3s ease infinite;}
+@keyframes gr2{0%,100%{opacity:1;}50%{opacity:.7;}}
+.himg{width:320px;height:400px;border-radius:23px;object-fit:cover;object-position:center top;position:relative;z-index:2;display:block;}
+.ploc{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);background:rgba(10,16,32,.95);border:1px solid var(--bd);border-radius:50px;padding:.32rem .9rem;font-size:.68rem;font-weight:700;color:var(--ac);white-space:nowrap;z-index:3;box-shadow:0 4px 20px rgba(0,0,0,.6);}
+
+/* SECTION */
+section{padding:5.5rem 2.5rem;position:relative;z-index:1;}
+.con{max-width:1150px;margin:0 auto;}
+.sh{text-align:center;margin-bottom:3.2rem;}
+.stag{display:inline-block;color:var(--gr);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2.5px;margin-bottom:.35rem;}
+.st{font-size:2rem;font-weight:900;color:var(--hd);margin-bottom:.38rem;letter-spacing:-1px;}
+.sd{color:var(--dim);font-size:.86rem;max-width:520px;margin:0 auto;line-height:1.7;}
+
+/* STATS */
+.sgd{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.1rem;margin-bottom:3.5rem;}
+.sc2{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.7rem 1.3rem;text-align:center;transition:all .3s;position:relative;overflow:hidden;cursor:default;}
+.sc2::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grd);}
+.sc2::after{content:'';position:absolute;inset:0;background:var(--grd);opacity:0;transition:opacity .3s;}
+.sc2:hover::after{opacity:.04;}
+.sc2:hover{border-color:rgba(56,189,248,.3);transform:translateY(-5px);box-shadow:0 12px 40px rgba(56,189,248,.08);}
+.sn{font-size:2.5rem;font-weight:900;background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;position:relative;z-index:1;}
+.sl{color:var(--dim);font-size:.78rem;margin-top:.2rem;position:relative;z-index:1;}
+
+/* ABOUT */
+.ag{display:grid;grid-template-columns:260px 1fr;gap:3.5rem;align-items:start;}
+.apc{display:flex;flex-direction:column;gap:.9rem;}
+.apf{position:relative;}
+.apo{position:absolute;inset:-18px;border-radius:24px;background:var(--grd);opacity:.15;filter:blur(20px);animation:gp2 5s ease infinite;}
+.apr{position:absolute;inset:-3px;border-radius:19px;background:var(--grd);z-index:0;}
+.aimg{width:100%;height:300px;border-radius:17px;object-fit:cover;object-position:center top;position:relative;z-index:1;display:block;}
+.mbadge{background:var(--s2);border:1px solid var(--bd);border-radius:11px;padding:.8rem;text-align:center;transition:border-color .3s;}
+.mbadge:hover{border-color:rgba(167,139,250,.35);}
+.mbt{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:.2rem;}
+.mbv{font-size:.76rem;color:var(--tx);}
+.at3 h3{font-size:1.3rem;font-weight:800;color:var(--hd);margin-bottom:.85rem;letter-spacing:-.4px;}
+.at3 p{font-size:.87rem;line-height:1.78;margin-bottom:.82rem;}
+.htags{display:flex;flex-wrap:wrap;gap:.38rem;margin-top:1rem;}
+.ht{background:rgba(56,189,248,.07);border:1px solid rgba(56,189,248,.16);color:var(--ac);padding:.22rem .62rem;border-radius:5px;font-size:.71rem;font-weight:700;}
+
+/* VIBE */
+.vsec{background:var(--s1);}
+.vg{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.vl h3{font-size:1.3rem;font-weight:800;color:var(--hd);margin-bottom:.85rem;}
+.vl p{font-size:.85rem;line-height:1.77;margin-bottom:.9rem;color:var(--tx);}
+.atg{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;}
+.at{background:var(--s2);border:1px solid var(--bd);border-radius:11px;padding:.85rem;display:flex;align-items:center;gap:.65rem;transition:all .25s;cursor:default;}
+.at:hover{border-color:rgba(56,189,248,.3);transform:translateY(-3px);box-shadow:0 8px 25px rgba(56,189,248,.06);}
+.ati{font-size:1.4rem;}
+.atn{font-size:.78rem;font-weight:700;color:var(--hd);}
+.atd{font-size:.66rem;color:var(--dim);}
+.cblk{background:var(--bg);border:1px solid var(--bd);border-radius:14px;padding:1.5rem;font-family:'Courier New',monospace;font-size:.76rem;line-height:1.75;position:relative;}
+.cblk::before{content:'● ● ●';position:absolute;top:.75rem;left:1rem;color:var(--dim);font-size:.6rem;letter-spacing:3px;}
+.cblk .code-inner{margin-top:1.2rem;}
+.ck{color:#c084fc;}.cs{color:#4ade80;}.cf{color:#38bdf8;}.cc{color:#475569;}.ccu{display:inline-block;width:7px;height:13px;background:var(--ac);animation:gp 1s infinite;vertical-align:middle;border-radius:1px;}
+
+/* PROJECTS */
+.pgd{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.2rem;}
+.pc{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.5rem;position:relative;overflow:hidden;transition:all .3s;cursor:default;}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grd);}
+.pc:hover{border-color:rgba(167,139,250,.35);transform:translateY(-6px) rotateX(1deg);box-shadow:0 16px 50px rgba(56,189,248,.07);}
+.pc-glow{position:absolute;width:200px;height:200px;border-radius:50%;background:var(--ac);opacity:0;filter:blur(60px);pointer-events:none;transition:opacity .3s;top:-50px;right:-50px;}
+.pc:hover .pc-glow{opacity:.04;}
+.pi{font-size:2rem;margin-bottom:.9rem;}
+.ptt{font-size:1rem;font-weight:800;color:var(--hd);margin-bottom:.38rem;}
+.pd{color:var(--dim);font-size:.8rem;margin-bottom:.9rem;line-height:1.62;}
+.ptgs{display:flex;flex-wrap:wrap;gap:.28rem;}
+.ptg{background:var(--s2);border:1px solid var(--bd);color:var(--dim);padding:.15rem .48rem;border-radius:4px;font-size:.67rem;}
+
+/* TIMELINE */
+.tl{position:relative;padding-left:2rem;}
+.tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#38bdf8,#a78bfa,#34d399,#ec4899);}
+.ti{position:relative;margin-bottom:1.7rem;padding-left:2rem;}
+.td{position:absolute;left:-2.35rem;top:.55rem;width:14px;height:14px;border-radius:50%;background:var(--grd);border:2.5px solid var(--bg);box-shadow:0 0 12px rgba(56,189,248,.4);}
+.tc{background:var(--s1);border:1px solid var(--bd);border-radius:13px;padding:1.35rem;transition:all .3s;}
+.tc:hover{border-color:rgba(56,189,248,.3);transform:translateX(4px);box-shadow:0 8px 30px rgba(56,189,248,.05);}
+.tco{font-size:1rem;font-weight:800;color:var(--hd);}
+.tro{color:var(--ac);font-size:.82rem;font-weight:600;}
+.tpe{color:var(--dim);font-size:.72rem;margin:.15rem 0 .58rem;}
+.tds{color:var(--tx);font-size:.81rem;line-height:1.64;}
+
+/* SKILLS */
+.skgd{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;}
+.sg{background:var(--s1);border:1px solid var(--bd);border-radius:13px;padding:1.3rem;transition:border-color .3s;}
+.sg:hover{border-color:rgba(56,189,248,.2);}
+.sgt{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--ac);margin-bottom:.8rem;}
+.sbs{display:flex;flex-wrap:wrap;gap:.32rem;}
+.sb{background:var(--s2);border:1px solid var(--bd);color:var(--tx);padding:.26rem .62rem;border-radius:6px;font-size:.73rem;cursor:default;transition:all .2s;}
+.sb:hover{border-color:var(--ac);color:var(--ac);background:rgba(56,189,248,.05);}
+.sb.h{border-color:rgba(167,139,250,.25);color:var(--ac2);}
+.sb.h:hover{border-color:var(--ac2);background:rgba(167,139,250,.05);}
+
+/* CERTS */
+.cgd{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;}
+.cc{background:var(--s1);border:1px solid var(--bd);border-radius:13px;padding:1.3rem;display:flex;gap:.85rem;align-items:flex-start;transition:all .3s;}
+.cc:hover{border-color:rgba(167,139,250,.3);transform:translateY(-3px);}
+.cic{font-size:1.7rem;flex-shrink:0;}
+.cnm{font-weight:800;color:var(--hd);font-size:.86rem;}
+.cor{color:var(--dim);font-size:.73rem;margin-top:.12rem;}
+
+/* CONTACT */
+.ctbg{background:var(--s1);}
+.ctg{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.ctih h3{font-size:1.55rem;font-weight:800;color:var(--hd);margin-bottom:.65rem;letter-spacing:-.5px;}
+.ctih p{color:var(--dim);margin-bottom:1.5rem;font-size:.86rem;line-height:1.7;}
+.cl{display:flex;align-items:center;gap:.8rem;color:var(--tx);text-decoration:none;font-size:.85rem;padding:.58rem 0;border-bottom:1px solid var(--bd);transition:all .2s;}
+.cl:hover{color:var(--ac);padding-left:.4rem;}
+.cli{background:rgba(56,189,248,.07);width:35px;height:35px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+.fi{background:var(--bg);border:1px solid var(--bd);border-radius:9px;padding:.68rem .95rem;color:var(--tx);font-size:.83rem;outline:none;width:100%;font-family:inherit;transition:border-color .25s;}
+.fi:focus{border-color:var(--ac);}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem 2.5rem;text-align:center;position:relative;z-index:1;}
+.fn{font-size:.95rem;font-weight:900;background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.fl{display:flex;gap:1.2rem;justify-content:center;margin:.7rem 0;flex-wrap:wrap;}
+.fl a{color:var(--dim);text-decoration:none;font-size:.78rem;transition:color .2s;}
+.fl a:hover{color:var(--ac);}
+.fc{color:var(--dim);font-size:.72rem;margin-top:.4rem;}
+
+/* BTT */
+#btt{position:fixed;bottom:1.5rem;right:1.5rem;width:40px;height:40px;background:var(--grd);border:none;border-radius:10px;color:#fff;cursor:pointer;font-size:1rem;z-index:200;opacity:0;transition:all .25s;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(56,189,248,.3);}
+#btt.v{opacity:1;}#btt:hover{transform:translateY(-3px);}
+
+@media(max-width:850px){
+  .nv{display:none;}
+  .hi,.ag,.vg,.ctg{grid-template-columns:1fr;}
+  .hi{text-align:center;}
+  .photo-col{margin:0 auto;}
+  .himg{width:260px;height:320px;}
+  .pills,.ctas,.socrow{justify-content:center;}
+  .ag{text-align:left;}
+}
+</style>
+</head>
+<body>
+<div class="aurora">
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="orb o3"></div><div class="orb o4"></div>
+</div>
+
+<nav>
+  <span class="nl">KR.</span>
+  <ul class="nv">
+    <li><a href="#about">About</a></li>
+    <li><a href="#ai">AI & Vibe</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="cv.html" target="_blank" class="ncv">CV →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hi">
+    <div class="hero-text">
+      <div class="hero-chip"><span class="hc-dot"></span>Senior QA Engineer &nbsp;·&nbsp; Ahmedabad, India</div>
+      <h1>Kunal<br><span class="anim-name">Richards</span></h1>
+      <div class="ht" id="typing-text">Senior QA Engineer</div>
+      <div class="pills">
+        <span class="pill pill-v">🤖 Vibe Coder</span>
+        <span class="pill pill-v">🧠 AI Tool Builder</span>
+        <span class="pill pill-b">⚡ Claude + OpenAI</span>
+        <span class="pill pill-g">🏆 ISTQB CTFL 2024</span>
+        <span class="pill pill-b">7+ Years QA</span>
+        <span class="pill pill-g">Insurance Domain</span>
+        <span class="pill pill-b">Selenium Expert</span>
+      </div>
+      <div class="ctas">
+        <a href="#projects" class="btn bg">View Projects →</a>
+        <a href="cv.html" target="_blank" class="btn bo">Download CV</a>
+        <a href="#contact" class="btn bo">Contact Me</a>
+      </div>
+      <div class="socrow">
+        <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank" class="sc">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>LinkedIn
+        </a>
+        <a href="mailto:kunalrichards4@gmail.com" class="sc">✉ kunalrichards4@gmail.com</a>
+        <a href="tel:+918200379330" class="sc">📱 +91 82003 79330</a>
+      </div>
+    </div>
+    <div class="photo-col">
+      <div class="pg1"></div>
+      <div class="pr"></div>
+      <img src="kunal-photo.jpg" alt="Kunal Richards — Senior QA Engineer" class="himg">
+      <div class="ploc">📍 Ahmedabad, India</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT + STATS -->
+<section id="about">
+  <div class="con">
+    <div class="sgd">
+      <div class="sc2"><div class="sn" data-target="7" data-suf="+">0</div><div class="sl">Years of Experience</div></div>
+      <div class="sc2"><div class="sn" data-target="5" data-suf="">0</div><div class="sl">Companies Worked</div></div>
+      <div class="sc2"><div class="sn" data-target="4" data-suf="+">0</div><div class="sl">AI Tools Built</div></div>
+      <div class="sc2"><div class="sn" style="font-size:1.5rem;-webkit-text-fill-color:transparent;background:var(--grd);-webkit-background-clip:text;">CTFL</div><div class="sl">ISTQB Certified · Dec 2024</div></div>
+    </div>
+    <div class="ag">
+      <div class="apc">
+        <div class="apf">
+          <div class="apo"></div><div class="apr"></div>
+          <img src="kunal-photo.jpg" alt="Kunal Richards" class="aimg">
+        </div>
+        <div class="mbadge"><div class="mbt" style="color:var(--ac2);">🤖 Vibe Coder</div><div class="mbv">AI-assisted builder · 2024–2026</div></div>
+        <div class="mbadge"><div class="mbt" style="color:var(--gr);">🏆 ISTQB CTFL</div><div class="mbv">Certified · December 2024</div></div>
+      </div>
+      <div class="at3">
+        <h3>Turning Bugs Into Better Software — Now With AI</h3>
+        <p>I'm a <strong style="color:var(--hd)">Senior QA Engineer</strong> with <strong style="color:var(--hd)">7+ years</strong> of experience in enterprise web apps, automation, and the insurance domain. Currently at <strong style="color:var(--hd)">Dyad Tech</strong>, leading QA for the <strong style="color:var(--hd)">Nexsure Insurance Platform</strong>.</p>
+        <p>What makes me different: I <em style="color:var(--ac)">build AI tools that make testing smarter</em>. I've developed an AI Bug Reporter, Test Coverage Analyser, and AI Test Case Generator — all running in production and used by my team daily, built using <strong style="color:var(--ac2)">Vibe Coding</strong> with Claude AI, GitHub Copilot, and Cursor IDE.</p>
+        <p>ISTQB CTFL certified. Strong in full STLC ownership, Agile sprints, API testing, and mentoring junior QA engineers. My mission: make QA smarter, faster, and measurable through AI.</p>
+        <div class="htags">
+          <span class="ht">ISTQB CTFL</span><span class="ht">Nexsure · Insurance</span><span class="ht">AI Tool Builder</span><span class="ht">Vibe Coder</span><span class="ht">Team Mentor</span><span class="ht">Agile · Scrum</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI + VIBE -->
+<section id="ai" class="vsec">
+  <div class="con">
+    <div class="sh">
+      <div class="stag">// AI-First · 2026</div>
+      <h2 class="st">Vibe Coding & AI-Powered QA</h2>
+      <p class="sd">I don't just use AI tools — I build them and integrate them into every QA workflow.</p>
+    </div>
+    <div class="vg">
+      <div class="vl">
+        <h3>What is Vibe Coding?</h3>
+        <p>Coined by Andrej Karpathy in 2025, Vibe Coding means describing what you want in plain English and letting AI write the code. I use Claude Code CLI, GitHub Copilot, and Cursor IDE every day to ship production QA tools in hours, not weeks.</p>
+        <p>In 2025–2026, I built 4 production tools this way. My team uses them daily for bug reporting, test case generation, and coverage analysis — all fully automated and AI-powered.</p>
+        <div class="atg">
+          <div class="at"><div class="ati">🧠</div><div><div class="atn">Claude AI + CLI</div><div class="atd">Bug reports &amp; test cases</div></div></div>
+          <div class="at"><div class="ati">🐙</div><div><div class="atn">GitHub Copilot</div><div class="atd">Code completion &amp; review</div></div></div>
+          <div class="at"><div class="ati">⚡</div><div><div class="atn">Cursor IDE</div><div class="atd">AI pair programming</div></div></div>
+          <div class="at"><div class="ati">🤖</div><div><div class="atn">OpenAI APIs</div><div class="atd">QA workflow automation</div></div></div>
+          <div class="at"><div class="ati">🔗</div><div><div class="atn">MCP Servers</div><div class="atd">Jira &amp; Confluence bridge</div></div></div>
+          <div class="at"><div class="ati">🛠</div><div><div class="atn">Claude Code</div><div class="atd">Terminal AI assistant</div></div></div>
+        </div>
+      </div>
+      <div class="cblk">
+        <div class="code-inner">
+          <div><span class="cc">// Kunal describes. AI writes. Team ships.</span></div>
+          <div><span class="ck">const</span> report = <span class="ck">await</span> <span class="cf">claude</span>.generate({</div>
+          <div>&nbsp;&nbsp;ticket: <span class="cs">"RCEP-1175"</span>,</div>
+          <div>&nbsp;&nbsp;output: <span class="cs">"structured-bug-report"</span>,</div>
+          <div>&nbsp;&nbsp;include: [</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs">"preconditions"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs">"steps_to_reproduce"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs">"root_cause_hypothesis"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs">"severity_suggestion"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs">"acceptance_criteria"</span></div>
+          <div>&nbsp;&nbsp;]</div>
+          <div>});</div><br>
+          <div><span class="cc">// Before: 2 hours per bug report</span></div>
+          <div><span class="cc">// After AI: 30 seconds. Every time.</span></div>
+          <div><span class="cc">// Quality: Consistent &amp; structured</span></div><br>
+          <div><span class="cf">console</span>.log(<span class="cs">"QA is smarter now 🚀"</span>); <span class="ccu"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="con">
+    <div class="sh">
+      <div class="stag">// Work</div>
+      <h2 class="st">AI Tools I've Built</h2>
+      <p class="sd">Four production-grade QA tools built with Vibe Coding — solving real problems every day.</p>
+    </div>
+    <div class="pgd">
+      <div class="pc"><div class="pc-glow"></div>
+        <div class="pi">🤖</div>
+        <div class="ptt">AI Bug Reporter</div>
+        <p class="pd">Fetches Jira tickets and uses Claude AI to generate fully structured bug reports — preconditions, steps to reproduce, root cause hypothesis, severity rating, and acceptance criteria. Saves 2 hours per report.</p>
+        <div class="ptgs"><span class="ptg">Node.js</span><span class="ptg">React</span><span class="ptg">Claude AI</span><span class="ptg">SQLite</span><span class="ptg">Jira REST API</span><span class="ptg">Vibe Coded</span></div>
+      </div>
+      <div class="pc"><div class="pc-glow"></div>
+        <div class="pi">📊</div>
+        <div class="ptt">Test Coverage Analyser</div>
+        <p class="pd">Connects Zephyr Scale + GitHub to map test cases against 23 code modules, identify coverage gaps, and auto-generate QA manager reports with AI insights. Used by QA leads weekly.</p>
+        <div class="ptgs"><span class="ptg">React</span><span class="ptg">Node.js</span><span class="ptg">Zephyr API</span><span class="ptg">GitHub API</span><span class="ptg">AI Reports</span></div>
+      </div>
+      <div class="pc"><div class="pc-glow"></div>
+        <div class="pi">🧪</div>
+        <div class="ptt">Selenium Automation Framework</div>
+        <p class="pd">JSON-driven Selenium 4 framework in Java + TestNG. Data-driven with 12 action types, Page Object Model, ThreadLocal context, Allure reporting, and RestAssured API validation.</p>
+        <div class="ptgs"><span class="ptg">Java 11</span><span class="ptg">Selenium 4</span><span class="ptg">TestNG</span><span class="ptg">Allure</span><span class="ptg">Maven</span><span class="ptg">RestAssured</span></div>
+      </div>
+      <div class="pc"><div class="pc-glow"></div>
+        <div class="pi">💪</div>
+        <div class="ptt">DevFit — IT Wellness App</div>
+        <p class="pd">Pomodoro timer + wellness tracker for developers and QA engineers. Water intake, 20-20-20 eye breaks, posture checks, 6 desk exercises, and daily streaks. Zero dependencies, works offline.</p>
+        <div class="ptgs"><span class="ptg">HTML</span><span class="ptg">CSS</span><span class="ptg">JavaScript</span><span class="ptg">LocalStorage</span><span class="ptg">Web Notifications</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:var(--s1);">
+  <div class="con">
+    <div class="sh"><div class="stag">// Career</div><h2 class="st">Where I've Worked</h2></div>
+    <div class="tl">
+      <div class="ti"><div class="td"></div>
+        <div class="tc"><div class="tco">Dyad Tech</div><div class="tro">Senior QA Engineer — Nexsure Insurance Platform</div><div class="tpe">August 2024 – Present · Ahmedabad, India</div>
+        <div class="tds">Leading full STLC for the Nexsure Insurance Platform. Built 4 AI-powered QA tools using Vibe Coding — all in active team use. Own requirements, test planning, execution, defect tracking, and release sign-off in Agile sprints.</div></div>
+      </div>
+      <div class="ti"><div class="td"></div>
+        <div class="tc"><div class="tco">Crest Data Systems</div><div class="tro">Senior QA Engineer — ServiceNow &amp; Morphisec</div><div class="tpe">February 2023 – July 2024 · Ahmedabad, India</div>
+        <div class="tds">Certified ServiceNow and Morphisec web apps through full QA. Built Selenium + Python automation suite. Mentored juniors, attended client calls, drove sprint milestone delivery.</div></div>
+      </div>
+      <div class="ti"><div class="td"></div>
+        <div class="tc"><div class="tco">Secomind.AI</div><div class="tro">Sr QA Engineer — 30mins.com</div><div class="tpe">August 2022 – February 2023 · Ahmedabad, India</div>
+        <div class="tds">Spearheaded QA for 30mins.com web and mobile application across all phases of the STLC.</div></div>
+      </div>
+      <div class="ti"><div class="td"></div>
+        <div class="tc"><div class="tco">Codal Inc.</div><div class="tro">QA Engineer — GOREWEAR eCommerce</div><div class="tpe">September 2021 – August 2022 · Ahmedabad, India</div>
+        <div class="tds">Managed all testing for GOREWEAR eCommerce. Created test cases in TestRail, executed milestone runs, delivered sprint-wise reports.</div></div>
+      </div>
+      <div class="ti"><div class="td"></div>
+        <div class="tc"><div class="tco">KudosIntech Software Pvt. Ltd.</div><div class="tro">QA Engineer — Multiple Projects</div><div class="tpe">November 2018 – September 2021 · Ahmedabad, India</div>
+        <div class="tds">Led testing on 3 projects: Honeywich (system, regression, E2E), Fastline (smoke, sanity, functional, non-functional), and Diplomakids Mobile App. Where the QA career began.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="con">
+    <div class="sh"><div class="stag">// Stack</div><h2 class="st">Skills & Technologies</h2></div>
+    <div class="skgd">
+      <div class="sg"><div class="sgt">🧪 Testing</div><div class="sbs"><span class="sb">Manual Testing</span><span class="sb">Regression</span><span class="sb">Integration</span><span class="sb">API Testing</span><span class="sb">Smoke &amp; Sanity</span><span class="sb">Usability</span><span class="sb">E2E</span></div></div>
+      <div class="sg"><div class="sgt">⚙️ Automation</div><div class="sbs"><span class="sb">Selenium WebDriver</span><span class="sb">Python</span><span class="sb">Java</span><span class="sb">TestNG</span><span class="sb">RestAssured</span><span class="sb">Postman</span><span class="sb">Maven</span></div></div>
+      <div class="sg"><div class="sgt">🤖 AI &amp; Vibe Coding <span style="color:var(--yw);font-size:.58rem;font-weight:700;">HOT 2026</span></div><div class="sbs"><span class="sb h">Claude AI</span><span class="sb h">Claude Code CLI</span><span class="sb h">GitHub Copilot</span><span class="sb h">Cursor IDE</span><span class="sb h">OpenAI APIs</span><span class="sb h">MCP Servers</span><span class="sb h">Vibe Coding</span></div></div>
+      <div class="sg"><div class="sgt">🛠 Dev Stack</div><div class="sbs"><span class="sb">Node.js</span><span class="sb">React</span><span class="sb">TypeScript</span><span class="sb">SQLite</span><span class="sb">Express.js</span><span class="sb">Git</span><span class="sb">REST APIs</span></div></div>
+      <div class="sg"><div class="sgt">📋 Test Management</div><div class="sbs"><span class="sb">JIRA</span><span class="sb">Zephyr Scale</span><span class="sb">Xray</span><span class="sb">TestRail</span><span class="sb">Confluence</span><span class="sb">Allure</span><span class="sb">Bugzilla</span></div></div>
+      <div class="sg"><div class="sgt">🏢 Domain &amp; Process</div><div class="sbs"><span class="sb">Insurance · Nexsure</span><span class="sb">eCommerce</span><span class="sb">SaaS Enterprise</span><span class="sb">Agile / Scrum</span><span class="sb">STLC</span><span class="sb">Team Mentoring</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section style="background:var(--s1);">
+  <div class="con">
+    <div class="sh"><div class="stag">// Credentials</div><h2 class="st">Certifications &amp; Education</h2></div>
+    <div class="cgd">
+      <div class="cc"><div class="cic">🏆</div><div><div class="cnm">ISTQB CTFL</div><div class="cor">Certified Tester Foundation Level · December 2024</div></div></div>
+      <div class="cc"><div class="cic">🎓</div><div><div class="cnm">BCA — Computer Software Engineering</div><div class="cor">St. Xavier's College, Ahmedabad · 2015–2017</div></div></div>
+      <div class="cc"><div class="cic">⚙️</div><div><div class="cnm">Selenium WebDriver Automation</div><div class="cor">Unicode Technologies Pvt. Ltd. · 2020</div></div></div>
+      <div class="cc"><div class="cic">📜</div><div><div class="cnm">Software Testing</div><div class="cor">TOPS Technologies · 2018</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="ctbg">
+  <div class="con">
+    <div class="ctg">
+      <div class="ctih">
+        <h3>Let's Connect</h3>
+        <p>I'm always happy to connect with fellow QA professionals, tech enthusiasts, and people interested in AI-powered testing.</p>
+        <a href="mailto:kunalrichards4@gmail.com" class="cl"><div class="cli">✉️</div>kunalrichards4@gmail.com</a>
+        <a href="tel:+918200379330" class="cl"><div class="cli">📱</div>+91 82003 79330</a>
+        <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank" class="cl"><div class="cli">💼</div>linkedin.com/in/kunal-richards-qa</a>
+        <div class="cl"><div class="cli">📍</div>Ahmedabad, Gujarat, India</div>
+      </div>
+      <div style="background:var(--s2);border:1px solid var(--bd);border-radius:15px;padding:1.8rem;">
+        <h4 style="color:var(--hd);margin-bottom:1.2rem;font-size:.95rem;font-weight:800;">Send a Message</h4>
+        <form onsubmit="sm(event)" style="display:flex;flex-direction:column;gap:.75rem;">
+          <input class="fi" type="text" id="fn" placeholder="Your Name" required>
+          <input class="fi" type="email" id="fe" placeholder="Your Email" required>
+          <input class="fi" type="text" id="fc" placeholder="Company (optional)">
+          <textarea class="fi" id="fm" rows="4" placeholder="Your Message" style="resize:vertical;" required></textarea>
+          <button type="submit" class="btn bg" style="justify-content:center;">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fn">Kunal Richards</div>
+  <div style="color:var(--dim);font-size:.77rem;margin:.25rem 0;">Senior QA Engineer &nbsp;·&nbsp; AI Tool Builder &nbsp;·&nbsp; Vibe Coder &nbsp;·&nbsp; ISTQB CTFL</div>
+  <div class="fl">
+    <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank">LinkedIn</a>
+    <a href="cv.html" target="_blank">Download CV</a>
+    <a href="mailto:kunalrichards4@gmail.com">Email</a>
+    <a href="DevFit/index.html" target="_blank">DevFit App</a>
+  </div>
+  <div class="fc">© 2026 Kunal Richards &nbsp;·&nbsp; Ahmedabad, Gujarat, India &nbsp;·&nbsp; Built with Vibe Coding 🤖</div>
+</footer>
+
+<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// COUNTERS
+let done=false;
+new IntersectionObserver(([e])=>{
+  if(e.isIntersecting&&!done){done=true;
+    document.querySelectorAll('[data-target]').forEach(el=>{
+      const t=+el.dataset.target,s=el.dataset.suf??'';let c=0;
+      const id=setInterval(()=>{c=Math.min(c+t/50,t);el.textContent=Math.floor(c)+s;if(c>=t)clearInterval(id);},25);
+    });
+  }
+},{threshold:.3}).observe(document.querySelector('.sgd'));
+
+// TYPING
+const ws=['Senior QA Engineer','ISTQB CTFL Certified','AI Tool Builder','Vibe Coder 🤖','Automation Expert','Quality Champion'];
+let wi=0,ci=0,dl=false;const te=document.getElementById('typing-text');
+function ty(){const w=ws[wi];te.textContent=dl?w.slice(0,ci--):w.slice(0,ci++);
+  if(!dl&&ci>w.length){dl=true;setTimeout(ty,2200);return;}
+  if(dl&&ci<0){dl=false;wi=(wi+1)%ws.length;ci=0;}
+  setTimeout(ty,dl?35:85);}ty();
+
+// REVEAL with stagger
+let idx=0;
+document.querySelectorAll('.pc,.tc,.sc2,.sg,.cc,.at,.mbadge').forEach((el,i)=>{
+  el.style.cssText+='opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease,border-color .3s,box-shadow .3s';
+  new IntersectionObserver(([e])=>{
+    if(e.isIntersecting){setTimeout(()=>{el.style.opacity='1';el.style.transform='translateY(0)';},i%4*60);}
+  },{threshold:.08}).observe(el);
+});
+
+// 3D TILT on project cards
+document.querySelectorAll('.pc').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    c.style.transform=`translateY(-6px) rotateX(${-y*6}deg) rotateY(${x*6}deg)`;
+  });
+  c.addEventListener('mouseleave',()=>c.style.transform='');
+});
+
+// BACK TO TOP
+window.addEventListener('scroll',()=>document.getElementById('btt').classList.toggle('v',scrollY>400));
+
+// FORM
+function sm(e){e.preventDefault();const n=fn.value,em=fe.value,co=fc.value,m=fm.value;
+  location.href=`mailto:kunalrichards4@gmail.com?subject=Portfolio Enquiry — ${encodeURIComponent(n+(co?' @ '+co:''))}&body=${encodeURIComponent(m+'\n\nFrom: '+n+(co?'\nCompany: '+co:'')+'\nEmail: '+em)}`;}
+</script>
+</body>
+</html>
