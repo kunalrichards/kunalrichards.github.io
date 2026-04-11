@@ -87,8 +87,11 @@ button{-webkit-tap-highlight-color:transparent;}
   display:none;
   position:fixed;bottom:0;left:0;right:0;
   z-index:900;
-  padding:.85rem 1rem calc(.85rem + env(safe-area-inset-bottom));
-  background:linear-gradient(to top, rgba(4,8,15,1) 60%, transparent);
+  padding:.7rem 1rem calc(.7rem + env(safe-area-inset-bottom));
+  background:rgba(4,8,15,.97);
+  border-top:1px solid rgba(56,189,248,.15);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
   pointer-events:none;
   transition:opacity .3s ease;
 }
@@ -217,11 +220,12 @@ nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
   grid-template-columns:1fr auto;
   gap:5rem;align-items:center;
 }
+.hero-chips-row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem;}
 .hero-chip{
   display:inline-flex;align-items:center;gap:.5rem;
   background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);
   color:var(--gr);padding:.38rem .9rem;border-radius:50px;
-  font-size:.73rem;font-weight:700;margin-bottom:1.4rem;letter-spacing:.3px;
+  font-size:.73rem;font-weight:700;letter-spacing:.3px;
 }
 .hc-dot{width:6px;height:6px;background:var(--gr);border-radius:50%;flex-shrink:0;animation:pulse-dot 2s infinite;}
 @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.6);}70%{box-shadow:0 0 0 6px rgba(52,211,153,0);}}
@@ -454,19 +458,20 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   .desk-nav{display:none;}
   .hmb{display:flex;}
 
-  .hero{padding:calc(var(--nav-h)+2rem) var(--pad-x) 3rem;}
+  .hero{padding:calc(var(--nav-h)+2.5rem) var(--pad-x) 3.5rem;}
   .hero-inner{
     grid-template-columns:1fr;
-    gap:2.5rem;
+    gap:2rem;
     text-align:center;
   }
   /* Photo above text on tablet */
   .photo-wrap{
     order:-1;
-    width:250px;margin:0 auto;
+    width:240px;margin:0 auto;
   }
-  .hero-photo{width:250px;height:320px;object-fit:cover;object-position:center 20%;}
-  .pills,.ctas,.socrow{justify-content:center;}
+  .hero-photo{width:240px;height:310px;object-fit:cover;object-position:center 20%;}
+  .hero-chips-row,.pills,.ctas,.socrow{justify-content:center;}
+  .hero-chips-row{justify-content:center;}
 
   section{padding:3.5rem var(--pad-x);}
 
@@ -498,27 +503,33 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   :root{--nav-h:56px;--pad-x:1rem;}
   .nl{font-size:1.2rem;}
 
-  /* ── Mobile hero: text first, compact photo AFTER ── */
-  .hero{padding:calc(var(--nav-h)+1.8rem) var(--pad-x) 3rem;min-height:auto;}
-  .hero-inner{gap:1.4rem;}
+  /* ── MOBILE HERO: chips hidden, text first, compact photo after ── */
+  .hero{padding:calc(var(--nav-h)+2.5rem) var(--pad-x) 2.5rem;min-height:auto;}
+  .hero-inner{gap:1.6rem;text-align:center;}
 
-  /* Photo BELOW text on mobile — fixes "stuck in header" */
-  .photo-wrap{order:1;width:160px;margin:0 auto;}
-  .hero-photo{width:160px;height:210px;object-fit:cover;object-position:center 20%;}
+  /* Hide location/role chips — shown in pills below */
+  .hero-chips-row{display:none;}
+
+  /* Photo BELOW text on mobile */
+  .photo-wrap{order:1;width:150px;margin:0 auto;}
+  .hero-photo{width:150px;height:195px;object-fit:cover;object-position:center 20%;}
   .photo-glow{inset:-10px;}
-  .photo-badge{display:none;} /* location shown in hero chips already */
+  .photo-badge{display:none;}
 
-  .soc{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  h1{font-size:2.1rem;letter-spacing:-1.5px;margin-bottom:.4rem;}
+  .typing-line{font-size:.86rem;margin-bottom:.7rem;}
+  .pills{margin-bottom:1rem;gap:.28rem;justify-content:center;}
+  .pill{font-size:.64rem;padding:.2rem .55rem;}
 
-  h1{font-size:2.2rem;letter-spacing:-1.5px;}
-  .typing-line{font-size:.88rem;margin-bottom:.6rem;}
-  .hero-chip{font-size:.67rem;padding:.28rem .65rem;}
-  .pill{font-size:.65rem;}
-  .pills{margin-bottom:1.2rem;gap:.3rem;}
+  /* Only show 2 CTAs on mobile — hide View Projects */
+  .ctas{flex-direction:column;align-items:stretch;gap:.45rem;margin-bottom:1rem;}
+  .ctas .btn:nth-child(3){display:none;}
+  .ctas .btn{justify-content:center;padding:.6rem 1rem;font-size:.84rem;}
 
-  .ctas{flex-direction:column;align-items:stretch;gap:.55rem;margin-bottom:1.2rem;}
-  .ctas .btn{justify-content:center;padding:.65rem 1rem;}
-  .socrow{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:.5rem;}
+  /* Inline social links, compact */
+  .socrow{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:.4rem .9rem;}
+  .soc{font-size:.74rem;}
+  .soc svg{width:13px;height:13px;}
 
   section{padding:2.8rem var(--pad-x);}
   .sec-head{margin-bottom:2rem;}
@@ -627,7 +638,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   <div class="hero-inner">
 
     <div class="hero-text">
-      <div style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem;">
+      <div class="hero-chips-row">
         <div class="hero-chip" style="margin-bottom:0;background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">
           📍 Ahmedabad, India
         </div>
