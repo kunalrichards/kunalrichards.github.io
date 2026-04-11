@@ -27,7 +27,7 @@
 <link rel="preload" as="image" href="kunal-photo-hd.webp" type="image/webp">
 
 <!-- Favicon (inline SVG) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
 
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
@@ -516,7 +516,8 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   .photo-glow{inset:-10px;}
   .photo-badge{display:none;}
 
-  h1{font-size:2.1rem;letter-spacing:-1.5px;margin-bottom:.4rem;}
+  h1{font-size:1.85rem;letter-spacing:-1.5px;margin-bottom:.4rem;}
+  h1 br{display:none;}
   .typing-line{font-size:.86rem;margin-bottom:.7rem;}
   .pills{margin-bottom:1rem;gap:.28rem;justify-content:center;}
   .pill{font-size:.64rem;padding:.2rem .55rem;}
@@ -836,7 +837,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         <p class="proj-desc">Pomodoro timer + wellness tracker built for developers and QA engineers. Water intake, 20-20-20 eye breaks, posture checks, 6 desk exercises, and daily streaks. Zero dependencies, works fully offline.</p>
         <div class="proj-tags"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span><span class="ptag">LocalStorage</span><span class="ptag">Web Notifications</span></div>
         <div class="proj-links">
-          <a href="https://kunalrichards.github.io/Kunal_FitnessApp/" target="_blank" rel="noopener noreferrer" class="plink plink-live">🚀 Try Live App</a>
+          <a href="https://kunalrichards.github.io/Kunal_WellnessApp/" target="_blank" rel="noopener noreferrer" class="plink plink-live">🚀 Try Live App</a>
           <a href="https://github.com/kunalrichards/kunalrichards.github.io" target="_blank" rel="noopener noreferrer" class="plink plink-gh">
             <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
             GitHub
@@ -985,7 +986,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     <a href="cv.html" target="_blank" rel="noopener noreferrer">Download CV</a>
     <a href="mailto:kunalrichards4@gmail.com">Email</a>
-    <a href="Kunal_FitnessApp/index.html" target="_blank" rel="noopener noreferrer">Kunal FitnessApp</a>
+    <a href="Kunal_WellnessApp/index.html" target="_blank" rel="noopener noreferrer">Kunal WellnessApp</a>
   </div>
   <div class="footer-copy">© 2026 Kunal Richards &nbsp;·&nbsp; Ahmedabad, Gujarat, India &nbsp;·&nbsp; Built with Vibe Coding 🤖</div>
 </footer>
@@ -1165,14 +1166,59 @@ window.addEventListener('scroll', () => {
 /* ── CONTACT FORM ── */
 function sendMsg(e) {
   e.preventDefault();
-  const n = document.getElementById('f-name').value.trim();
-  const em = document.getElementById('f-email').value.trim();
-  const co = document.getElementById('f-company').value.trim();
-  const m = document.getElementById('f-msg').value.trim();
-  if (!n || !em || !m) return;
+  const nEl  = document.getElementById('f-name');
+  const emEl = document.getElementById('f-email');
+  const mEl  = document.getElementById('f-msg');
+  const n    = nEl.value.trim();
+  const em   = emEl.value.trim();
+  const co   = document.getElementById('f-company').value.trim();
+  const m    = mEl.value.trim();
+
+  // Clear previous errors
+  ['f-name','f-email','f-msg'].forEach(id => {
+    const el = document.getElementById(id);
+    el.style.borderColor = '';
+    const err = el.parentNode.querySelector('.fi-err');
+    if (err) err.remove();
+  });
+
+  let ok = true;
+  function showErr(el, msg) {
+    el.style.borderColor = '#ef4444';
+    const span = document.createElement('span');
+    span.className = 'fi-err';
+    span.style.cssText = 'color:#ef4444;font-size:.75rem;margin-top:.25rem;display:block;';
+    span.textContent = msg;
+    el.parentNode.appendChild(span);
+    ok = false;
+  }
+
+  if (!n)  showErr(nEl,  'Please enter your name.');
+  if (!em) showErr(emEl, 'Please enter your email address.');
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) showErr(emEl, 'Please enter a valid email address.');
+  if (!m)  showErr(mEl,  'Please enter a message.');
+  if (!ok) return;
+
   const subj = encodeURIComponent('Portfolio Enquiry — ' + n + (co ? ' @ ' + co : ''));
   const body = encodeURIComponent(m + '\n\nFrom: ' + n + (co ? '\nCompany: ' + co : '') + '\nEmail: ' + em);
+
+  // Show info note if mailto might not work
+  const btn = e.target.querySelector('button[type=submit]');
+  btn.textContent = 'Opening email client…';
+  btn.disabled = true;
   window.location.href = `mailto:kunalrichards4@gmail.com?subject=${subj}&body=${body}`;
+  setTimeout(() => {
+    btn.textContent = 'Send Message →';
+    btn.disabled = false;
+    const note = e.target.querySelector('.form-note');
+    if (!note) {
+      const p = document.createElement('p');
+      p.className = 'form-note';
+      p.style.cssText = 'font-size:.76rem;color:var(--dim);margin-top:.6rem;text-align:center;';
+      p.innerHTML = 'If nothing opened, email directly: <a href="mailto:kunalrichards4@gmail.com" style="color:var(--gr);">kunalrichards4@gmail.com</a>';
+      e.target.appendChild(p);
+    }
+  }, 1500);
 }
 </script>
 </body>

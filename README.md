@@ -10,9 +10,9 @@ Ahmedabad, India · kunalrichards4@gmail.com · [LinkedIn](https://www.linkedin.
 
 ---
 
-## Featured Project — Kunal FitnessApp
+## Featured Project — Kunal WellnessApp
 
-**[Try Live App →](https://kunalrichards.github.io/Kunal_FitnessApp/)**
+**[Try Live App →](https://kunalrichards.github.io/Kunal_WellnessApp/)**
 
 A wellness companion app built for IT professionals and developers. Zero dependencies. Works fully offline.
 

@@ -47,6 +47,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .proj-sb-tag{background:#ebf4ff;color:#2563a0;font-size:.6rem;padding:.08rem .3rem;border-radius:3px;font-weight:600;}
 .proj-sb-desc{font-size:.69rem;color:#718096;line-height:1.35;}
 
+/* VIBE CODING PROJECT CARDS */
+.vibe-card{background:#f0f4f8;border:1px solid #cbd5e0;border-radius:6px;padding:.7rem .85rem;border-left:3px solid #1e4d8c;}
+.vibe-card-name{font-size:.78rem;font-weight:800;color:#1e3a5f;margin-bottom:.3rem;}
+.vibe-tags{display:flex;flex-wrap:wrap;gap:.2rem;margin-bottom:.35rem;}
+.vibe-desc{font-size:.69rem;color:#4a5568;line-height:1.4;}
+
 /* MAIN */
 .cv-main{padding:1.6rem 2rem;}
 .ms{margin-bottom:1.5rem;}
@@ -74,11 +80,13 @@ summary strong{color:#2d3748;}
   body{background:#fff;}
   .cv{box-shadow:none;margin:0;border-radius:0;}
   .no-print{display:none;}
+  .vibe-card{break-inside:avoid;}
 }
 @media(max-width:700px){
   .cv-body{grid-template-columns:1fr;}
   .cv-head{flex-direction:column;}
   .cv-photo{width:80px;height:95px;}
+  .vibe-card{grid-column:1/-1;}
 }
 </style>
 </head>
@@ -107,10 +115,12 @@ summary strong{color:#2d3748;}
       <div class="ai-strip">
         <span class="ai-strip-label">AI Stack:</span>
         <span class="ai-chip">Claude AI</span>
+        <span class="ai-chip">Claude Code CLI</span>
         <span class="ai-chip">GitHub Copilot</span>
         <span class="ai-chip">Cursor IDE</span>
         <span class="ai-chip">OpenAI APIs</span>
         <span class="ai-chip">MCP Servers</span>
+        <span class="ai-chip">Prompt Engineering</span>
         <span class="ai-chip">Vibe Coding</span>
       </div>
     </div>
@@ -133,16 +143,22 @@ summary strong{color:#2d3748;}
         <div class="sbi">Selenium WebDriver (Python)</div>
         <div class="sbi">Selenium + Java (TestNG)</div>
         <div class="sbi">RestAssured · Maven · Allure</div>
+        <div class="sb-group">Languages</div>
+        <div class="sbi">Python · Java · JavaScript · TypeScript</div>
         <div class="sb-group">AI &amp; Vibe Coding · 2026</div>
         <div class="sbi">Claude AI + Claude Code CLI</div>
         <div class="sbi">GitHub Copilot · Cursor IDE</div>
         <div class="sbi">OpenAI APIs · MCP Servers</div>
-        <div class="sbi">Vibe Coding (AI-driven builds)</div>
-        <div class="sb-group">Tools &amp; Platforms</div>
-        <div class="sbi">JIRA · Zephyr · Xray · TestRail</div>
-        <div class="sbi">Confluence · Allure · Bugzilla</div>
-        <div class="sbi">Node.js · React · TypeScript</div>
+        <div class="sbi">Prompt Engineering</div>
+        <div class="sbi">Vibe Coding (full-stack AI builds)</div>
+        <div class="sb-group">Frameworks &amp; Platforms</div>
+        <div class="sbi">Node.js · Express · React · Vite</div>
+        <div class="sbi">Selenium (Python + Java/TestNG)</div>
+        <div class="sbi">RestAssured · Maven · Allure</div>
         <div class="sbi">Git · SQLite · REST APIs</div>
+        <div class="sb-group">QA Tools</div>
+        <div class="sbi">JIRA · Zephyr · Xray · TestRail</div>
+        <div class="sbi">Postman · Confluence · Bugzilla</div>
       </div>
 
       <div class="sb-sec">
@@ -177,7 +193,7 @@ summary strong{color:#2d3748;}
           <div class="proj-sb-desc">JSON-driven, 12 actions, Allure + RestAssured</div>
         </div>
         <div class="proj-sb">
-          <div class="proj-sb-name">DevFit — IT Wellness App</div>
+          <div class="proj-sb-name">Kunal WellnessApp</div>
           <div class="proj-sb-tags"><span class="proj-sb-tag">HTML/JS</span><span class="proj-sb-tag">GitHub Pages</span></div>
           <div class="proj-sb-desc">Pomodoro + water + eye breaks for developers</div>
         </div>
@@ -250,6 +266,37 @@ summary strong{color:#2d3748;}
             <li>Project Fastline: smoke, sanity, functional, regression, and non-functional testing</li>
             <li>Diplomakids Mobile App: full mobile application QA and certification from scratch</li>
           </ul>
+        </div>
+      </div>
+
+      <div class="ms">
+        <div class="ms-h">AI-Built QA Tools — Vibe Coding</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;">
+
+          <div class="vibe-card">
+            <div class="vibe-card-name">AI Bug Reporter</div>
+            <div class="vibe-tags"><span class="proj-sb-tag">Node.js</span><span class="proj-sb-tag">React</span><span class="proj-sb-tag">TypeScript</span><span class="proj-sb-tag">SQLite</span><span class="proj-sb-tag">Claude AI</span></div>
+            <div class="vibe-desc">Pulls a Jira ticket → sends to Claude AI → outputs a full structured bug report (title, steps, expected/actual, severity, root cause, test scenarios) in 30 seconds. Saved 2+ hours per report across the team.</div>
+          </div>
+
+          <div class="vibe-card">
+            <div class="vibe-card-name">Test Coverage Analyser</div>
+            <div class="vibe-tags"><span class="proj-sb-tag">React</span><span class="proj-sb-tag">TypeScript</span><span class="proj-sb-tag">Zephyr API</span><span class="proj-sb-tag">GitHub API</span><span class="proj-sb-tag">Claude AI</span></div>
+            <div class="vibe-desc">5-tab QA dashboard: coverage matrix, gap analysis, code metrics from GitHub, AI-generated QA manager reports. Covers 23 Nexsure modules with live Zephyr + GitHub data.</div>
+          </div>
+
+          <div class="vibe-card">
+            <div class="vibe-card-name">AI Test Case Generator</div>
+            <div class="vibe-tags"><span class="proj-sb-tag">Python</span><span class="proj-sb-tag">Jira REST API</span><span class="proj-sb-tag">Claude AI</span><span class="proj-sb-tag">Zephyr</span></div>
+            <div class="vibe-desc">Reads Jira user stories, uses AI to generate BDD-style test cases and pushes them directly into Zephyr. Cuts test case authoring time by ~60%.</div>
+          </div>
+
+          <div class="vibe-card">
+            <div class="vibe-card-name">Selenium Framework (Java)</div>
+            <div class="vibe-tags"><span class="proj-sb-tag">Java 11</span><span class="proj-sb-tag">TestNG</span><span class="proj-sb-tag">Selenium 4</span><span class="proj-sb-tag">RestAssured</span><span class="proj-sb-tag">Allure</span></div>
+            <div class="vibe-desc">JSON-driven, data-separated automation framework with 12 custom actions, ThreadLocal test context, Allure reports, and API smoke tests. Zero hard-coded selectors.</div>
+          </div>
+
         </div>
       </div>
 
