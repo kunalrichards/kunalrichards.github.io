@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kunal FitnessApp — Wellness Companion for IT Professionals by Kunal Richards</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
+<meta name="description" content="Wellness companion app for IT professionals. Pomodoro timer, hydration tracker, 20-20-20 eye breaks, posture reminders and desk exercises. Built by Kunal Richards.">
 <style>
 :root {
   --bg:#0a0f1e; --surface:#111827; --surface2:#1f2937; --border:#374151;
@@ -374,13 +376,27 @@ function updateSessionDots() {
 }
 
 // ─── WATER ───────────────────────────────────────────────────────
+function waterGlassSVG(filled) {
+  const stroke = filled ? '#60a5fa' : '#4b5563';
+  const bg = filled ? 'rgba(59,130,246,0.3)' : 'rgba(55,65,81,0.25)';
+  const lines = filled
+    ? `<path d="M11 30H25" stroke="rgba(147,197,253,0.75)" stroke-width="1.5" stroke-linecap="round"/>
+       <path d="M12 23H24" stroke="rgba(147,197,253,0.45)" stroke-width="1.2" stroke-linecap="round"/>`
+    : '';
+  return `<svg width="36" height="44" viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7 4H29L26 40H10L7 4Z" stroke="${stroke}" stroke-width="2.5" stroke-linejoin="round" fill="${bg}"/>
+    ${lines}
+  </svg>`;
+}
 function buildGlasses() {
   const grid = document.getElementById('glasses-grid'); grid.innerHTML = '';
   for (let i = 0; i < 8; i++) {
+    const filled = i < state.water;
     const g = document.createElement('div');
-    g.className = 'glass' + (i < state.water ? ' filled' : '');
-    g.textContent = i < state.water ? '💧' : '🫙';
-    g.onclick = () => { if (i < state.water) { state.water = i; } else { state.water = i + 1; } save(); buildGlasses(); updateWater(); };
+    g.className = 'glass' + (filled ? ' filled' : '');
+    g.innerHTML = waterGlassSVG(filled);
+    g.title = filled ? 'Click to remove' : 'Click to log glass';
+    g.onclick = () => { state.water = i < state.water ? i : i + 1; save(); buildGlasses(); updateWater(); };
     grid.appendChild(g);
   }
 }
@@ -399,7 +415,7 @@ function resetWater() { state.water = 0; save(); buildGlasses(); updateWater(); 
 let eyeLeft = 20 * 60, eyeTotal = 20 * 60, eyeInterval = null, inEyeBreak = false;
 function startEyeClock() {
   eyeInterval = setInterval(() => {
-    if (!inEyeBreak) { eyeLeft--; }
+    eyeLeft--;  // always decrement — fixes 20s countdown being stuck
     updateEyeDisplay();
     if (eyeLeft <= 0 && !inEyeBreak) {
       inEyeBreak = true; eyeLeft = 20;
@@ -416,11 +432,12 @@ function startEyeClock() {
   }, 1000);
 }
 function updateEyeDisplay() {
-  const m = Math.floor(eyeLeft / 60), s = eyeLeft % 60;
+  const safe = Math.max(0, eyeLeft);
+  const m = Math.floor(safe / 60), s = safe % 60;
   document.getElementById('eye-timer').textContent = inEyeBreak
-    ? `${eyeLeft}s`
+    ? `${safe}s`
     : `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-  const pct = inEyeBreak ? (eyeLeft / 20) * 100 : (eyeLeft / eyeTotal) * 100;
+  const pct = Math.max(0, inEyeBreak ? (safe / 20) * 100 : (safe / eyeTotal) * 100);
   document.getElementById('eye-bar').style.width = pct + '%';
 }
 function triggerEyeBreak() { eyeLeft = 0; }
