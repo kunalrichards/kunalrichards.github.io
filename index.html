@@ -116,14 +116,18 @@ button{-webkit-tap-highlight-color:transparent;}
 .stat-card:active,.tl-card:active,.cert-card:active,.ai-tool:active{transform:translateY(-2px);}
 .proj-card:active{transform:translateY(-2px)!important;}
 
-/* ─── AURORA ─── */
-.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;will-change:transform;}
-.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.11;animation:drift linear infinite;}
-.o1{width:600px;height:600px;background:#38bdf8;top:-150px;left:-150px;animation-duration:30s;}
-.o2{width:500px;height:500px;background:#a78bfa;bottom:-100px;right:-100px;animation-duration:25s;animation-delay:-8s;}
-.o3{width:400px;height:400px;background:#34d399;top:40%;left:40%;animation-duration:35s;animation-delay:-15s;}
-.o4{width:350px;height:350px;background:#ec4899;bottom:30%;left:-50px;animation-duration:28s;animation-delay:-5s;}
-@keyframes drift{0%{transform:translate(0,0)scale(1);}33%{transform:translate(60px,-40px)scale(1.08);}66%{transform:translate(-40px,60px)scale(.95);}100%{transform:translate(0,0)scale(1);}}
+/* ─── BACKGROUND ─── */
+/* Subtle dot-grid pattern — clean & professional (Linear / Vercel style) */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(rgba(56,189,248,.05) 1px,transparent 1px);
+  background-size:32px 32px;
+}
+/* Single static top-centre radial highlight for depth */
+body::after{
+  content:'';position:fixed;top:0;left:0;right:0;height:65vh;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 100% at 50% -5%,rgba(56,189,248,.055) 0%,transparent 70%);
+}
 
 /* ─── NAV ─── */
 nav{
@@ -249,10 +253,8 @@ h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;line-height:1.05;color:var
 
 /* Hero photo card */
 .photo-wrap{position:relative;flex-shrink:0;width:300px;}
-.photo-glow{position:absolute;inset:-20px;border-radius:34px;background:var(--grd);opacity:.18;filter:blur(30px);animation:glow-pulse 4s ease infinite;}
-.photo-ring{position:absolute;inset:-4px;border-radius:26px;background:var(--grd);z-index:1;animation:ring-pulse 3s ease infinite;}
-@keyframes glow-pulse{0%,100%{opacity:.18;transform:scale(1);}50%{opacity:.28;transform:scale(1.03);}}
-@keyframes ring-pulse{0%,100%{opacity:1;}50%{opacity:.65;}}
+.photo-glow{position:absolute;inset:-20px;border-radius:34px;background:var(--grd);opacity:.12;filter:blur(28px);}
+.photo-ring{position:absolute;inset:-3px;border-radius:25px;background:var(--grd);z-index:1;}
 .hero-photo{width:300px;height:420px;border-radius:22px;object-fit:cover;object-position:center 20%;position:relative;z-index:2;}
 .photo-badge{
   position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);
@@ -288,7 +290,7 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 .about-grid{display:grid;grid-template-columns:240px 1fr;gap:3rem;align-items:start;}
 .about-photo-col{display:flex;flex-direction:column;gap:.9rem;}
 .about-photo-frame{position:relative;}
-.about-glow{position:absolute;inset:-18px;border-radius:24px;background:var(--grd);opacity:.13;filter:blur(20px);animation:glow-pulse 5s ease infinite;}
+.about-glow{position:absolute;inset:-18px;border-radius:24px;background:var(--grd);opacity:.10;filter:blur(18px);}
 .about-ring{position:absolute;inset:-3px;border-radius:19px;background:var(--grd);z-index:0;}
 .about-photo{width:100%;height:270px;border-radius:16px;object-fit:cover;object-position:center 15%;position:relative;z-index:1;}
 .badge{background:var(--s2);border:1px solid var(--bd);border-radius:11px;padding:.8rem;text-align:center;transition:border-color .3s;}
@@ -497,8 +499,10 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   .nl{font-size:1.2rem;}
 
   .hero{padding:calc(var(--nav-h)+1.5rem) var(--pad-x) 2.5rem;}
+  .hero-inner{gap:1.8rem;}
   .photo-wrap{width:220px;}
   .hero-photo{width:220px;height:290px;object-fit:cover;object-position:center 20%;}
+  .soc{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .photo-badge{font-size:.62rem;padding:.28rem .75rem;}
 
   h1{font-size:2.4rem;letter-spacing:-1.5px;}
@@ -545,11 +549,6 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
   footer{padding:1.5rem var(--pad-x);}
 
-  /* Smaller orbs on mobile */
-  .o1{width:260px;height:260px;}
-  .o2{width:220px;height:220px;}
-  .o3{width:190px;height:190px;}
-  .o4{width:170px;height:170px;}
 }
 
 /* ══════════════════════════════════════
@@ -557,10 +556,12 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 ══════════════════════════════════════ */
 @media(max-width:360px){
   h1{font-size:2rem;}
+  .hero-inner{gap:1.4rem;}
   .photo-wrap{width:180px;}
   .hero-photo{width:180px;height:230px;object-fit:cover;object-position:center 20%;}
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .stat-num{font-size:1.8rem;}
+  .hero-chip{font-size:.62rem;padding:.28rem .65rem;}
 }
 
 /* Reduce motion */
@@ -574,12 +575,6 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
 <!-- SCROLL PROGRESS -->
 <div id="spb" aria-hidden="true"></div>
-
-<!-- AURORA -->
-<div class="aurora" aria-hidden="true">
-  <div class="orb o1"></div><div class="orb o2"></div>
-  <div class="orb o3"></div><div class="orb o4"></div>
-</div>
 
 <!-- NAV -->
 <nav aria-label="Main navigation">
@@ -621,12 +616,12 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
     <div class="hero-text">
       <div style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem;">
-        <div class="hero-chip" style="margin-bottom:0;">
-          <span class="hc-dot" aria-hidden="true"></span>
-          Open to New Opportunities
-        </div>
         <div class="hero-chip" style="margin-bottom:0;background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">
           📍 Ahmedabad, India
+        </div>
+        <div class="hero-chip" style="margin-bottom:0;background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2);color:var(--gr);">
+          <span class="hc-dot" aria-hidden="true"></span>
+          Sr QA Engineer · Dyad Tech
         </div>
       </div>
       <h1>Kunal<br><span class="name-grad">Richards</span></h1>
