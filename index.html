@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="opacity:0">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,12 +23,53 @@
 
 /* ─── RESET ─── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.6;}
+html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%;transition:opacity .35s ease;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 img{max-width:100%;height:auto;display:block;}
-a{color:inherit;}
+a{color:inherit;-webkit-tap-highlight-color:transparent;}
+button{-webkit-tap-highlight-color:transparent;}
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-thumb{background:var(--ac);border-radius:2px;}
+
+/* ─── SCROLL PROGRESS BAR ─── */
+#spb{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:var(--grd);z-index:2000;
+  transition:width .1s linear;
+  border-radius:0 2px 2px 0;
+  box-shadow:0 0 10px rgba(56,189,248,.6);
+}
+
+/* ─── MOBILE STICKY HIRE BTN ─── */
+#mob-hire{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  z-index:900;
+  padding:.85rem 1rem calc(.85rem + env(safe-area-inset-bottom));
+  background:linear-gradient(to top, rgba(4,8,15,1) 60%, transparent);
+  pointer-events:none;
+  transition:opacity .3s ease;
+}
+#mob-hire a{
+  display:block;text-align:center;
+  background:var(--grd);color:#fff;
+  font-weight:800;font-size:.9rem;
+  padding:.78rem;border-radius:12px;
+  text-decoration:none;letter-spacing:.3px;
+  pointer-events:all;
+  box-shadow:0 4px 24px rgba(56,189,248,.45);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+#mob-hire a:active{transform:scale(0.97);}
+
+/* ─── FOCUS / INTERACTION POLISH ─── */
+*:focus-visible{outline:2px solid var(--ac);outline-offset:3px;border-radius:4px;}
+.btn:active{transform:scale(0.96)!important;}
+.plink:active{transform:scale(0.95)!important;}
+.soc:active{opacity:.7;}
+.skill:active,.pill:active{transform:scale(0.95);}
+.stat-card:active,.tl-card:active,.cert-card:active,.ai-tool:active{transform:translateY(-2px);}
+.proj-card:active{transform:translateY(-2px)!important;}
 
 /* ─── AURORA ─── */
 .aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;will-change:transform;}
@@ -50,7 +91,9 @@ nav{
   backdrop-filter:blur(24px);
   -webkit-backdrop-filter:blur(24px);
   border-bottom:1px solid rgba(56,189,248,.08);
+  transition:box-shadow .3s ease,background .3s ease;
 }
+nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
 .nl{
   font-size:1.4rem;font-weight:900;
   background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
@@ -145,14 +188,16 @@ h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;line-height:1.05;color:var
 .pg{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.2);color:var(--gr);}
 .ctas{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2rem;}
 .btn{
-  padding:.68rem 1.5rem;border-radius:9px;font-weight:700;font-size:.86rem;
-  text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;
-  transition:all .22s;border:none;cursor:pointer;letter-spacing:.2px;
+  padding:.7rem 1.6rem;border-radius:10px;font-weight:700;font-size:.86rem;
+  text-decoration:none;display:inline-flex;align-items:center;gap:.45rem;
+  transition:box-shadow .22s ease,transform .18s ease,border-color .18s ease,color .18s ease;
+  border:none;cursor:pointer;letter-spacing:.25px;user-select:none;
+  -webkit-user-select:none;
 }
-.btn-fill{background:var(--grd);color:#fff;box-shadow:0 4px 20px rgba(56,189,248,.22);}
-.btn-fill:hover{box-shadow:0 6px 30px rgba(56,189,248,.4);transform:translateY(-2px);}
+.btn-fill{background:var(--grd);color:#fff;box-shadow:0 4px 20px rgba(56,189,248,.28);}
+.btn-fill:hover{box-shadow:0 8px 36px rgba(56,189,248,.45);transform:translateY(-3px);}
 .btn-outline{background:transparent;border:1.5px solid var(--bd);color:var(--hd);}
-.btn-outline:hover{border-color:var(--ac);color:var(--ac);transform:translateY(-2px);}
+.btn-outline:hover{border-color:var(--ac);color:var(--ac);transform:translateY(-2px);box-shadow:0 4px 16px rgba(56,189,248,.12);}
 .socrow{display:flex;gap:1rem;flex-wrap:wrap;}
 .soc{display:flex;align-items:center;gap:.32rem;color:var(--dim);text-decoration:none;font-size:.78rem;transition:color .2s;}
 .soc:hover{color:var(--ac);}
@@ -163,7 +208,7 @@ h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;line-height:1.05;color:var
 .photo-ring{position:absolute;inset:-4px;border-radius:26px;background:var(--grd);z-index:1;animation:ring-pulse 3s ease infinite;}
 @keyframes glow-pulse{0%,100%{opacity:.18;transform:scale(1);}50%{opacity:.28;transform:scale(1.03);}}
 @keyframes ring-pulse{0%,100%{opacity:1;}50%{opacity:.65;}}
-.hero-photo{width:300px;height:420px;border-radius:22px;object-fit:cover;object-position:50% 50%;position:relative;z-index:2;}
+.hero-photo{width:300px;height:420px;border-radius:22px;object-fit:none;object-position:52% 16%;position:relative;z-index:2;transition:transform .4s ease;}
 .photo-badge{
   position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);
   background:rgba(10,16,32,.95);border:1px solid var(--bd);
@@ -349,7 +394,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 #btt:hover{transform:translateY(-3px);}
 
 /* ─── REVEAL ANIMATION ─── */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s ease;}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .42s cubic-bezier(.4,0,.2,1),transform .42s cubic-bezier(.4,0,.2,1);}
 .rv.in{opacity:1;transform:translateY(0);}
 
 /* ══════════════════════════════════════
@@ -371,7 +416,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     order:-1;
     width:250px;margin:0 auto;
   }
-  .hero-photo{width:250px;height:320px;object-position:50% 50%;}
+  .hero-photo{width:250px;height:320px;object-fit:none;object-position:52% 16%;}
   .pills,.ctas,.socrow{justify-content:center;}
 
   section{padding:3.5rem var(--pad-x);}
@@ -400,12 +445,13 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
    MOBILE  ≤ 540px
 ══════════════════════════════════════ */
 @media(max-width:540px){
+  #mob-hire{display:block;}
   :root{--nav-h:56px;--pad-x:1rem;}
   .nl{font-size:1.2rem;}
 
   .hero{padding:calc(var(--nav-h)+1.5rem) var(--pad-x) 2.5rem;}
   .photo-wrap{width:220px;}
-  .hero-photo{width:220px;height:290px;object-position:50% 50%;}
+  .hero-photo{width:220px;height:290px;object-fit:none;object-position:52% 14%;}
   .photo-badge{font-size:.62rem;padding:.28rem .75rem;}
 
   h1{font-size:2.4rem;letter-spacing:-1.5px;}
@@ -465,7 +511,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 @media(max-width:360px){
   h1{font-size:2rem;}
   .photo-wrap{width:180px;}
-  .hero-photo{width:180px;height:230px;object-position:50% 50%;}
+  .hero-photo{width:180px;height:230px;object-fit:none;object-position:52% 14%;}
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .stat-num{font-size:1.8rem;}
 }
@@ -478,6 +524,9 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 </style>
 </head>
 <body>
+
+<!-- SCROLL PROGRESS -->
+<div id="spb" aria-hidden="true"></div>
 
 <!-- AURORA -->
 <div class="aurora" aria-hidden="true">
@@ -524,9 +573,14 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   <div class="hero-inner">
 
     <div class="hero-text">
-      <div class="hero-chip">
-        <span class="hc-dot" aria-hidden="true"></span>
-        Senior QA Engineer &nbsp;·&nbsp; Ahmedabad, India
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem;">
+        <div class="hero-chip" style="margin-bottom:0;">
+          <span class="hc-dot" aria-hidden="true"></span>
+          Open to New Opportunities
+        </div>
+        <div class="hero-chip" style="margin-bottom:0;background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">
+          📍 Ahmedabad, India
+        </div>
       </div>
       <h1>Kunal<br><span class="name-grad">Richards</span></h1>
       <div class="typing-line" id="typing-el" aria-live="polite">Senior QA Engineer</div>
@@ -540,9 +594,9 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         <span class="pill pb">Selenium Expert</span>
       </div>
       <div class="ctas">
-        <a href="#projects" class="btn btn-fill">View Projects →</a>
+        <a href="#contact" class="btn btn-fill">Hire Me →</a>
         <a href="cv.html" target="_blank" rel="noopener" class="btn btn-outline">Download CV</a>
-        <a href="#contact" class="btn btn-outline">Contact Me</a>
+        <a href="#projects" class="btn btn-outline">View Projects</a>
       </div>
       <div class="socrow">
         <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank" rel="noopener" class="soc" aria-label="LinkedIn">
@@ -852,8 +906,37 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
+<!-- MOBILE STICKY HIRE BTN -->
+<div id="mob-hire" aria-hidden="true">
+  <a href="#contact">Hire Me — Let's Talk →</a>
+</div>
+
 <!-- ══ SCRIPTS ══ -->
 <script>
+/* ── ANTI-FLASH: fade in once DOM ready ── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.style.opacity = '1';
+});
+
+/* ── SCROLL: progress bar + nav shadow + mobile hire btn ── */
+const spb = document.getElementById('spb');
+const navEl = document.querySelector('nav');
+const mobHire = document.getElementById('mob-hire');
+const contactSec = document.getElementById('contact');
+
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  spb.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+  navEl.classList.toggle('scrolled', scrolled > 20);
+  // Hide mobile hire btn when near contact section
+  if (contactSec && mobHire) {
+    const contactTop = contactSec.getBoundingClientRect().top;
+    mobHire.style.opacity = contactTop < 200 ? '0' : '1';
+    mobHire.style.pointerEvents = contactTop < 200 ? 'none' : 'all';
+  }
+}, { passive: true });
+
 /* ── HAMBURGER NAV ── */
 const hmb = document.getElementById('hmb');
 const drawer = document.getElementById('mob-drawer');
