@@ -527,9 +527,9 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   .photo-glow{inset:-10px;}
   .photo-badge{display:none;}
 
-  h1{font-size:1.85rem;letter-spacing:-1.5px;margin-bottom:.4rem;}
-  h1 br{display:none;}
-  .typing-line{font-size:.86rem;margin-bottom:.7rem;}
+  h1{font-size:2.4rem;letter-spacing:-1.5px;margin-bottom:.4rem;line-height:1;}
+  /* Keep br so 'Kunal' / 'Richards' show on separate lines — never merge */
+  .typing-line{font-size:.84rem;margin-bottom:.7rem;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .pills{margin-bottom:1rem;gap:.28rem;justify-content:center;}
   .pill{font-size:.64rem;padding:.2rem .55rem;}
 
@@ -590,7 +590,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
    TINY  ≤ 360px
 ══════════════════════════════════════ */
 @media(max-width:360px){
-  h1{font-size:1.9rem;letter-spacing:-1px;}
+  h1{font-size:2rem;letter-spacing:-1.5px;}
   .hero-inner{gap:1rem;}
   .photo-wrap{width:130px;}
   .hero-photo{width:130px;height:170px;object-fit:cover;object-position:center 20%;}
