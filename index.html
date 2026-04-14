@@ -527,15 +527,13 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   .photo-glow{inset:-10px;}
   .photo-badge{display:none;}
 
-  /* Name: force two-line layout — 'Kunal' top, 'Richards' bottom */
-  h1{display:flex;flex-direction:column;align-items:center;font-size:2.6rem;letter-spacing:-1.5px;margin-bottom:.4rem;line-height:1.05;gap:0;}
-  h1 br{display:none;}
-  .name-grad{display:block;}
-  .typing-line{font-size:.84rem;margin-bottom:.7rem;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  /* Fix flex child overflow — socrow wraps properly */
+  /* Hide name on mobile — KR. nav logo represents the brand */
+  h1{display:none;}
+  .typing-line{font-size:.86rem;margin-bottom:.7rem;}
+  /* Fix socrow overflow */
   .hero-text{min-width:0;width:100%;}
-  .socrow{gap:.3rem .8rem;}
-  .soc{font-size:.72rem;max-width:100%;overflow:hidden;text-overflow:ellipsis;}
+  .socrow{gap:.3rem .7rem;}
+  .soc{font-size:.72rem;}
   .pills{margin-bottom:1rem;gap:.28rem;justify-content:center;}
   .pill{font-size:.64rem;padding:.2rem .55rem;}
 
