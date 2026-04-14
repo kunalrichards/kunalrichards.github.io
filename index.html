@@ -620,6 +620,8 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 }
 .port-card:hover{border-color:rgba(56,189,248,.3);transform:translateY(-3px);box-shadow:0 10px 30px rgba(56,189,248,.06);}
 .port-card.hidden{display:none;}
+.port-card.port-collapsed{display:none;}
+.port-company{font-size:.7rem;color:var(--ac);font-weight:600;margin-bottom:.35rem;letter-spacing:.3px;}
 .port-badge{
   font-size:.62rem;font-weight:700;padding:.2rem .55rem;
   border-radius:4px;border:1px solid;white-space:nowrap;
@@ -638,6 +640,9 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   #port-grid{grid-template-columns:1fr!important;}
   #port-filters{gap:.4rem;}
   .port-filter{font-size:.7rem;padding:.3rem .7rem;}
+  /* Mobile: hide cards beyond 6 by default — Show More reveals them */
+  .port-card:nth-child(n+7):not(.port-show-all){display:none;}
+  #port-more-wrap{display:block!important;}
 }
 </style>
 </head>
@@ -904,480 +909,185 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   <div class="con">
     <div class="sec-head">
       <div class="sec-tag">// Portfolio</div>
-      <h2 class="sec-title">Project Portfolio — 50+ Delivered Projects</h2>
-      <p class="sec-desc">7 years across insurance, eCommerce, SaaS, and AI — every project tested, documented, and shipped.</p>
+      <h2 class="sec-title">Real Projects — 7 Years · 5 Companies</h2>
+      <p class="sec-desc">Every project here is something I personally tested, automated, or built — from enterprise insurance platforms to AI productivity tools.</p>
     </div>
-    <!-- Filter Buttons -->
+
     <div id="port-filters" style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:2rem;">
-      <button class="port-filter active" data-cat="all" onclick="filterPortfolio(this,'all')">All</button>
-      <button class="port-filter" data-cat="web" onclick="filterPortfolio(this,'web')">Web Apps</button>
-      <button class="port-filter" data-cat="mobile" onclick="filterPortfolio(this,'mobile')">Mobile &amp; SaaS</button>
-      <button class="port-filter" data-cat="automation" onclick="filterPortfolio(this,'automation')">Automation</button>
-      <button class="port-filter" data-cat="api" onclick="filterPortfolio(this,'api')">API Testing</button>
-      <button class="port-filter" data-cat="ai" onclick="filterPortfolio(this,'ai')">AI Tools</button>
-      <button class="port-filter" data-cat="perf" onclick="filterPortfolio(this,'perf')">Performance</button>
+      <button class="port-filter active" data-cat="all" onclick="filterPortfolio(this,'all')">All (16)</button>
+      <button class="port-filter" data-cat="ai" onclick="filterPortfolio(this,'ai')">AI Tools (4)</button>
+      <button class="port-filter" data-cat="web" onclick="filterPortfolio(this,'web')">Web Apps (6)</button>
+      <button class="port-filter" data-cat="mobile" onclick="filterPortfolio(this,'mobile')">Mobile (2)</button>
+      <button class="port-filter" data-cat="automation" onclick="filterPortfolio(this,'automation')">Automation (2)</button>
+      <button class="port-filter" data-cat="saas" onclick="filterPortfolio(this,'saas')">SaaS / Enterprise (3)</button>
+      <button class="port-filter" data-cat="ecomm" onclick="filterPortfolio(this,'ecomm')">eCommerce (1)</button>
     </div>
-    <!-- Cards Grid -->
+
     <div id="port-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
 
-      <!-- AI Tools -->
-      <div class="port-card" data-cat="ai">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🤖</span>
-          <span class="port-badge" style="background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.3);color:var(--ac2);">AI Tools</span>
+      <div class="port-card rv" data-cat="ai">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">🤖</span>
+          <span class="port-badge" style="background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.3);color:var(--ac2);">AI Tool</span>
         </div>
         <div class="port-title">AI Bug Reporter</div>
-        <div class="port-desc">Claude AI generates structured bug reports from Jira tickets. Saves 2h per report.</div>
-        <div class="port-tags"><span class="ptag">Node.js</span><span class="ptag">React</span><span class="ptag">Claude AI</span><span class="ptag">SQLite</span></div>
+        <div class="port-company">Dyad Tech · 2024–Present</div>
+        <div class="port-desc">Claude AI generates structured JIRA bug reports from ticket context. Cuts ~2 hrs of documentation per report. In daily use at Dyad Tech.</div>
+        <div class="port-tags"><span class="ptag">Node.js</span><span class="ptag">React</span><span class="ptag">Claude AI</span><span class="ptag">SQLite</span><span class="ptag">JIRA API</span></div>
         <span class="port-status port-status-prod">Production</span>
       </div>
 
-      <div class="port-card" data-cat="ai">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">📊</span>
-          <span class="port-badge" style="background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.3);color:var(--ac2);">AI Tools</span>
+      <div class="port-card rv" data-cat="ai">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">📊</span>
+          <span class="port-badge" style="background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.3);color:var(--ac2);">AI Tool</span>
         </div>
         <div class="port-title">Test Coverage Analyser</div>
-        <div class="port-desc">Maps Zephyr + GitHub to 23 Nexsure modules, generates AI coverage reports for QA leads.</div>
-        <div class="port-tags"><span class="ptag">React</span><span class="ptag">Zephyr API</span><span class="ptag">GitHub API</span><span class="ptag">AI</span></div>
+        <div class="port-company">Dyad Tech · 2025–Present</div>
+        <div class="port-desc">Maps Zephyr Scale test cases against 23 Nexsure modules via GitHub API. AI-generated gap reports used by QA leads for sprint sign-off decisions.</div>
+        <div class="port-tags"><span class="ptag">React</span><span class="ptag">Node.js</span><span class="ptag">Zephyr API</span><span class="ptag">GitHub API</span><span class="ptag">Claude AI</span></div>
         <span class="port-status port-status-prod">Production</span>
       </div>
 
-      <div class="port-card" data-cat="ai">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🧪</span>
-          <span class="port-badge" style="background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.3);color:var(--ac2);">AI Tools</span>
+      <div class="port-card rv" data-cat="ai automation">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">🧪</span>
+          <span class="port-badge" style="background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.3);color:var(--ac2);">AI Tool</span>
         </div>
         <div class="port-title">Selenium Automation Framework</div>
-        <div class="port-desc">JSON-driven Selenium 4 + Java + TestNG framework with 12 action types and Allure reporting.</div>
-        <div class="port-tags"><span class="ptag">Java 11</span><span class="ptag">Selenium 4</span><span class="ptag">TestNG</span><span class="ptag">Allure</span></div>
+        <div class="port-company">Dyad Tech · 2024–Present</div>
+        <div class="port-desc">JSON-driven Selenium 4 + Java 11 + TestNG framework for ALIS BMS (insurance). 12 action types, Page Object Model, Allure reporting, RestAssured API tests.</div>
+        <div class="port-tags"><span class="ptag">Java 11</span><span class="ptag">Selenium 4</span><span class="ptag">TestNG</span><span class="ptag">Allure</span><span class="ptag">RestAssured</span></div>
         <span class="port-status port-status-prod">Production</span>
       </div>
 
-      <div class="port-card" data-cat="ai">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">💪</span>
-          <span class="port-badge" style="background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.3);color:var(--ac2);">AI Tools</span>
+      <div class="port-card rv" data-cat="ai">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">💪</span>
+          <span class="port-badge" style="background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.3);color:var(--ac2);">AI Tool</span>
         </div>
         <div class="port-title">Kunal WellnessApp</div>
-        <div class="port-desc">Pomodoro + hydration + eye break + posture tracker for developers. Zero dependencies, offline-ready.</div>
+        <div class="port-company">Personal · 2024</div>
+        <div class="port-desc">Wellness app for IT professionals — Pomodoro, hydration tracker, 20-20-20 eye breaks, posture reminders, desk exercises. Zero dependencies, fully offline.</div>
         <div class="port-tags"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span><span class="ptag">LocalStorage</span></div>
-        <span class="port-status port-status-live">Live</span>
+        <span class="port-status port-status-live">Live App</span>
       </div>
 
-      <!-- Web Apps -->
-      <div class="port-card" data-cat="web">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🏢</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web Apps</span>
+      <div class="port-card rv" data-cat="web saas">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">🏢</span>
+          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web App</span>
         </div>
         <div class="port-title">Nexsure Insurance Platform</div>
-        <div class="port-desc">E2E regression suite covering full insurance lifecycle — 500+ test cases across 23 modules.</div>
-        <div class="port-tags"><span class="ptag">Selenium</span><span class="ptag">Java</span><span class="ptag">TestNG</span><span class="ptag">Jira</span></div>
-        <span class="port-status port-status-prod">Production</span>
+        <div class="port-company">Dyad Tech · Aug 2024–Present</div>
+        <div class="port-desc">End-to-end QA for Nexsure — 23 modules including Policy Management, Claims, Accounting, CRM, Marketplace, and eServices. Leading full STLC and release validation.</div>
+        <div class="port-tags"><span class="ptag">Manual</span><span class="ptag">Regression</span><span class="ptag">Integration</span><span class="ptag">Zephyr Scale</span><span class="ptag">JIRA</span></div>
+        <span class="port-status port-status-prod">Current Role</span>
       </div>
 
-      <div class="port-card" data-cat="web">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">📋</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web Apps</span>
+      <div class="port-card rv" data-cat="web saas">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">🖥️</span>
+          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web App</span>
         </div>
-        <div class="port-title">Nexsure Policy Management</div>
-        <div class="port-desc">Manual + automation testing for claims workflow, policy creation, endorsements, and renewals.</div>
-        <div class="port-tags"><span class="ptag">Manual</span><span class="ptag">Automation</span><span class="ptag">Zephyr</span><span class="ptag">Confluence</span></div>
-        <span class="port-status port-status-prod">Production</span>
+        <div class="port-title">ServiceNow Enterprise Platform</div>
+        <div class="port-company">Crest Data Systems · 2023–2024</div>
+        <div class="port-desc">Full QA certification of ServiceNow ITSM. Functional, regression, and integration testing. Built Selenium Python automation suite and mentored QA juniors.</div>
+        <div class="port-tags"><span class="ptag">Selenium Python</span><span class="ptag">TestRail</span><span class="ptag">Confluence</span><span class="ptag">Agile / Scrum</span></div>
+        <span class="port-status port-status-prod">Certified &amp; Shipped</span>
       </div>
 
-      <div class="port-card" data-cat="web">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🌐</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web Apps</span>
+      <div class="port-card rv" data-cat="web saas">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">🔒</span>
+          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web App</span>
         </div>
-        <div class="port-title">eServices Portal</div>
-        <div class="port-desc">User acceptance testing, cross-browser validation, and 200+ insurance self-service test scenarios.</div>
-        <div class="port-tags"><span class="ptag">UAT</span><span class="ptag">Cross-browser</span><span class="ptag">TestRail</span><span class="ptag">BrowserStack</span></div>
-        <span class="port-status port-status-prod">Production</span>
+        <div class="port-title">Morphisec Endpoint Security</div>
+        <div class="port-company">Crest Data Systems · 2023–2024</div>
+        <div class="port-desc">QA certification for Morphisec security platform — functional, regression, usability, and API testing across multiple release cycles. Attended client calls regularly.</div>
+        <div class="port-tags"><span class="ptag">Manual Testing</span><span class="ptag">Regression</span><span class="ptag">API Testing</span><span class="ptag">Postman</span></div>
+        <span class="port-status port-status-prod">Certified &amp; Shipped</span>
       </div>
 
-      <div class="port-card" data-cat="web">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🔗</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web Apps</span>
+      <div class="port-card rv" data-cat="web mobile">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">⏱️</span>
+          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web + Mobile</span>
         </div>
-        <div class="port-title">Marketplace Integration</div>
-        <div class="port-desc">API and UI testing of 3rd-party marketplace integrations, data contract validation, and error handling.</div>
-        <div class="port-tags"><span class="ptag">API Testing</span><span class="ptag">Postman</span><span class="ptag">UI Testing</span><span class="ptag">Jira</span></div>
-        <span class="port-status port-status-prod">Production</span>
+        <div class="port-title">30mins.com Platform</div>
+        <div class="port-company">Secomind.AI · Aug 2022–Feb 2023</div>
+        <div class="port-desc">Led full QA lifecycle for 30mins.com web and mobile app — requirements analysis, test planning, functional, regression, device matrix testing, and release certification.</div>
+        <div class="port-tags"><span class="ptag">Functional</span><span class="ptag">Regression</span><span class="ptag">Mobile Testing</span><span class="ptag">UAT</span><span class="ptag">JIRA</span></div>
+        <span class="port-status port-status-prod">Certified &amp; Shipped</span>
       </div>
 
-      <div class="port-card" data-cat="web">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">👥</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web Apps</span>
+      <div class="port-card rv" data-cat="ecomm web">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">🛒</span>
+          <span class="port-badge" style="background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.25);color:var(--gr);">eCommerce</span>
         </div>
-        <div class="port-title">CRM Module Testing</div>
-        <div class="port-desc">Data integrity validation, workflow automation testing, and integration verification for CRM module.</div>
-        <div class="port-tags"><span class="ptag">Manual</span><span class="ptag">Data Testing</span><span class="ptag">SQL</span><span class="ptag">Zephyr</span></div>
-        <span class="port-status port-status-prod">Production</span>
+        <div class="port-title">GOREWEAR eCommerce Platform</div>
+        <div class="port-company">Codal Inc. · Sep 2021–Aug 2022</div>
+        <div class="port-desc">Complete QA ownership for GOREWEAR's eCommerce ecosystem — test case creation and maintenance in TestRail, milestone-linked test runs, sprint-wise reporting, checkout and payment testing.</div>
+        <div class="port-tags"><span class="ptag">TestRail</span><span class="ptag">E2E Testing</span><span class="ptag">Regression</span><span class="ptag">Payment Flows</span><span class="ptag">Agile</span></div>
+        <span class="port-status port-status-prod">Delivered</span>
       </div>
 
-      <div class="port-card" data-cat="web">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🛒</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web Apps</span>
+      <div class="port-card rv" data-cat="web">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">🔷</span>
+          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web App</span>
         </div>
-        <div class="port-title">Codal eCommerce Platform</div>
-        <div class="port-desc">Full regression for GOREWEAR eCommerce — payment gateway, checkout flows, and order management.</div>
-        <div class="port-tags"><span class="ptag">Regression</span><span class="ptag">TestRail</span><span class="ptag">Payment Testing</span><span class="ptag">E2E</span></div>
-        <span class="port-status port-status-live">Live</span>
+        <div class="port-title">Project Honeywich</div>
+        <div class="port-company">KudosIntech · 2018–2021</div>
+        <div class="port-desc">System, regression, functional, and end-to-end testing. First large-scale QA ownership role — built test coverage from scratch and owned the full defect lifecycle.</div>
+        <div class="port-tags"><span class="ptag">System Testing</span><span class="ptag">E2E</span><span class="ptag">Regression</span><span class="ptag">Functional</span></div>
+        <span class="port-status port-status-prod">Delivered</span>
       </div>
 
-      <div class="port-card" data-cat="web">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">📦</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web Apps</span>
+      <div class="port-card rv" data-cat="web">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">🚀</span>
+          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web App</span>
         </div>
-        <div class="port-title">Delivery Tracking SaaS</div>
-        <div class="port-desc">Real-time tracking validation, WebSocket event testing, and live status update consistency checks.</div>
-        <div class="port-tags"><span class="ptag">WebSocket</span><span class="ptag">Real-time</span><span class="ptag">API</span><span class="ptag">Postman</span></div>
-        <span class="port-status port-status-prod">Production</span>
+        <div class="port-title">Project Fastline</div>
+        <div class="port-company">KudosIntech · 2018–2021</div>
+        <div class="port-desc">Smoke, sanity, functional, regression, and non-functional testing across multiple milestones. Full STLC ownership validating integrity at every delivery stage.</div>
+        <div class="port-tags"><span class="ptag">Smoke Testing</span><span class="ptag">Sanity</span><span class="ptag">Non-functional</span><span class="ptag">Regression</span></div>
+        <span class="port-status port-status-prod">Delivered</span>
       </div>
 
-      <div class="port-card" data-cat="web">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🤝</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web Apps</span>
+      <div class="port-card rv" data-cat="mobile">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">👶</span>
+          <span class="port-badge" style="background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.25);color:var(--yw);">Mobile</span>
         </div>
-        <div class="port-title">RFQ Collaboration Tool</div>
-        <div class="port-desc">Multi-user workflow testing, concurrent session validation, and RFQ lifecycle E2E coverage.</div>
-        <div class="port-tags"><span class="ptag">Multi-user</span><span class="ptag">Concurrency</span><span class="ptag">E2E</span><span class="ptag">Selenium</span></div>
-        <span class="port-status port-status-prod">Production</span>
+        <div class="port-title">Diplomakids Mobile App</div>
+        <div class="port-company">KudosIntech · 2018–2021</div>
+        <div class="port-desc">Mobile app testing — parents create milestone websites for their child. Tested media uploads, social sharing, account flows, and cross-device UI consistency on iOS and Android.</div>
+        <div class="port-tags"><span class="ptag">Mobile Testing</span><span class="ptag">iOS</span><span class="ptag">Android</span><span class="ptag">UI Testing</span><span class="ptag">Regression</span></div>
+        <span class="port-status port-status-prod">Delivered</span>
       </div>
 
-      <div class="port-card" data-cat="web">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">📝</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web Apps</span>
+      <div class="port-card rv" data-cat="automation">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">🐍</span>
+          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Automation</span>
         </div>
-        <div class="port-title">Forms Builder Platform</div>
-        <div class="port-desc">Dynamic form validation, conditional field logic testing, and PDF generation output verification.</div>
-        <div class="port-tags"><span class="ptag">Manual</span><span class="ptag">PDF Testing</span><span class="ptag">Validation</span><span class="ptag">Selenium</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="web">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🏛</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Web Apps</span>
-        </div>
-        <div class="port-title">SubSuiteSetup Module</div>
-        <div class="port-desc">Insurance underwriting workflow E2E — sub-suite configuration, rule validation, and submission testing.</div>
-        <div class="port-tags"><span class="ptag">E2E</span><span class="ptag">Insurance</span><span class="ptag">Selenium</span><span class="ptag">TestNG</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <!-- Mobile & SaaS -->
-      <div class="port-card" data-cat="mobile">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">📊</span>
-          <span class="port-badge" style="background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2);color:var(--gr);">Mobile &amp; SaaS</span>
-        </div>
-        <div class="port-title">Crest Data Splunk App</div>
-        <div class="port-desc">SaaS dashboard QA — data pipeline validation, Splunk query results accuracy, and panel regression.</div>
-        <div class="port-tags"><span class="ptag">Splunk</span><span class="ptag">SaaS</span><span class="ptag">Python</span><span class="ptag">Selenium</span></div>
-        <span class="port-status port-status-live">Live</span>
-      </div>
-
-      <div class="port-card" data-cat="mobile">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">📱</span>
-          <span class="port-badge" style="background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2);color:var(--gr);">Mobile &amp; SaaS</span>
-        </div>
-        <div class="port-title">Insurance Mobile App</div>
-        <div class="port-desc">iOS and Android device matrix testing — biometrics, push notifications, offline mode, and claims flows.</div>
-        <div class="port-tags"><span class="ptag">iOS</span><span class="ptag">Android</span><span class="ptag">Device Matrix</span><span class="ptag">Biometrics</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="mobile">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🌍</span>
-          <span class="port-badge" style="background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2);color:var(--gr);">Mobile &amp; SaaS</span>
-        </div>
-        <div class="port-title">eServices Mobile Portal</div>
-        <div class="port-desc">Responsive design + mobile-specific test suite covering touch interactions and viewport breakpoints.</div>
-        <div class="port-tags"><span class="ptag">Responsive</span><span class="ptag">Mobile</span><span class="ptag">BrowserStack</span><span class="ptag">UAT</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="mobile">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🤝</span>
-          <span class="port-badge" style="background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2);color:var(--gr);">Mobile &amp; SaaS</span>
-        </div>
-        <div class="port-title">Collaborator SaaS</div>
-        <div class="port-desc">Real-time collaboration platform — conflict resolution, concurrent editing, and sync state testing.</div>
-        <div class="port-tags"><span class="ptag">SaaS</span><span class="ptag">Real-time</span><span class="ptag">WebSocket</span><span class="ptag">Postman</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="mobile">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🤖</span>
-          <span class="port-badge" style="background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2);color:var(--gr);">Mobile &amp; SaaS</span>
-        </div>
-        <div class="port-title">Secomind.AI Platform</div>
-        <div class="port-desc">AI model output validation, regression testing for 30mins.com across web and mobile channels.</div>
-        <div class="port-tags"><span class="ptag">AI Testing</span><span class="ptag">Regression</span><span class="ptag">Mobile</span><span class="ptag">Web</span></div>
-        <span class="port-status port-status-live">Live</span>
-      </div>
-
-      <div class="port-card" data-cat="mobile">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🧑‍💼</span>
-          <span class="port-badge" style="background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2);color:var(--gr);">Mobile &amp; SaaS</span>
-        </div>
-        <div class="port-title">Customer Portal Mobile</div>
-        <div class="port-desc">Cross-platform UI testing, offline mode validation, and deep-link navigation testing.</div>
-        <div class="port-tags"><span class="ptag">Cross-platform</span><span class="ptag">Offline</span><span class="ptag">Deep Links</span><span class="ptag">iOS/Android</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="mobile">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">📈</span>
-          <span class="port-badge" style="background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2);color:var(--gr);">Mobile &amp; SaaS</span>
-        </div>
-        <div class="port-title">Agent Dashboard App</div>
-        <div class="port-desc">Role-based access control testing, multi-tenant data isolation, and permission boundary validation.</div>
-        <div class="port-tags"><span class="ptag">RBAC</span><span class="ptag">Multi-tenant</span><span class="ptag">Security</span><span class="ptag">Selenium</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="mobile">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">📸</span>
-          <span class="port-badge" style="background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2);color:var(--gr);">Mobile &amp; SaaS</span>
-        </div>
-        <div class="port-title">Claims Mobile App</div>
-        <div class="port-desc">Document upload, image capture quality validation, GPS location accuracy, and claims flow testing.</div>
-        <div class="port-tags"><span class="ptag">Mobile</span><span class="ptag">Camera</span><span class="ptag">GPS</span><span class="ptag">File Upload</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <!-- API Testing -->
-      <div class="port-card" data-cat="api">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🔌</span>
-          <span class="port-badge" style="background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.2);color:var(--yw);">API Testing</span>
-        </div>
-        <div class="port-title">Nexsure REST API Suite</div>
-        <div class="port-desc">300+ endpoint tests covering CRUD, auth, pagination, error codes, and insurance calculation APIs.</div>
-        <div class="port-tags"><span class="ptag">RestAssured</span><span class="ptag">Postman</span><span class="ptag">Java</span><span class="ptag">Newman</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="api">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🔧</span>
-          <span class="port-badge" style="background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.2);color:var(--yw);">API Testing</span>
-        </div>
-        <div class="port-title">Jira/Zephyr API Integration</div>
-        <div class="port-desc">Test management automation via Jira and Zephyr Scale APIs — test cycle creation, result sync, reporting.</div>
-        <div class="port-tags"><span class="ptag">Jira REST</span><span class="ptag">Zephyr API</span><span class="ptag">Node.js</span><span class="ptag">Axios</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="api">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">💳</span>
-          <span class="port-badge" style="background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.2);color:var(--yw);">API Testing</span>
-        </div>
-        <div class="port-title">Payment Gateway API</div>
-        <div class="port-desc">PCI compliance validation, transaction flow testing, refund scenarios, and idempotency key testing.</div>
-        <div class="port-tags"><span class="ptag">Postman</span><span class="ptag">PCI</span><span class="ptag">REST</span><span class="ptag">Security</span></div>
-        <span class="port-status port-status-live">Live</span>
-      </div>
-
-      <div class="port-card" data-cat="api">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🔗</span>
-          <span class="port-badge" style="background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.2);color:var(--yw);">API Testing</span>
-        </div>
-        <div class="port-title">Third-party Integrations</div>
-        <div class="port-desc">CReceiptLockbox and NexIntegration API contract testing, data mapping validation, and failure simulation.</div>
-        <div class="port-tags"><span class="ptag">REST API</span><span class="ptag">Postman</span><span class="ptag">Mock Server</span><span class="ptag">Contract</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="api">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🔐</span>
-          <span class="port-badge" style="background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.2);color:var(--yw);">API Testing</span>
-        </div>
-        <div class="port-title">Auth &amp; SSO Testing</div>
-        <div class="port-desc">OAuth 2.0 flow validation, SAML assertion testing, session management, and token expiry edge cases.</div>
-        <div class="port-tags"><span class="ptag">OAuth 2.0</span><span class="ptag">SAML</span><span class="ptag">JWT</span><span class="ptag">Postman</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="api">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🪝</span>
-          <span class="port-badge" style="background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.2);color:var(--yw);">API Testing</span>
-        </div>
-        <div class="port-title">Webhook Testing Suite</div>
-        <div class="port-desc">Event-driven architecture validation — payload integrity, retry logic, delivery order, and failure recovery.</div>
-        <div class="port-tags"><span class="ptag">Webhooks</span><span class="ptag">Event-driven</span><span class="ptag">Postman</span><span class="ptag">Ngrok</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="api">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🧮</span>
-          <span class="port-badge" style="background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.2);color:var(--yw);">API Testing</span>
-        </div>
-        <div class="port-title">Insurance Rating API</div>
-        <div class="port-desc">Complex premium calculation validation, boundary value testing, and rate table accuracy verification.</div>
-        <div class="port-tags"><span class="ptag">RestAssured</span><span class="ptag">Boundary Testing</span><span class="ptag">Java</span><span class="ptag">Data-driven</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="api">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">📬</span>
-          <span class="port-badge" style="background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.2);color:var(--yw);">API Testing</span>
-        </div>
-        <div class="port-title">Delivery API Testing</div>
-        <div class="port-desc">CRUD operations, pagination, filter, sort, and bulk operations testing for delivery management APIs.</div>
-        <div class="port-tags"><span class="ptag">Postman</span><span class="ptag">Newman</span><span class="ptag">CRUD</span><span class="ptag">Pagination</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <!-- Automation Frameworks -->
-      <div class="port-card" data-cat="automation">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">⚙️</span>
-          <span class="port-badge" style="background:rgba(236,72,153,.08);border-color:rgba(236,72,153,.2);color:#ec4899;">Automation</span>
-        </div>
-        <div class="port-title">Nexsure Selenium Framework</div>
-        <div class="port-desc">Java 11 + TestNG + Page Object Model framework with 800+ tests covering Nexsure insurance platform.</div>
-        <div class="port-tags"><span class="ptag">Java 11</span><span class="ptag">Selenium 4</span><span class="ptag">POM</span><span class="ptag">TestNG</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="automation">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🚗</span>
-          <span class="port-badge" style="background:rgba(236,72,153,.08);border-color:rgba(236,72,153,.2);color:#ec4899;">Automation</span>
-        </div>
-        <div class="port-title">Alise (ALIS BMS) Framework</div>
-        <div class="port-desc">JSON-driven test framework with 12 action types, RestAssured API tests, and random data generation.</div>
-        <div class="port-tags"><span class="ptag">Java</span><span class="ptag">JSON-driven</span><span class="ptag">RestAssured</span><span class="ptag">TestNG</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="automation">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🐍</span>
-          <span class="port-badge" style="background:rgba(236,72,153,.08);border-color:rgba(236,72,153,.2);color:#ec4899;">Automation</span>
-        </div>
-        <div class="port-title">Python Automation Suite</div>
-        <div class="port-desc">Pytest + Selenium automation for Crest Data Splunk platform — parametrized, fixture-driven, CI-ready.</div>
-        <div class="port-tags"><span class="ptag">Python</span><span class="ptag">Pytest</span><span class="ptag">Selenium</span><span class="ptag">CI/CD</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="automation">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">📮</span>
-          <span class="port-badge" style="background:rgba(236,72,153,.08);border-color:rgba(236,72,153,.2);color:#ec4899;">Automation</span>
-        </div>
-        <div class="port-title">Postman Collections</div>
-        <div class="port-desc">15 Postman collections with Newman CLI integration, environment variables, and CI/CD pipeline gate.</div>
-        <div class="port-tags"><span class="ptag">Postman</span><span class="ptag">Newman</span><span class="ptag">CLI</span><span class="ptag">CI/CD</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="automation">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">💨</span>
-          <span class="port-badge" style="background:rgba(236,72,153,.08);border-color:rgba(236,72,153,.2);color:#ec4899;">Automation</span>
-        </div>
-        <div class="port-title">API Smoke Test Suite</div>
-        <div class="port-desc">Pre-deployment gate with 50+ critical path API tests — runs in under 2 minutes, blocks bad releases.</div>
-        <div class="port-tags"><span class="ptag">Postman</span><span class="ptag">Newman</span><span class="ptag">Smoke</span><span class="ptag">Gate</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="automation">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🌐</span>
-          <span class="port-badge" style="background:rgba(236,72,153,.08);border-color:rgba(236,72,153,.2);color:#ec4899;">Automation</span>
-        </div>
-        <div class="port-title">Cross-browser Test Matrix</div>
-        <div class="port-desc">Selenium Grid + BrowserStack coverage across 8 browser configs — Chrome, Firefox, Safari, Edge.</div>
-        <div class="port-tags"><span class="ptag">Selenium Grid</span><span class="ptag">BrowserStack</span><span class="ptag">8 Browsers</span><span class="ptag">Parallel</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <!-- Performance -->
-      <div class="port-card" data-cat="perf">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">⚡</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.25);color:var(--ac);">Performance</span>
-        </div>
-        <div class="port-title">Nexsure Load Test</div>
-        <div class="port-desc">JMeter load test simulating 500 concurrent users across insurance quote, bind, and report workflows.</div>
-        <div class="port-tags"><span class="ptag">JMeter</span><span class="ptag">500 users</span><span class="ptag">Load</span><span class="ptag">Reporting</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="perf">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">📏</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.25);color:var(--ac);">Performance</span>
-        </div>
-        <div class="port-title">API Performance Baseline</div>
-        <div class="port-desc">Response time benchmarking across 50+ endpoints — SLA threshold alerts and regression tracking.</div>
-        <div class="port-tags"><span class="ptag">Postman</span><span class="ptag">JMeter</span><span class="ptag">SLA</span><span class="ptag">Baseline</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="perf">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🗄</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.25);color:var(--ac);">Performance</span>
-        </div>
-        <div class="port-title">Database Query Optimization</div>
-        <div class="port-desc">Slow query identification, index coverage analysis, and query plan validation for insurance data models.</div>
-        <div class="port-tags"><span class="ptag">SQL</span><span class="ptag">Query Plans</span><span class="ptag">Index</span><span class="ptag">Performance</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="perf">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">🔑</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.25);color:var(--ac);">Performance</span>
-        </div>
-        <div class="port-title">Login/Auth Stress Test</div>
-        <div class="port-desc">Peak load simulation for auth service — token expiry edge cases, session invalidation, and rate limiting.</div>
-        <div class="port-tags"><span class="ptag">JMeter</span><span class="ptag">Stress</span><span class="ptag">Auth</span><span class="ptag">Rate Limiting</span></div>
-        <span class="port-status port-status-prod">Production</span>
-      </div>
-
-      <div class="port-card" data-cat="perf">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;">
-          <span style="font-size:1.4rem;">📄</span>
-          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.25);color:var(--ac);">Performance</span>
-        </div>
-        <div class="port-title">Report Generation Load</div>
-        <div class="port-desc">PDF and Excel bulk generation under concurrent load — memory usage, timeout thresholds, and output integrity.</div>
-        <div class="port-tags"><span class="ptag">JMeter</span><span class="ptag">PDF</span><span class="ptag">Excel</span><span class="ptag">Bulk Load</span></div>
-        <span class="port-status port-status-prod">Production</span>
+        <div class="port-title">Selenium Python Test Suite</div>
+        <div class="port-company">Crest Data Systems · 2023–2024</div>
+        <div class="port-desc">Built Selenium WebDriver Python automation for ServiceNow and Morphisec. Reduced regression cycle time per sprint. Mentored junior QAs on framework usage.</div>
+        <div class="port-tags"><span class="ptag">Python</span><span class="ptag">Selenium</span><span class="ptag">pytest</span><span class="ptag">Page Object Model</span><span class="ptag">CI/CD</span></div>
+        <span class="port-status port-status-prod">Delivered</span>
       </div>
 
     </div><!-- /port-grid -->
+
+    <div id="port-more-wrap" style="display:none;text-align:center;margin-top:1.5rem;">
+      <button id="port-more-btn" onclick="togglePortMore()" style="background:transparent;border:1px solid var(--bd);color:var(--dim);padding:.55rem 1.4rem;border-radius:8px;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .2s;">
+        Show All Projects ↓
+      </button>
+    </div>
   </div>
 </section>
 
@@ -1777,12 +1487,26 @@ function filterPortfolio(btn, cat) {
   document.querySelectorAll('.port-filter').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.port-card').forEach(card => {
-    if (cat === 'all' || card.dataset.cat === cat) {
+    const cats = (card.dataset.cat || '').split(' ');
+    if (cat === 'all' || cats.includes(cat)) {
       card.classList.remove('hidden');
     } else {
       card.classList.add('hidden');
     }
   });
+  // Reset mobile show-more on filter change
+  document.querySelectorAll('.port-card').forEach(c => c.classList.remove('port-show-all'));
+  const moreBtn = document.getElementById('port-more-btn');
+  if (moreBtn) moreBtn.textContent = 'Show All Projects \u2193';
+}
+
+function togglePortMore() {
+  const btn = document.getElementById('port-more-btn');
+  const isExpanded = btn.textContent.includes('\u2191');
+  document.querySelectorAll('.port-card:not(.hidden)').forEach(c => {
+    c.classList.toggle('port-show-all', !isExpanded);
+  });
+  btn.textContent = isExpanded ? 'Show All Projects \u2193' : 'Show Less \u2191';
 }
 
 /* ── CONTACT FORM ── */
