@@ -1253,11 +1253,11 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   <a href="#contact">Hire Me — Let's Talk →</a>
 </div>
 
-<!-- ADMIN PANEL — private, not visible to public -->
+<!-- ANALYTICS PANEL — browser-local only; each visitor sees only their own data from this browser -->
 <div id="kr-admin" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(4,8,15,.97);backdrop-filter:blur(20px);overflow-y:auto;padding:2rem;">
   <div style="max-width:700px;margin:0 auto;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;">
-      <h2 style="font-size:1.5rem;font-weight:800;background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">KR Analytics — Private Dashboard</h2>
+      <h2 style="font-size:1.5rem;font-weight:800;background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">KR Analytics — This Browser Only</h2>
       <button onclick="document.getElementById('kr-admin').style.display='none'" style="background:var(--s3);border:1px solid var(--bd);color:var(--tx);padding:.5rem 1rem;border-radius:8px;cursor:pointer;font-size:.85rem;">Close ✕</button>
     </div>
     <div id="kr-stats-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;"></div>
@@ -1266,7 +1266,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       <div id="kr-chart" style="display:flex;align-items:flex-end;gap:4px;height:80px;"></div>
       <div id="kr-dates" style="display:flex;gap:4px;margin-top:.3rem;"></div>
     </div>
-    <p style="margin-top:1.5rem;font-size:.75rem;color:var(--dim);text-align:center;">Data stored in your browser localStorage · Press Ctrl+Shift+K to toggle</p>
+    <p style="margin-top:1.5rem;font-size:.75rem;color:var(--dim);text-align:center;">Data stored in this browser only · Each visitor sees their own isolated data · Press Ctrl+Shift+K to toggle</p>
     <div style="margin-top:1.5rem;background:var(--s2);border:1px solid var(--bd);border-radius:12px;padding:1.5rem;">
       <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--dim);margin-bottom:1rem;">Recent Contact Form Submissions</div>
       <div id="kr-contacts-list" style="display:flex;flex-direction:column;gap:.6rem;"></div>
@@ -1491,11 +1491,13 @@ function showAdminPanel() {
   chart.innerHTML = sortedDays.map(d => {
     const h = Math.round((days[d]/max)*72);
     const isToday = d === today;
-    return `<div title="${d}: ${days[d]} view(s)" style="flex:1;height:${h}px;background:${isToday?'var(--gr)':'var(--ac)'};border-radius:3px 3px 0 0;opacity:${isToday?1:.7};min-height:2px;"></div>`;
+    const safeD = escHtml(d);
+    const safeN = Number(days[d]) || 0;
+    return `<div title="${safeD}: ${safeN} view(s)" style="flex:1;height:${h}px;background:${isToday?'var(--gr)':'var(--ac)'};border-radius:3px 3px 0 0;opacity:${isToday?1:.7};min-height:2px;"></div>`;
   }).join('');
   datesEl.innerHTML = sortedDays.map((d,i) => {
     const show = i === 0 || i === sortedDays.length-1 || i === Math.floor(sortedDays.length/2);
-    return `<div style="flex:1;font-size:.58rem;color:var(--dim);text-align:center;overflow:hidden;">${show ? d.slice(5) : ''}</div>`;
+    return `<div style="flex:1;font-size:.58rem;color:var(--dim);text-align:center;overflow:hidden;">${show ? escHtml(d.slice(5)) : ''}</div>`;
   }).join('');
 
   document.getElementById('kr-admin').style.display = 'block';
@@ -1556,6 +1558,7 @@ function togglePortMore() {
 /* ── CONTACT FORM — Web3Forms primary, FormSubmit fallback, mailto last resort ── */
 // Web3Forms: get a free access key at https://web3forms.com (enter email → click link → copy key)
 const _W3F_KEY = '48dcf943c6c4df92eea22e83a9c49d87';
+const _FORM_COOLDOWN_MS = 60000; // 60-second cooldown between submissions
 
 function sendMsg(e) {
   e.preventDefault();
@@ -1568,6 +1571,16 @@ function sendMsg(e) {
   const m      = mEl.value.trim();
   const btn    = document.getElementById('form-submit-btn');
   const succ   = document.getElementById('form-success');
+
+  // Rate limit: prevent re-submission within cooldown window
+  const lastSent = Number(localStorage.getItem('kr_last_send') || 0);
+  if (Date.now() - lastSent < _FORM_COOLDOWN_MS) {
+    const wait = Math.ceil((_FORM_COOLDOWN_MS - (Date.now() - lastSent)) / 1000);
+    const errDiv = document.getElementById('form-error-msg');
+    errDiv.style.cssText = 'display:block;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:8px;padding:.8rem;text-align:center;margin-top:.8rem;font-size:.78rem;color:var(--dim);';
+    errDiv.textContent = 'Please wait ' + wait + ' second' + (wait !== 1 ? 's' : '') + ' before sending another message.';
+    return;
+  }
   const errDiv = document.getElementById('form-error-msg');
 
   // Clear errors
@@ -1603,6 +1616,7 @@ function sendMsg(e) {
   function onSuccess() {
     succ.style.display = 'block';
     e.target.reset();
+    localStorage.setItem('kr_last_send', String(Date.now()));
     const log = JSON.parse(localStorage.getItem('kr_contacts') || '[]');
     log.unshift({ name: n, email: em, company: co, date: new Date().toISOString(), preview: m.slice(0, 80) });
     if (log.length > 50) log.pop();

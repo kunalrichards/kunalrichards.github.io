@@ -24,7 +24,7 @@
 
 **[→ kunalrichards.github.io](https://kunalrichards.github.io)**
 
-Built from scratch — no frameworks, no templates. Custom dark theme, typing animation, animated stats counters, private admin panel (Ctrl+Shift+K), visitor analytics, and a fully working contact form. Fully responsive down to 360px.
+Built from scratch — no frameworks, no templates. Custom dark theme, typing animation, animated stats counters, browser-local analytics panel (Ctrl+Shift+K — shows only that browser's own data), and a fully working contact form. Fully responsive down to 360px.
 
 ---
 
@@ -176,7 +176,7 @@ kunalrichards.github.io/
 | No Sensitive Data | ✅ Repo is 100% public portfolio content |
 | HTTPS Only | ✅ Served exclusively over GitHub Pages HTTPS |
 | Contact Form | ✅ Web3Forms (no server-side code), FormSubmit fallback |
-| Admin Panel | ✅ Hidden, keyboard-triggered (Ctrl+Shift+K), localStorage only |
+| Analytics Panel | ✅ Browser-local only (localStorage) — each visitor sees only their own data, zero cross-user exposure |
 
 ---
 
