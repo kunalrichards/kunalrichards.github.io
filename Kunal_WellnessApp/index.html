@@ -142,7 +142,8 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
 
 <header>
   <div>
-    <div class="logo">Kunal FitnessApp <span>— Wellness by Kunal Richards</span></div>
+    <div class="logo">Kunal WellnessApp <span>— Wellness by Kunal Richards</span></div>
+    <a href="../index.html" style="font-size:.75rem;color:var(--dim);text-decoration:none;margin-left:.8rem;white-space:nowrap;transition:color .2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--dim)'">← Portfolio</a>
   </div>
   <div class="header-right">
     <div class="streak-badge" id="streak-badge">🔥 0 day streak</div>
@@ -243,13 +244,14 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
     <div class="stat-pill"><div class="stat-pill-icon">💧</div><div><div class="stat-pill-n" id="stat-water">0/8</div><div class="stat-pill-l">Glasses of water</div></div></div>
     <div class="stat-pill"><div class="stat-pill-icon">👁</div><div><div class="stat-pill-n" id="stat-eye">0</div><div class="stat-pill-l">Eye breaks taken</div></div></div>
     <div class="stat-pill"><div class="stat-pill-icon">⏱</div><div><div class="stat-pill-n" id="stat-focus">0m</div><div class="stat-pill-l">Total focus time</div></div></div>
+    <div class="stat-pill"><div class="stat-pill-icon">🧍</div><div><div class="stat-pill-n" id="stat-posture">0</div><div class="stat-pill-l">Posture checks</div></div></div>
   </div>
 
 </main>
 
 <!-- EXERCISE MODAL -->
-<div class="modal-overlay" id="exercise-modal">
-  <div class="modal">
+<div class="modal-overlay" id="exercise-modal" onclick="closeExercise()">
+  <div class="modal" onclick="event.stopPropagation()">
     <button class="modal-close" onclick="closeExercise()">✕</button>
     <div class="modal-title">💪 Quick Desk Exercise</div>
     <div class="modal-sub">Take 2 minutes. Your body will thank you.</div>
@@ -268,7 +270,7 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
 
 <!-- TOAST -->
 <div class="toast" id="toast">
-  <div class="toast-title" id="toast-title">Kunal FitnessApp</div>
+  <div class="toast-title" id="toast-title">Kunal WellnessApp</div>
   <div id="toast-msg"></div>
 </div>
 
@@ -370,7 +372,8 @@ function updateTimerDisplay() {
 function updateSessionDots() {
   const dots = document.querySelectorAll('.session-dot');
   const s = state.sessions % 4;
-  dots.forEach((d,i) => { d.className = 'session-dot' + (i < s ? ' done' : ''); });
+  const filled = s === 0 && state.sessions > 0 ? 4 : s;
+  dots.forEach((d,i) => { d.className = 'session-dot' + (i < filled ? ' done' : ''); });
   document.getElementById('sessions-done').textContent = state.sessions;
   document.getElementById('focus-mins').textContent = state.focusMins;
 }
@@ -406,9 +409,14 @@ function updateWater() {
   document.getElementById('water-count').textContent = `${state.water} / 8 glasses`;
   document.getElementById('water-pct').textContent = pct + '%';
   document.getElementById('stat-water').textContent = `${state.water}/8`;
-  if (state.water >= 8) toast('💧 Goal Reached!', 'You have drunk 8 glasses of water today!');
 }
-function addWater() { if (state.water < 8) { state.water++; save(); buildGlasses(); updateWater(); } }
+function addWater() {
+  if (state.water < 8) {
+    state.water++;
+    if (state.water === 8) toast('💧 Goal Reached!', 'You have drunk 8 glasses of water today!');
+    save(); buildGlasses(); updateWater();
+  }
+}
 function resetWater() { state.water = 0; save(); buildGlasses(); updateWater(); }
 
 // ─── EYE BREAK ───────────────────────────────────────────────────
@@ -440,8 +448,12 @@ function updateEyeDisplay() {
   const pct = Math.max(0, inEyeBreak ? (safe / 20) * 100 : (safe / eyeTotal) * 100);
   document.getElementById('eye-bar').style.width = pct + '%';
 }
-function triggerEyeBreak() { eyeLeft = 0; }
-function snoozeEye() { eyeLeft += 5 * 60; toast('Eye Timer Snoozed', 'Snoozed 5 minutes'); }
+function triggerEyeBreak() { if (!inEyeBreak) eyeLeft = 1; }
+function snoozeEye() {
+  if (inEyeBreak) { toast('Eye Break Active', 'Finish looking away first!'); return; }
+  eyeLeft += 5 * 60;
+  toast('Eye Timer Snoozed', 'Snoozed 5 minutes');
+}
 
 // ─── POSTURE ─────────────────────────────────────────────────────
 let postureCountdown = 30 * 60;
@@ -455,7 +467,8 @@ const postureTips = [
 let postureIdx = 0;
 setInterval(() => {
   postureCountdown--;
-  const m = Math.floor(postureCountdown / 60), s = postureCountdown % 60;
+  const safeCountdown = Math.max(0, postureCountdown);
+  const m = Math.floor(safeCountdown / 60), s = safeCountdown % 60;
   document.getElementById('posture-next').textContent = `Next check in ${m}m ${String(s).padStart(2,'0')}s`;
   if (postureCountdown <= 0) {
     postureCountdown = 30 * 60; postureIdx = (postureIdx + 1) % postureTips.length;
@@ -506,6 +519,7 @@ function updateUI() {
   document.getElementById('stat-sessions').textContent = state.sessions;
   document.getElementById('stat-focus').textContent = state.focusMins + 'm';
   document.getElementById('stat-eye').textContent = state.eyeBreaks;
+  document.getElementById('stat-posture').textContent = state.postureDone;
   updateSessionDots();
 }
 
@@ -515,7 +529,10 @@ updateWater();
 updateTimerDisplay();
 updateUI();
 startEyeClock();
-toast('Welcome to Kunal FitnessApp!', 'Your wellness companion is active. Stay hydrated and take breaks!');
+toast('Welcome to Kunal WellnessApp!', 'Your wellness companion is active. Stay hydrated and take breaks!');
+
+// ─── ESCAPE KEY: close modal ──────────────────────────────────────
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeExercise(); });
 </script>
 </body>
 </html>
