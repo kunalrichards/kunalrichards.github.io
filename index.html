@@ -93,6 +93,7 @@ button{-webkit-tap-highlight-color:transparent;}
   border-top:1px solid rgba(56,189,248,.15);
   backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
+  opacity:0;
   pointer-events:none;
   transition:opacity .3s ease;
 }
@@ -240,6 +241,7 @@ nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
 }
 .hc-dot{width:6px;height:6px;background:var(--gr);border-radius:50%;flex-shrink:0;animation:pulse-dot 2s infinite;}
 @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.6);}70%{box-shadow:0 0 0 6px rgba(52,211,153,0);}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.6);}70%{box-shadow:0 0 0 6px rgba(52,211,153,0);}}
 h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;line-height:1.05;color:var(--hd);margin-bottom:.5rem;letter-spacing:-2px;}
 .name-grad{background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:grad-anim 4s ease infinite;}
 @keyframes grad-anim{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
@@ -529,11 +531,9 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
   /* Hide name on mobile — KR. nav logo represents the brand */
   h1{display:none;}
-  .typing-line{font-size:.86rem;margin-bottom:.7rem;}
+  .typing-line{font-size:.86rem;margin-bottom:.7rem;min-height:auto;}
   /* Fix socrow overflow */
   .hero-text{min-width:0;width:100%;}
-  .socrow{gap:.3rem .7rem;}
-  .soc{font-size:.72rem;}
   .pills{margin-bottom:1rem;gap:.28rem;justify-content:center;}
   .pill{font-size:.64rem;padding:.2rem .55rem;}
 
@@ -594,7 +594,6 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
    TINY  ≤ 360px
 ══════════════════════════════════════ */
 @media(max-width:360px){
-  h1{font-size:2.2rem;letter-spacing:-1.5px;}
   .hero-inner{gap:1rem;}
   .photo-wrap{width:130px;}
   .hero-photo{width:130px;height:170px;object-fit:cover;object-position:center 20%;}
@@ -1280,6 +1279,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 /* ── ANTI-FLASH: fade in once DOM ready ── */
 document.addEventListener('DOMContentLoaded', () => {
   document.documentElement.style.opacity = '1';
+  handleScroll();
 });
 
 /* ── SCROLL: all scroll effects — single rAF-throttled handler ── */
