@@ -127,6 +127,40 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
   .pomodoro-card{grid-column:1;grid-template-columns:1fr;text-align:center;}
   .stats-bar{grid-column:1;}
 }
+
+/* KEYBOARD SHORTCUTS BAR */
+.kbd-bar{background:rgba(10,15,30,.85);border-top:1px solid var(--border);padding:.45rem 1.5rem;display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;font-size:.71rem;color:var(--dim);position:sticky;bottom:0;z-index:50;backdrop-filter:blur(8px);}
+.kbd-bar span{white-space:nowrap;}
+kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,163,175,.4);border-radius:4px;padding:.05rem .35rem;font-family:monospace;font-size:.68rem;color:var(--text);margin-right:.18rem;box-shadow:0 1px 0 rgba(0,0,0,.4);}
+@media(max-width:720px){.kbd-bar{display:none;}}
+
+/* SETTINGS MODAL */
+.set-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:300;display:none;align-items:center;justify-content:center;}
+.set-overlay.show{display:flex;}
+.set-modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.8rem;max-width:380px;width:90%;max-height:90vh;overflow-y:auto;}
+.set-title{font-size:1.1rem;font-weight:700;color:var(--heading);margin-bottom:1.2rem;}
+.set-row{display:flex;justify-content:space-between;align-items:center;padding:.65rem 0;border-bottom:1px solid rgba(55,65,81,.5);font-size:.85rem;gap:.5rem;}
+.set-row:last-of-type{border-bottom:none;}
+.set-label{flex:1;}
+.set-desc{font-size:.73rem;color:var(--dim);margin-top:.15rem;}
+.set-input{background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:.3rem .6rem;width:64px;text-align:center;font-size:.9rem;}
+.set-input:focus{outline:none;border-color:var(--accent);}
+.set-unit{font-size:.78rem;color:var(--dim);margin-left:.3rem;min-width:24px;}
+
+/* MOBILE IMPROVEMENTS */
+@media(max-width:480px){
+  header{flex-wrap:wrap;gap:.4rem;padding:.7rem 1rem;}
+  .header-right{width:100%;justify-content:flex-end;}
+  .streak-badge{font-size:.7rem;padding:.2rem .5rem;}
+  #notif-btn,#settings-btn{font-size:.7rem;padding:.3rem .65rem;}
+  .timer-ring-wrap{width:150px;height:150px;}
+  .timer-ring-wrap svg{width:150px;height:150px;}
+  .timer-display{font-size:2rem;}
+  main{padding:.9rem;}
+  .modal{padding:1.3rem;}
+  .modal-btns{flex-direction:column;}
+  .stat-pill{min-width:calc(50% - .5rem);}
+}
 </style>
 </head>
 <body>
@@ -148,6 +182,7 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
   <div class="header-right">
     <div class="streak-badge" id="streak-badge">🔥 0 day streak</div>
     <button id="notif-btn" onclick="toggleNotifications()">🔔 Enable Alerts</button>
+    <button id="settings-btn" style="background:var(--surface2);border:1px solid var(--border);color:var(--dim);padding:.4rem .9rem;border-radius:6px;cursor:pointer;font-size:.78rem;" onclick="openSettings()">⚙️ Settings</button>
   </div>
 </header>
 
@@ -249,6 +284,17 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
 
 </main>
 
+<!-- KEYBOARD SHORTCUTS BAR -->
+<div class="kbd-bar">
+  <span><kbd>Space</kbd> Start/Pause</span>
+  <span><kbd>R</kbd> Reset timer</span>
+  <span><kbd>W</kbd> Log water</span>
+  <span><kbd>E</kbd> Eye break now</span>
+  <span><kbd>X</kbd> Exercises</span>
+  <span><kbd>S</kbd> Settings</span>
+  <span><kbd>Esc</kbd> Close</span>
+</div>
+
 <!-- EXERCISE MODAL -->
 <div class="modal-overlay" id="exercise-modal" onclick="closeExercise()">
   <div class="modal" onclick="event.stopPropagation()">
@@ -268,6 +314,36 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
   </div>
 </div>
 
+<!-- SETTINGS MODAL -->
+<div class="set-overlay" id="set-overlay" onclick="if(event.target===this)closeSettings()">
+  <div class="set-modal">
+    <div class="set-title">⚙️ Session Settings</div>
+    <div class="set-row">
+      <div class="set-label"><div>Focus duration</div><div class="set-desc">Main work session length</div></div>
+      <input class="set-input" type="number" id="set-focus" min="1" max="90" value="25">
+      <span class="set-unit">min</span>
+    </div>
+    <div class="set-row">
+      <div class="set-label"><div>Short break</div><div class="set-desc">Between sessions</div></div>
+      <input class="set-input" type="number" id="set-short" min="1" max="30" value="5">
+      <span class="set-unit">min</span>
+    </div>
+    <div class="set-row">
+      <div class="set-label"><div>Long break</div><div class="set-desc">After every 4 sessions</div></div>
+      <input class="set-input" type="number" id="set-long" min="5" max="60" value="15">
+      <span class="set-unit">min</span>
+    </div>
+    <div class="set-row">
+      <div class="set-label"><div>Audio feedback</div><div class="set-desc">Soft tones when sessions end</div></div>
+      <input type="checkbox" id="set-audio" checked style="width:18px;height:18px;cursor:pointer;accent-color:var(--accent);">
+    </div>
+    <div style="display:flex;gap:.8rem;margin-top:1.3rem;">
+      <button class="btn btn-green" style="flex:1" onclick="saveSettings()">Save Settings</button>
+      <button class="btn btn-gray" onclick="closeSettings()">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <!-- TOAST -->
 <div class="toast" id="toast">
   <div class="toast-title" id="toast-title">Kunal WellnessApp</div>
@@ -275,6 +351,11 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
 </div>
 
 <script>
+// ─── SETTINGS ────────────────────────────────────────────────────
+const SETTINGS_KEY = 'devfit_settings';
+let settings = Object.assign({ focusMins: 25, shortBreak: 5, longBreak: 15, audioOn: true },
+  JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}'));
+
 // ─── STATE ───────────────────────────────────────────────────────
 const today = new Date().toDateString();
 let state = JSON.parse(localStorage.getItem('devfit_state') || '{}');
@@ -314,14 +395,16 @@ function notify(title, body) {
 }
 
 // ─── POMODORO ───────────────────────────────────────────────────
-let timerInterval = null, timeLeft = 25 * 60, totalTime = 25 * 60, isRunning = false, currentMode = 'focus';
+let timerInterval = null, timeLeft = settings.focusMins * 60, totalTime = settings.focusMins * 60, isRunning = false, currentMode = 'focus';
 const ring = document.getElementById('timer-ring'); const circumference = 2 * Math.PI * 80;
 ring.style.strokeDasharray = circumference;
 
 function setMode(mode, mins, label, btn) {
   if (isRunning) return;
   currentMode = mode;
-  totalTime = mins * 60; timeLeft = totalTime;
+  // Use settings-based duration, fall back to passed mins
+  const dur = mode === 'focus' ? settings.focusMins : mode === 'short' ? settings.shortBreak : settings.longBreak;
+  totalTime = (dur || mins) * 60; timeLeft = totalTime;
   document.getElementById('timer-phase').textContent = label;
   document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
@@ -342,10 +425,12 @@ function toggleTimer() {
         clearInterval(timerInterval); isRunning = false;
         document.getElementById('start-btn').textContent = '▶ Start';
         if (currentMode === 'focus') {
-          state.sessions++; state.focusMins += 25; save();
-          notify('🍅 Pomodoro Done!', 'Great work! Take a 5-minute break. Stretch it out!');
+          state.sessions++; state.focusMins += settings.focusMins; save();
+          playDone();
+          notify('🍅 Pomodoro Done!', 'Great work! Take a ' + settings.shortBreak + '-minute break. Stretch it out!');
           updateSessionDots();
         } else {
+          playBreak();
           notify('⏰ Break Over', 'Time to focus again. You got this!');
         }
         setMode('focus', 25, 'Focus Time', null);
@@ -531,8 +616,91 @@ updateUI();
 startEyeClock();
 toast('Welcome to Kunal WellnessApp!', 'Your wellness companion is active. Stay hydrated and take breaks!');
 
-// ─── ESCAPE KEY: close modal ──────────────────────────────────────
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeExercise(); });
+// ─── AUDIO FEEDBACK (Web Audio API — no external files needed) ────
+let _audioCtx = null;
+function _getACtx() {
+  if (!_audioCtx) _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return _audioCtx;
+}
+function _playTone(freq, dur, type = 'sine', vol = 0.28) {
+  if (!settings.audioOn) return;
+  try {
+    const ctx = _getACtx();
+    const osc = ctx.createOscillator(), gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.type = type; osc.frequency.value = freq;
+    gain.gain.setValueAtTime(vol, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+    osc.start(); osc.stop(ctx.currentTime + dur);
+  } catch(e) {}
+}
+function playDone()  { _playTone(523,.12); setTimeout(()=>_playTone(659,.12),140); setTimeout(()=>_playTone(784,.32),280); }
+function playBreak() { _playTone(392,.18); setTimeout(()=>_playTone(523,.35),220); }
+function playClick() { _playTone(660,.06,'sine',.12); }
+function playWater() { _playTone(880,.07,'sine',.16); }
+
+// ─── KEYBOARD SHORTCUTS ───────────────────────────────────────────
+document.addEventListener('keydown', ev => {
+  if (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA' || ev.target.tagName === 'SELECT') return;
+  if (document.getElementById('set-overlay').classList.contains('show')) {
+    if (ev.key === 'Escape') closeSettings();
+    return;
+  }
+  if (document.getElementById('exercise-modal').classList.contains('show')) {
+    if (ev.key === 'Escape') closeExercise();
+    return;
+  }
+  switch(ev.key) {
+    case ' ':      ev.preventDefault(); playClick(); toggleTimer();      break;
+    case 'r': case 'R': playClick(); resetTimer();                       break;
+    case 'w': case 'W': playWater(); addWater();                         break;
+    case 'e': case 'E': playClick(); triggerEyeBreak();                  break;
+    case 'x': case 'X': playClick(); openExercise();                     break;
+    case 's': case 'S': openSettings();                                  break;
+  }
+});
+
+// ─── SETTINGS ─────────────────────────────────────────────────────
+function openSettings() {
+  document.getElementById('set-focus').value  = settings.focusMins;
+  document.getElementById('set-short').value  = settings.shortBreak;
+  document.getElementById('set-long').value   = settings.longBreak;
+  document.getElementById('set-audio').checked = settings.audioOn;
+  document.getElementById('set-overlay').classList.add('show');
+}
+function closeSettings() { document.getElementById('set-overlay').classList.remove('show'); }
+function saveSettings() {
+  const f = Math.min(90,  Math.max(1,  parseInt(document.getElementById('set-focus').value) || 25));
+  const s = Math.min(30,  Math.max(1,  parseInt(document.getElementById('set-short').value) || 5));
+  const l = Math.min(60,  Math.max(5,  parseInt(document.getElementById('set-long').value)  || 15));
+  settings.focusMins  = f;
+  settings.shortBreak = s;
+  settings.longBreak  = l;
+  settings.audioOn    = document.getElementById('set-audio').checked;
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+  // Update mode button labels
+  const btns = document.querySelectorAll('.mode-btn');
+  if (btns[0]) btns[0].textContent = `Focus ${f}m`;
+  if (btns[1]) btns[1].textContent = `Break ${s}m`;
+  if (btns[2]) btns[2].textContent = `Long ${l}m`;
+  // Refresh timer if paused
+  if (!isRunning) {
+    const newSecs = currentMode === 'focus' ? f : currentMode === 'short' ? s : l;
+    totalTime = newSecs * 60; timeLeft = totalTime;
+    updateTimerDisplay();
+  }
+  closeSettings();
+  toast('Settings Saved', `Focus ${f}m · Short ${s}m · Long ${l}m · Audio ${settings.audioOn ? 'ON' : 'OFF'}`);
+}
+
+// Apply saved settings to mode buttons on load
+(function initModeLabels() {
+  const btns = document.querySelectorAll('.mode-btn');
+  if (btns[0]) btns[0].textContent = `Focus ${settings.focusMins}m`;
+  if (btns[1]) btns[1].textContent = `Break ${settings.shortBreak}m`;
+  if (btns[2]) btns[2].textContent = `Long ${settings.longBreak}m`;
+  updateTimerDisplay();
+})();
 </script>
 </body>
 </html>

@@ -30,7 +30,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
 
 <!-- Content Security Policy -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data: https:; connect-src https://formsubmit.co; frame-src 'none'; object-src 'none'; base-uri 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data: https:; connect-src https://formsubmit.co https://api.web3forms.com; frame-src 'none'; object-src 'none'; base-uri 'self';">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
@@ -912,7 +912,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   <div class="con">
     <div class="sec-head">
       <div class="sec-tag">// Portfolio</div>
-      <h2 class="sec-title">Real Projects — 7 Years · 5 Companies</h2>
+      <h2 class="sec-title">Real Projects — 7+ Years · 5 Companies</h2>
       <p class="sec-desc">Every project here is something I personally tested, automated, or built — from enterprise insurance platforms to AI productivity tools.</p>
     </div>
 
@@ -1456,6 +1456,11 @@ document.querySelectorAll('.proj-card').forEach(card => {
   localStorage.setItem(VK, JSON.stringify(data));
 })();
 
+// Security: escape HTML before inserting user-supplied data into innerHTML
+function escHtml(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
 function showAdminPanel() {
   const VK = 'kr_visits';
   const data = JSON.parse(localStorage.getItem(VK) || '{"total":0,"days":{}}');
@@ -1501,12 +1506,13 @@ function showAdminPanel() {
     cList.innerHTML = contacts.map(c => {
       const d = new Date(c.date);
       const dateStr = d.toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'});
+      const company = c.company && c.company !== 'Not specified' ? ' <span style="color:var(--ac);font-size:.72rem;">@ ' + escHtml(c.company) + '</span>' : '';
       return '<div style="background:var(--s3);border:1px solid var(--bd);border-radius:8px;padding:.8rem;">' +
         '<div style="display:flex;justify-content:space-between;margin-bottom:.3rem;">' +
-        '<span style="font-weight:700;font-size:.83rem;color:var(--hd);">' + c.name + (c.company && c.company !== 'Not specified' ? ' <span style=\'color:var(--ac);font-size:.72rem;\'>@ ' + c.company + '</span>' : '') + '</span>' +
-        '<span style="font-size:.7rem;color:var(--dim);">' + dateStr + '</span></div>' +
-        '<div style="font-size:.72rem;color:var(--ac2);margin-bottom:.25rem;">' + c.email + '</div>' +
-        '<div style="font-size:.75rem;color:var(--dim);">' + (c.preview || '') + (c.preview && c.preview.length >= 80 ? '…' : '') + '</div>' +
+        '<span style="font-weight:700;font-size:.83rem;color:var(--hd);">' + escHtml(c.name) + company + '</span>' +
+        '<span style="font-size:.7rem;color:var(--dim);">' + escHtml(dateStr) + '</span></div>' +
+        '<div style="font-size:.72rem;color:var(--ac2);margin-bottom:.25rem;">' + escHtml(c.email) + '</div>' +
+        '<div style="font-size:.75rem;color:var(--dim);">' + escHtml(c.preview || '') + (c.preview && c.preview.length >= 80 ? '…' : '') + '</div>' +
         '</div>';
     }).join('');
   }
@@ -1543,7 +1549,10 @@ function togglePortMore() {
   btn.textContent = isExpanded ? 'Show All Projects \u2193' : 'Show Less \u2191';
 }
 
-/* ── CONTACT FORM — FormSubmit API + mailto fallback ── */
+/* ── CONTACT FORM — Web3Forms primary, FormSubmit fallback, mailto last resort ── */
+// Web3Forms: get a free access key at https://web3forms.com (enter email → click link → copy key)
+const _W3F_KEY = 'YOUR_WEB3FORMS_KEY'; // ← Get free key: go to https://web3forms.com → enter kunalrichards4@gmail.com → click email link → paste key here
+
 function sendMsg(e) {
   e.preventDefault();
   const nEl    = document.getElementById('f-name');
@@ -1587,46 +1596,68 @@ function sendMsg(e) {
   btn.textContent = 'Sending…';
   btn.disabled = true;
 
-  // Primary: FormSubmit — delivers straight to Gmail inbox.
-  // FIRST USE: FormSubmit sends one activation email — click confirm once to enable.
-  fetch('https://formsubmit.co/ajax/kunalrichards4@gmail.com', {
+  function onSuccess() {
+    succ.style.display = 'block';
+    e.target.reset();
+    const log = JSON.parse(localStorage.getItem('kr_contacts') || '[]');
+    log.unshift({ name: n, email: em, company: co, date: new Date().toISOString(), preview: m.slice(0, 80) });
+    if (log.length > 50) log.pop();
+    localStorage.setItem('kr_contacts', JSON.stringify(log));
+    btn.textContent = 'Send Message →';
+    btn.disabled = false;
+  }
+
+  function onFail() {
+    const subj = encodeURIComponent('Portfolio Enquiry — ' + n + (co ? ' @ ' + co : ''));
+    const body = encodeURIComponent(m + '\n\nFrom: ' + n + (co ? '\nCompany: ' + co : '') + '\nEmail: ' + em);
+    const mailtoUrl = 'mailto:kunalrichards4@gmail.com?subject=' + subj + '&body=' + body;
+    errDiv.style.cssText = 'display:block;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:8px;padding:.8rem;text-align:center;margin-top:.8rem;font-size:.78rem;color:var(--dim);';
+    errDiv.textContent = 'Direct delivery unavailable. ';
+    const mailLink = document.createElement('a');
+    mailLink.href = mailtoUrl;
+    mailLink.textContent = 'Click here to send via email client';
+    mailLink.style.cssText = 'color:var(--a1);text-decoration:underline;';
+    errDiv.appendChild(mailLink);
+    errDiv.appendChild(document.createTextNode(' or write directly to kunalrichards4@gmail.com'));
+    btn.textContent = 'Send Message →';
+    btn.disabled = false;
+  }
+
+  // Primary: Web3Forms (no activation needed — instant delivery after key setup)
+  fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify({
-      name:    n,
-      email:   em,
+      access_key: _W3F_KEY,
+      name: n, email: em, message: m,
       company: co || 'Not specified',
-      message: m,
-      _subject: 'Portfolio Enquiry — ' + n + (co ? ' @ ' + co : ''),
-      _template: 'table',
-      _captcha: 'false',
+      subject: 'Portfolio Enquiry — ' + n + (co ? ' @ ' + co : ''),
+      from_name: 'Kunal Richards Portfolio',
+      botcheck: '',
     })
   })
   .then(r => r.json())
   .then(data => {
-    if (data.success === 'true' || data.success === true) {
-      succ.style.display = 'block';
-      e.target.reset();
-      // Log to localStorage for admin panel
-      const log = JSON.parse(localStorage.getItem('kr_contacts') || '[]');
-      log.unshift({ name: n, email: em, company: co, date: new Date().toISOString(), preview: m.slice(0, 80) });
-      if (log.length > 50) log.pop();
-      localStorage.setItem('kr_contacts', JSON.stringify(log));
-    } else {
-      throw new Error('send failed');
-    }
+    if (data.success) { onSuccess(); return; }
+    throw new Error('w3f failed');
   })
   .catch(() => {
-    // Fallback: open mailto
-    const subj = encodeURIComponent('Portfolio Enquiry — ' + n + (co ? ' @ ' + co : ''));
-    const body = encodeURIComponent(m + '\n\nFrom: ' + n + (co ? '\nCompany: ' + co : '') + '\nEmail: ' + em);
-    window.open('mailto:kunalrichards4@gmail.com?subject=' + subj + '&body=' + body);
-    errDiv.textContent = 'Auto-send unavailable — email client opened as fallback. Or write to: kunalrichards4@gmail.com';
-    errDiv.style.cssText = 'display:block;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);border-radius:8px;padding:.8rem;text-align:center;margin-top:.8rem;font-size:.78rem;color:var(--dim);';
-  })
-  .finally(() => {
-    btn.textContent = 'Send Message →';
-    btn.disabled = false;
+    // Secondary: FormSubmit AJAX (requires one-time activation email — check kunalrichards4@gmail.com)
+    fetch('https://formsubmit.co/ajax/kunalrichards4@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name: n, email: em, company: co || 'Not specified', message: m,
+        _subject: 'Portfolio Enquiry — ' + n + (co ? ' @ ' + co : ''),
+        _template: 'table', _captcha: 'false',
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.success === 'true' || data.success === true) { onSuccess(); }
+      else { onFail(); }
+    })
+    .catch(() => onFail());
   });
 }
 </script>
