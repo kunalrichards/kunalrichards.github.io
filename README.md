@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=26&pause=1000&color=0EA5E9&center=true&vCenter=true&width=750&lines=Hey+there!+I'm+Kunal+Richards+%F0%9F%91%8B;Senior+QA+Engineer+%40+Dyad+Tech;7%2B+Years+Breaking+Things+Professionally;AI-Powered+Test+Automation+Expert;ISTQB+CTFL+Certified+2024;I+Build+Tools+My+Whole+Team+Relies+On" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=26&pause=1000&color=0EA5E9&center=true&vCenter=true&width=750&lines=Hey+there!+I'm+Kunal+Richards+%F0%9F%91%8B;Senior+QA+Engineer+%7C+7%2B+Years;AI-Powered+Test+Automation+Expert;ISTQB+CTFL+Certified+2024;Building+AI+Tools+That+Eliminate+Manual+QA;Vibe+Coder+%7C+Claude+AI+%7C+Selenium+Expert" alt="Typing SVG" />
 
 <br/>
 
@@ -23,30 +23,30 @@
 
 ## 🧑‍💼 About Me
 
-I'm **Kunal Richards** — a **Senior QA Engineer** at **Dyad Tech**, working on the **Nexsure** insurance management platform. I specialise in building AI-powered QA tools, Selenium automation frameworks, and end-to-end testing pipelines that the whole team depends on.
+I'm **Kunal Richards** — a **Senior QA Engineer** with 7+ years in enterprise QA, automation, and the insurance domain. I specialise in building AI-powered QA tools, Selenium automation frameworks, and end-to-end testing pipelines.
 
-- 🤖 Built **Dyad TestPro** — AI test case generator used daily by the entire QA team
-- 📊 Built **Test Coverage Analyser** — maps Zephyr Scale + GitHub across 23 Nexsure modules
+- 🤖 Built **AI Bug Reporter** — Claude AI generates structured bug reports from Jira tickets in seconds
+- 📊 Built **Test Coverage Analyser** — maps Zephyr Scale + GitHub API across insurance platform modules
 - 🧪 Architected **Selenium automation framework** — JSON-driven, TestNG, Allure, REST Assured
 - 🔐 Security-conscious engineer — JWT, bcrypt, OWASP-compliant by default
 - 💡 Reduced test case writing time from **hours → seconds** with Claude AI integration
-- 📈 Consistently deliver **100% sprint test coverage** on complex enterprise features
+- 📈 Full STLC ownership — requirements, planning, execution, defect tracking, release sign-off
 - 🏆 **ISTQB CTFL certified** (2022 & 2024)
 
 ---
 
 ## 🚀 Featured Projects
 
-### 🧪 [Dyad TestPro](https://github.com/KunalRichardsDyadQA/Dyad_TestPro)
-> AI-powered test case generator for the Nexsure enterprise platform
+### 🧪 Dyad TestPro
+> AI-powered test case generator for enterprise insurance platforms
 
-3-pass Claude AI pipeline streams test cases live, auto-detects coverage gaps, fills them, then runs a semantic check — all in seconds. One-click Zephyr Scale import. JWT-secured multi-user dashboard with real-time team analytics, cost tracking, and CSV exports.
+3-pass Claude AI pipeline streams test cases live, auto-detects coverage gaps, fills them, then runs a semantic check — all in seconds. One-click Zephyr Scale import. JWT-secured multi-user dashboard with real-time analytics, cost tracking, and CSV exports.
 
 | | |
 |---|---|
 | **Stack** | Node.js · React/TypeScript · Claude AI · JIRA REST · Zephyr Scale · SQLite · JWT |
-| **Status** | 🟢 Production — entire QA team uses this daily |
-| **Impact** | Hours of manual work → seconds · 100% sprint coverage every time |
+| **Status** | 🟢 Production use |
+| **Impact** | Hours of manual work → seconds · Consistent sprint coverage every time |
 
 ---
 
@@ -142,12 +142,12 @@ Custom dark theme, typing animation, animated stat counters, browser-local analy
 ## 🏅 Highlights
 
 ```
-🥇  Built Dyad TestPro — sole developer, used by the entire QA team daily
-⚡  Reduced test case generation from hours → seconds using Claude AI  
-🎯  Achieved 100% sprint test coverage consistently on Nexsure platform
+🥇  Built 4 AI-powered QA tools from scratch — all in active production use
+⚡  Reduced test case generation from hours → seconds using Claude AI
+🎯  Full STLC ownership — requirements to release sign-off, every sprint
 🔒  Passed independent security audit — Grade A−, zero critical vulnerabilities
-📈  Built team analytics dashboard tracking cost, coverage & velocity per engineer
 🤖  Architected 3-pass AI pipeline: baseline → gap fill → semantic check
+📊  Coverage visibility across 23 insurance platform modules via Zephyr + GitHub API
 🏆  ISTQB CTFL certified twice (2022 & 2024)
 🌐  7+ years across 5 companies — insurance, SaaS, eCommerce, healthcare
 ```
@@ -187,7 +187,9 @@ Certifications     ISTQB CTFL 2024 · ISTQB CTFL 2022
 
 <div align="center">
 
-**Open to Senior QA Engineer & QA Lead roles**
+**Senior QA Engineer · AI Tool Builder · ISTQB CTFL · Vibe Coder**
+
+*Let's connect — [LinkedIn](https://www.linkedin.com/in/kunal-richards-qa) · [Portfolio](https://kunalrichards.github.io) · [Email](mailto:kunalrichards4@gmail.com)*
 
 ![Profile Views](https://komarev.com/ghpvc/?username=kunalrichards&color=0ea5e9&style=for-the-badge&label=PROFILE+VIEWS)
 
