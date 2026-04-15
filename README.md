@@ -103,18 +103,23 @@ Custom dark theme, typing animation, animated stat counters, browser-local analy
 
 ---
 
-## 📊 GitHub Stats
+## 📊 GitHub Activity
 
 <div align="center">
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=kunalrichards&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true"/>
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=kunalrichards&layout=compact&langs_count=8&theme=tokyonight&hide_border=true"/>
+[![GitHub Streak](https://streak-stats.demolab.com?user=kunalrichards&theme=tokyonight&hide_border=true&date_format=j%20M%5B%20Y%5D)](https://github.com/kunalrichards)
 
 </div>
 
 <div align="center">
 
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=kunalrichards&theme=tokyonight&hide_border=true)
+[![Kunal's Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=kunalrichards&theme=tokyo-night&hide_border=true&area=true)](https://github.com/kunalrichards)
+
+</div>
+
+<div align="center">
+
+[![trophy](https://github-profile-trophy.vercel.app/?username=kunalrichards&theme=tokyonight&no-frame=true&no-bg=true&margin-w=8&column=6)](https://github.com/kunalrichards)
 
 </div>
 
