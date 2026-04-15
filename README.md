@@ -1,52 +1,59 @@
 <div align="center">
 
-# 👋 Kunal Richards
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=26&pause=1000&color=0EA5E9&center=true&vCenter=true&width=750&lines=Hey+there!+I'm+Kunal+Richards+%F0%9F%91%8B;Senior+QA+Engineer+%40+Dyad+Tech;7%2B+Years+Breaking+Things+Professionally;AI-Powered+Test+Automation+Expert;ISTQB+CTFL+Certified+2024;I+Build+Tools+My+Whole+Team+Relies+On" alt="Typing SVG" />
 
-### Senior QA Engineer · AI Tool Builder · ISTQB CTFL Certified
+<br/>
 
 [![Portfolio](https://img.shields.io/badge/🌐_Portfolio-kunalrichards.github.io-0ea5e9?style=for-the-badge&labelColor=0f172a)](https://kunalrichards.github.io)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Kunal_Richards-0077b5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kunal-richards-qa)
 [![Email](https://img.shields.io/badge/Email-kunalrichards4@gmail.com-ea4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:kunalrichards4@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-kunalrichards-181717?style=for-the-badge&logo=github)](https://github.com/kunalrichards)
+[![ISTQB](https://img.shields.io/badge/ISTQB-CTFL%202024-FFD700?style=for-the-badge)](https://github.com/kunalrichards)
+[![Claude AI](https://img.shields.io/badge/Powered%20by-Claude%20AI-7c3aed?style=for-the-badge&logo=anthropic&logoColor=white)](https://kunalrichards.github.io)
 
 📍 **Ahmedabad, India** &nbsp;·&nbsp; 🏢 **Senior QA Engineer @ Dyad Tech** &nbsp;·&nbsp; 🏆 **ISTQB CTFL 2024**
 
 ---
 
-> *7+ years breaking things professionally so users don't have to.*  
+> *"7+ years breaking things professionally so users don't have to."*  
 > *Automation obsessed. AI-augmented. Insurance domain specialist.*
 
 </div>
 
 ---
 
-## 🌐 Live Portfolio
+## 🧑‍💼 About Me
 
-**[→ kunalrichards.github.io](https://kunalrichards.github.io)**
+I'm **Kunal Richards** — a **Senior QA Engineer** at **Dyad Tech**, working on the **Nexsure** insurance management platform. I specialise in building AI-powered QA tools, Selenium automation frameworks, and end-to-end testing pipelines that the whole team depends on.
 
-Built from scratch — no frameworks, no templates. Custom dark theme, typing animation, animated stats counters, browser-local analytics panel (Ctrl+Shift+K — shows only that browser's own data), and a fully working contact form. Fully responsive down to 360px.
+- 🤖 Built **Dyad TestPro** — AI test case generator used daily by the entire QA team
+- 📊 Built **Test Coverage Analyser** — maps Zephyr Scale + GitHub across 23 Nexsure modules
+- 🧪 Architected **Selenium automation framework** — JSON-driven, TestNG, Allure, REST Assured
+- 🔐 Security-conscious engineer — JWT, bcrypt, OWASP-compliant by default
+- 💡 Reduced test case writing time from **hours → seconds** with Claude AI integration
+- 📈 Consistently deliver **100% sprint test coverage** on complex enterprise features
+- 🏆 **ISTQB CTFL certified** (2022 & 2024)
 
 ---
 
 ## 🚀 Featured Projects
 
-### 🤖 AI Bug Reporter
-> *The project I use every day at Dyad Tech*
+### 🧪 [Dyad TestPro](https://github.com/KunalRichardsDyadQA/Dyad_TestPro)
+> AI-powered test case generator for the Nexsure enterprise platform
 
-Connects to Jira via REST API, fetches ticket details, and uses **Claude AI** to generate fully structured bug reports — preconditions, step-by-step reproduction guide, root cause hypothesis, severity rating, and acceptance criteria. Saves 2+ hours per bug report.
+3-pass Claude AI pipeline streams test cases live, auto-detects coverage gaps, fills them, then runs a semantic check — all in seconds. One-click Zephyr Scale import. JWT-secured multi-user dashboard with real-time team analytics, cost tracking, and CSV exports.
 
 | | |
 |---|---|
-| **Stack** | Node.js · React · TypeScript · Claude AI · SQLite · Jira REST API v3 |
-| **Status** | 🟢 Production — actively used |
-| **Features** | Batch generation · Sprint summaries · SQLite history · AI-powered |
+| **Stack** | Node.js · React/TypeScript · Claude AI · JIRA REST · Zephyr Scale · SQLite · JWT |
+| **Status** | 🟢 Production — entire QA team uses this daily |
+| **Impact** | Hours of manual work → seconds · 100% sprint coverage every time |
 
 ---
 
-### 📊 Test Coverage Analyser
-> *Built for QA leads who need real data, not spreadsheets*
+### 📊 [Test Coverage Analyser](https://kunalrichards.github.io)
+> Real data for QA leads — not spreadsheets
 
-Connects **Zephyr Scale + GitHub API** to map test cases across 23 Nexsure modules, identify coverage gaps, and auto-generate QA manager reports with AI insights. Tracks Coverlet `.NET` automated test coverage alongside manual QA.
+Connects Zephyr Scale + GitHub API to map test coverage across 23 Nexsure modules, detect gaps, and auto-generate AI-written QA manager reports. Tracks Coverlet `.NET` automated test coverage alongside manual QA.
 
 | | |
 |---|---|
@@ -56,82 +63,60 @@ Connects **Zephyr Scale + GitHub API** to map test cases across 23 Nexsure modul
 
 ---
 
-### 🧪 Selenium Automation Framework (ALIS BMS)
-> *Enterprise-grade, JSON-driven test automation*
+### 🤖 [AI Bug Reporter](https://kunalrichards.github.io)
+> Structured Jira bug reports in seconds, not hours
 
-A full **Selenium 4 + Java 11 + TestNG** framework with JSON-driven test data, 12 action types, Page Object Model, ThreadLocal context for parallel execution, Allure + ChainTest reporting, and RestAssured API validation.
-
-| | |
-|---|---|
-| **Stack** | Java 11 · Selenium 4 · TestNG 7.7 · Maven · Allure · RestAssured · Jackson |
-| **Status** | 🟢 Production |
-| **Features** | JSON-driven · 12 actions · POM · Parallel · API testing |
-
----
-
-### 💪 Kunal WellnessApp
-> *Because QA engineers need wellness too*
-
-**[→ Try it live](https://kunalrichards.github.io/Kunal_WellnessApp/)**
-
-A zero-dependency wellness companion for developers and IT professionals. Fully offline, no install, no framework.
-
-| Feature | Details |
-|---|---|
-| 🍅 **Pomodoro Timer** | Animated SVG ring, customisable 1–90 min focus sessions |
-| 💧 **Hydration Tracker** | Log 8 glasses/day with SVG glass visuals |
-| 👁 **20-20-20 Eye Break** | Auto-reminder every 20 min, 20-second countdown |
-| 🧍 **Posture Check** | 30-minute cycle with 5 rotating ergonomic tips |
-| 💪 **Desk Exercises** | 6 guided exercises with instructions — no equipment |
-| 🔥 **Daily Streaks** | Persisted via localStorage |
-| ⚙️ **Settings** | Custom durations, audio feedback toggle |
-| 🎵 **Audio Cues** | Web Audio API tones — no external files |
-| ⌨️ **Keyboard Shortcuts** | Space · R · W · E · X · S · Esc |
-
-**Stack:** Pure HTML · CSS · Vanilla JavaScript · Web Audio API · LocalStorage  
-**Philosophy:** No npm. No webpack. No React. Just a file you open in a browser.
-
----
-
-### 🤖 JIRA AI Test Case Generator
-> *From Jira ticket to test suite in seconds*
-
-Reads a Jira ticket and generates a complete, prioritised test suite — happy paths, edge cases, negative tests, boundary values, and accessibility checks. QA-first AI augmentation.
+Fetches Jira ticket details, feeds them to Claude AI, and returns a fully structured bug report — preconditions, step-by-step guide, root cause hypothesis, severity, acceptance criteria. Saves 2+ hours per report.
 
 | | |
 |---|---|
-| **Stack** | Python · Claude AI · Jira REST API |
-| **Status** | 🟢 Production |
+| **Stack** | Node.js · React · TypeScript · Claude AI · SQLite · Jira REST API v3 |
+| **Status** | 🟢 Production — actively used daily |
 
 ---
 
-### 🔬 Dyad TestPro
-> *Full-stack internal QA toolkit for Nexsure*
+### 🌐 [Portfolio Website](https://kunalrichards.github.io)
+> Built from scratch — no frameworks, no templates
 
-Internal QA toolbox for the Nexsure insurance platform. AI-powered test scenario generation, data seeding utilities, and environment health checks. Integrates with Dyad's QA-COE workspace.
-
-| | |
-|---|---|
-| **Stack** | Node.js · Express · React · Claude AI · SQLite |
-| **Status** | 🟢 Internal production tool |
+Custom dark theme, typing animation, animated stat counters, browser-local analytics panel, fully working contact form. Responsive down to 360px. Single HTML file, 1700+ lines, zero dependencies.
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ Tech Stack
 
-```
-QA Automation       Selenium 4 · TestNG · JUnit · Pytest · Cypress · Appium
-Languages           Java 11 · Python · JavaScript/TypeScript · SQL
-AI & LLMs           Claude (Anthropic) · OpenAI · Prompt Engineering
-API Testing         RestAssured · Postman · Jira REST · Zephyr API · GitHub API
-CI/CD               GitHub Actions · Jenkins · Azure DevOps
-Reporting           Allure · ChainTest · Extent Reports
-Frontend            React · TypeScript · Vite · HTML · CSS
-Backend             Node.js · Express · FastAPI
-Databases           SQLite · MySQL · PostgreSQL
-Domain              Insurance (Nexsure) · SaaS · eCommerce · Healthcare
-Certifications      ISTQB CTFL 2024 · ISTQB CTFL 2022
-```
+<div align="center">
+
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white)
+![TestNG](https://img.shields.io/badge/TestNG-FF6C37?style=for-the-badge)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Claude AI](https://img.shields.io/badge/Claude%20AI-7c3aed?style=for-the-badge&logo=anthropic&logoColor=white)
+![JIRA](https://img.shields.io/badge/JIRA-0052CC?style=for-the-badge&logo=jira&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+
+</div>
+
+---
+
+## 📊 GitHub Stats
+
+<div align="center">
+
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=kunalrichards&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=kunalrichards&layout=compact&langs_count=8&theme=tokyonight&hide_border=true"/>
+
+</div>
+
+<div align="center">
+
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=kunalrichards&theme=tokyonight&hide_border=true)
+
+</div>
 
 ---
 
@@ -149,52 +134,57 @@ Certifications      ISTQB CTFL 2024 · ISTQB CTFL 2022
 
 ---
 
-## 📁 Repository Structure
+## 🏅 Highlights
 
 ```
-kunalrichards.github.io/
-│
-├── index.html              # Portfolio — single-file, 1700+ lines
-├── cv.html                 # CV / Resume page
-├── kunal-photo-hd.webp     # Hero photo (WebP, optimised)
-├── kunal-photo-hd.jpg      # Hero photo (JPEG fallback)
-├── kunal-about-hd.webp     # About section photo
-│
-└── Kunal_WellnessApp/
-    └── index.html          # WellnessApp — standalone, zero dependencies
+🥇  Built Dyad TestPro — sole developer, used by the entire QA team daily
+⚡  Reduced test case generation from hours → seconds using Claude AI  
+🎯  Achieved 100% sprint test coverage consistently on Nexsure platform
+🔒  Passed independent security audit — Grade A−, zero critical vulnerabilities
+📈  Built team analytics dashboard tracking cost, coverage & velocity per engineer
+🤖  Architected 3-pass AI pipeline: baseline → gap fill → semantic check
+🏆  ISTQB CTFL certified twice (2022 & 2024)
+🌐  7+ years across 5 companies — insurance, SaaS, eCommerce, healthcare
 ```
 
 ---
 
-## 🔒 Security
+## 🧰 Full Skill Set
 
-| Check | Status |
-|---|---|
-| Content Security Policy | ✅ Meta CSP — `default-src 'self'`, restrictive allowlist |
-| XSS Prevention | ✅ `escHtml()` sanitiser on all user-sourced DOM writes |
-| No API Keys in Repo | ✅ Confirmed — all secrets via env vars / external services |
-| No Sensitive Data | ✅ Repo is 100% public portfolio content |
-| HTTPS Only | ✅ Served exclusively over GitHub Pages HTTPS |
-| Contact Form | ✅ Web3Forms (no server-side code), FormSubmit fallback |
-| Analytics Panel | ✅ Browser-local only (localStorage) — each visitor sees only their own data, zero cross-user exposure |
+```
+QA Automation      Selenium 4 · TestNG · JUnit · REST Assured · Allure · ChainTest
+Languages          Java 11 · JavaScript/TypeScript · Python · SQL
+AI & LLMs          Claude (Anthropic) · Prompt Engineering · Multi-pass pipelines
+API Testing        Postman · RestAssured · Jira REST · Zephyr API · GitHub API
+Frontend           React · TypeScript · Vite · HTML · CSS (zero-dependency builds)
+Backend            Node.js · Express · SQLite · JWT · bcrypt
+CI/CD              GitHub Actions · Jenkins · Azure DevOps
+Domain             Insurance (Nexsure) · SaaS · eCommerce · Healthcare
+Certifications     ISTQB CTFL 2024 · ISTQB CTFL 2022
+```
 
 ---
 
-## 📬 Contact
+## 📬 Get in Touch
+
+<div align="center">
 
 | | |
 |---|---|
 | 📧 **Email** | [kunalrichards4@gmail.com](mailto:kunalrichards4@gmail.com) |
 | 💼 **LinkedIn** | [linkedin.com/in/kunal-richards-qa](https://www.linkedin.com/in/kunal-richards-qa) |
 | 🌐 **Portfolio** | [kunalrichards.github.io](https://kunalrichards.github.io) |
-| 📱 **Phone** | +91 82003 79330 |
 | 📍 **Location** | Ahmedabad, Gujarat, India |
+
+</div>
 
 ---
 
 <div align="center">
 
 **Open to Senior QA Engineer & QA Lead roles**
+
+![Profile Views](https://komarev.com/ghpvc/?username=kunalrichards&color=0ea5e9&style=for-the-badge&label=PROFILE+VIEWS)
 
 *Built with Claude AI + lots of coffee ☕*
 
