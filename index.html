@@ -932,11 +932,11 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     </div>
 
     <div id="port-filters" style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:2rem;">
-      <button class="port-filter active" data-cat="all" onclick="filterPortfolio(this,'all')">All (15)</button>
-      <button class="port-filter" data-cat="ai" onclick="filterPortfolio(this,'ai')">AI Tools (6)</button>
-      <button class="port-filter" data-cat="web" onclick="filterPortfolio(this,'web')">Web Apps (6)</button>
+      <button class="port-filter active" data-cat="all" onclick="filterPortfolio(this,'all')">All (20)</button>
+      <button class="port-filter" data-cat="ai" onclick="filterPortfolio(this,'ai')">AI Tools (9)</button>
+      <button class="port-filter" data-cat="web" onclick="filterPortfolio(this,'web')">Web Apps (8)</button>
       <button class="port-filter" data-cat="mobile" onclick="filterPortfolio(this,'mobile')">Mobile (2)</button>
-      <button class="port-filter" data-cat="automation" onclick="filterPortfolio(this,'automation')">Automation (2)</button>
+      <button class="port-filter" data-cat="automation" onclick="filterPortfolio(this,'automation')">Automation (4)</button>
       <button class="port-filter" data-cat="saas" onclick="filterPortfolio(this,'saas')">SaaS / Enterprise (3)</button>
       <button class="port-filter" data-cat="ecomm" onclick="filterPortfolio(this,'ecomm')">eCommerce (1)</button>
     </div>
@@ -1120,6 +1120,66 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         <div class="port-company">Dyad Tech · 2025–Present</div>
         <div class="port-desc">AI-powered QA reporting suite for the Nexsure platform — generates sprint QA reports, weekly KPI dashboards, EOD progress snapshots, and executive summaries used by QA leadership.</div>
         <div class="port-tags"><span class="ptag">Node.js</span><span class="ptag">React</span><span class="ptag">Claude AI</span><span class="ptag">Jira API</span><span class="ptag">Nexsure</span></div>
+        <span class="port-status port-status-prod">Production</span>
+      </div>
+
+      <div class="port-card rv" data-cat="ai">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">🦾</span>
+          <span class="port-badge" style="background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.3);color:var(--ac2);">AI Tool</span>
+        </div>
+        <div class="port-title">Kunal AITestPro</div>
+        <div class="port-company">Dyad Tech · 2025–Present</div>
+        <div class="port-desc">AI-driven browser test planner and executor. Write a test objective in plain English — it opens a real browser, uses Claude AI to plan each step autonomously, executes them, and captures screenshots. No coding required to run a test.</div>
+        <div class="port-tags"><span class="ptag">Node.js</span><span class="ptag">React</span><span class="ptag">Playwright</span><span class="ptag">Claude AI</span><span class="ptag">Jira API</span></div>
+        <span class="port-status port-status-prod">Production</span>
+      </div>
+
+      <div class="port-card rv" data-cat="ai">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">🤵</span>
+          <span class="port-badge" style="background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.3);color:var(--ac2);">AI Tool</span>
+        </div>
+        <div class="port-title">Jarvis — QA Automation Agent</div>
+        <div class="port-company">Personal · 2025–Present</div>
+        <div class="port-desc">Scheduled Claude Code AI agent that automates daily QA ops — generates EOD Jira reports, scans open tickets for blockers, prepares next-day QA plans, and runs automated git workflows nightly. Fully autonomous with pending-approval safeguards.</div>
+        <div class="port-tags"><span class="ptag">Claude Code</span><span class="ptag">Node.js</span><span class="ptag">Jira API</span><span class="ptag">Scheduled Automation</span></div>
+        <span class="port-status port-status-live">Live</span>
+      </div>
+
+      <div class="port-card rv" data-cat="ai">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">📈</span>
+          <span class="port-badge" style="background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.3);color:var(--ac2);">AI Tool</span>
+        </div>
+        <div class="port-title">QA KPI Dashboard</div>
+        <div class="port-company">Dyad Tech · 2025–Present</div>
+        <div class="port-desc">Real-time QA metrics dashboard tracking test case volume, pass rates, and sprint progress across 8 Jira project spaces (NXMN, CTP, RMSS, KGU, DGL, JM, RCEP, PRGM). Integrates Zephyr Scale test data with Jira for automated quality reports.</div>
+        <div class="port-tags"><span class="ptag">Node.js</span><span class="ptag">React</span><span class="ptag">Zephyr API</span><span class="ptag">Jira API</span></div>
+        <span class="port-status port-status-prod">Production</span>
+      </div>
+
+      <div class="port-card rv" data-cat="automation">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">🔌</span>
+          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Automation</span>
+        </div>
+        <div class="port-title">ALIS BMS API Smoke Test Suite</div>
+        <div class="port-company">Dyad Tech · 2024–Present</div>
+        <div class="port-desc">RestAssured API smoke test suite for the ALIS insurance broker management system. JSON-mapped endpoint coverage, automated endorsement flow validation, and assertion coverage across key ALIS API modules.</div>
+        <div class="port-tags"><span class="ptag">Java</span><span class="ptag">RestAssured</span><span class="ptag">TestNG</span><span class="ptag">JSON-mapping</span><span class="ptag">Maven</span></div>
+        <span class="port-status port-status-prod">Production</span>
+      </div>
+
+      <div class="port-card rv" data-cat="automation web">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
+          <span style="font-size:1.5rem;">🎭</span>
+          <span class="port-badge" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">Automation</span>
+        </div>
+        <div class="port-title">Nexsure Playwright E2E Suite</div>
+        <div class="port-company">Dyad Tech · 2025–Present</div>
+        <div class="port-desc">Python Playwright E2E automation suite targeting critical Nexsure workflows — policy submission, DocuSign form rendering, and multi-state regression validation. Used for smoke testing on release days.</div>
+        <div class="port-tags"><span class="ptag">Python</span><span class="ptag">Playwright</span><span class="ptag">Nexsure</span><span class="ptag">E2E Testing</span><span class="ptag">Regression</span></div>
         <span class="port-status port-status-prod">Production</span>
       </div>
 
