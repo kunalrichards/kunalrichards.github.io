@@ -84,7 +84,7 @@
   "award":"ISTQB Certified Tester Foundation Level (CTFL) — December 2024"
 }
 </script>
-<!-- JSON-LD — WebSite (enables Google Sitelinks search box) -->
+<!-- JSON-LD — WebSite -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -249,7 +249,7 @@ nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
 .hmb{
   display:none;
   flex-direction:column;justify-content:center;align-items:center;gap:5px;
-  width:40px;height:40px;
+  width:44px;height:44px;
   background:none;border:none;cursor:pointer;
   padding:6px;border-radius:8px;
   position:relative;z-index:1001;
@@ -395,7 +395,7 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 .tag{background:rgba(56,189,248,.07);border:1px solid rgba(56,189,248,.16);color:var(--ac);padding:.22rem .62rem;border-radius:5px;font-size:.71rem;font-weight:700;}
 
 /* ─── VIBE / AI ─── */
-.vibe-sec{background:var(--s1);}
+.vibe-sec{background:rgba(10,16,32,.72);}
 .vibe-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
 .vibe-left h3{font-size:1.2rem;font-weight:800;color:var(--hd);margin-bottom:.85rem;}
 .vibe-left p{font-size:.85rem;line-height:1.77;margin-bottom:.9rem;color:var(--tx);}
@@ -417,7 +417,7 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 }
 .code-block::before{content:'● ● ●';position:absolute;top:.75rem;left:1rem;color:var(--dim);font-size:.6rem;letter-spacing:3px;}
 .code-body{margin-top:1.4rem;min-width:260px;}
-.ck{color:#c084fc;}.cs{color:#4ade80;}.cf{color:#38bdf8;}.cm{color:#475569;}
+.ck{color:#c084fc;}.cs{color:#4ade80;}.cf{color:#38bdf8;}.cm{color:#7a8a9e;}
 .cursor{display:inline-block;width:7px;height:13px;background:var(--ac);animation:pulse-dot 1s infinite;vertical-align:middle;border-radius:1px;}
 
 /* ─── PROJECTS ─── */
@@ -480,7 +480,7 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 .cert-org{color:var(--dim);font-size:.73rem;margin-top:.12rem;}
 
 /* ─── CONTACT ─── */
-.contact-sec{background:var(--s1);}
+.contact-sec{background:rgba(10,16,32,.72);}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;}
 .contact-info h3,.contact-info .contact-h{font-size:1.4rem;font-weight:800;color:var(--hd);margin-bottom:.65rem;letter-spacing:-.5px;}
 .contact-info p{color:var(--dim);margin-bottom:1.5rem;font-size:.86rem;line-height:1.7;}
@@ -543,6 +543,8 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 ══════════════════════════════════════ */
 @media(max-width:900px){
   :root{--pad-x:1.5rem;}
+  /* Disable content-visibility virtualization on mobile — avoids scroll-progress jitter & anchor mis-landing */
+  #about,#ai,#projects,#experience,#skills,#contact{content-visibility:visible;contain-intrinsic-size:auto;}
   .desk-nav{display:none;}
   .hmb{display:flex;}
 
@@ -660,6 +662,10 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   /* Raise back-to-top btn above mobile sticky hire bar */
   #btt{bottom:5.2rem;right:1rem;}
 
+  /* Touch-target sizing for interactive links (interactive only — not .plink-internal) */
+  .plink-live,.plink-gh{padding:.6rem 1rem;min-height:44px;justify-content:center;}
+  .soc{padding:.4rem .2rem;min-height:40px;}
+
   /* Code block scrolls horizontally — constrain for tidiness */
   .code-body{min-width:0;}
   .code-block{font-size:.72rem;}
@@ -685,7 +691,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   position:fixed;width:440px;height:440px;border-radius:50%;
   pointer-events:none;z-index:0;opacity:0;
   background:radial-gradient(circle,rgba(56,189,248,.05) 0%,transparent 68%);
-  transform:translate(-50%,-50%);will-change:left,top;
+  transform:translate(-50%,-50%);will-change:transform;
   transition:opacity .5s ease;
 }
 #cur-glow.vis{opacity:1;}
@@ -863,7 +869,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://github.com/kunalrichards" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub ↗</a></li>
     <li><a href="cv.html" target="_blank" rel="noopener noreferrer" class="ncv">CV →</a></li>
-    <li><button id="snd-btn" title="Enable sound effects" aria-label="Toggle sound effects">🔇</button></li>
+    <li><button id="snd-btn" title="Enable sound effects" aria-label="Toggle sound effects" aria-pressed="false">🔇</button></li>
   </ul>
 
   <button class="hmb" id="hmb" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mob-drawer">
@@ -1116,7 +1122,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 </section>
 
 <!-- ══ PROJECT PORTFOLIO ══ -->
-<section id="portfolio" style="background:var(--s1);" aria-label="Project Portfolio">
+<section id="portfolio" style="background:rgba(10,16,32,.72);" aria-label="Project Portfolio">
   <div class="con">
     <div class="sec-head">
       <div class="sec-tag">// Portfolio</div>
@@ -1387,7 +1393,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 </section>
 
 <!-- ══ EXPERIENCE ══ -->
-<section id="experience" style="background:var(--s1);" aria-label="Work experience">
+<section id="experience" style="background:rgba(10,16,32,.72);" aria-label="Work experience">
   <div class="con">
     <div class="sec-head">
       <div class="sec-tag">// Career</div>
@@ -1462,7 +1468,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 </section>
 
 <!-- ══ CERTIFICATIONS ══ -->
-<section style="background:var(--s1);" aria-label="Certifications and education">
+<section style="background:rgba(10,16,32,.72);" aria-label="Certifications and education">
   <div class="con">
     <div class="sec-head">
       <div class="sec-tag">// Certified &amp; Educated</div>
@@ -1535,7 +1541,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   <div class="footer-copy">© 2026 Kunal Richards &nbsp;·&nbsp; Ahmedabad, Gujarat, India</div>
 </footer>
 
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+<button id="btt" aria-label="Back to top">↑</button>
 
 <!-- MOBILE STICKY HIRE BTN -->
 <div id="mob-hire" aria-hidden="true">
@@ -1572,12 +1578,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ── SCROLL: all scroll effects — single rAF-throttled handler ── */
+const _reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const spb = document.getElementById('spb');
 const navEl = document.querySelector('nav');
 const mobHire = document.getElementById('mob-hire');
 const contactSec = document.getElementById('contact');
 const heroSec = document.querySelector('.hero');
 const btt = document.getElementById('btt');
+btt.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: _reduceMotion ? 'auto' : 'smooth' });
+});
 
 let _ticking = false;
 function handleScroll() {
@@ -1600,6 +1610,7 @@ function handleScroll() {
       mobHire.style.opacity = show ? '1' : '0';
       mobHire.style.pointerEvents = show ? 'all' : 'none';
     }
+    if (window._krSetActiveNav) window._krSetActiveNav();
     _ticking = false;
   });
 }
@@ -1642,19 +1653,7 @@ function closeDrawer() {
   document.body.style.overflow = '';
 }
 
-/* ── ACTIVE NAV LINKS ── */
-const sections = document.querySelectorAll('section[id]');
-const deskLinks = document.querySelectorAll('.desk-nav a[href^="#"]');
-const navIO = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      deskLinks.forEach(a => a.classList.remove('active'));
-      const a = document.querySelector(`.desk-nav a[href="#${e.target.id}"]`);
-      if (a) a.classList.add('active');
-    }
-  });
-}, { rootMargin: '-40% 0px -55% 0px' });
-sections.forEach(s => navIO.observe(s));
+/* ── ACTIVE NAV LINKS — handled by the shared geometry scrollspy (window._krSetActiveNav) ── */
 
 /* ── STAT COUNTERS ── */
 let countersDone = false;
@@ -1666,6 +1665,7 @@ if (statsGrid) {
       document.querySelectorAll('[data-target]').forEach(el => {
         const target = +el.dataset.target;
         const suf = el.dataset.suf ?? '';
+        if (_reduceMotion) { el.textContent = target + suf; return; }
         let cur = 0;
         const step = target / 40;
         const id = setInterval(() => {
@@ -1705,7 +1705,7 @@ function type() {
   }
   setTimeout(type, isDeleting ? 38 : 88);
 }
-type();
+if (_reduceMotion) { typingText.textContent = phrases[0]; } else { type(); }
 
 /* ── SCROLL REVEAL ── */
 const rvEls = document.querySelectorAll('.rv');
@@ -1722,7 +1722,7 @@ const rvIO = new IntersectionObserver(entries => {
 rvEls.forEach(el => rvIO.observe(el));
 
 /* ── 3D TILT (desktop only) ── */
-const isTouch = () => window.matchMedia('(hover:none),(pointer:coarse)').matches;
+const isTouch = () => window.matchMedia('(hover:none),(pointer:coarse)').matches || _reduceMotion;
 document.querySelectorAll('.proj-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     if (isTouch()) return;
@@ -1824,16 +1824,12 @@ function filterPortfolio(btn, cat) {
   btn.classList.add('active');
   document.querySelectorAll('.port-card').forEach(card => {
     const cats = (card.dataset.cat || '').split(' ');
-    if (cat === 'all' || cats.includes(cat)) {
-      card.classList.remove('hidden');
-    } else {
-      card.classList.add('hidden');
-    }
+    const match = (cat === 'all' || cats.includes(cat));
+    card.classList.toggle('hidden', !match);
+    card.classList.toggle('port-show-all', match && cat !== 'all');
   });
-  // Reset mobile show-more on filter change
-  document.querySelectorAll('.port-card').forEach(c => c.classList.remove('port-show-all'));
   const moreBtn = document.getElementById('port-more-btn');
-  if (moreBtn) moreBtn.textContent = 'Show All Projects \u2193';
+  if (moreBtn && cat === 'all') moreBtn.textContent = 'Show All Projects \u2193';
 }
 
 function togglePortMore() {
@@ -2008,10 +2004,10 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
   });
 });
 
-/* ── SECTION NAV DOTS ── */
+/* ── SECTION NAV DOTS + shared scrollspy ── */
 (function(){
   const secs = ['about','ai','projects','portfolio','experience','skills','contact'];
-  const labs = ['About','AI & Vibe','Projects','Portfolio','Experience','Skills','Contact'];
+  const labs = ['About','AI QA','AI Tools','Work','Experience','Skills','Contact'];
   const wrap = document.createElement('div');
   wrap.id='sec-dots'; wrap.setAttribute('role','navigation'); wrap.setAttribute('aria-label','Jump to section');
   secs.forEach((id,i)=>{
@@ -2022,17 +2018,24 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
   });
   document.body.appendChild(wrap);
   const dots = [...wrap.querySelectorAll('.sec-dot')];
-  const els = secs.map(id=>document.getElementById(id)).filter(Boolean);
-  // Single observer: highlight the dot for whichever section is most in view
-  const dotsIO = new IntersectionObserver(entries=>{
-    entries.forEach(en=>{
-      if (en.isIntersecting) {
-        const i = els.indexOf(en.target);
-        if (i>=0) dots.forEach((d,j)=>d.classList.toggle('active', j===i));
-      }
+  const els  = secs.map(id=>document.getElementById(id)).filter(Boolean);
+  const deskLinks = document.querySelectorAll('.desk-nav a[href^="#"]');
+  window._krSetActiveNav = function(){
+    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 60;
+    const line = navH + 1;
+    let idx = 0;
+    els.forEach((el,i)=>{ if (el.getBoundingClientRect().top <= line) idx = i; });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) idx = els.length - 1;
+    dots.forEach((d,j)=>{
+      const on = j===idx;
+      d.classList.toggle('active', on);
+      if (on) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current');
     });
-  }, { threshold:0.25, rootMargin:'-30% 0px -30% 0px' });
-  els.forEach(el => dotsIO.observe(el));
+    const activeId = secs[idx];
+    deskLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === '#'+activeId));
+  };
+  window._krSetActiveNav();
+  window.addEventListener('resize', window._krSetActiveNav, { passive:true });
 })();
 
 /* parallax removed — caused photo crop issues */
@@ -2086,14 +2089,18 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
 /* ── CURSOR GLOW ── */
 (function(){
   const gl = document.getElementById('cur-glow');
-  if (!gl || window.matchMedia('(hover:none)').matches) return;
+  if (!gl || window.matchMedia('(hover:none)').matches || _reduceMotion) return;
   let mx=-9999, my=-9999, moved=false;
   addEventListener('mousemove', e=>{
     mx=e.clientX; my=e.clientY;
     if(!moved){ moved=true; gl.classList.add('vis'); }
   });
+  let lx=null, ly=null;
   (function upd(){
-    gl.style.left=mx+'px'; gl.style.top=my+'px';
+    if(!document.hidden && (mx!==lx || my!==ly)){
+      gl.style.transform='translate(-50%,-50%) translate('+mx+'px,'+my+'px)';
+      lx=mx; ly=my;
+    }
     requestAnimationFrame(upd);
   })();
 })();
@@ -2127,19 +2134,22 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
   };
   btn.addEventListener('click',()=>{
     sndOn=!sndOn;
+    btn.setAttribute('aria-pressed', String(sndOn));
     btn.classList.toggle('on',sndOn);
     btn.title=sndOn?'Sound On — click to mute':'Sound Off — click to enable';
     btn.innerHTML=sndOn?'🔊':'🔇';
     if(sndOn){getCtx();tone(500,.1,.04);}
   });
   document.querySelectorAll('.btn').forEach(b=>{
-    b.addEventListener('click',()=>window._krSound.click());
-    b.addEventListener('mouseenter',()=>window._krSound.hover());
+    if(!b.matches('a[href="#contact"]'))
+      b.addEventListener('click',()=>window._krSound && window._krSound.click());
+    b.addEventListener('mouseenter',()=>window._krSound && window._krSound.hover());
   });
 })();
 
 /* ── CONFETTI BURST ── */
 function krConfetti(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const cols=['#38bdf8','#a78bfa','#34d399','#fbbf24','#f87171','#ec4899'];
   for(let i=0;i<28;i++){
     const d=document.createElement('div');
@@ -2166,7 +2176,7 @@ document.querySelectorAll('a[href="#contact"].btn').forEach(b=>{
 
 /* ── EXTENDED 3D TILT — port-cards, timeline, certs, AI tools ── */
 (function(){
-  const isT=()=>window.matchMedia('(hover:none),(pointer:coarse)').matches;
+  const isT=()=>window.matchMedia('(hover:none),(pointer:coarse)').matches || _reduceMotion;
   document.querySelectorAll('.port-card,.tl-card,.cert-card,.ai-tool,.stat-card').forEach(card=>{
     card.addEventListener('mousemove',e=>{
       if(isT())return;
@@ -2185,7 +2195,7 @@ document.querySelectorAll('a[href="#contact"].btn').forEach(b=>{
 
 /* ── MAGNETIC CTA BUTTONS ── */
 (function(){
-  const isT=()=>window.matchMedia('(hover:none),(pointer:coarse)').matches;
+  const isT=()=>window.matchMedia('(hover:none),(pointer:coarse)').matches || _reduceMotion;
   document.querySelectorAll('.btn-fill').forEach(btn=>{
     btn.addEventListener('mousemove',e=>{
       if(isT())return;
