@@ -754,15 +754,14 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
 /* ─── SECTION NAV DOTS ─── */
 #sec-dots{
-  position:fixed!important;right:1rem!important;top:50%!important;
-  left:auto!important;width:auto!important;height:auto!important;
-  transform:translateY(-50%)!important;
-  display:flex!important;flex-direction:column!important;
+  position:fixed;right:1rem;left:auto;top:50%;
+  width:auto;height:auto;
+  transform:translateY(-50%);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-start;
   gap:.55rem;z-index:300;
-  padding:0!important;background:none!important;
-  border:none!important;backdrop-filter:none!important;
-  box-shadow:none!important;justify-content:flex-start!important;
-  align-items:center!important;
+  padding:0;background:none;border:none;
+  backdrop-filter:none;box-shadow:none;
 }
 .sec-dot{
   width:7px;height:7px;border-radius:50%;
@@ -2011,23 +2010,16 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
   document.body.appendChild(wrap);
   const dots = [...wrap.querySelectorAll('.sec-dot')];
   const els = secs.map(id=>document.getElementById(id)).filter(Boolean);
-  new IntersectionObserver(entries=>{
+  // Single observer: highlight the dot for whichever section is most in view
+  const dotsIO = new IntersectionObserver(entries=>{
     entries.forEach(en=>{
       if (en.isIntersecting) {
         const i = els.indexOf(en.target);
-        if (i>=0) dots.forEach((d,j)=>d.classList.toggle('active',j===i));
+        if (i>=0) dots.forEach((d,j)=>d.classList.toggle('active', j===i));
       }
     });
-  },{threshold:0.25}).observe && els.forEach(el=>{
-    new IntersectionObserver(entries=>{
-      entries.forEach(en=>{
-        if(en.isIntersecting){
-          const i=els.indexOf(en.target);
-          if(i>=0) dots.forEach((d,j)=>d.classList.toggle('active',j===i));
-        }
-      });
-    },{threshold:0.25}).observe(el);
-  });
+  }, { threshold:0.25, rootMargin:'-30% 0px -30% 0px' });
+  els.forEach(el => dotsIO.observe(el));
 })();
 
 /* parallax removed — caused photo crop issues */
