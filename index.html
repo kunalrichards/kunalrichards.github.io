@@ -41,7 +41,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
 
 <!-- Content Security Policy -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data: https:; connect-src https://formsubmit.co https://api.web3forms.com; frame-src 'none'; object-src 'none'; base-uri 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data: https:; connect-src https://formsubmit.co https://api.web3forms.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com https://formsubmit.co; worker-src 'none'; manifest-src 'self';">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
@@ -668,34 +668,38 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
 /* ─── CURSOR GLOW ─── */
 #cur-glow{
-  position:fixed;width:420px;height:420px;border-radius:50%;
-  pointer-events:none;z-index:0;
-  background:radial-gradient(circle,rgba(56,189,248,.055) 0%,transparent 68%);
+  position:fixed;width:440px;height:440px;border-radius:50%;
+  pointer-events:none;z-index:0;opacity:0;
+  background:radial-gradient(circle,rgba(56,189,248,.05) 0%,transparent 68%);
   transform:translate(-50%,-50%);will-change:left,top;
-  transition:opacity .3s;
+  transition:opacity .5s ease;
 }
+#cur-glow.vis{opacity:1;}
 
-/* ─── SOUND TOGGLE BTN ─── */
+/* ─── SOUND BTN — slim icon inside nav ─── */
 #snd-btn{
-  background:none;border:1px solid rgba(56,189,248,.18);border-radius:8px;
-  padding:.22rem .5rem;color:var(--dim);font-size:.8rem;cursor:pointer;
-  transition:all .2s;display:flex;align-items:center;gap:.25rem;flex-shrink:0;
+  background:none;border:none;padding:.1rem .15rem;
+  color:var(--dim);font-size:.88rem;cursor:pointer;
+  transition:color .2s,transform .15s;line-height:1;
+  display:flex;align-items:center;
 }
-#snd-btn:hover{border-color:var(--ac);color:var(--ac);}
-#snd-btn.on{border-color:rgba(56,189,248,.45);color:var(--ac);background:rgba(56,189,248,.07);}
+#snd-btn:hover{color:var(--ac);transform:scale(1.18);}
+#snd-btn.on{color:var(--ac);}
 
-/* ─── TYPEWRITER CURSOR ─── */
+/* ─── TYPEWRITER — inline cursor inside the line ─── */
+.typing-line{display:flex;align-items:center;}
 #typing-cursor{
-  display:inline-block;width:2px;height:.95em;background:var(--ac);
-  margin-left:2px;animation:blink-c .7s step-end infinite;
-  vertical-align:middle;border-radius:1px;
+  display:inline-block;width:2px;height:.88em;
+  background:var(--ac);margin-left:3px;
+  animation:blink-c .7s step-end infinite;
+  border-radius:1px;flex-shrink:0;
 }
 @keyframes blink-c{0%,100%{opacity:1}50%{opacity:0}}
 
 /* ─── FLOATING HERO ORBS ─── */
 .hero-orb{
   position:absolute;border-radius:50%;pointer-events:none;
-  filter:blur(72px);animation:orb-float var(--dur,9s) ease-in-out infinite alternate;
+  filter:blur(80px);animation:orb-float var(--dur,9s) ease-in-out infinite alternate;
   will-change:transform;z-index:0;
 }
 @keyframes orb-float{
@@ -703,7 +707,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   to  {transform:translate(var(--tx,20px),var(--ty,-20px)) scale(1.1);}
 }
 
-/* ─── SHIMMER ON SECTION TAGS ─── */
+/* ─── SHIMMER SECTION TAGS ─── */
 .sec-tag{
   background:linear-gradient(90deg,var(--gr) 0%,#38bdf8 50%,var(--gr) 100%);
   background-size:200% auto;
@@ -713,15 +717,62 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 }
 @keyframes shimmer-tag{to{background-position:200% center;}}
 
-/* ─── CONFETTI PIECES ─── */
+/* ─── CONFETTI ─── */
 .cnf-piece{
-  position:fixed;pointer-events:none;z-index:9999;border-radius:2px;
+  position:fixed;pointer-events:none;z-index:9999;
   animation:cnf-fall var(--d,1.4s) ease-in var(--dl,0s) both;
 }
 @keyframes cnf-fall{
   0%  {transform:translateY(-12px) rotate(0deg);opacity:1;}
-  100%{transform:translateY(105vh) rotate(760deg);opacity:0;}
+  100%{transform:translateY(105vh) rotate(780deg);opacity:0;}
 }
+
+/* ─── BUTTON RIPPLE ─── */
+.btn{position:relative;overflow:hidden;}
+.ripple{
+  position:absolute;border-radius:50%;transform:scale(0);
+  background:rgba(255,255,255,.22);animation:ripple-out .55s linear;
+  pointer-events:none;
+}
+@keyframes ripple-out{to{transform:scale(4.5);opacity:0;}}
+
+/* ─── TOAST ─── */
+#kr-toast{
+  position:fixed;bottom:2.2rem;left:50%;
+  transform:translateX(-50%) translateY(14px);
+  background:rgba(8,16,30,.96);
+  border:1px solid rgba(56,189,248,.3);
+  color:var(--ac);padding:.55rem 1.4rem;border-radius:99px;
+  font-size:.8rem;font-weight:600;white-space:nowrap;
+  z-index:9998;opacity:0;pointer-events:none;
+  transition:opacity .25s,transform .25s;
+  backdrop-filter:blur(14px);
+  box-shadow:0 8px 32px rgba(0,0,0,.45);
+}
+#kr-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ─── SECTION NAV DOTS ─── */
+#sec-dots{
+  position:fixed;right:1rem;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:.55rem;z-index:300;
+}
+.sec-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(56,189,248,.14);
+  border:1px solid rgba(56,189,248,.25);
+  cursor:pointer;transition:all .25s;display:block;
+  text-decoration:none;
+}
+.sec-dot:hover{background:rgba(56,189,248,.45);transform:scale(1.35);}
+.sec-dot.active{
+  background:var(--ac);
+  box-shadow:0 0 0 3px rgba(56,189,248,.18),0 0 10px rgba(56,189,248,.45);
+  transform:scale(1.45);
+}
+@media(max-width:960px){#sec-dots{display:none;}}
+
+/* ─── HERO PHOTO PARALLAX ─── */
+.photo-wrap{will-change:transform;}
 
 /* Reduce motion */
 @media(prefers-reduced-motion:reduce){
@@ -792,9 +843,8 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://github.com/kunalrichards" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub ↗</a></li>
     <li><a href="cv.html" target="_blank" rel="noopener noreferrer" class="ncv">CV →</a></li>
+    <li><button id="snd-btn" title="Enable sound effects" aria-label="Toggle sound effects">🔇</button></li>
   </ul>
-
-  <button id="snd-btn" title="Enable sound effects" aria-label="Toggle sound effects">🔇</button>
 
   <button class="hmb" id="hmb" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mob-drawer">
     <span class="hmb-bar"></span>
@@ -834,7 +884,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         </div>
       </div>
       <h1>Kunal<br><span class="name-grad">Richards</span></h1>
-      <div class="typing-line" id="typing-el" aria-hidden="true">Senior QA Engineer</div>
+      <div class="typing-line" id="typing-el" aria-hidden="true"><span id="typing-text">Senior QA Engineer</span><span id="typing-cursor" aria-hidden="true"></span></div>
       <p class="sr-only">Senior QA Engineer, ISTQB CTFL Certified, AI Tool Builder, Automation Expert</p>
       <div class="pills">
         <span class="pill pv">AI Tool Builder</span>
@@ -1619,9 +1669,10 @@ const phrases = [
   ];
 let pIdx = 0, cIdx = 0, isDeleting = false;
 const typingEl = document.getElementById('typing-el');
+const typingText = document.getElementById('typing-text') || typingEl;
 function type() {
   const word = phrases[pIdx];
-  typingEl.textContent = isDeleting ? word.slice(0, cIdx--) : word.slice(0, cIdx++);
+  typingText.textContent = isDeleting ? word.slice(0, cIdx--) : word.slice(0, cIdx++);
   if (!isDeleting && cIdx > word.length) {
     isDeleting = true;
     setTimeout(type, 2000);
@@ -1899,6 +1950,93 @@ function sendMsg(e) {
 }
 
 /* ════════════════════════════════════════
+   INTERACTIONS — Ripple · Toast · Dots
+════════════════════════════════════════ */
+
+/* ── BUTTON RIPPLE ── */
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    const r = btn.getBoundingClientRect();
+    const size = Math.max(r.width, r.height);
+    const s = document.createElement('span');
+    s.className = 'ripple';
+    s.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px;`;
+    btn.appendChild(s);
+    setTimeout(()=>s.remove(), 580);
+  });
+});
+
+/* ── TOAST HELPER ── */
+function krToast(msg, dur) {
+  let t = document.getElementById('kr-toast');
+  if (!t) { t = document.createElement('div'); t.id='kr-toast'; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._tid);
+  t._tid = setTimeout(()=>t.classList.remove('show'), dur||2600);
+}
+
+/* ── CLICK-TO-COPY EMAIL ── */
+document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const email = (a.href||'').replace('mailto:','').split('?')[0];
+    if (!email) return;
+    navigator.clipboard.writeText(email).then(()=>{
+      krToast('📋  Copied: ' + email);
+      if (window._krSound) window._krSound.click();
+    }).catch(()=>{});
+  });
+});
+
+/* ── SECTION NAV DOTS ── */
+(function(){
+  const secs = ['about','ai','projects','portfolio','experience','skills','contact'];
+  const labs = ['About','AI & Vibe','Projects','Portfolio','Experience','Skills','Contact'];
+  const wrap = document.createElement('nav');
+  wrap.id='sec-dots'; wrap.setAttribute('aria-label','Jump to section');
+  secs.forEach((id,i)=>{
+    const a = document.createElement('a');
+    a.className='sec-dot'; a.href='#'+id;
+    a.title=labs[i]; a.setAttribute('aria-label',labs[i]);
+    wrap.appendChild(a);
+  });
+  document.body.appendChild(wrap);
+  const dots = [...wrap.querySelectorAll('.sec-dot')];
+  const els = secs.map(id=>document.getElementById(id)).filter(Boolean);
+  new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if (en.isIntersecting) {
+        const i = els.indexOf(en.target);
+        if (i>=0) dots.forEach((d,j)=>d.classList.toggle('active',j===i));
+      }
+    });
+  },{threshold:0.25}).observe && els.forEach(el=>{
+    new IntersectionObserver(entries=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){
+          const i=els.indexOf(en.target);
+          if(i>=0) dots.forEach((d,j)=>d.classList.toggle('active',j===i));
+        }
+      });
+    },{threshold:0.25}).observe(el);
+  });
+})();
+
+/* ── HERO PHOTO PARALLAX (desktop only) ── */
+(function(){
+  const photo = document.querySelector('.photo-wrap');
+  if (!photo || window.matchMedia('(max-width:900px)').matches) return;
+  let tick=false;
+  addEventListener('scroll',()=>{
+    if(tick)return; tick=true;
+    requestAnimationFrame(()=>{
+      photo.style.transform=`translateY(${Math.min(window.scrollY*.09,60)}px)`;
+      tick=false;
+    });
+  });
+})();
+
+/* ══════════════════════════════════════
    WOW LAYER — Particles · Glow · Sound
 ════════════════════════════════════════ */
 
@@ -1938,8 +2076,11 @@ function sendMsg(e) {
 (function(){
   const gl = document.getElementById('cur-glow');
   if (!gl || window.matchMedia('(hover:none)').matches) return;
-  let mx=-999, my=-999;
-  addEventListener('mousemove', e=>{mx=e.clientX;my=e.clientY;});
+  let mx=-9999, my=-9999, moved=false;
+  addEventListener('mousemove', e=>{
+    mx=e.clientX; my=e.clientY;
+    if(!moved){ moved=true; gl.classList.add('vis'); }
+  });
   (function upd(){
     gl.style.left=mx+'px'; gl.style.top=my+'px';
     requestAnimationFrame(upd);
@@ -1958,19 +2099,12 @@ function sendMsg(e) {
     const d = document.createElement('div');
     d.className = 'hero-orb'; d.setAttribute('aria-hidden','true');
     d.style.cssText=`background:${o.c};width:${o.w}px;height:${o.h}px;left:${o.l};top:${o.t};--dur:${o.dur};--tx:${o.tx};--ty:${o.ty};`;
-    hero.style.position='relative'; hero.style.overflow='hidden';
+    hero.style.position='relative';
     hero.insertBefore(d, hero.firstChild);
   });
 })();
 
-/* ── TYPEWRITER CURSOR ── */
-(function(){
-  const tel = document.getElementById('typing-el');
-  if (!tel) return;
-  const cur = document.createElement('span');
-  cur.id='typing-cursor'; cur.setAttribute('aria-hidden','true');
-  tel.insertAdjacentElement('afterend', cur);
-})();
+/* cursor is already in HTML inside #typing-el — no JS creation needed */
 
 /* ── SOUND SYSTEM ── */
 (function(){
