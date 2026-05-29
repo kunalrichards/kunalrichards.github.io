@@ -284,8 +284,9 @@ nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
 .hero{
   min-height:100vh;
   display:flex;align-items:center;
-  padding:calc(var(--nav-h) + 3rem) var(--pad-x) 4rem;
+  padding:calc(var(--nav-h) + 3rem) var(--pad-x) 5rem;
   position:relative;z-index:1;
+  isolation:isolate;
 }
 .hero-inner{
   max-width:1150px;margin:0 auto;width:100%;
@@ -333,7 +334,7 @@ h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;line-height:1.05;color:var
 .photo-wrap{position:relative;flex-shrink:0;width:300px;}
 .photo-glow{position:absolute;inset:-20px;border-radius:34px;background:var(--grd);opacity:.12;filter:blur(28px);will-change:transform;transform:translateZ(0);}
 .photo-ring{position:absolute;inset:-3px;border-radius:25px;background:var(--grd);z-index:1;transform:translateZ(0);}
-.hero-photo{width:300px;height:420px;border-radius:22px;object-fit:cover;object-position:center 20%;position:relative;z-index:2;pointer-events:none;cursor:default;}
+.hero-photo{width:300px;height:420px;border-radius:22px;object-fit:cover;object-position:center 38%;position:relative;z-index:2;pointer-events:none;cursor:default;}
 .photo-badge{
   position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);
   background:rgba(10,16,32,.95);border:1px solid var(--bd);
@@ -543,7 +544,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     order:-1;
     width:240px;margin:0 auto;
   }
-  .hero-photo{width:240px;height:310px;object-fit:cover;object-position:center 20%;}
+  .hero-photo{width:240px;height:310px;object-fit:cover;object-position:center 38%;}
   .hero-chips-row,.pills,.ctas,.socrow{justify-content:center;}
   .hero-chips-row{justify-content:center;}
 
@@ -586,7 +587,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
   /* Photo BELOW text on mobile */
   .photo-wrap{order:1;width:150px;margin:0 auto;}
-  .hero-photo{width:150px;height:195px;object-fit:cover;object-position:center 20%;}
+  .hero-photo{width:150px;height:195px;object-fit:cover;object-position:center 38%;}
   .photo-glow{inset:-10px;}
   .photo-badge{display:none;}
 
@@ -657,7 +658,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 @media(max-width:360px){
   .hero-inner{gap:1rem;}
   .photo-wrap{width:130px;}
-  .hero-photo{width:130px;height:170px;object-fit:cover;object-position:center 20%;}
+  .hero-photo{width:130px;height:170px;object-fit:cover;object-position:center 38%;}
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .stat-num{font-size:1.8rem;}
   .hero-chip{font-size:.6rem;padding:.22rem .55rem;}
@@ -753,8 +754,15 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
 /* ─── SECTION NAV DOTS ─── */
 #sec-dots{
-  position:fixed;right:1rem;top:50%;transform:translateY(-50%);
-  display:flex;flex-direction:column;gap:.55rem;z-index:300;
+  position:fixed!important;right:1rem!important;top:50%!important;
+  left:auto!important;width:auto!important;height:auto!important;
+  transform:translateY(-50%)!important;
+  display:flex!important;flex-direction:column!important;
+  gap:.55rem;z-index:300;
+  padding:0!important;background:none!important;
+  border:none!important;backdrop-filter:none!important;
+  box-shadow:none!important;justify-content:flex-start!important;
+  align-items:center!important;
 }
 .sec-dot{
   width:7px;height:7px;border-radius:50%;
@@ -771,8 +779,8 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 }
 @media(max-width:960px){#sec-dots{display:none;}}
 
-/* ─── HERO PHOTO PARALLAX ─── */
-.photo-wrap{will-change:transform;}
+/* photo-wrap: stable, no transform */
+.photo-wrap{will-change:auto;}
 
 /* Reduce motion */
 @media(prefers-reduced-motion:reduce){
@@ -1992,8 +2000,8 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
 (function(){
   const secs = ['about','ai','projects','portfolio','experience','skills','contact'];
   const labs = ['About','AI & Vibe','Projects','Portfolio','Experience','Skills','Contact'];
-  const wrap = document.createElement('nav');
-  wrap.id='sec-dots'; wrap.setAttribute('aria-label','Jump to section');
+  const wrap = document.createElement('div');
+  wrap.id='sec-dots'; wrap.setAttribute('role','navigation'); wrap.setAttribute('aria-label','Jump to section');
   secs.forEach((id,i)=>{
     const a = document.createElement('a');
     a.className='sec-dot'; a.href='#'+id;
@@ -2022,19 +2030,7 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
   });
 })();
 
-/* ── HERO PHOTO PARALLAX (desktop only) ── */
-(function(){
-  const photo = document.querySelector('.photo-wrap');
-  if (!photo || window.matchMedia('(max-width:900px)').matches) return;
-  let tick=false;
-  addEventListener('scroll',()=>{
-    if(tick)return; tick=true;
-    requestAnimationFrame(()=>{
-      photo.style.transform=`translateY(${Math.min(window.scrollY*.09,60)}px)`;
-      tick=false;
-    });
-  });
-})();
+/* parallax removed — caused photo crop issues */
 
 /* ══════════════════════════════════════
    WOW LAYER — Particles · Glow · Sound
@@ -2087,22 +2083,7 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
   })();
 })();
 
-/* ── FLOATING HERO ORBS ── */
-(function(){
-  const hero = document.querySelector('.hero');
-  if (!hero) return;
-  [
-    {c:'rgba(56,189,248,.065)', w:360,h:360,l:'3%',  t:'10%',dur:'10s',tx:'28px', ty:'-22px'},
-    {c:'rgba(167,139,250,.055)',w:300,h:300,l:'72%', t:'8%', dur:'12s',tx:'-18px',ty:'26px' },
-    {c:'rgba(52,211,153,.045)', w:240,h:240,l:'42%', t:'58%',dur:'8s', tx:'14px', ty:'-18px'},
-  ].forEach(o=>{
-    const d = document.createElement('div');
-    d.className = 'hero-orb'; d.setAttribute('aria-hidden','true');
-    d.style.cssText=`background:${o.c};width:${o.w}px;height:${o.h}px;left:${o.l};top:${o.t};--dur:${o.dur};--tx:${o.tx};--ty:${o.ty};`;
-    hero.style.position='relative';
-    hero.insertBefore(d, hero.firstChild);
-  });
-})();
+/* hero orbs removed — cleaner look */
 
 /* cursor is already in HTML inside #typing-el — no JS creation needed */
 
