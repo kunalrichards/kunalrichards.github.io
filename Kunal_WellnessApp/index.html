@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kunal WellnessApp — Wellness Companion for IT Professionals by Kunal Richards</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
 <meta name="description" content="Wellness companion app for IT professionals. Pomodoro timer, hydration tracker, 20-20-20 eye breaks, posture reminders and desk exercises. Built by Kunal Richards.">
+<meta name="author" content="Kunal Richards">
+<meta name="theme-color" content="#0a0f1e">
+<link rel="canonical" href="https://kunalrichards.github.io/Kunal_WellnessApp/">
+
+<!-- Security headers -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kunal WellnessApp — Wellness Companion for IT Professionals">
+<meta property="og:description" content="Pomodoro timer, hydration tracker, 20-20-20 eye breaks, posture reminders and desk exercises. Built by Kunal Richards.">
+<meta property="og:url" content="https://kunalrichards.github.io/Kunal_WellnessApp/">
+
 <style>
 :root {
   --bg:#0a0f1e; --surface:#111827; --surface2:#1f2937; --border:#374151;
@@ -57,7 +72,7 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
 .mode-btn{padding:.35rem .8rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--dim);cursor:pointer;font-size:.75rem;transition:all .2s;}
 .mode-btn.active{background:rgba(16,185,129,.1);border-color:var(--accent);color:var(--accent);}
 .pomo-info-side{}
-.pomo-info-side h3{font-size:1.2rem;font-weight:700;color:var(--heading);margin-bottom:.5rem;}
+.pomo-info-side h2{font-size:1.2rem;font-weight:700;color:var(--heading);margin-bottom:.5rem;}
 .pomo-info-side p{font-size:.84rem;color:var(--dim);margin-bottom:1rem;line-height:1.6;}
 .pomo-stats{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1rem;}
 .pomo-stat{background:var(--surface2);border-radius:8px;padding:.8rem;text-align:center;}
@@ -72,7 +87,8 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
 .water-card{}
 .water-goal-text{font-size:.82rem;color:var(--dim);margin-bottom:1rem;}
 .water-glasses{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:1rem;}
-.glass{aspect-ratio:1;border-radius:8px;border:2px solid var(--border);background:var(--surface2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:all .2s;}
+.glass{aspect-ratio:1;border-radius:8px;border:2px solid var(--border);background:var(--surface2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:all .2s;padding:0;font-family:inherit;color:inherit;}
+.glass:focus-visible{outline:2px solid var(--accent2);outline-offset:2px;}
 .glass.filled{background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.5);}
 .glass:hover{border-color:var(--accent2);transform:scale(1.05);}
 .water-bar-wrap{background:var(--surface2);border-radius:50px;height:8px;overflow:hidden;}
@@ -146,7 +162,7 @@ kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,16
 .set-label{flex:1;}
 .set-desc{font-size:.73rem;color:var(--dim);margin-top:.15rem;}
 .set-input{background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:.3rem .6rem;width:64px;text-align:center;font-size:.9rem;}
-.set-input:focus{outline:none;border-color:var(--accent);}
+.set-input:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-color:var(--accent);}
 .set-unit{font-size:.78rem;color:var(--dim);margin-left:.3rem;min-width:24px;}
 
 /* Desktop header: logo [space] back-link [margin-left:auto pushes] header-right */
@@ -160,8 +176,8 @@ kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,16
   #notif-btn,#settings-btn{font-size:.75rem;padding:.35rem .7rem;}
 }
 
-/* MOBILE ≤ 540px — two-row header */
-@media(max-width:540px){
+/* MOBILE ≤ 720px — two-row header (prevents overflow on small tablets/phones) */
+@media(max-width:720px){
   header{
     flex-wrap:wrap;
     padding:.65rem 1rem;
@@ -193,7 +209,9 @@ kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,16
   }
   .streak-badge{font-size:.68rem;padding:.2rem .45rem;}
   .btn-label{display:none;}
-  #notif-btn,#settings-btn{padding:.35rem .6rem;font-size:.88rem;}
+  #notif-btn,#settings-btn{padding:.35rem .6rem;font-size:.88rem;min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;}
+  .back-link{min-height:44px;}
+  .mode-btn,.btn-sm{min-height:44px;display:inline-flex;align-items:center;justify-content:center;}
 
   /* Timer */
   .timer-ring-wrap{width:155px;height:155px;}
@@ -213,6 +231,23 @@ kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,16
   .timer-display{font-size:1.9rem;}
   main{padding:.75rem;}
 }
+
+/* KEYBOARD FOCUS RING */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+  border-radius:6px;
+}
+
+/* RESPECT REDUCED MOTION */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{transition-duration:.001ms!important;}
+  .btn:hover{transform:none;}
+  .glass:hover{transform:none;}
+}
 </style>
 </head>
 <body>
@@ -227,12 +262,12 @@ kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,16
 </svg>
 
 <header>
-  <div class="logo">Kunal WellnessApp<span> — Wellness by Kunal Richards</span></div>
+  <h1 class="logo">Kunal WellnessApp<span> — Wellness by Kunal Richards</span></h1>
   <a href="../index.html" class="back-link"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/></svg> Portfolio</a>
   <div class="header-right">
     <div class="streak-badge" id="streak-badge">🔥 0 day streak</div>
-    <button id="notif-btn" onclick="toggleNotifications()">🔔 <span class="btn-label">Enable Alerts</span></button>
-    <button id="settings-btn" onclick="openSettings()">⚙️ <span class="btn-label">Settings</span></button>
+    <button id="notif-btn" aria-label="Enable break alerts" onclick="toggleNotifications()"><span aria-hidden="true">🔔</span> <span class="btn-label">Enable Alerts</span></button>
+    <button id="settings-btn" aria-label="Open settings" onclick="openSettings()"><span aria-hidden="true">⚙️</span> <span class="btn-label">Settings</span></button>
   </div>
 </header>
 
@@ -264,14 +299,14 @@ kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,16
     </div>
 
     <div class="pomo-info-side">
-      <h3>Pomodoro Focus Timer</h3>
+      <h2>Pomodoro Focus Timer</h2>
       <p>Work for 25 minutes, then take a 5-minute break. After 4 sessions, take a 15-minute long break. Proven to boost focus and reduce burnout.</p>
       <div class="pomo-stats">
         <div class="pomo-stat"><div class="pomo-stat-n" id="sessions-done">0</div><div class="pomo-stat-l">Sessions Today</div></div>
         <div class="pomo-stat"><div class="pomo-stat-n" id="focus-mins">0</div><div class="pomo-stat-l">Focus Minutes</div></div>
       </div>
-      <div class="card-title" style="margin-bottom:.6rem"><span>🍅</span>Session Progress (4 = long break)</div>
-      <div class="sessions-dots" id="sessions-dots">
+      <h3 class="card-title" style="margin-bottom:.6rem"><span aria-hidden="true">🍅</span>Session Progress (4 = long break)</h3>
+      <div class="sessions-dots" id="sessions-dots" aria-hidden="true">
         <div class="session-dot"></div><div class="session-dot"></div>
         <div class="session-dot"></div><div class="session-dot"></div>
       </div>
@@ -280,7 +315,7 @@ kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,16
 
   <!-- WATER -->
   <div class="card water-card">
-    <div class="card-title"><span>💧</span>Hydration Tracker</div>
+    <h2 class="card-title"><span aria-hidden="true">💧</span>Hydration Tracker</h2>
     <div class="water-goal-text">Goal: <strong style="color:var(--heading)">8 glasses</strong> per day · Click a glass to log it</div>
     <div class="water-glasses" id="glasses-grid"></div>
     <div class="water-bar-wrap"><div class="water-bar" id="water-bar" style="width:0%"></div></div>
@@ -293,7 +328,7 @@ kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,16
 
   <!-- EYE BREAK -->
   <div class="card eye-card">
-    <div class="card-title"><span>👁</span>20-20-20 Eye Break</div>
+    <h2 class="card-title"><span aria-hidden="true">👁</span>20-20-20 Eye Break</h2>
     <div class="eye-display">
       <div class="eye-icon" id="eye-icon">👁</div>
       <div class="eye-timer" id="eye-timer">20:00</div>
@@ -309,7 +344,7 @@ kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,16
 
   <!-- POSTURE -->
   <div class="card posture-card" id="posture-card">
-    <div class="card-title"><span>🧍</span>Posture Check</div>
+    <h2 class="card-title"><span aria-hidden="true">🧍</span>Posture Check</h2>
     <div class="posture-display">
       <div class="posture-icon" id="posture-icon">🪑</div>
       <div class="posture-msg" id="posture-msg">Sit up straight, feet flat on floor</div>
@@ -348,7 +383,7 @@ kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,16
 <!-- EXERCISE MODAL -->
 <div class="modal-overlay" id="exercise-modal" onclick="closeExercise()">
   <div class="modal" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeExercise()">✕</button>
+    <button class="modal-close" aria-label="Close" onclick="closeExercise()"><span aria-hidden="true">✕</span></button>
     <div class="modal-title">💪 Quick Desk Exercise</div>
     <div class="modal-sub">Take 2 minutes. Your body will thank you.</div>
     <div class="exercise-card-big">
@@ -395,7 +430,7 @@ kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,16
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast">
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
   <div class="toast-title" id="toast-title">Kunal WellnessApp</div>
   <div id="toast-msg"></div>
 </div>
@@ -415,6 +450,7 @@ if (state.date !== today) {
   const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
   if (state.lastDay === yesterday.toDateString()) state.streak++;
   else state.streak = 1;
+  localStorage.setItem('devfit_state', JSON.stringify(state));
 }
 function save() { localStorage.setItem('devfit_state', JSON.stringify(state)); updateUI(); }
 
@@ -428,7 +464,7 @@ function toast(title, msg) {
 }
 
 // ─── NOTIFICATIONS ───────────────────────────────────────────────
-let notifEnabled = false;
+let notifEnabled = ('Notification' in window) && Notification.permission === 'granted';
 function toggleNotifications() {
   if (!('Notification' in window)) { toast('Not supported', 'Browser notifications not available'); return; }
   Notification.requestPermission().then(p => {
@@ -436,11 +472,12 @@ function toggleNotifications() {
     const btn = document.getElementById('notif-btn');
     btn.textContent = notifEnabled ? '🔔 Alerts ON' : '🔕 Alerts OFF';
     btn.className = notifEnabled ? 'enabled' : '';
+    btn.setAttribute('aria-label', notifEnabled ? 'Disable break alerts' : 'Enable break alerts');
     toast(notifEnabled ? 'Alerts Enabled' : 'Alerts Disabled', notifEnabled ? 'You will get break reminders' : 'Enable in browser settings');
   });
 }
 function notify(title, body) {
-  if (notifEnabled && Notification.permission === 'granted') new Notification(title, { body, icon: '💪' });
+  if (notifEnabled && Notification.permission === 'granted') new Notification(title, { body, icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>" });
   toast(title, body);
 }
 
@@ -467,6 +504,7 @@ function toggleTimer() {
     document.getElementById('start-btn').textContent = '▶ Resume';
   } else {
     isRunning = true;
+    try { const c = _getACtx(); if (c.state === 'suspended') c.resume(); } catch(e) {}
     document.getElementById('start-btn').textContent = '⏸ Pause';
     timerInterval = setInterval(() => {
       timeLeft--;
@@ -483,8 +521,15 @@ function toggleTimer() {
           playBreak();
           notify('⏰ Break Over', 'Time to focus again. You got this!');
         }
-        setMode('focus', 25, 'Focus Time', null);
-        document.querySelector('.mode-btn').classList.add('active');
+        let nextMode, nextMins, nextLabel, nextBtnIdx;
+        if (currentMode === 'focus') {
+          if (state.sessions % 4 === 0) { nextMode = 'long'; nextMins = settings.longBreak; nextLabel = 'Long Break'; nextBtnIdx = 2; }
+          else { nextMode = 'short'; nextMins = settings.shortBreak; nextLabel = 'Short Break'; nextBtnIdx = 1; }
+        } else {
+          nextMode = 'focus'; nextMins = settings.focusMins; nextLabel = 'Focus Time'; nextBtnIdx = 0;
+        }
+        const btns = document.querySelectorAll('.mode-btn');
+        setMode(nextMode, nextMins, nextLabel, btns[nextBtnIdx]);
       }
     }, 1000);
   }
@@ -530,10 +575,12 @@ function buildGlasses() {
   const grid = document.getElementById('glasses-grid'); grid.innerHTML = '';
   for (let i = 0; i < 8; i++) {
     const filled = i < state.water;
-    const g = document.createElement('div');
+    const g = document.createElement('button');
+    g.type = 'button';
     g.className = 'glass' + (filled ? ' filled' : '');
+    g.setAttribute('aria-pressed', String(filled));
+    g.setAttribute('aria-label', `Glass ${i + 1}: ${filled ? 'logged, click to remove' : 'empty, click to log'}`);
     g.innerHTML = waterGlassSVG(filled);
-    g.title = filled ? 'Click to remove' : 'Click to log glass';
     g.onclick = () => { state.water = i < state.water ? i : i + 1; save(); buildGlasses(); updateWater(); };
     grid.appendChild(g);
   }
@@ -583,7 +630,15 @@ function updateEyeDisplay() {
   const pct = Math.max(0, inEyeBreak ? (safe / 20) * 100 : (safe / eyeTotal) * 100);
   document.getElementById('eye-bar').style.width = pct + '%';
 }
-function triggerEyeBreak() { if (!inEyeBreak) eyeLeft = 1; }
+function triggerEyeBreak() {
+  if (!inEyeBreak) {
+    inEyeBreak = true; eyeLeft = 20;
+    document.getElementById('eye-icon').textContent = '😌';
+    document.getElementById('eye-msg').textContent = 'Look 20 feet away for 20 seconds!';
+    notify('👁 Eye Break!', 'Look 20 feet away for 20 seconds. Blink slowly.');
+    updateEyeDisplay();
+  }
+}
 function snoozeEye() {
   if (inEyeBreak) { toast('Eye Break Active', 'Finish looking away first!'); return; }
   eyeLeft += 5 * 60;
@@ -676,6 +731,7 @@ function _playTone(freq, dur, type = 'sine', vol = 0.28) {
   if (!settings.audioOn) return;
   try {
     const ctx = _getACtx();
+    if (ctx.state === 'suspended') ctx.resume();
     const osc = ctx.createOscillator(), gain = ctx.createGain();
     osc.connect(gain); gain.connect(ctx.destination);
     osc.type = type; osc.frequency.value = freq;
