@@ -663,6 +663,66 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   .hero-chip{font-size:.6rem;padding:.22rem .55rem;}
 }
 
+/* ─── PARTICLE CANVAS ─── */
+#ptcl-cv{position:fixed;inset:0;z-index:0;pointer-events:none;}
+
+/* ─── CURSOR GLOW ─── */
+#cur-glow{
+  position:fixed;width:420px;height:420px;border-radius:50%;
+  pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(56,189,248,.055) 0%,transparent 68%);
+  transform:translate(-50%,-50%);will-change:left,top;
+  transition:opacity .3s;
+}
+
+/* ─── SOUND TOGGLE BTN ─── */
+#snd-btn{
+  background:none;border:1px solid rgba(56,189,248,.18);border-radius:8px;
+  padding:.22rem .5rem;color:var(--dim);font-size:.8rem;cursor:pointer;
+  transition:all .2s;display:flex;align-items:center;gap:.25rem;flex-shrink:0;
+}
+#snd-btn:hover{border-color:var(--ac);color:var(--ac);}
+#snd-btn.on{border-color:rgba(56,189,248,.45);color:var(--ac);background:rgba(56,189,248,.07);}
+
+/* ─── TYPEWRITER CURSOR ─── */
+#typing-cursor{
+  display:inline-block;width:2px;height:.95em;background:var(--ac);
+  margin-left:2px;animation:blink-c .7s step-end infinite;
+  vertical-align:middle;border-radius:1px;
+}
+@keyframes blink-c{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ─── FLOATING HERO ORBS ─── */
+.hero-orb{
+  position:absolute;border-radius:50%;pointer-events:none;
+  filter:blur(72px);animation:orb-float var(--dur,9s) ease-in-out infinite alternate;
+  will-change:transform;z-index:0;
+}
+@keyframes orb-float{
+  from{transform:translate(0,0) scale(1);}
+  to  {transform:translate(var(--tx,20px),var(--ty,-20px)) scale(1.1);}
+}
+
+/* ─── SHIMMER ON SECTION TAGS ─── */
+.sec-tag{
+  background:linear-gradient(90deg,var(--gr) 0%,#38bdf8 50%,var(--gr) 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:shimmer-tag 3.5s linear infinite;
+}
+@keyframes shimmer-tag{to{background-position:200% center;}}
+
+/* ─── CONFETTI PIECES ─── */
+.cnf-piece{
+  position:fixed;pointer-events:none;z-index:9999;border-radius:2px;
+  animation:cnf-fall var(--d,1.4s) ease-in var(--dl,0s) both;
+}
+@keyframes cnf-fall{
+  0%  {transform:translateY(-12px) rotate(0deg);opacity:1;}
+  100%{transform:translateY(105vh) rotate(760deg);opacity:0;}
+}
+
 /* Reduce motion */
 @media(prefers-reduced-motion:reduce){
   *,::before,::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
@@ -711,6 +771,10 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 </head>
 <body>
 
+<!-- PARTICLE CANVAS + CURSOR GLOW -->
+<canvas id="ptcl-cv" aria-hidden="true"></canvas>
+<div id="cur-glow" aria-hidden="true"></div>
+
 <!-- SCROLL PROGRESS -->
 <div id="spb" aria-hidden="true"></div>
 
@@ -729,6 +793,8 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     <li><a href="https://github.com/kunalrichards" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub ↗</a></li>
     <li><a href="cv.html" target="_blank" rel="noopener noreferrer" class="ncv">CV →</a></li>
   </ul>
+
+  <button id="snd-btn" title="Enable sound effects" aria-label="Toggle sound effects">🔇</button>
 
   <button class="hmb" id="hmb" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mob-drawer">
     <span class="hmb-bar"></span>
@@ -1831,6 +1897,177 @@ function sendMsg(e) {
     .catch(() => onFail());
   });
 }
+
+/* ════════════════════════════════════════
+   WOW LAYER — Particles · Glow · Sound
+════════════════════════════════════════ */
+
+/* ── PARTICLE CANVAS ── */
+(function(){
+  const cv = document.getElementById('ptcl-cv');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  let W, H;
+  const COLS = ['#38bdf8','#a78bfa','#34d399','#ec4899','#fbbf24'];
+  const ps = [];
+  function resize(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
+  resize(); addEventListener('resize', resize);
+  for (let i = 0; i < 58; i++) {
+    ps.push({
+      x:Math.random()*innerWidth, y:Math.random()*innerHeight,
+      vx:(Math.random()-.5)*.18, vy:-(Math.random()*.32+.04),
+      r:Math.random()*1.6+.3, a:Math.random()*.26+.04,
+      c:COLS[Math.floor(Math.random()*COLS.length)]
+    });
+  }
+  (function draw(){
+    ctx.clearRect(0,0,W,H);
+    ps.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.y<-4){p.y=H+4;p.x=Math.random()*W;}
+      if(p.x<-4)p.x=W+4; if(p.x>W+4)p.x=-4;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.c+Math.round(p.a*255).toString(16).padStart(2,'0');
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  })();
+})();
+
+/* ── CURSOR GLOW ── */
+(function(){
+  const gl = document.getElementById('cur-glow');
+  if (!gl || window.matchMedia('(hover:none)').matches) return;
+  let mx=-999, my=-999;
+  addEventListener('mousemove', e=>{mx=e.clientX;my=e.clientY;});
+  (function upd(){
+    gl.style.left=mx+'px'; gl.style.top=my+'px';
+    requestAnimationFrame(upd);
+  })();
+})();
+
+/* ── FLOATING HERO ORBS ── */
+(function(){
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  [
+    {c:'rgba(56,189,248,.065)', w:360,h:360,l:'3%',  t:'10%',dur:'10s',tx:'28px', ty:'-22px'},
+    {c:'rgba(167,139,250,.055)',w:300,h:300,l:'72%', t:'8%', dur:'12s',tx:'-18px',ty:'26px' },
+    {c:'rgba(52,211,153,.045)', w:240,h:240,l:'42%', t:'58%',dur:'8s', tx:'14px', ty:'-18px'},
+  ].forEach(o=>{
+    const d = document.createElement('div');
+    d.className = 'hero-orb'; d.setAttribute('aria-hidden','true');
+    d.style.cssText=`background:${o.c};width:${o.w}px;height:${o.h}px;left:${o.l};top:${o.t};--dur:${o.dur};--tx:${o.tx};--ty:${o.ty};`;
+    hero.style.position='relative'; hero.style.overflow='hidden';
+    hero.insertBefore(d, hero.firstChild);
+  });
+})();
+
+/* ── TYPEWRITER CURSOR ── */
+(function(){
+  const tel = document.getElementById('typing-el');
+  if (!tel) return;
+  const cur = document.createElement('span');
+  cur.id='typing-cursor'; cur.setAttribute('aria-hidden','true');
+  tel.insertAdjacentElement('afterend', cur);
+})();
+
+/* ── SOUND SYSTEM ── */
+(function(){
+  const btn = document.getElementById('snd-btn');
+  if (!btn) return;
+  let audioCtx=null, sndOn=false;
+  function getCtx(){
+    if (!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    return audioCtx;
+  }
+  function tone(hz,dur,vol,type){
+    if(!sndOn)return; vol=vol||.05; type=type||'sine';
+    const ac=getCtx(),o=ac.createOscillator(),g=ac.createGain();
+    o.connect(g);g.connect(ac.destination);
+    o.type=type;o.frequency.value=hz;
+    g.gain.setValueAtTime(vol,ac.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+dur);
+    o.start();o.stop(ac.currentTime+dur);
+  }
+  window._krSound={
+    click:  ()=>tone(700,.06,.035),
+    success:()=>{tone(440,.09);setTimeout(()=>tone(660,.09),100);setTimeout(()=>tone(880,.22),210);},
+    hover:  ()=>tone(580,.04,.018),
+  };
+  btn.addEventListener('click',()=>{
+    sndOn=!sndOn;
+    btn.classList.toggle('on',sndOn);
+    btn.title=sndOn?'Sound On — click to mute':'Sound Off — click to enable';
+    btn.innerHTML=sndOn?'🔊':'🔇';
+    if(sndOn){getCtx();tone(500,.1,.04);}
+  });
+  document.querySelectorAll('.btn').forEach(b=>{
+    b.addEventListener('click',()=>window._krSound.click());
+    b.addEventListener('mouseenter',()=>window._krSound.hover());
+  });
+})();
+
+/* ── CONFETTI BURST ── */
+function krConfetti(){
+  const cols=['#38bdf8','#a78bfa','#34d399','#fbbf24','#f87171','#ec4899'];
+  for(let i=0;i<28;i++){
+    const d=document.createElement('div');
+    d.className='cnf-piece';
+    const s=6+(i%4)*3;
+    d.style.cssText=[
+      'left:'+(5+(i*3.4)%90)+'%',
+      'top:-14px','width:'+s+'px','height:'+(s+(i%3)*4)+'px',
+      'background:'+cols[i%cols.length],
+      'border-radius:'+(i%3===0?'50%':'2px'),
+      '--d:'+(1.2+(i%5)*.28)+'s','--dl:'+(i%7)*.065+'s',
+      'transform:rotate('+(i*23)+'deg)',
+    ].join(';');
+    document.body.appendChild(d);
+    setTimeout(()=>d.remove(),2400);
+  }
+}
+document.querySelectorAll('a[href="#contact"].btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    krConfetti();
+    if(window._krSound)window._krSound.success();
+  });
+});
+
+/* ── EXTENDED 3D TILT — port-cards, timeline, certs, AI tools ── */
+(function(){
+  const isT=()=>window.matchMedia('(hover:none),(pointer:coarse)').matches;
+  document.querySelectorAll('.port-card,.tl-card,.cert-card,.ai-tool,.stat-card').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      if(isT())return;
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5;
+      const y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`translateY(-4px) rotateX(${-y*5}deg) rotateY(${x*5}deg)`;
+      card.style.transition='transform .08s ease';
+    });
+    card.addEventListener('mouseleave',()=>{
+      card.style.transform='';
+      card.style.transition='transform .5s ease,border-color .3s,box-shadow .3s';
+    });
+  });
+})();
+
+/* ── MAGNETIC CTA BUTTONS ── */
+(function(){
+  const isT=()=>window.matchMedia('(hover:none),(pointer:coarse)').matches;
+  document.querySelectorAll('.btn-fill').forEach(btn=>{
+    btn.addEventListener('mousemove',e=>{
+      if(isT())return;
+      const r=btn.getBoundingClientRect();
+      const x=(e.clientX-r.left-r.width/2)*.22;
+      const y=(e.clientY-r.top-r.height/2)*.22;
+      btn.style.transform=`translate(${x}px,${y}px) translateY(-3px)`;
+    });
+    btn.addEventListener('mouseleave',()=>{ btn.style.transform=''; });
+  });
+})();
+
 </script>
 </body>
 </html>
