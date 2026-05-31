@@ -382,7 +382,7 @@ input:focus-visible{
 
 <!-- EXERCISE MODAL -->
 <div class="modal-overlay" id="exercise-modal" onclick="closeExercise()">
-  <div class="modal" onclick="event.stopPropagation()">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Quick Desk Exercise" onclick="event.stopPropagation()">
     <button class="modal-close" aria-label="Close" onclick="closeExercise()"><span aria-hidden="true">✕</span></button>
     <div class="modal-title">💪 Quick Desk Exercise</div>
     <div class="modal-sub">Take 2 minutes. Your body will thank you.</div>
@@ -401,7 +401,7 @@ input:focus-visible{
 
 <!-- SETTINGS MODAL -->
 <div class="set-overlay" id="set-overlay" onclick="if(event.target===this)closeSettings()">
-  <div class="set-modal">
+  <div class="set-modal" role="dialog" aria-modal="true" aria-label="Session Settings">
     <div class="set-title">⚙️ Session Settings</div>
     <div class="set-row">
       <div class="set-label"><div>Focus duration</div><div class="set-desc">Main work session length</div></div>
@@ -686,10 +686,15 @@ const exercises = [
   {icon:'🏃',name:'Stand & March in Place',duration:'1 minute',how:'Simply stand up and march in place for 60 seconds. Lift knees, swing arms. Boosts circulation and counteracts the effects of prolonged sitting.'},
 ];
 let exIdx = 0;
+let _lastFocused = null;
+function _focusables(el){return [...el.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(n=>!n.disabled&&n.offsetParent!==null);}
+function _trapTab(ev,id){const l=_focusables(document.getElementById(id));if(!l.length)return;const f=l[0],last=l[l.length-1];if(ev.shiftKey&&document.activeElement===f){ev.preventDefault();last.focus();}else if(!ev.shiftKey&&document.activeElement===last){ev.preventDefault();f.focus();}}
 function openExercise() {
+  _lastFocused = document.activeElement;
   exIdx = Math.floor(Math.random() * exercises.length);
   showExercise();
   document.getElementById('exercise-modal').classList.add('show');
+  document.getElementById('exercise-modal').querySelector('.modal-close').focus();
 }
 function showExercise() {
   const e = exercises[exIdx];
@@ -699,7 +704,7 @@ function showExercise() {
   document.getElementById('ex-how').textContent = e.how;
 }
 function nextExercise() { exIdx = (exIdx + 1) % exercises.length; showExercise(); }
-function closeExercise() { document.getElementById('exercise-modal').classList.remove('show'); }
+function closeExercise() { document.getElementById('exercise-modal').classList.remove('show'); if(_lastFocused)_lastFocused.focus(); }
 
 // ─── GLOBAL UI UPDATE ─────────────────────────────────────────────
 function updateUI() {
@@ -747,15 +752,10 @@ function playWater() { _playTone(880,.07,'sine',.16); }
 
 // ─── KEYBOARD SHORTCUTS ───────────────────────────────────────────
 document.addEventListener('keydown', ev => {
+  const so=document.getElementById('set-overlay'),eo=document.getElementById('exercise-modal');
+  if(so.classList.contains('show')){if(ev.key==='Escape'){ev.preventDefault();closeSettings();return;} if(ev.key==='Tab'){_trapTab(ev,'set-overlay');return;} return;}
+  if(eo.classList.contains('show')){if(ev.key==='Escape'){ev.preventDefault();closeExercise();return;} if(ev.key==='Tab'){_trapTab(ev,'exercise-modal');return;} return;}
   if (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA' || ev.target.tagName === 'SELECT') return;
-  if (document.getElementById('set-overlay').classList.contains('show')) {
-    if (ev.key === 'Escape') closeSettings();
-    return;
-  }
-  if (document.getElementById('exercise-modal').classList.contains('show')) {
-    if (ev.key === 'Escape') closeExercise();
-    return;
-  }
   switch(ev.key) {
     case ' ':      ev.preventDefault(); playClick(); toggleTimer();      break;
     case 'r': case 'R': playClick(); resetTimer();                       break;
@@ -768,13 +768,15 @@ document.addEventListener('keydown', ev => {
 
 // ─── SETTINGS ─────────────────────────────────────────────────────
 function openSettings() {
+  _lastFocused = document.activeElement;
   document.getElementById('set-focus').value  = settings.focusMins;
   document.getElementById('set-short').value  = settings.shortBreak;
   document.getElementById('set-long').value   = settings.longBreak;
   document.getElementById('set-audio').checked = settings.audioOn;
   document.getElementById('set-overlay').classList.add('show');
+  document.getElementById('set-focus').focus();
 }
-function closeSettings() { document.getElementById('set-overlay').classList.remove('show'); }
+function closeSettings() { document.getElementById('set-overlay').classList.remove('show'); if(_lastFocused)_lastFocused.focus(); }
 function saveSettings() {
   const f = Math.min(90,  Math.max(1,  parseInt(document.getElementById('set-focus').value) || 25));
   const s = Math.min(30,  Math.max(1,  parseInt(document.getElementById('set-short').value) || 5));
