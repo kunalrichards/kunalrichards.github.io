@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kunal Richards | Senior QA Engineer & AI Tool Builder | Ahmedabad</title>
-<meta name="description" content="Kunal Richards — Senior QA Engineer & AI Tool Builder, 7+ years, ISTQB CTFL certified. Selenium, API testing, AI QA tools, insurance domain QA. Ahmedabad, India.">
+<meta name="description" content="Kunal Richards — Senior QA Engineer & AI Tool Builder. 7+ years, ISTQB CTFL certified. Selenium, API testing, AI QA tools, insurance domain. Ahmedabad.">
 <meta name="author" content="Kunal Richards">
 <meta name="keywords" content="Kunal Richards, Senior QA Engineer Ahmedabad, QA Automation Engineer India, Selenium Java, ISTQB CTFL, API Testing, AI QA Tools, Insurance Domain QA, Test Automation, Dyad Tech">
 <meta name="theme-color" content="#04080f">
@@ -18,7 +18,6 @@
 <meta name="ICBM" content="23.0225, 72.5714">
 <link rel="canonical" href="https://kunalrichards.github.io/">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-<meta name="indexnow" content="a1b2c3d4e5f6789012345678kunalrichards">
 
 <!-- Open Graph / LinkedIn / Social -->
 <meta property="og:type" content="website">
@@ -28,6 +27,9 @@
 <meta property="og:image" content="https://kunalrichards.github.io/kunal-photo-hd.jpg">
 <meta property="og:image:width" content="600">
 <meta property="og:image:height" content="840">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="Kunal Richards — Senior QA Engineer & AI Tool Builder">
+<meta property="og:site_name" content="Kunal Richards — Portfolio">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kunal Richards | Senior QA Engineer">
@@ -35,10 +37,8 @@
 <meta name="twitter:image" content="https://kunalrichards.github.io/kunal-photo-hd.jpg">
 
 <!-- Preload critical image -->
-<link rel="preload" as="image" href="kunal-photo-hd.webp" type="image/webp">
+<link rel="preload" as="image" href="kunal-photo-hd.webp" type="image/webp" fetchpriority="high">
 
-<!-- Favicon (inline SVG) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
 
 <!-- Content Security Policy -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data: https:; connect-src https://formsubmit.co https://api.web3forms.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com https://formsubmit.co; worker-src 'none'; manifest-src 'self';">
@@ -64,8 +64,7 @@
   "nationality":{"@type":"Country","name":"India"},
   "sameAs":[
     "https://www.linkedin.com/in/kunal-richards-qa",
-    "https://github.com/kunalrichards",
-    "https://kunalrichards.github.io/"
+    "https://github.com/kunalrichards"
   ],
   "knowsAbout":["Software Testing","QA Automation","Selenium WebDriver","Selenium Python","ISTQB CTFL","AI QA Tools","Claude AI","GitHub Copilot","Playwright","TestNG","Jira","Zephyr Scale","Postman","RestAssured","TestRail","Insurance Domain Testing","Nexsure","ServiceNow","eCommerce Testing","Mobile Testing","API Testing","Agile/Scrum","STLC","CI/CD","Performance Testing","Test Strategy","Bug Reporting","Test Case Design","Regression Testing","Smoke Testing","UAT"],
 "hasOccupation":{"@type":"Occupation","name":"Senior QA Engineer","occupationLocation":{"@type":"City","name":"Ahmedabad"},"skills":"Selenium, API Testing, Test Automation, ISTQB CTFL, AI QA Tools, Insurance Domain"},
@@ -94,7 +93,7 @@
   "description":"Portfolio of Kunal Richards, Senior QA Engineer and AI Tool Builder based in Ahmedabad, India.",
   "author":{"@type":"Person","name":"Kunal Richards"},
   "inLanguage":"en-IN",
-  "dateModified":"2026-05-25T00:00:00+05:30"
+  "dateModified":"2026-05-31T00:00:00+05:30"
 }
 </script>
 <!-- JSON-LD — ProfilePage -->
@@ -103,7 +102,7 @@
   "@context":"https://schema.org",
   "@type":"ProfilePage",
   "dateCreated":"2025-01-01T00:00:00+05:30",
-  "dateModified":"2026-05-25T00:00:00+05:30",
+  "dateModified":"2026-05-31T00:00:00+05:30",
   "mainEntity":{
     "@type":"Person",
     "name":"Kunal Richards",
@@ -132,6 +131,7 @@
   --ac:#38bdf8; --ac2:#a78bfa; --gr:#34d399; --yw:#fbbf24;
   --tx:#c8d5e8; --dim:#7a8a9e; --hd:#f0f5fc; --bd:#1a2d45;
   --grd:linear-gradient(135deg,#38bdf8,#a78bfa);
+  --grd-btn:linear-gradient(135deg,#0c7fb8,#6d4bc9);/* darker — white text clears WCAG AA (≈4.6:1 / 5.9:1) */
   --grd2:linear-gradient(135deg,#34d399,#38bdf8);
   --grd3:linear-gradient(135deg,#a78bfa,#ec4899);
   --nav-h:60px;
@@ -173,7 +173,7 @@ button{-webkit-tap-highlight-color:transparent;}
 }
 #mob-hire a{
   display:block;text-align:center;
-  background:var(--grd);color:#fff;
+  background:var(--grd-btn);color:#fff;
   font-weight:800;font-size:.9rem;
   padding:.78rem;border-radius:12px;
   text-decoration:none;letter-spacing:.3px;
@@ -212,7 +212,7 @@ body::after{
 /* ─── PERF: skip paint for off-screen sections until they scroll into view ─── */
 #about,#ai,#projects,#experience,#skills,#contact{
   content-visibility:auto;
-  contain-intrinsic-size:0 600px;
+  contain-intrinsic-size:auto 600px;
 }
 
 /* ─── NAV ─── */
@@ -335,7 +335,7 @@ h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;line-height:1.05;color:var
   border:none;cursor:pointer;letter-spacing:.25px;user-select:none;
   -webkit-user-select:none;
 }
-.btn-fill{background:var(--grd);color:#fff;box-shadow:0 4px 20px rgba(56,189,248,.28);}
+.btn-fill{background:var(--grd-btn);color:#fff;box-shadow:0 4px 20px rgba(56,189,248,.28);}
 .btn-fill:hover{box-shadow:0 8px 36px rgba(56,189,248,.45);transform:translateY(-3px);}
 .btn-outline{background:transparent;border:1.5px solid var(--bd);color:var(--hd);}
 .btn-outline:hover{border-color:var(--ac);color:var(--ac);transform:translateY(-2px);box-shadow:0 4px 16px rgba(56,189,248,.12);}
@@ -437,7 +437,7 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 .ptag{background:var(--s2);border:1px solid var(--bd);color:var(--dim);padding:.15rem .48rem;border-radius:4px;font-size:.67rem;}
 .proj-links{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem;padding-top:.85rem;border-top:1px solid var(--bd);}
 .plink{display:inline-flex;align-items:center;gap:.3rem;text-decoration:none;font-size:.73rem;font-weight:700;padding:.32rem .75rem;border-radius:6px;transition:all .2s;border:1px solid;cursor:pointer;}
-.plink-live{background:var(--grd);color:#fff;border-color:transparent;box-shadow:0 3px 12px rgba(56,189,248,.2);}
+.plink-live{background:var(--grd-btn);color:#fff;border-color:transparent;box-shadow:0 3px 12px rgba(56,189,248,.2);}
 .plink-live:hover{box-shadow:0 5px 20px rgba(56,189,248,.35);transform:translateY(-1px);}
 .plink-gh{background:transparent;border-color:var(--bd);color:var(--dim);}
 .plink-gh:hover{border-color:var(--ac);color:var(--ac);}
@@ -498,7 +498,7 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
   font-size:.9rem;flex-shrink:0;
 }
 .form-wrap{background:var(--s2);border:1px solid var(--bd);border-radius:15px;padding:1.8rem;}
-.form-wrap h4{color:var(--hd);margin-bottom:1.2rem;font-size:.95rem;font-weight:800;}
+.form-wrap h3{color:var(--hd);margin-bottom:1.2rem;font-size:.95rem;font-weight:800;}
 .form-wrap form{display:flex;flex-direction:column;gap:.72rem;}
 .fi-group{display:flex;flex-direction:column;gap:.28rem;}
 .fi-label{font-size:.75rem;font-weight:700;color:var(--tx);letter-spacing:.2px;}
@@ -524,7 +524,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 #btt{
   position:fixed;bottom:1.5rem;right:1.5rem;
   width:42px;height:42px;
-  background:var(--grd);border:none;border-radius:10px;
+  background:var(--grd-btn);border:none;border-radius:10px;
   color:#fff;cursor:pointer;font-size:1.1rem;
   z-index:500;opacity:0;pointer-events:none;
   transition:opacity .25s,transform .25s;
@@ -940,13 +940,15 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       <picture>
         <source srcset="kunal-photo-hd.webp" type="image/webp">
         <source srcset="kunal-photo-hd.jpg" type="image/jpeg">
-        <img src="kunal-photo-hd.jpg" alt="Kunal Richards, Senior QA Engineer and AI Tool Builder, ISTQB CTFL Certified, Ahmedabad" class="hero-photo" loading="eager" fetchpriority="high" decoding="sync" width="600" height="840">
+        <img src="kunal-photo-hd.jpg" alt="Kunal Richards, Senior QA Engineer and AI Tool Builder, ISTQB CTFL Certified, Ahmedabad" class="hero-photo" loading="eager" fetchpriority="high" decoding="async" width="600" height="840">
       </picture>
       <div class="photo-badge" aria-hidden="true">📍 Ahmedabad, India</div>
     </div>
 
   </div>
 </section>
+<!-- Reveal as soon as the hero (LCP) is parsed — avoids waiting on bottom-of-page JS (DOMContentLoaded still re-affirms it below) -->
+<script>document.documentElement.style.opacity='1';</script>
 
 <!-- ══ ABOUT + STATS ══ -->
 <section id="about" aria-label="About Kunal Richards">
@@ -1496,7 +1498,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         <div class="contact-link"><div class="contact-icon" aria-hidden="true">📍</div>Ahmedabad, Gujarat, India</div>
       </div>
       <div class="form-wrap">
-        <h4>Send a Message</h4>
+        <h3>Send a Message</h3>
         <form onsubmit="sendMsg(event)" novalidate aria-label="Contact form" id="contact-form">
           <div class="fi-group">
             <label for="f-name" class="fi-label">Your Name <span aria-hidden="true">*</span></label>
@@ -1625,11 +1627,12 @@ hmb.addEventListener('click', () => {
   hmb.setAttribute('aria-expanded', isOpen);
   hmb.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
   document.body.style.overflow = isOpen ? 'hidden' : '';
+  if (isOpen) { const first = drawer.querySelector('a'); if (first) first.focus(); }
 });
 
-// Close on any drawer link click
+// Close on any drawer link click (let the anchor take focus — don't pull it back to the button)
 drawer.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', closeDrawer);
+  a.addEventListener('click', () => closeDrawer(false));
 });
 
 // Close on outside tap
@@ -1637,20 +1640,22 @@ document.addEventListener('click', e => {
   if (drawer.classList.contains('open') &&
       !drawer.contains(e.target) &&
       !hmb.contains(e.target)) {
-    closeDrawer();
+    closeDrawer(true);
   }
 }, true);
 
 // Close on ESC
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeDrawer();
+  if (e.key === 'Escape') closeDrawer(true);
 });
 
-function closeDrawer() {
+function closeDrawer(restoreFocus) {
+  const wasOpen = drawer.classList.contains('open');
   drawer.classList.remove('open');
   hmb.setAttribute('aria-expanded', 'false');
   hmb.setAttribute('aria-label', 'Open navigation menu');
   document.body.style.overflow = '';
+  if (wasOpen && restoreFocus) hmb.focus();
 }
 
 /* ── ACTIVE NAV LINKS — handled by the shared geometry scrollspy (window._krSetActiveNav) ── */
@@ -1770,9 +1775,9 @@ function showAdminPanel() {
       <div style="font-size:2rem;font-weight:800;color:${color}">${value}</div>
       <div style="font-size:.72rem;color:var(--dim);margin-top:.3rem;text-transform:uppercase;letter-spacing:1px">${label}</div>
     </div>`;
-  grid.innerHTML = statCard('Total Visits', data.total, 'var(--ac)') +
-    statCard('Today', todayViews, 'var(--gr)') +
-    statCard('Daily Avg', avgViews, 'var(--ac2)');
+  grid.innerHTML = statCard('Total Visits', Number(data.total) || 0, 'var(--ac)') +
+    statCard('Today', Number(todayViews) || 0, 'var(--gr)') +
+    statCard('Daily Avg', Number(avgViews) || 0, 'var(--ac2)');
 
   const sortedDays = Object.keys(days).sort().slice(-30);
   const max = Math.max(...sortedDays.map(d => days[d]), 1);
@@ -2091,18 +2096,24 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
   const gl = document.getElementById('cur-glow');
   if (!gl || window.matchMedia('(hover:none)').matches || _reduceMotion) return;
   let mx=-9999, my=-9999, moved=false;
+  let lx=null, ly=null, running=false;
+  function upd(){
+    if(document.hidden){ running=false; return; }
+    if(mx!==lx || my!==ly){
+      gl.style.transform='translate(-50%,-50%) translate('+mx+'px,'+my+'px)';
+      lx=mx; ly=my;
+      requestAnimationFrame(upd);
+    } else {
+      running=false; // idle — stop the loop until the pointer moves again
+    }
+  }
+  function ensureRunning(){ if(!running){ running=true; requestAnimationFrame(upd); } }
   addEventListener('mousemove', e=>{
     mx=e.clientX; my=e.clientY;
     if(!moved){ moved=true; gl.classList.add('vis'); }
+    ensureRunning();
   });
-  let lx=null, ly=null;
-  (function upd(){
-    if(!document.hidden && (mx!==lx || my!==ly)){
-      gl.style.transform='translate(-50%,-50%) translate('+mx+'px,'+my+'px)';
-      lx=mx; ly=my;
-    }
-    requestAnimationFrame(upd);
-  })();
+  document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) ensureRunning(); });
 })();
 
 /* hero orbs removed — cleaner look */
