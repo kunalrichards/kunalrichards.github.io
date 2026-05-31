@@ -28,10 +28,10 @@ I'm **Kunal Richards** — a **Senior QA Engineer** with 7+ years in enterprise 
 - 🤖 Built **AI Bug Reporter** — Claude AI generates structured bug reports from Jira tickets in seconds
 - 📊 Built **Test Coverage Analyser** — maps Zephyr Scale + GitHub API across insurance platform modules
 - 🧪 Architected **Selenium automation framework** — JSON-driven, TestNG, Allure, REST Assured
-- 🔐 Security-conscious engineer — JWT, bcrypt, OWASP-compliant by default
+- 🔐 Security-conscious — JWT auth & bcrypt hashing on internal tools, following OWASP practices
 - 💡 Reduced test case writing time from **hours → seconds** with Claude AI integration
 - 📈 Full STLC ownership — requirements, planning, execution, defect tracking, release sign-off
-- 🏆 **ISTQB CTFL certified** (2022 & 2024)
+- 🏆 **ISTQB CTFL certified** (December 2024)
 
 ---
 
@@ -145,11 +145,11 @@ Custom dark theme, typing animation, animated stat counters, browser-local analy
 🥇  Built 4 AI-powered QA tools from scratch — all in active production use
 ⚡  Reduced test case generation from hours → seconds using Claude AI
 🎯  Full STLC ownership — requirements to release sign-off, every sprint
-🔒  Passed independent security audit — Grade A−, zero critical vulnerabilities
+🔒  Self-audited the codebase (CSP, XSS hygiene, dependency review) — no critical findings
 🤖  Architected 3-pass AI pipeline: baseline → gap fill → semantic check
 📊  Coverage visibility across 23 insurance platform modules via Zephyr + GitHub API
-🏆  ISTQB CTFL certified twice (2022 & 2024)
-🌐  7+ years across 5 companies — insurance, SaaS, eCommerce, healthcare
+🏆  ISTQB CTFL certified (December 2024)
+🌐  7+ years across 5 companies — insurance, SaaS, eCommerce, mobile
 ```
 
 ---
@@ -164,8 +164,8 @@ API Testing        Postman · RestAssured · Jira REST · Zephyr API · GitHub A
 Frontend           React · TypeScript · Vite · HTML · CSS (zero-dependency builds)
 Backend            Node.js · Express · SQLite · JWT · bcrypt
 CI/CD              GitHub Actions · Jenkins · Azure DevOps
-Domain             Insurance (Nexsure) · SaaS · eCommerce · Healthcare
-Certifications     ISTQB CTFL 2024 · ISTQB CTFL 2022
+Domain             Insurance (Nexsure) · SaaS · eCommerce · Mobile
+Certifications     ISTQB CTFL 2024 · Selenium WebDriver 2020 · Software Testing 2018
 ```
 
 ---
