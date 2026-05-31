@@ -117,12 +117,6 @@ Custom dark theme, typing animation, animated stat counters, browser-local analy
 
 </div>
 
-<div align="center">
-
-[![trophy](https://github-profile-trophy.vercel.app/?username=kunalrichards&theme=tokyonight&no-frame=true&no-bg=true&margin-w=8&column=6)](https://github.com/kunalrichards)
-
-</div>
-
 ---
 
 ## 💼 Experience
