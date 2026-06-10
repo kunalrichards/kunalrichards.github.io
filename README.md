@@ -78,7 +78,7 @@ Fetches Jira ticket details, feeds them to Claude AI, and returns a fully struct
 ### 🌐 [Portfolio Website](https://kunalrichards.github.io)
 > Built from scratch — no frameworks, no templates
 
-Custom dark theme, typing animation, animated stat counters, browser-local analytics panel, fully working contact form. Responsive down to 360px. Single HTML file, 1700+ lines, zero dependencies.
+Custom dark theme, typing animation, animated stat counters, browser-local analytics panel, fully working contact form, installable PWA. Responsive down to 360px. Single HTML file, 2,200+ lines, zero dependencies.
 
 ---
 
@@ -124,10 +124,10 @@ Custom dark theme, typing animation, animated stat counters, browser-local analy
 | Period | Company | Role |
 |---|---|---|
 | Aug 2024 – Present | **Dyad Tech** | Senior QA Engineer |
-| 2023 – 2024 | **Crest Data Systems** | QA Engineer |
-| Aug 2022 – Feb 2023 | **Secomind.AI** | QA Engineer |
+| Feb 2023 – Jul 2024 | **Crest Data Systems** | Senior QA Engineer |
+| Aug 2022 – Feb 2023 | **Secomind.AI** | Sr QA Engineer |
 | Sep 2021 – Aug 2022 | **Codal Inc.** | QA Engineer |
-| 2018 – 2021 | **KudosIntech** | QA Analyst |
+| Nov 2018 – Sep 2021 | **KudosIntech** | QA Engineer |
 
 **5 companies · 7+ years · 50+ projects delivered**
 
