@@ -2,7 +2,7 @@
 <html lang="en-IN" style="opacity:0"><noscript><style>html{opacity:1!important}</style></noscript>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Kunal Richards | Senior QA Engineer & AI Tool Builder | Ahmedabad</title>
 <meta name="description" content="Kunal Richards — Senior QA Engineer & AI Tool Builder. 7+ years, ISTQB CTFL certified. Selenium, API testing, AI QA tools, insurance domain. Ahmedabad.">
 <meta name="author" content="Kunal Richards">
@@ -281,8 +281,11 @@ nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
   transition:max-height .3s cubic-bezier(.4,0,.2,1);
   transform:translateZ(0);
 }
-.mob-drawer.open{max-height:520px;}
-.mob-drawer-inner{padding:.5rem 0 1rem;}
+.mob-drawer.open{max-height:600px;}
+/* Clamp the menu to the viewport so links can't be pushed off short/landscape screens.
+   The clamp lives here (not on .mob-drawer) so the open animation stays a plain-px
+   max-height transition — transitioning to a calc(dvh) value fails to interpolate. */
+.mob-drawer-inner{padding:.5rem 0 1rem;max-height:calc(100dvh - var(--nav-h));overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .mob-drawer a{
   display:block;
   color:var(--dim);text-decoration:none;
@@ -430,7 +433,7 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 .code-block::before{content:'● ● ●';position:absolute;top:.75rem;left:1rem;color:var(--dim);font-size:.6rem;letter-spacing:3px;}
 .code-body{margin-top:1.4rem;min-width:260px;}
 .ck{color:#c084fc;}.cs{color:#4ade80;}.cf{color:#38bdf8;}.cm{color:#7a8a9e;}
-.cursor{display:inline-block;width:7px;height:13px;background:var(--ac);animation:pulse-dot 1s infinite;vertical-align:middle;border-radius:1px;}
+.cursor{display:inline-block;width:7px;height:13px;background:var(--ac);animation:blink-c .9s step-end infinite;vertical-align:middle;border-radius:1px;}
 
 /* ─── PROJECTS ─── */
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;}
@@ -516,7 +519,7 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 .fi-label{font-size:.75rem;font-weight:700;color:var(--tx);letter-spacing:.2px;}
 .fi{
   background:var(--bg);border:1px solid var(--bd);border-radius:9px;
-  padding:.68rem .95rem;color:var(--tx);font-size:.83rem;
+  padding:.68rem .95rem;color:var(--tx);font-size:max(16px,.83rem);
   outline:none;width:100%;font-family:inherit;
   transition:border-color .25s,box-shadow .25s;
   -webkit-appearance:none;
@@ -527,15 +530,15 @@ textarea.fi{resize:vertical;min-height:90px;}
 /* ─── FOOTER ─── */
 footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pad-x);text-align:center;position:relative;z-index:1;}
 .footer-name{font-size:.95rem;font-weight:900;background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.footer-links{display:flex;gap:1.2rem;justify-content:center;margin:.7rem 0;flex-wrap:wrap;}
-.footer-links a{color:var(--dim);text-decoration:none;font-size:.78rem;transition:color .2s;}
+.footer-links{display:flex;gap:.3rem 1rem;justify-content:center;margin:.5rem 0;flex-wrap:wrap;}
+.footer-links a{color:var(--dim);text-decoration:none;font-size:.78rem;padding:.5rem .35rem;transition:color .2s;}
 .footer-links a:hover{color:var(--ac);}
 .footer-copy{color:var(--dim);font-size:.72rem;margin-top:.4rem;}
 
 /* ─── BACK TO TOP ─── */
 #btt{
-  position:fixed;bottom:1.5rem;right:1.5rem;
-  width:42px;height:42px;
+  position:fixed;bottom:calc(1.5rem + env(safe-area-inset-bottom));right:1.5rem;
+  width:44px;height:44px;
   background:var(--grd-btn);border:none;border-radius:10px;
   color:#fff;cursor:pointer;font-size:1.1rem;
   z-index:500;opacity:0;pointer-events:none;
@@ -560,7 +563,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   .desk-nav{display:none;}
   .hmb{display:flex;}
 
-  .hero{padding:calc(var(--nav-h)+2.5rem) var(--pad-x) 3.5rem;}
+  .hero{padding:calc(var(--nav-h) + 2.5rem) var(--pad-x) 3.5rem;}
   .hero-inner{
     grid-template-columns:1fr;
     gap:2rem;
@@ -572,8 +575,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     width:240px;margin:0 auto;
   }
   .hero-photo{width:240px;height:310px;object-fit:cover;object-position:center 38%;}
-  .hero-chips-row,.pills,.ctas,.socrow{justify-content:center;}
-  .hero-chips-row{justify-content:center;}
+  .hero-chips-row,.pills,.ctas,.socrow,.typing-line{justify-content:center;}
 
   section{padding:3.5rem var(--pad-x);}
 
@@ -606,7 +608,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   .nl{font-size:1.2rem;}
 
   /* ── MOBILE HERO: chips hidden, text first, compact photo after ── */
-  .hero{padding:calc(var(--nav-h)+2.5rem) var(--pad-x) 2.5rem;min-height:auto;}
+  .hero{padding:calc(var(--nav-h) + 2.5rem) var(--pad-x) 2.5rem;min-height:auto;}
   .hero-inner{gap:1.6rem;text-align:center;}
 
   /* Hide location/role chips — shown in pills below */
@@ -620,7 +622,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
   /* Show name compactly on mobile — recruiters should see it */
   h1{display:block;font-size:2.3rem;line-height:1.04;letter-spacing:-1px;margin-bottom:.45rem;}
-  .typing-line{font-size:.9rem;margin-bottom:.7rem;min-height:auto;justify-content:center;}
+  .typing-line{font-size:.9rem;margin-bottom:.7rem;min-height:1.5rem;justify-content:center;}
   /* Fix socrow overflow */
   .hero-text{min-width:0;width:100%;}
   .pills{margin-bottom:1rem;gap:.28rem;justify-content:center;}
@@ -672,7 +674,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   footer{padding:1.5rem var(--pad-x);}
 
   /* Raise back-to-top btn above mobile sticky hire bar */
-  #btt{bottom:5.2rem;right:1rem;}
+  #btt{bottom:calc(5.2rem + env(safe-area-inset-bottom));right:1rem;}
 
   /* Touch-target sizing for interactive links (interactive only — not .plink-internal) */
   .plink-live,.plink-gh{padding:.6rem 1rem;min-height:44px;justify-content:center;}
@@ -693,6 +695,32 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .stat-num{font-size:1.8rem;}
   .hero-chip{font-size:.6rem;padding:.22rem .55rem;}
+}
+
+/* ══ TOUCH DEVICES: guarantee 44px tap targets & drop hover-only affordances ══ */
+@media(hover:none),(pointer:coarse){
+  .soc{min-height:44px;display:inline-flex;align-items:center;padding:.35rem .25rem;}
+  .plink-live,.plink-gh{min-height:44px;}
+  .port-filter{min-height:44px;}
+  .footer-links a{padding:.6rem .4rem;}
+  /* section dots are a hover/precision affordance — the desktop nav covers these widths */
+  #sec-dots{display:none;}
+}
+
+/* ══ SAFE-AREA INSETS for notched phones (paired with viewport-fit=cover) ══ */
+@supports(padding:max(0px)){
+  nav,.hero,section,footer{
+    padding-left:max(var(--pad-x),env(safe-area-inset-left));
+    padding-right:max(var(--pad-x),env(safe-area-inset-right));
+  }
+}
+
+/* ══ ADMIN ANALYTICS PANEL (Ctrl+Shift+K) — responsive + scroll containment ══ */
+#kr-admin{overscroll-behavior:contain;}
+#kr-admin button{min-height:44px;}
+@media(max-width:540px){
+  #kr-admin{padding:1rem!important;}
+  #kr-stats-grid{grid-template-columns:1fr!important;}
 }
 
 /* ─── PARTICLE CANVAS ─── */
@@ -770,12 +798,12 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
 /* ─── TOAST ─── */
 #kr-toast{
-  position:fixed;bottom:2.2rem;left:50%;
+  position:fixed;bottom:calc(2.2rem + env(safe-area-inset-bottom));left:50%;
   transform:translateX(-50%) translateY(14px);
   background:rgba(8,16,30,.96);
   border:1px solid rgba(56,189,248,.3);
   color:var(--ac);padding:.55rem 1.4rem;border-radius:99px;
-  font-size:.8rem;font-weight:600;white-space:nowrap;
+  font-size:.8rem;font-weight:600;white-space:normal;max-width:calc(100vw - 2rem);text-align:center;
   z-index:9998;opacity:0;pointer-events:none;
   transition:opacity .25s,transform .25s;
   backdrop-filter:blur(14px);
@@ -850,11 +878,14 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 }
 @media(max-width:540px){
   #port-grid{grid-template-columns:1fr!important;}
-  #port-filters{gap:.4rem;}
-  .port-filter{font-size:.7rem;padding:.3rem .7rem;}
-  /* Mobile: hide cards beyond 6 by default — Show More reveals them */
-  .port-card:nth-child(n+7):not(.port-show-all){display:none;}
+  #port-filters{gap:.4rem!important;}
+  .port-filter{font-size:.7rem;padding:.55rem .85rem;}
+  /* Mobile: collapse to first 6 cards until "Show All" — only while the 'All' filter is active
+     (a category filter clears .collapsed, so this rule never hits filtered results) */
+  #port-grid.collapsed .port-card:nth-child(n+7){display:none;}
   #port-more-wrap{display:block!important;}
+  #port-more-wrap.is-hidden{display:none!important;}
+  #port-more-btn{min-height:44px;}
 }
 </style>
 </head>
@@ -1155,7 +1186,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       <button class="port-filter" data-cat="ecomm" onclick="filterPortfolio(this,'ecomm')">eCommerce (1)</button>
     </div>
 
-    <div id="port-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+    <div id="port-grid" class="collapsed" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
 
       <div class="port-card rv" data-cat="ai">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem;">
@@ -1570,7 +1601,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   <div style="max-width:700px;margin:0 auto;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;">
       <h2 style="font-size:1.5rem;font-weight:800;background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">KR Analytics — This Browser Only</h2>
-      <button onclick="document.getElementById('kr-admin').style.display='none'" style="background:var(--s3);border:1px solid var(--bd);color:var(--tx);padding:.5rem 1rem;border-radius:8px;cursor:pointer;font-size:.85rem;">Close ✕</button>
+      <button onclick="closeAdminPanel()" style="background:var(--s3);border:1px solid var(--bd);color:var(--tx);padding:.5rem 1rem;border-radius:8px;cursor:pointer;font-size:.85rem;">Close ✕</button>
     </div>
     <div id="kr-stats-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem;"></div>
     <div style="background:var(--s2);border:1px solid var(--bd);border-radius:12px;padding:1.5rem;">
@@ -1673,6 +1704,10 @@ function closeDrawer(restoreFocus) {
   document.body.style.overflow = '';
   if (wasOpen && restoreFocus) hmb.focus();
 }
+
+// Auto-close the drawer if the viewport grows past the mobile breakpoint
+// (the hamburger hides on desktop — otherwise the scroll-lock could get stuck)
+window.matchMedia('(min-width:901px)').addEventListener('change', e => { if (e.matches) closeDrawer(false); });
 
 /* ── ACTIVE NAV LINKS — handled by the shared geometry scrollspy (window._krSetActiveNav) ── */
 
@@ -1812,6 +1847,7 @@ function showAdminPanel() {
   }).join('');
 
   document.getElementById('kr-admin').style.display = 'block';
+  document.body.style.overflow = 'hidden';
 
   // Render contact submissions
   const LOG_KEY = 'kr_contacts';
@@ -1835,31 +1871,49 @@ function showAdminPanel() {
   }
 }
 
+function closeAdminPanel() {
+  const adm = document.getElementById('kr-admin');
+  if (adm) adm.style.display = 'none';
+  document.body.style.overflow = '';
+}
+
 document.addEventListener('keydown', e => {
   if (e.ctrlKey && e.shiftKey && e.key === 'K') { e.preventDefault(); showAdminPanel(); }
+  if (e.key === 'Escape') {
+    const adm = document.getElementById('kr-admin');
+    if (adm && adm.style.display === 'block') closeAdminPanel();
+  }
 });
 
 /* ── PORTFOLIO FILTER ── */
+// Collapse/expand is a single class on #port-grid (mobile-only via CSS). A category
+// filter clears .collapsed so the "first 6" nth-child rule can never hide filtered
+// results \u2014 preventing the empty-grid trap. The Show-All toggle is hidden when filtering.
 function filterPortfolio(btn, cat) {
   document.querySelectorAll('.port-filter').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.port-card').forEach(card => {
     const cats = (card.dataset.cat || '').split(' ');
-    const match = (cat === 'all' || cats.includes(cat));
-    card.classList.toggle('hidden', !match);
-    card.classList.toggle('port-show-all', match && cat !== 'all');
+    card.classList.toggle('hidden', !(cat === 'all' || cats.includes(cat)));
   });
+  const grid = document.getElementById('port-grid');
+  const wrap = document.getElementById('port-more-wrap');
   const moreBtn = document.getElementById('port-more-btn');
-  if (moreBtn && cat === 'all') moreBtn.textContent = 'Show All Projects \u2193';
+  if (cat === 'all') {
+    grid.classList.add('collapsed');          // re-collapse to first 6 on mobile
+    if (wrap) wrap.classList.remove('is-hidden');
+  } else {
+    grid.classList.remove('collapsed');        // show every match in the category
+    if (wrap) wrap.classList.add('is-hidden');
+  }
+  if (moreBtn) moreBtn.textContent = 'Show All Projects \u2193';
 }
 
 function togglePortMore() {
+  const grid = document.getElementById('port-grid');
   const btn = document.getElementById('port-more-btn');
-  const isExpanded = btn.textContent.includes('\u2191');
-  document.querySelectorAll('.port-card:not(.hidden)').forEach(c => {
-    c.classList.toggle('port-show-all', !isExpanded);
-  });
-  btn.textContent = isExpanded ? 'Show All Projects \u2193' : 'Show Less \u2191';
+  const collapsed = grid.classList.toggle('collapsed');
+  btn.textContent = collapsed ? 'Show All Projects \u2193' : 'Show Less \u2191';
 }
 
 /* ── CONTACT FORM — Web3Forms primary, FormSubmit fallback, mailto last resort ── */
