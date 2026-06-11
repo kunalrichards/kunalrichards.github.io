@@ -322,6 +322,20 @@ nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
 .hc-dot{width:6px;height:6px;background:var(--gr);border-radius:50%;flex-shrink:0;animation:pulse-dot 2s infinite;}
 @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.6);}70%{box-shadow:0 0 0 6px rgba(52,211,153,0);}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.6);}70%{box-shadow:0 0 0 6px rgba(52,211,153,0);}}
+/* Hero status badge — inline-block so the dot flows with the text (no floating gap when it wraps) */
+.hero-badge{
+  display:inline-block;max-width:100%;
+  background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.25);
+  color:var(--ac);padding:.3rem .85rem;border-radius:50px;
+  font-size:.7rem;font-weight:700;letter-spacing:.5px;line-height:1.5;
+  text-align:center;margin-bottom:.5rem;
+}
+.hero-badge-dot{
+  display:inline-block;vertical-align:middle;position:relative;top:-1px;
+  width:7px;height:7px;border-radius:50%;background:var(--ac);
+  margin-right:.45rem;animation:pulse-ac 2s infinite;
+}
+@keyframes pulse-ac{0%,100%{box-shadow:0 0 0 0 rgba(56,189,248,.55);}70%{box-shadow:0 0 0 6px rgba(56,189,248,0);}}
 h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;line-height:1.05;color:var(--hd);margin-bottom:.5rem;letter-spacing:-2px;}
 .name-grad{background:var(--grd);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:grad-anim 4s ease infinite;}
 @keyframes grad-anim{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
@@ -613,6 +627,8 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
   /* Hide location/role chips — shown in pills below */
   .hero-chips-row{display:none;}
+  /* Status badge: smaller so it fits one tidy line on most phones (wraps cleanly on tiny screens) */
+  .hero-badge{font-size:.62rem;padding:.3rem .75rem;letter-spacing:.3px;}
 
   /* Photo BELOW text on mobile */
   .photo-wrap{order:1;width:150px;margin:0 auto;}
@@ -943,7 +959,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   <div class="hero-inner">
 
     <div class="hero-text">
-      <div style="display:inline-flex;align-items:center;gap:.4rem;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.25);color:var(--ac);padding:.28rem .75rem;border-radius:50px;font-size:.7rem;font-weight:700;letter-spacing:.5px;margin-bottom:.5rem;"><span style="width:7px;height:7px;border-radius:50%;background:var(--ac);display:inline-block;animation:pulse 2s infinite;flex-shrink:0;"></span>Senior QA Engineer · ISTQB CTFL Certified · AI Tool Builder</div>
+      <div class="hero-badge"><span class="hero-badge-dot" aria-hidden="true"></span>Senior QA Engineer · ISTQB CTFL Certified · AI Tool Builder</div>
       <div class="hero-chips-row">
         <div class="hero-chip" style="margin-bottom:0;background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">
           📍 Ahmedabad, India
