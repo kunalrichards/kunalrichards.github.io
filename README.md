@@ -7,7 +7,7 @@
 [![Portfolio](https://img.shields.io/badge/🌐_Portfolio-kunalrichards.github.io-0ea5e9?style=for-the-badge&labelColor=0f172a)](https://kunalrichards.github.io)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Kunal_Richards-0077b5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kunal-richards-qa)
 [![Email](https://img.shields.io/badge/Email-kunalrichards4@gmail.com-ea4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:kunalrichards4@gmail.com)
-[![ISTQB](https://img.shields.io/badge/ISTQB-CTFL%202024-FFD700?style=for-the-badge)](https://github.com/kunalrichards)
+[![ISTQB](https://img.shields.io/badge/ISTQB-CTFL%202024-FFD700?style=for-the-badge)](https://www.istqb.org/)
 [![Claude AI](https://img.shields.io/badge/Powered%20by-Claude%20AI-7c3aed?style=for-the-badge&logo=anthropic&logoColor=white)](https://kunalrichards.github.io)
 
 📍 **Ahmedabad, India** &nbsp;·&nbsp; 🏢 **Senior QA Engineer @ Dyad Tech** &nbsp;·&nbsp; 🏆 **ISTQB CTFL 2024**
@@ -129,7 +129,7 @@ Custom dark theme, typing animation, animated stat counters, browser-local analy
 | Sep 2021 – Aug 2022 | **Codal Inc.** | QA Engineer |
 | Nov 2018 – Sep 2021 | **KudosIntech** | QA Engineer |
 
-**5 companies · 7+ years · 50+ projects delivered**
+**5 companies · 7+ years · 20 projects delivered**
 
 ---
 
