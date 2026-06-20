@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://kunalrichards.github.io/Kunal_WellnessApp/">
 
 <!-- Security headers -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none';">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
@@ -33,7 +33,7 @@ html{scroll-behavior:smooth;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;}
 
 /* HEADER */
-header{background:rgba(17,24,39,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.9rem 1.5rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;gap:.8rem;}
+header{background:rgba(17,24,39,.95);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.9rem 1.5rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;gap:.8rem;}
 .logo{font-size:1.3rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap;flex-shrink:0;}
 .logo span{font-size:.75rem;font-weight:400;color:var(--dim);-webkit-text-fill-color:var(--dim);}
 .header-right{display:flex;align-items:center;gap:.7rem;flex-shrink:0;}
@@ -49,11 +49,11 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
 /* CARDS */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:border-color .3s;}
 .card:hover{border-color:rgba(16,185,129,.3);}
-.card-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--dim);margin-bottom:1rem;}
-.card-title span{margin-right:.4rem;}
+.card-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--dim);margin-bottom:1rem;display:inline-flex;align-items:center;gap:.4rem;}
+.card-title span{margin-right:0;font-size:1rem;line-height:1;}
 
 /* POMODORO — spans full width on top */
-.pomodoro-card{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;}
+.pomodoro-card{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
 .timer-side{display:flex;flex-direction:column;align-items:center;}
 .timer-ring-wrap{position:relative;width:180px;height:180px;margin-bottom:1.2rem;}
 .timer-ring-wrap svg{transform:rotate(-90deg);}
@@ -68,7 +68,7 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
 .btn-green{background:linear-gradient(135deg,#10b981,#059669);color:#fff;}
 .btn-gray{background:var(--surface2);border:1px solid var(--border);color:var(--text);}
 .btn-sm{padding:.4rem .9rem;font-size:.78rem;}
-.pomo-modes{display:flex;gap:.5rem;}
+.pomo-modes{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;}
 .mode-btn{padding:.35rem .8rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--dim);cursor:pointer;font-size:.75rem;transition:all .2s;}
 .mode-btn.active{background:rgba(16,185,129,.1);border-color:var(--accent);color:var(--accent);}
 .pomo-info-side{}
@@ -126,7 +126,7 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
 .modal-overlay.show{display:flex;}
 .modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;max-width:480px;width:90%;position:relative;}
 .modal-close{position:absolute;top:1rem;right:1rem;background:var(--surface2);border:1px solid var(--border);color:var(--dim);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;}
-.modal-title{font-size:1.1rem;font-weight:700;color:var(--heading);margin-bottom:.3rem;}
+.modal-title{font-size:1.1rem;font-weight:700;color:var(--heading);margin:0 0 .3rem;}
 .modal-sub{font-size:.82rem;color:var(--dim);margin-bottom:1.5rem;}
 .exercise-card-big{background:var(--surface2);border-radius:12px;padding:1.5rem;text-align:center;margin-bottom:1rem;}
 .ex-icon{font-size:3rem;margin-bottom:.5rem;}
@@ -147,16 +147,16 @@ main{max-width:1100px;margin:0 auto;padding:1.5rem;display:grid;grid-template-co
 }
 
 /* KEYBOARD SHORTCUTS BAR */
-.kbd-bar{background:rgba(10,15,30,.85);border-top:1px solid var(--border);padding:.45rem 1.5rem;display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;font-size:.71rem;color:var(--dim);position:sticky;bottom:0;z-index:50;backdrop-filter:blur(8px);}
-.kbd-bar span{white-space:nowrap;}
-kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,163,175,.4);border-radius:4px;padding:.05rem .35rem;font-family:monospace;font-size:.68rem;color:var(--text);margin-right:.18rem;box-shadow:0 1px 0 rgba(0,0,0,.4);}
+.kbd-bar{background:rgba(10,15,30,.85);border-top:1px solid var(--border);padding:.45rem 1.5rem;display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;font-size:.71rem;color:var(--dim);position:sticky;bottom:0;z-index:50;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}
+.kbd-bar span{white-space:nowrap;display:inline-flex;align-items:center;gap:.18rem;}
+kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,163,175,.4);border-radius:4px;padding:.05rem .35rem;font-family:monospace;font-size:.68rem;color:var(--text);box-shadow:0 1px 0 rgba(0,0,0,.4);}
 @media(max-width:720px){.kbd-bar{display:none;}}
 
 /* SETTINGS MODAL */
 .set-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:300;display:none;align-items:center;justify-content:center;}
 .set-overlay.show{display:flex;}
 .set-modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.8rem;max-width:380px;width:90%;max-height:90vh;overflow-y:auto;}
-.set-title{font-size:1.1rem;font-weight:700;color:var(--heading);margin-bottom:1.2rem;}
+.set-title{font-size:1.1rem;font-weight:700;color:var(--heading);margin:0 0 1.2rem;}
 .set-row{display:flex;justify-content:space-between;align-items:center;padding:.65rem 0;border-bottom:1px solid rgba(55,65,81,.5);font-size:.85rem;gap:.5rem;}
 .set-row:last-of-type{border-bottom:none;}
 .set-label{flex:1;}
@@ -205,9 +205,10 @@ kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,16
     margin-left:0;
     order:2;
     gap:.35rem;
+    flex-wrap:wrap;
     justify-content:flex-start;
   }
-  .streak-badge{font-size:.68rem;padding:.2rem .45rem;}
+  .streak-badge{font-size:.68rem;padding:.2rem .55rem;min-height:44px;display:inline-flex;align-items:center;}
   .btn-label{display:none;}
   #notif-btn,#settings-btn{padding:.35rem .6rem;font-size:.88rem;min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;}
   .back-link{min-height:44px;}
@@ -220,7 +221,7 @@ kbd{display:inline-block;background:var(--surface2);border:1px solid rgba(156,16
   main{padding:.9rem;}
   .modal{padding:1.3rem;}
   .modal-btns{flex-direction:column;}
-  .stat-pill{min-width:calc(50% - .5rem);}
+  .stat-pill{flex:1 1 calc(50% - .5rem);min-width:calc(50% - .5rem);max-width:calc(50% - .5rem);}
 }
 
 /* TINY ≤ 360px */
@@ -265,8 +266,8 @@ input:focus-visible{
   <h1 class="logo">Kunal WellnessApp<span> — Wellness by Kunal Richards</span></h1>
   <a href="../index.html" class="back-link"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/></svg> Portfolio</a>
   <div class="header-right">
-    <div class="streak-badge" id="streak-badge">🔥 0 day streak</div>
-    <button id="notif-btn" aria-label="Enable break alerts" onclick="toggleNotifications()"><span aria-hidden="true">🔔</span> <span class="btn-label">Enable Alerts</span></button>
+    <div class="streak-badge" id="streak-badge"><span aria-hidden="true">🔥</span> <span id="streak-n">0</span> day streak</div>
+    <button id="notif-btn" aria-pressed="false" aria-label="Enable break alerts" onclick="toggleNotifications()"><span aria-hidden="true">🔔</span> <span class="btn-label">Enable Alerts</span></button>
     <button id="settings-btn" aria-label="Open settings" onclick="openSettings()"><span aria-hidden="true">⚙️</span> <span class="btn-label">Settings</span></button>
   </div>
 </header>
@@ -306,9 +307,9 @@ input:focus-visible{
         <div class="pomo-stat"><div class="pomo-stat-n" id="focus-mins">0</div><div class="pomo-stat-l">Focus Minutes</div></div>
       </div>
       <h3 class="card-title" style="margin-bottom:.6rem"><span aria-hidden="true">🍅</span>Session Progress (4 = long break)</h3>
-      <div class="sessions-dots" id="sessions-dots" aria-hidden="true">
-        <div class="session-dot"></div><div class="session-dot"></div>
-        <div class="session-dot"></div><div class="session-dot"></div>
+      <div class="sessions-dots" id="sessions-dots" role="img" aria-label="0 of 4 sessions complete this cycle">
+        <div class="session-dot" aria-hidden="true"></div><div class="session-dot" aria-hidden="true"></div>
+        <div class="session-dot" aria-hidden="true"></div><div class="session-dot" aria-hidden="true"></div>
       </div>
     </div>
   </div>
@@ -360,11 +361,11 @@ input:focus-visible{
 
   <!-- TODAY STATS -->
   <div class="stats-bar">
-    <div class="stat-pill"><div class="stat-pill-icon">🍅</div><div><div class="stat-pill-n" id="stat-sessions">0</div><div class="stat-pill-l">Pomodoros today</div></div></div>
-    <div class="stat-pill"><div class="stat-pill-icon">💧</div><div><div class="stat-pill-n" id="stat-water">0/8</div><div class="stat-pill-l">Glasses of water</div></div></div>
-    <div class="stat-pill"><div class="stat-pill-icon">👁</div><div><div class="stat-pill-n" id="stat-eye">0</div><div class="stat-pill-l">Eye breaks taken</div></div></div>
-    <div class="stat-pill"><div class="stat-pill-icon">⏱</div><div><div class="stat-pill-n" id="stat-focus">0m</div><div class="stat-pill-l">Total focus time</div></div></div>
-    <div class="stat-pill"><div class="stat-pill-icon">🧍</div><div><div class="stat-pill-n" id="stat-posture">0</div><div class="stat-pill-l">Posture checks</div></div></div>
+    <div class="stat-pill"><div class="stat-pill-icon" aria-hidden="true">🍅</div><div><div class="stat-pill-n" id="stat-sessions">0</div><div class="stat-pill-l">Pomodoros today</div></div></div>
+    <div class="stat-pill"><div class="stat-pill-icon" aria-hidden="true">💧</div><div><div class="stat-pill-n" id="stat-water">0/8</div><div class="stat-pill-l">Glasses of water</div></div></div>
+    <div class="stat-pill"><div class="stat-pill-icon" aria-hidden="true">👁</div><div><div class="stat-pill-n" id="stat-eye">0</div><div class="stat-pill-l">Eye breaks taken</div></div></div>
+    <div class="stat-pill"><div class="stat-pill-icon" aria-hidden="true">⏱</div><div><div class="stat-pill-n" id="stat-focus">0m</div><div class="stat-pill-l">Total focus time</div></div></div>
+    <div class="stat-pill"><div class="stat-pill-icon" aria-hidden="true">🧍</div><div><div class="stat-pill-n" id="stat-posture">0</div><div class="stat-pill-l">Posture checks</div></div></div>
   </div>
 
 </main>
@@ -382,12 +383,12 @@ input:focus-visible{
 
 <!-- EXERCISE MODAL -->
 <div class="modal-overlay" id="exercise-modal" onclick="closeExercise()">
-  <div class="modal" role="dialog" aria-modal="true" aria-label="Quick Desk Exercise" onclick="event.stopPropagation()">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="ex-modal-title" onclick="event.stopPropagation()">
     <button class="modal-close" aria-label="Close" onclick="closeExercise()"><span aria-hidden="true">✕</span></button>
-    <div class="modal-title">💪 Quick Desk Exercise</div>
+    <h2 class="modal-title" id="ex-modal-title"><span aria-hidden="true">💪</span> Quick Desk Exercise</h2>
     <div class="modal-sub">Take 2 minutes. Your body will thank you.</div>
-    <div class="exercise-card-big">
-      <div class="ex-icon" id="ex-icon">🤸</div>
+    <div class="exercise-card-big" aria-live="polite" aria-atomic="true">
+      <div class="ex-icon" id="ex-icon" aria-hidden="true">🤸</div>
       <div class="ex-name" id="ex-name">Loading...</div>
       <div class="ex-duration" id="ex-duration"></div>
       <div class="ex-how" id="ex-how"></div>
@@ -401,8 +402,8 @@ input:focus-visible{
 
 <!-- SETTINGS MODAL -->
 <div class="set-overlay" id="set-overlay" onclick="if(event.target===this)closeSettings()">
-  <div class="set-modal" role="dialog" aria-modal="true" aria-label="Session Settings">
-    <div class="set-title">⚙️ Session Settings</div>
+  <div class="set-modal" role="dialog" aria-modal="true" aria-labelledby="set-modal-title">
+    <h2 class="set-title" id="set-modal-title"><span aria-hidden="true">⚙️</span> Session Settings</h2>
     <div class="set-row">
       <div class="set-label"><div>Focus duration</div><div class="set-desc">Main work session length</div></div>
       <input class="set-input" type="number" id="set-focus" min="1" max="90" value="25">
@@ -440,6 +441,11 @@ input:focus-visible{
 const SETTINGS_KEY = 'devfit_settings';
 let settings = Object.assign({ focusMins: 25, shortBreak: 5, longBreak: 15, audioOn: true },
   JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}'));
+// Clamp on load so corrupt/old/hand-edited storage can't yield 0/NaN durations (ranges mirror saveSettings())
+settings.focusMins  = Math.min(90, Math.max(1, parseInt(settings.focusMins)  || 25));
+settings.shortBreak = Math.min(30, Math.max(1, parseInt(settings.shortBreak) || 5));
+settings.longBreak  = Math.min(60, Math.max(5, parseInt(settings.longBreak)  || 15));
+settings.audioOn    = settings.audioOn !== false;
 
 // ─── STATE ───────────────────────────────────────────────────────
 const today = new Date().toDateString();
@@ -456,23 +462,41 @@ function save() { localStorage.setItem('devfit_state', JSON.stringify(state)); u
 
 // ─── TOAST ───────────────────────────────────────────────────────
 function toast(title, msg) {
-  document.getElementById('toast-title').textContent = title;
-  document.getElementById('toast-msg').textContent = msg;
   const t = document.getElementById('toast');
+  const titleEl = document.getElementById('toast-title');
+  const msgEl = document.getElementById('toast-msg');
+  // Clear first so assistive tech re-announces even identical/rapid messages
+  titleEl.textContent = '';
+  msgEl.textContent = '';
+  requestAnimationFrame(() => {
+    titleEl.textContent = title;
+    msgEl.textContent = msg;
+  });
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3500);
+  clearTimeout(t._hideTimer);
+  t._hideTimer = setTimeout(() => t.classList.remove('show'), 3500);
 }
 
 // ─── NOTIFICATIONS ───────────────────────────────────────────────
 let notifEnabled = ('Notification' in window) && Notification.permission === 'granted';
+// Single source of truth for the notif button — preserves the .btn-label span (mobile CSS hides it),
+// keeps the decorative emoji aria-hidden, and syncs the .enabled class + aria-pressed/aria-label state.
+function syncNotifBtn() {
+  const btn = document.getElementById('notif-btn');
+  if (!btn) return;
+  btn.innerHTML = notifEnabled
+    ? '<span aria-hidden="true">🔔</span> <span class="btn-label">Alerts ON</span>'
+    : '<span aria-hidden="true">🔔</span> <span class="btn-label">Enable Alerts</span>';
+  btn.classList.toggle('enabled', notifEnabled);
+  btn.setAttribute('aria-pressed', String(notifEnabled));
+  btn.setAttribute('aria-label', notifEnabled ? 'Disable break alerts' : 'Enable break alerts');
+}
 function toggleNotifications() {
   if (!('Notification' in window)) { toast('Not supported', 'Browser notifications not available'); return; }
-  Notification.requestPermission().then(p => {
+  // Promise.resolve wraps the legacy callback-style requestPermission (older Safari returns undefined)
+  Promise.resolve(Notification.requestPermission()).then(p => {
     notifEnabled = p === 'granted';
-    const btn = document.getElementById('notif-btn');
-    btn.textContent = notifEnabled ? '🔔 Alerts ON' : '🔕 Alerts OFF';
-    btn.className = notifEnabled ? 'enabled' : '';
-    btn.setAttribute('aria-label', notifEnabled ? 'Disable break alerts' : 'Enable break alerts');
+    syncNotifBtn();
     toast(notifEnabled ? 'Alerts Enabled' : 'Alerts Disabled', notifEnabled ? 'You will get break reminders' : 'Enable in browser settings');
   });
 }
@@ -554,6 +578,7 @@ function updateSessionDots() {
   const s = state.sessions % 4;
   const filled = s === 0 && state.sessions > 0 ? 4 : s;
   dots.forEach((d,i) => { d.className = 'session-dot' + (i < filled ? ' done' : ''); });
+  document.getElementById('sessions-dots').setAttribute('aria-label', `${filled} of 4 sessions complete this cycle`);
   document.getElementById('sessions-done').textContent = state.sessions;
   document.getElementById('focus-mins').textContent = state.focusMins;
 }
@@ -688,7 +713,7 @@ const exercises = [
 let exIdx = 0;
 let _lastFocused = null;
 function _focusables(el){return [...el.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(n=>!n.disabled&&n.offsetParent!==null);}
-function _trapTab(ev,id){const l=_focusables(document.getElementById(id));if(!l.length)return;const f=l[0],last=l[l.length-1];if(ev.shiftKey&&document.activeElement===f){ev.preventDefault();last.focus();}else if(!ev.shiftKey&&document.activeElement===last){ev.preventDefault();f.focus();}}
+function _trapTab(ev,id){const m=document.getElementById(id);const l=_focusables(m);if(!l.length)return;const f=l[0],last=l[l.length-1];const a=document.activeElement;if(!m.contains(a)){ev.preventDefault();f.focus();return;}if(ev.shiftKey&&a===f){ev.preventDefault();last.focus();}else if(!ev.shiftKey&&a===last){ev.preventDefault();f.focus();}}
 function openExercise() {
   _lastFocused = document.activeElement;
   exIdx = Math.floor(Math.random() * exercises.length);
@@ -708,7 +733,7 @@ function closeExercise() { document.getElementById('exercise-modal').classList.r
 
 // ─── GLOBAL UI UPDATE ─────────────────────────────────────────────
 function updateUI() {
-  document.getElementById('streak-badge').textContent = `🔥 ${state.streak} day streak`;
+  document.getElementById('streak-n').textContent = state.streak;
   document.getElementById('sessions-done').textContent = state.sessions;
   document.getElementById('focus-mins').textContent = state.focusMins;
   document.getElementById('stat-sessions').textContent = state.sessions;
@@ -723,8 +748,10 @@ buildGlasses();
 updateWater();
 updateTimerDisplay();
 updateUI();
+syncNotifBtn();
 startEyeClock();
-toast('Welcome to Kunal WellnessApp!', 'Your wellness companion is active. Stay hydrated and take breaks!');
+// Defer the welcome toast so a screen reader has finished loading the page before it is announced
+setTimeout(() => toast('Welcome to Kunal WellnessApp!', 'Your wellness companion is active. Stay hydrated and take breaks!'), 600);
 
 // ─── AUDIO FEEDBACK (Web Audio API — no external files needed) ────
 let _audioCtx = null;
@@ -755,7 +782,9 @@ document.addEventListener('keydown', ev => {
   const so=document.getElementById('set-overlay'),eo=document.getElementById('exercise-modal');
   if(so.classList.contains('show')){if(ev.key==='Escape'){ev.preventDefault();closeSettings();return;} if(ev.key==='Tab'){_trapTab(ev,'set-overlay');return;} return;}
   if(eo.classList.contains('show')){if(ev.key==='Escape'){ev.preventDefault();closeExercise();return;} if(ev.key==='Tab'){_trapTab(ev,'exercise-modal');return;} return;}
-  if (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA' || ev.target.tagName === 'SELECT') return;
+  if (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA' || ev.target.tagName === 'SELECT' || ev.target.isContentEditable) return;
+  // Don't hijack Space when a button or link is focused — let native activation run
+  if (ev.key === ' ' && (ev.target.tagName === 'BUTTON' || ev.target.tagName === 'A')) return;
   switch(ev.key) {
     case ' ':      ev.preventDefault(); playClick(); toggleTimer();      break;
     case 'r': case 'R': playClick(); resetTimer();                       break;
