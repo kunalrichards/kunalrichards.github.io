@@ -44,11 +44,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .cv-photo{width:100px;height:120px;border-radius:10px;object-fit:cover;object-position:center top;flex-shrink:0;border:3px solid rgba(255,255,255,.25);}
 .cv-head-text{flex:1;}
 .cv-name{font-size:1.9rem;font-weight:900;letter-spacing:-.4px;margin-bottom:.2rem;}
-.cv-title-line{font-size:.82rem;opacity:.82;margin-bottom:.5rem;line-height:1.5;}
-.cv-loc{font-size:.75rem;opacity:.72;margin-bottom:.8rem;}
-.cv-contacts{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;}
-.cv-ci{font-size:.73rem;opacity:.8;}
-.cv-ci a{color:#fff;text-decoration:none;display:inline-block;padding:.35rem 0;}
+.cv-title-line{font-size:.82rem;opacity:.82;margin-bottom:.5rem;line-height:1.5;display:flex;flex-wrap:wrap;align-items:center;}
+.cv-title-line span:not(:last-child)::after{content:'|';margin:0 .4rem;opacity:.5;}
+.cv-loc{font-size:.75rem;opacity:.72;margin-bottom:.8rem;display:inline-flex;align-items:center;gap:.3rem;line-height:1.3;}
+.cv-contacts{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;align-items:center;}
+.cv-ci{font-size:.73rem;opacity:.8;display:inline-flex;align-items:center;gap:.3rem;padding:.35rem 0;line-height:1.3;}
+.cv-ci a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;padding:0;}
+.cv-ci-ico{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:1.05em;}
 .ai-strip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:.5rem 1rem;margin-top:.8rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;}
 .ai-strip-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:.72;margin-right:.3rem;}
 .ai-chip{background:rgba(56,189,248,.2);border:1px solid rgba(56,189,248,.3);color:#7dd3fc;padding:.18rem .5rem;border-radius:4px;font-size:.65rem;font-weight:600;}
@@ -74,6 +76,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .proj-sb-desc{font-size:.69rem;color:#5a6577;line-height:1.35;}
 
 /* VIBE CODING PROJECT CARDS */
+.vibe-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;}
 .vibe-card{background:#f0f4f8;border:1px solid #cbd5e0;border-radius:6px;padding:.7rem .85rem;border-left:3px solid #1e4d8c;}
 .vibe-card-name{font-size:.78rem;font-weight:800;color:#1e3a5f;margin-bottom:.3rem;}
 .vibe-tags{display:flex;flex-wrap:wrap;gap:.2rem;margin-bottom:.35rem;}
@@ -110,6 +113,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .cv{box-shadow:none;margin:0;border-radius:0;}
   .no-print{display:none;}
   .vibe-card,.exp,.edu,.cert,.sb-sec{break-inside:avoid;}
+  /* Rebalance for paper: a fixed 250px sidebar eats ~40% of the narrower print page,
+     and the 2-col vibe grid squeezes cards — narrow the sidebar, tighten main, single-column the grid */
+  .cv-body{grid-template-columns:190px 1fr;}
+  .cv-main{padding:1.4rem 1.5rem;}
+  .vibe-grid{grid-template-columns:1fr;}
 }
 @media(max-width:700px){
   .cv-body{grid-template-columns:1fr;}
@@ -120,6 +128,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .cv-photo{width:80px;height:95px;}
   .vibe-card{grid-column:1/-1;}
   .exp-top{flex-wrap:wrap;}
+  /* wrapped date becomes a deliberate full-width meta line under the company, not an orphaned fragment */
+  .exp-top .exp-per{width:100%;white-space:normal;margin-top:.1rem;}
 }
 </style>
 </head>
@@ -137,13 +147,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <img src="kunal-photo.jpg" alt="Kunal Richards — Senior QA Engineer" class="cv-photo" width="100" height="120" loading="eager" decoding="async">
     <div class="cv-head-text">
       <h1 class="cv-name">Kunal Richards</h1>
-      <div class="cv-title-line">Senior QA Engineer &nbsp;|&nbsp; ISTQB CTFL &nbsp;|&nbsp; Automation (Selenium + Python + Java) &nbsp;|&nbsp; AI Tool Builder &nbsp;|&nbsp; Vibe Coder &nbsp;|&nbsp; Insurance Domain Expert</div>
-      <div class="cv-loc">📍 Ahmedabad, Gujarat, India</div>
+      <div class="cv-title-line"><span>Senior QA Engineer</span><span>ISTQB CTFL</span><span>Automation (Selenium + Python + Java)</span><span>AI Tool Builder</span><span>Vibe Coder</span><span>Insurance Domain Expert</span></div>
+      <div class="cv-loc"><span class="cv-ci-ico" aria-hidden="true">📍</span>Ahmedabad, Gujarat, India</div>
       <div class="cv-contacts">
-        <div class="cv-ci">✉ <a href="mailto:kunalrichards4@gmail.com">kunalrichards4@gmail.com</a></div>
-        <div class="cv-ci">📱 +91 82003 79330</div>
-        <div class="cv-ci">💼 <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank" rel="noopener noreferrer">linkedin.com/in/kunal-richards-qa</a></div>
-        <div class="cv-ci">🐙 <a href="https://github.com/kunalrichards" target="_blank" rel="noopener noreferrer">github.com/kunalrichards</a></div>
+        <div class="cv-ci"><span class="cv-ci-ico" aria-hidden="true">✉</span><a href="mailto:kunalrichards4@gmail.com">kunalrichards4@gmail.com</a></div>
+        <div class="cv-ci"><span class="cv-ci-ico" aria-hidden="true">📱</span>+91 82003 79330</div>
+        <div class="cv-ci"><span class="cv-ci-ico" aria-hidden="true">💼</span><a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank" rel="noopener noreferrer">linkedin.com/in/kunal-richards-qa</a></div>
+        <div class="cv-ci"><span class="cv-ci-ico" aria-hidden="true">🐙</span><a href="https://github.com/kunalrichards" target="_blank" rel="noopener noreferrer">github.com/kunalrichards</a></div>
       </div>
       <div class="ai-strip">
         <span class="ai-strip-label">AI Stack:</span>
@@ -304,7 +314,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
       <div class="ms">
         <h2 class="ms-h">AI-Built QA Tools — Vibe Coding</h2>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;">
+        <div class="vibe-grid">
 
           <div class="vibe-card">
             <div class="vibe-card-name">AI Bug Reporter</div>

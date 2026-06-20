@@ -362,8 +362,11 @@ h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;line-height:1.05;color:var
 .btn-outline{background:transparent;border:1.5px solid var(--bd);color:var(--hd);}
 .btn-outline:hover{border-color:var(--ac);color:var(--ac);transform:translateY(-2px);box-shadow:0 4px 16px rgba(56,189,248,.12);}
 .socrow{display:flex;gap:1rem;flex-wrap:wrap;}
-.soc{display:flex;align-items:center;gap:.32rem;color:var(--dim);text-decoration:none;font-size:.78rem;transition:color .2s;}
+.soc{display:flex;align-items:center;gap:.4rem;color:var(--dim);text-decoration:none;font-size:.78rem;line-height:1;transition:color .2s;}
 .soc:hover{color:var(--ac);}
+/* Normalize all three social icons (emoji ✉/📱 + LinkedIn SVG) into one fixed box so they align & space evenly */
+.soc-ico{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;font-size:13px;line-height:1;}
+.soc-ico svg{width:100%;height:100%;display:block;}
 
 /* Hero photo card */
 .photo-wrap{position:relative;flex-shrink:0;width:300px;}
@@ -407,8 +410,9 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 }
 .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grd);}
 .stat-card:hover{border-color:rgba(56,189,248,.3);transform:translateY(-4px);box-shadow:0 12px 40px rgba(56,189,248,.08);}
-.stat-num{font-size:2.5rem;font-weight:900;background:var(--grd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1;}
-.stat-ctfl{font-size:1.8rem;font-weight:900;background:var(--grd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+/* Equal line-box height on both value types so the 4 stat labels share one baseline (CTFL is a smaller font than the numbers) */
+.stat-num{font-size:2.5rem;font-weight:900;background:var(--grd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:2.75rem;}
+.stat-ctfl{font-size:1.8rem;font-weight:900;background:var(--grd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:2.75rem;}
 .stat-lbl{color:var(--dim);font-size:.76rem;margin-top:.3rem;}
 
 /* ─── ABOUT ─── */
@@ -482,7 +486,7 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 .timeline{position:relative;padding-left:2rem;}
 .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#38bdf8,#a78bfa,#34d399,#ec4899);}
 .tl-item{position:relative;margin-bottom:1.6rem;padding-left:1.8rem;}
-.tl-dot{position:absolute;left:-2.35rem;top:.6rem;width:14px;height:14px;border-radius:50%;background:var(--grd);border:2.5px solid var(--bg);box-shadow:0 0 10px rgba(56,189,248,.4);}
+.tl-dot{position:absolute;left:-2.35rem;top:1.5rem;width:14px;height:14px;border-radius:50%;background:var(--grd);border:2.5px solid var(--bg);box-shadow:0 0 10px rgba(56,189,248,.4);}
 .tl-card{background:var(--s1);border:1px solid var(--bd);border-radius:13px;padding:1.3rem;transition:border-color .3s,transform .3s,box-shadow .3s;}
 .tl-card:hover{border-color:rgba(56,189,248,.3);transform:translateX(4px);box-shadow:0 8px 30px rgba(56,189,248,.05);}
 .tl-company{font-size:1rem;font-weight:800;color:var(--hd);}
@@ -657,15 +661,15 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   /* Inline social links, compact */
   .socrow{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:.4rem .9rem;}
   .soc{font-size:.74rem;}
-  .soc svg{width:13px;height:13px;}
+  .soc-ico{width:13px;height:13px;font-size:11px;}
 
   section{padding:2.8rem var(--pad-x);}
   .sec-head{margin-bottom:2rem;}
 
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:.7rem;}
   .stat-card{padding:1.2rem .85rem;}
-  .stat-num{font-size:2rem;}
-  .stat-ctfl{font-size:1.5rem;}
+  .stat-num{font-size:2rem;line-height:2.2rem;}
+  .stat-ctfl{font-size:1.5rem;line-height:2.2rem;}
   .stat-lbl{font-size:.7rem;}
 
   .about-grid{gap:1.5rem;}
@@ -1001,10 +1005,10 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       </div>
       <div class="socrow">
         <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank" rel="noopener noreferrer" class="soc" aria-label="LinkedIn">
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>LinkedIn
+          <span class="soc-ico"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></span>LinkedIn
         </a>
-        <a href="mailto:kunalrichards4@gmail.com" class="soc">✉ kunalrichards4@gmail.com</a>
-        <a href="tel:+918200379330" class="soc">📱 +91 82003 79330</a>
+        <a href="mailto:kunalrichards4@gmail.com" class="soc"><span class="soc-ico" aria-hidden="true">✉</span>kunalrichards4@gmail.com</a>
+        <a href="tel:+918200379330" class="soc"><span class="soc-ico" aria-hidden="true">📱</span>+91 82003 79330</a>
       </div>
     </div>
 
