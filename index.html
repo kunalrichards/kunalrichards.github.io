@@ -150,7 +150,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 @keyframes kr-fade{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){body{animation:none;}}
 /* WCAG 2.2 SC 2.4.11 Focus Not Obscured — keep hash/focus targets clear of the fixed nav and bottom sticky bars */
-#about,#ai,#projects,#experience,#skills,#contact,:target{scroll-margin-top:calc(var(--nav-h) + 8px);scroll-margin-bottom:6rem;}
+#about,#services,#ai,#projects,#experience,#skills,#contact,:target{scroll-margin-top:calc(var(--nav-h) + 8px);scroll-margin-bottom:6rem;}
 img{max-width:100%;height:auto;display:block;}
 a{color:inherit;-webkit-tap-highlight-color:transparent;}
 button{-webkit-tap-highlight-color:transparent;}
@@ -255,6 +255,8 @@ nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
   letter-spacing:-1px;text-decoration:none;flex-shrink:0;
 }
 .desk-nav{display:flex;gap:1.8rem;list-style:none;align-items:center;}
+/* Tighten nav spacing on smaller desktops/tablets so the link row never crowds the logo */
+@media(max-width:1120px){.desk-nav{gap:1.15rem;}}
 .desk-nav a{position:relative;color:var(--dim);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s ease;display:inline-flex;align-items:center;min-height:24px;}
 .desk-nav a:hover,.desk-nav a.active{color:var(--ac);}
 .desk-nav a:not(.ncv)::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--ac);border-radius:2px;transform:scaleX(0);transform-origin:center;transition:transform .25s ease;}
@@ -946,6 +948,16 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   #port-more-btn{min-height:44px;}
 }
 
+/* ─── SERVICES — How I Can Help ─── */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;}
+.svc-card{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.6rem;box-shadow:var(--sh-card);display:flex;flex-direction:column;transition:border-color .3s,transform .3s,box-shadow .3s;}
+.svc-card:hover{border-color:rgba(56,189,248,.3);transform:translateY(-4px);box-shadow:0 16px 50px rgba(56,189,248,.08);}
+.svc-icon{font-size:1.9rem;line-height:1;margin-bottom:.8rem;}
+.svc-title{font-size:1rem;font-weight:800;color:var(--hd);margin-bottom:.45rem;letter-spacing:-.2px;}
+.svc-desc{font-size:.82rem;color:var(--dim);line-height:1.65;margin-bottom:1rem;flex:1;}
+.svc-link{align-self:flex-start;margin-top:auto;font-size:.76rem;font-weight:700;color:var(--ac);text-decoration:none;transition:gap .2s;}
+.svc-link:hover{text-decoration:underline;}
+
 /* ─── ISTQB CERTIFICATE (hero credential card + lightbox) ─── */
 .hero-cert{display:inline-flex;align-items:center;gap:.7rem;max-width:100%;margin:0 0 1.4rem;background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.25);border-radius:12px;padding:.45rem .85rem .45rem .45rem;text-decoration:none;cursor:pointer;text-align:left;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;}
 .hero-cert:hover,.hero-cert:focus-visible{border-color:var(--gr);background:rgba(52,211,153,.13);transform:translateY(-1px);box-shadow:0 6px 22px rgba(52,211,153,.14);}
@@ -986,6 +998,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
   <ul class="desk-nav" id="desk-nav">
     <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
     <li><a href="#ai">AI QA</a></li>
     <li><a href="#projects">AI Tools</a></li>
     <li><a href="#portfolio">Work</a></li>
@@ -1008,6 +1021,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 <div class="mob-drawer" id="mob-drawer" role="navigation" aria-label="Mobile navigation">
   <div class="mob-drawer-inner">
     <a href="#about" class="mob-link">About</a>
+    <a href="#services" class="mob-link">Services</a>
     <a href="#ai" class="mob-link">AI QA</a>
     <a href="#projects" class="mob-link">AI Tools</a>
     <a href="#portfolio" class="mob-link">Work</a>
@@ -1130,6 +1144,24 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ══ SERVICES — HOW I CAN HELP ══ -->
+<section id="services" aria-label="QA services">
+  <div class="con">
+    <div class="sec-head">
+      <div class="sec-tag">// Services</div>
+      <h2 class="sec-title">How I Can Help</h2>
+      <p class="sec-desc">Practical QA support for teams that need testing done right — from hands-on execution to automation and AI-assisted QA tooling. Available for consulting and select freelance engagements.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🧪</div><h3 class="svc-title">Manual &amp; Functional QA</h3><p class="svc-desc">Exploratory, functional, regression, and UAT testing across web and mobile — clear, reproducible bug reports your developers can act on.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
+      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🤖</div><h3 class="svc-title">Test Automation</h3><p class="svc-desc">Selenium frameworks (Java/TestNG and Python) with Page Object Model and Allure reporting — turning slow, repetitive regression passes into reliable automated runs.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
+      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🔗</div><h3 class="svc-title">API Testing</h3><p class="svc-desc">REST API validation with Postman and RestAssured — status, schema, and integration checks wired into your regression suite.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
+      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🧠</div><h3 class="svc-title">AI-Assisted QA &amp; Tooling</h3><p class="svc-desc">Custom AI tools for QA — structured bug reports from tickets, test-case generation, and coverage dashboards — the same kind I run in production today.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
+      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">📋</div><h3 class="svc-title">Test Strategy &amp; Process</h3><p class="svc-desc">Risk-based test planning, STLC setup, defect triage, and QA process documentation — structure for teams scaling their testing.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
+    </div>
   </div>
 </section>
 
@@ -2305,8 +2337,8 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
 
 /* ── SECTION NAV DOTS + shared scrollspy ── */
 (function(){
-  const secs = ['about','ai','projects','portfolio','experience','skills','certs','contact'];
-  const labs = ['About','AI QA','AI Tools','Work','Experience','Skills','Certifications','Contact'];
+  const secs = ['about','services','ai','projects','portfolio','experience','skills','certs','contact'];
+  const labs = ['About','Services','AI QA','AI Tools','Work','Experience','Skills','Certifications','Contact'];
   const wrap = document.createElement('div');
   wrap.id='sec-dots'; wrap.setAttribute('role','navigation'); wrap.setAttribute('aria-label','Jump to section');
   secs.forEach((id,i)=>{
