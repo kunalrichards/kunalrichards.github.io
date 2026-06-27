@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-IN" style="opacity:0"><noscript><style>html{opacity:1!important}</style></noscript>
+<html lang="en-IN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -33,7 +33,7 @@
 <meta property="og:site_name" content="Kunal Richards — Portfolio">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kunal Richards | Senior QA Engineer">
+<meta name="twitter:title" content="Kunal Richards | Senior QA Engineer & AI Tool Builder">
 <meta name="twitter:description" content="7+ years QA • ISTQB CTFL • AI Tool Builder • Selenium Expert">
 <meta name="twitter:image" content="https://kunalrichards.github.io/og-image.jpg">
 <meta name="twitter:image:alt" content="Kunal Richards — Senior QA Engineer & AI Tool Builder · ISTQB CTFL · 7+ Years QA">
@@ -57,7 +57,7 @@
   "familyName":"Richards",
   "jobTitle":"Senior QA Engineer",
   "disambiguatingDescription":"Senior QA Engineer and AI Tool Builder with 7+ years of experience in test automation, insurance domain QA, and AI-assisted quality engineering. ISTQB CTFL certified December 2024.",
-  "description":"Senior QA Engineer based in Ahmedabad, India with 7+ years experience across enterprise insurance platforms, eCommerce, SaaS, and mobile. ISTQB CTFL certified. Built four production AI/QA tools used daily by the team.",
+  "description":"Senior QA Engineer based in Ahmedabad, India with 7+ years experience across enterprise insurance platforms, eCommerce, SaaS, and mobile. ISTQB CTFL certified. Builds production AI/QA tools used daily by the team.",
   "url":"https://kunalrichards.github.io/",
   "image":{"@type":"ImageObject","url":"https://kunalrichards.github.io/kunal-photo-hd.jpg","width":600,"height":840},
   "email":"kunalrichards4@gmail.com",
@@ -130,7 +130,9 @@
 :root{
   --bg:#04080f; --s1:#0a1020; --s2:#111827; --s3:#1a2235;
   --ac:#38bdf8; --ac2:#a78bfa; --gr:#34d399; --yw:#fbbf24;
-  --tx:#c8d5e8; --dim:#7a8a9e; --hd:#f0f5fc; --bd:#1a2d45;
+  --tx:#c8d5e8; --dim:#9aa8bd; --hd:#f0f5fc; --bd:rgba(255,255,255,.08);
+  --sh-card:0 1px 2px rgba(0,0,0,.35),0 8px 24px rgba(0,0,0,.22);
+  --sh-glow:0 8px 36px rgba(56,189,248,.40);
   --grd:linear-gradient(135deg,#38bdf8,#a78bfa);
   --grd-btn:linear-gradient(135deg,#0c7fb8,#6d4bc9);/* darker — white text clears WCAG AA (≈4.6:1 / 5.9:1) */
   --grd2:linear-gradient(135deg,#34d399,#38bdf8);
@@ -141,8 +143,12 @@
 
 /* ─── RESET ─── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%;transition:opacity .35s ease;scroll-padding-top:var(--nav-h);}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%;scroll-padding-top:var(--nav-h);}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;animation:kr-fade .25s ease both;}
+@keyframes kr-fade{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){body{animation:none;}}
+/* WCAG 2.2 SC 2.4.11 Focus Not Obscured — keep hash/focus targets clear of the fixed nav and bottom sticky bars */
+#about,#ai,#projects,#experience,#skills,#contact,:target{scroll-margin-top:calc(var(--nav-h) + 8px);scroll-margin-bottom:6rem;}
 img{max-width:100%;height:auto;display:block;}
 a{color:inherit;-webkit-tap-highlight-color:transparent;}
 button{-webkit-tap-highlight-color:transparent;}
@@ -194,7 +200,7 @@ html{scrollbar-width:thin;scrollbar-color:var(--ac) transparent;}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
 /* ─── FOCUS / INTERACTION POLISH ─── */
-*:focus-visible{outline:2px solid var(--ac);outline-offset:3px;border-radius:4px;}
+*:focus-visible{outline:2px solid var(--ac);outline-offset:3px;box-shadow:0 0 0 5px rgba(56,189,248,.12);}
 .btn:active{transform:scale(0.96)!important;}
 .plink:active{transform:scale(0.95)!important;}
 .soc:active{opacity:.7;}
@@ -217,7 +223,11 @@ body::after{
   transform:translateZ(0);
 }
 /* ─── PERF: skip paint for off-screen sections until they scroll into view ─── */
-#about,#ai,#projects,#experience,#skills,#contact{
+/* Only the top two sections keep content-visibility — the 600px intrinsic-size estimate on
+   deeper sections made first-click anchor nav mis-land on a cold desktop load (browser summed
+   inaccurate placeholders for not-yet-painted sections above the target). Mobile disables this
+   entirely at <=900px for the same reason. */
+#about,#ai{
   content-visibility:auto;
   contain-intrinsic-size:auto 600px;
 }
@@ -243,8 +253,10 @@ nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
   letter-spacing:-1px;text-decoration:none;flex-shrink:0;
 }
 .desk-nav{display:flex;gap:1.8rem;list-style:none;align-items:center;}
-.desk-nav a{color:var(--dim);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s;}
+.desk-nav a{position:relative;color:var(--dim);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s ease;display:inline-flex;align-items:center;min-height:24px;}
 .desk-nav a:hover,.desk-nav a.active{color:var(--ac);}
+.desk-nav a:not(.ncv)::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--ac);border-radius:2px;transform:scaleX(0);transform-origin:center;transition:transform .25s ease;}
+.desk-nav a:not(.ncv):hover::after,.desk-nav a:not(.ncv).active::after{transform:scaleX(1);}
 .desk-nav .ncv{
   background:var(--grd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
   font-weight:700;border:1px solid rgba(56,189,248,.25);
@@ -339,8 +351,8 @@ nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
   margin-right:.45rem;animation:pulse-ac 2s infinite;
 }
 @keyframes pulse-ac{0%,100%{box-shadow:0 0 0 0 rgba(56,189,248,.55);}70%{box-shadow:0 0 0 6px rgba(56,189,248,0);}}
-h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;line-height:1.05;color:var(--hd);margin-bottom:.5rem;letter-spacing:-2px;}
-.name-grad{background:var(--grd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:grad-anim 4s ease infinite;}
+h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;line-height:1.05;color:var(--hd);margin-bottom:.5rem;letter-spacing:-.025em;}
+.name-grad{background:var(--grd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 @keyframes grad-anim{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
 .typing-line{font-size:1.05rem;color:var(--dim);min-height:1.7rem;margin-bottom:1rem;font-weight:400;}
 .pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.8rem;}
@@ -358,8 +370,8 @@ h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;line-height:1.05;color:var
   -webkit-user-select:none;
 }
 .btn-fill{background:var(--grd-btn);color:#fff;box-shadow:0 4px 20px rgba(56,189,248,.28);}
-.btn-fill:hover{box-shadow:0 8px 36px rgba(56,189,248,.45);transform:translateY(-3px);}
-.btn-outline{background:transparent;border:1.5px solid var(--bd);color:var(--hd);}
+.btn-fill:hover{box-shadow:var(--sh-glow);transform:translateY(-3px);}
+.btn-outline{background:transparent;border:1px solid var(--bd);color:var(--hd);}
 .btn-outline:hover{border-color:var(--ac);color:var(--ac);transform:translateY(-2px);box-shadow:0 4px 16px rgba(56,189,248,.12);}
 .socrow{display:flex;gap:1rem;flex-wrap:wrap;}
 .soc{display:flex;align-items:center;gap:.4rem;color:var(--dim);text-decoration:none;font-size:.78rem;line-height:1;transition:color .2s;}
@@ -397,18 +409,19 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 }
 .sec-head{text-align:center;margin-bottom:3rem;}
 .sec-tag{display:inline-block;color:var(--gr);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:2.5px;margin-bottom:.4rem;}
-.sec-title{font-size:clamp(1.55rem,4vw,2rem);font-weight:900;color:var(--hd);margin-bottom:.4rem;letter-spacing:-1px;}
+.sec-title{font-size:clamp(1.55rem,4vw,2rem);font-weight:900;color:var(--hd);margin-bottom:.4rem;letter-spacing:-.03em;}
 .sec-desc{color:var(--dim);font-size:.86rem;max-width:520px;margin:0 auto;line-height:1.7;}
 
 /* ─── STATS ─── */
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:3.5rem;}
 .stat-card{
   background:var(--s1);border:1px solid var(--bd);border-radius:16px;
-  padding:1.6rem 1.2rem;text-align:center;
+  padding:1.6rem 1.2rem;text-align:center;box-shadow:var(--sh-card);
   transition:transform .3s,border-color .3s,box-shadow .3s;
   position:relative;overflow:hidden;cursor:default;
 }
-.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grd);}
+.stat-card::before{content:'';position:absolute;top:0;left:14px;right:14px;height:2px;background:var(--grd);opacity:.65;transition:opacity .3s ease;}
+.stat-card:hover::before{opacity:1;}
 .stat-card:hover{border-color:rgba(56,189,248,.3);transform:translateY(-4px);box-shadow:0 12px 40px rgba(56,189,248,.08);}
 /* Equal line-box height on both value types so the 4 stat labels share one baseline (CTFL is a smaller font than the numbers) */
 .stat-num{font-size:2.5rem;font-weight:900;background:var(--grd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:2.75rem;}
@@ -462,10 +475,11 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;}
 .proj-card{
   background:var(--s1);border:1px solid var(--bd);border-radius:16px;
-  padding:1.5rem;position:relative;overflow:hidden;
+  padding:1.5rem;position:relative;overflow:hidden;box-shadow:var(--sh-card);
   transition:border-color .3s,box-shadow .3s;cursor:default;
 }
-.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grd);}
+.proj-card::before{content:'';position:absolute;top:0;left:16px;right:16px;height:2px;background:var(--grd);opacity:.6;transition:opacity .3s ease;}
+.proj-card:hover::before{opacity:1;}
 .proj-card:hover{border-color:rgba(167,139,250,.35);box-shadow:0 16px 50px rgba(56,189,248,.07);}
 .proj-icon{font-size:2rem;margin-bottom:.9rem;line-height:1;}
 .proj-title{font-size:1rem;font-weight:800;color:var(--hd);margin-bottom:.4rem;}
@@ -487,7 +501,7 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#38bdf8,#a78bfa,#34d399,#ec4899);}
 .tl-item{position:relative;margin-bottom:1.6rem;padding-left:1.8rem;}
 .tl-dot{position:absolute;left:-2.35rem;top:1.5rem;width:14px;height:14px;border-radius:50%;background:var(--grd);border:2.5px solid var(--bg);box-shadow:0 0 10px rgba(56,189,248,.4);}
-.tl-card{background:var(--s1);border:1px solid var(--bd);border-radius:13px;padding:1.3rem;transition:border-color .3s,transform .3s,box-shadow .3s;}
+.tl-card{background:var(--s1);border:1px solid var(--bd);border-radius:13px;padding:1.3rem;box-shadow:var(--sh-card);transition:border-color .3s,transform .3s,box-shadow .3s;}
 .tl-card:hover{border-color:rgba(56,189,248,.3);transform:translateX(4px);box-shadow:0 8px 30px rgba(56,189,248,.05);}
 .tl-company{font-size:1rem;font-weight:800;color:var(--hd);}
 .tl-role{color:var(--ac);font-size:.82rem;font-weight:600;margin-top:.1rem;}
@@ -510,7 +524,7 @@ section{padding:5rem var(--pad-x);position:relative;z-index:1;}
 .cert-card{
   background:var(--s1);border:1px solid var(--bd);border-radius:13px;
   padding:1.3rem;display:flex;gap:.85rem;align-items:flex-start;
-  transition:border-color .3s,transform .3s;
+  box-shadow:var(--sh-card);transition:border-color .3s,transform .3s,box-shadow .3s;
 }
 .cert-card:hover{border-color:rgba(167,139,250,.3);transform:translateY(-3px);}
 .cert-icon{font-size:1.7rem;line-height:1;flex-shrink:0;}
@@ -763,7 +777,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
 /* ─── SOUND BTN — slim icon inside nav ─── */
 #snd-btn{
-  background:none;border:none;padding:.1rem .15rem;
+  background:none;border:none;padding:.1rem .15rem;min-width:44px;min-height:44px;justify-content:center;
   color:var(--dim);font-size:.88rem;cursor:pointer;
   transition:color .2s,transform .15s;line-height:1;
   display:flex;align-items:center;
@@ -848,14 +862,20 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   backdrop-filter:none;box-shadow:none;
 }
 .sec-dot{
+  width:24px;height:24px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;background:none;border:none;
+  cursor:pointer;text-decoration:none;
+}
+.sec-dot::after{
+  content:'';
   width:7px;height:7px;border-radius:50%;
   background:rgba(56,189,248,.14);
   border:1px solid rgba(56,189,248,.25);
-  cursor:pointer;transition:all .25s;display:block;
-  text-decoration:none;
+  transition:all .25s;
 }
-.sec-dot:hover{background:rgba(56,189,248,.45);transform:scale(1.35);}
-.sec-dot.active{
+.sec-dot:hover::after{background:rgba(56,189,248,.45);transform:scale(1.35);}
+.sec-dot.active::after{
   background:var(--ac);
   box-shadow:0 0 0 3px rgba(56,189,248,.18),0 0 10px rgba(56,189,248,.45);
   transform:scale(1.45);
@@ -889,7 +909,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 .port-filter.active{background:rgba(56,189,248,.1);border-color:var(--ac);color:var(--ac);}
 .port-card{
   background:var(--s2);border:1px solid var(--bd);border-radius:13px;
-  padding:1.2rem;
+  padding:1.2rem;box-shadow:var(--sh-card);
   transition:border-color .25s,transform .25s,box-shadow .25s;
 }
 .port-card:hover{border-color:rgba(56,189,248,.3);transform:translateY(-3px);box-shadow:0 10px 30px rgba(56,189,248,.06);}
@@ -934,7 +954,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
 <!-- NAV -->
 <nav aria-label="Main navigation">
-  <a href="/" class="nl">KR.<span class="sr-only"> Kunal Richards — home</span></a>
+  <a href="#main" class="nl" onclick="event.preventDefault();window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});">KR.<span class="sr-only"> Kunal Richards — home</span></a>
 
   <ul class="desk-nav" id="desk-nav">
     <li><a href="#about">About</a></li>
@@ -977,7 +997,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   <div class="hero-inner">
 
     <div class="hero-text">
-      <div class="hero-badge"><span class="hero-badge-dot" aria-hidden="true"></span>Senior QA Engineer · ISTQB CTFL Certified · AI Tool Builder</div>
+      <div class="hero-badge"><span class="hero-badge-dot" aria-hidden="true"></span>Production AI/QA tools, used daily by my team · ISTQB CTFL</div>
       <div class="hero-chips-row">
         <div class="hero-chip" style="margin-bottom:0;background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">
           📍 Ahmedabad, India
@@ -988,8 +1008,8 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         </div>
       </div>
       <h1>Kunal<br><span class="name-grad">Richards</span></h1>
-      <div class="typing-line" id="typing-el" aria-hidden="true"><span id="typing-text">Senior QA Engineer</span><span id="typing-cursor" aria-hidden="true"></span></div>
-      <p class="sr-only">Senior QA Engineer, Selenium Automation Expert, AI QA Tool Builder, ISTQB CTFL Certified, Insurance Domain Specialist, QA Team Mentor</p>
+      <div class="typing-line" id="typing-el" aria-hidden="true"><span id="typing-text">I build AI tools that test software</span><span id="typing-cursor" aria-hidden="true"></span></div>
+      <p class="sr-only">I build AI tools that test software. Senior QA Engineer with 7+ years. Selenium and API test automation. ISTQB CTFL Certified. Insurance-domain QA at scale. I mentor QA engineers to ship solo.</p>
       <div class="pills">
         <span class="pill pv">AI Tool Builder</span>
         <span class="pill pb">Selenium Automation</span>
@@ -999,7 +1019,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         <span class="pill pv">Team Mentor</span>
       </div>
       <div class="ctas">
-        <a href="#contact" class="btn btn-fill">Let's Talk →</a>
+        <a href="#contact" class="btn btn-fill">Hire Me →</a>
         <a href="cv.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">View CV</a>
         <a href="#projects" class="btn btn-outline">View Projects</a>
       </div>
@@ -1025,17 +1045,15 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
   </div>
 </section>
-<!-- Reveal as soon as the hero (LCP) is parsed — avoids waiting on bottom-of-page JS (DOMContentLoaded still re-affirms it below) -->
-<script>document.documentElement.style.opacity='1';</script>
 
 <!-- ══ ABOUT + STATS ══ -->
 <section id="about" aria-label="About Kunal Richards">
   <div class="con">
 
     <div class="stats-grid">
-      <div class="stat-card rv"><div class="stat-num" data-target="7" data-suf="+">0</div><div class="stat-lbl">Years of Experience</div></div>
-      <div class="stat-card rv"><div class="stat-num" data-target="5" data-suf="">0</div><div class="stat-lbl">Companies Worked</div></div>
-      <div class="stat-card rv"><div class="stat-num" data-target="4" data-suf="">0</div><div class="stat-lbl">AI / QA Tools Built</div></div>
+      <div class="stat-card rv"><div class="stat-num" data-target="7" data-suf="+" aria-hidden="true">0</div><span class="sr-only">7+</span><div class="stat-lbl">Years of Experience</div></div>
+      <div class="stat-card rv"><div class="stat-num" data-target="5" data-suf="" aria-hidden="true">0</div><span class="sr-only">5</span><div class="stat-lbl">Companies Worked</div></div>
+      <div class="stat-card rv"><div class="stat-num" data-target="4" data-suf="" aria-hidden="true">0</div><span class="sr-only">4</span><div class="stat-lbl">AI / QA Tools Built</div></div>
       <div class="stat-card rv"><div class="stat-ctfl">CTFL</div><div class="stat-lbl">ISTQB Certified · Dec 2024</div></div>
     </div>
 
@@ -1061,10 +1079,10 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       </div>
 
       <div class="about-text">
-        <h2 class="about-h">Quality Engineering With Practical AI</h2>
-        <p>I'm a <strong style="color:var(--hd)">Senior QA Engineer</strong> with <strong style="color:var(--hd)">7+ years</strong> of experience across enterprise insurance platforms, automation, SaaS, eCommerce, and mobile. At <strong style="color:var(--hd)">Dyad Tech</strong>, I lead QA for the <strong style="color:var(--hd)">Nexsure Insurance Platform</strong> — 23 modules, full STLC ownership, Agile sprints, and release sign-off.</p>
-        <p>My strongest edge is combining deep QA discipline with practical AI tooling. I have built <strong style="color:var(--hd)">four production AI/QA tools</strong> used daily by my team — replacing slow manual bug write-ups with consistent AI-generated reports, automating test-case drafting, and giving QA leads coverage dashboards without manual collation.</p>
-        <p>ISTQB CTFL certified (Dec 2024). Strong in full STLC ownership, Agile delivery, API and automation testing, insurance domain expertise, and mentoring junior QA engineers to independent delivery.</p>
+        <h2 class="about-h">A QA engineer who ships the tools, not just the test plans</h2>
+        <p>I'm a <strong style="color:var(--hd)">Senior QA Engineer</strong> with <strong style="color:var(--hd)">7+ years</strong> of experience across enterprise insurance, SaaS, eCommerce, and mobile. At <strong style="color:var(--hd)">Dyad Tech</strong>, I lead QA for the <strong style="color:var(--hd)">Nexsure Insurance Platform</strong> — 23 modules, owned end to end from test planning through release sign-off.</p>
+        <p>I've built <strong style="color:var(--hd)">a suite of AI/QA tools now in daily production use</strong> by my team — generating structured bug reports from Jira tickets, automating test-case drafting, and giving QA leads coverage dashboards without manual collation.</p>
+        <p>ISTQB CTFL certified (Dec 2024). My day-to-day spans API and automation testing across the insurance domain, and I've mentored junior QA engineers from supervised work to independent delivery.</p>
         <div class="tag-row">
           <span class="tag">ISTQB CTFL</span>
           <span class="tag">Nexsure · Insurance</span>
@@ -1083,14 +1101,14 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   <div class="con">
     <div class="sec-head">
       <div class="sec-tag">// AI-Powered QA</div>
-      <h2 class="sec-title">AI Tools That Support Real Testing</h2>
-      <p class="sec-desc">I use AI where it saves real time and improves consistency — structured bug reports, coverage gap analysis, test case drafting, and release dashboards that managers can read in minutes.</p>
+      <h2 class="sec-title">I Use AI Only Where It Removes Manual QA Toil</h2>
+      <p class="sec-desc">I apply AI only where it removes repetitive QA work — structured bug reports, coverage-gap analysis, test-case drafting, and release dashboards a manager can read in minutes. The judgment about where not to use it is the point.</p>
     </div>
     <div class="vibe-grid">
       <div class="vibe-left">
         <h3>How I Build AI QA Tools</h3>
         <p>I describe what I need in plain English and use Claude Code CLI, GitHub Copilot, and Cursor IDE to build production-grade internal tools. Every AI tool in my portfolio ships into real team workflows — not demos. I use AI to move fast without sacrificing quality or structure.</p>
-        <p>This AI-assisted workflow lets me ship production QA tools in hours, not weeks — used daily for bug reporting, test case generation, and coverage analysis.</p>
+        <p>Each tool went from a described need to something the team uses daily — without a separate dev team or a multi-sprint build.</p>
         <div class="ai-tools-grid">
           <div class="ai-tool rv"><span class="ai-icon">🧠</span><div><div class="ai-name">Claude AI + CLI</div><div class="ai-desc">Bug reports &amp; test cases</div></div></div>
           <div class="ai-tool rv"><span class="ai-icon">🐙</span><div><div class="ai-name">GitHub Copilot</div><div class="ai-desc">Code completion &amp; review</div></div></div>
@@ -1119,9 +1137,8 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
           <br>
           <div><span class="cm">// Before: slow, inconsistent manual write-ups</span></div>
           <div><span class="cm">// After AI: complete, structured reports — every time.</span></div>
-          <div><span class="cm">// Quality: Consistent &amp; structured</span></div>
           <br>
-          <div><span class="cf">console</span>.log(<span class="cs">"QA is smarter now 🚀"</span>); <span class="cursor" aria-hidden="true"></span></div>
+          <div><span class="cf">console</span>.log(<span class="cs">"Structured bug report — same format, every ticket."</span>); <span class="cursor" aria-hidden="true"></span></div>
         </div>
       </div>
     </div>
@@ -1134,7 +1151,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     <div class="sec-head">
       <div class="sec-tag">// AI Tools</div>
       <h2 class="sec-title">AI Tools I've Built</h2>
-      <p class="sec-desc">Four production-grade AI tools built for real QA workflows — plus a live wellness app. Each replaces slow, manual work with consistent, structured output.</p>
+      <p class="sec-desc">AI tools running inside the QA of Dyad Tech's 23-module Nexsure insurance platform — plus a live wellness app. Built by me and used daily by the team.</p>
     </div>
     <div class="proj-grid">
 
@@ -1142,7 +1159,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       <div class="proj-card rv">
         <div class="proj-icon">🤖</div>
         <div class="proj-title">AI Bug Reporter <span class="proj-badge">Production</span></div>
-        <p class="proj-desc">Fetches Jira tickets and uses Claude AI to generate fully structured bug reports — preconditions, steps to reproduce, root cause hypothesis, severity rating, and acceptance criteria. Replaces slow, inconsistent manual write-ups with standardised output.</p>
+        <p class="proj-desc">Turns any Jira ticket into a complete, standardised bug report in one step — preconditions, repro steps, root-cause hypothesis, severity, and acceptance criteria — using Claude AI. Consistent format on every ticket, replacing slow manual write-ups.</p>
         <div class="proj-tags"><span class="ptag">Node.js</span><span class="ptag">React</span><span class="ptag">Claude AI</span><span class="ptag">SQLite</span><span class="ptag">Jira REST API</span><span class="ptag">AI-assisted</span></div>
         <div class="proj-links">
           <span class="plink plink-internal">🏢 In Production Use</span>
@@ -1190,7 +1207,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       <div class="proj-card rv">
         <div class="proj-icon">📋</div>
         <div class="proj-title">JIRA AI Test Case Generator <span class="proj-badge">Production</span></div>
-        <p class="proj-desc">Reads Jira ticket descriptions, acceptance criteria, and user stories, then uses Claude AI to produce fully structured test cases — preconditions, step-by-step actions, and expected results — substantially cutting manual test-authoring effort while keeping cases traceable to requirements.</p>
+        <p class="proj-desc">Reads a Jira ticket's description, acceptance criteria, and user stories, then uses Claude AI to return a full structured test suite — preconditions, step-by-step actions, and expected results, exported to Excel — with each case traceable back to the requirement it came from.</p>
         <div class="proj-tags"><span class="ptag">Python</span><span class="ptag">Jira REST API</span><span class="ptag">Claude AI</span><span class="ptag">Excel Output</span></div>
         <div class="proj-links">
           <span class="plink plink-internal">Internal QA Workflow</span>
@@ -1207,17 +1224,17 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     <div class="sec-head">
       <div class="sec-tag">// Portfolio</div>
       <h2 class="sec-title">Real Projects — 7+ Years · 5 Companies</h2>
-      <p class="sec-desc">Every project here is something I personally tested, automated, or built — from enterprise insurance platforms to AI productivity tools.</p>
+      <p class="sec-desc">Every project here is something I personally tested, automated, or built.</p>
     </div>
 
     <div id="port-filters" style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:2rem;">
-      <button class="port-filter active" data-cat="all" onclick="filterPortfolio(this,'all')">All (20)</button>
-      <button class="port-filter" data-cat="ai" onclick="filterPortfolio(this,'ai')">AI Tools (7)</button>
-      <button class="port-filter" data-cat="web" onclick="filterPortfolio(this,'web')">Web Apps (9)</button>
-      <button class="port-filter" data-cat="mobile" onclick="filterPortfolio(this,'mobile')">Mobile (2)</button>
-      <button class="port-filter" data-cat="automation" onclick="filterPortfolio(this,'automation')">Automation (4)</button>
-      <button class="port-filter" data-cat="saas" onclick="filterPortfolio(this,'saas')">SaaS / Enterprise (3)</button>
-      <button class="port-filter" data-cat="ecomm" onclick="filterPortfolio(this,'ecomm')">eCommerce (1)</button>
+      <button class="port-filter active" data-cat="all" aria-pressed="true" onclick="filterPortfolio(this,'all')">All (20)</button>
+      <button class="port-filter" data-cat="ai" aria-pressed="false" onclick="filterPortfolio(this,'ai')">AI Tools (7)</button>
+      <button class="port-filter" data-cat="web" aria-pressed="false" onclick="filterPortfolio(this,'web')">Web Apps (9)</button>
+      <button class="port-filter" data-cat="mobile" aria-pressed="false" onclick="filterPortfolio(this,'mobile')">Mobile (2)</button>
+      <button class="port-filter" data-cat="automation" aria-pressed="false" onclick="filterPortfolio(this,'automation')">Automation (4)</button>
+      <button class="port-filter" data-cat="saas" aria-pressed="false" onclick="filterPortfolio(this,'saas')">SaaS / Enterprise (3)</button>
+      <button class="port-filter" data-cat="ecomm" aria-pressed="false" onclick="filterPortfolio(this,'ecomm')">eCommerce (1)</button>
     </div>
 
     <div id="port-grid" class="collapsed" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
@@ -1373,7 +1390,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         </div>
         <div class="port-title">Selenium Python Test Suite</div>
         <div class="port-company">Crest Data Systems · 2023–2024</div>
-        <div class="port-desc">Built Selenium WebDriver Python automation for ServiceNow and Morphisec. Reduced regression cycle time per sprint. Mentored junior QAs on framework usage.</div>
+        <div class="port-desc">Built a Selenium WebDriver + Python suite for ServiceNow and Morphisec that automated the recurring regression pass. Mentored junior QAs to run and extend the framework themselves.</div>
         <div class="port-tags"><span class="ptag">Python</span><span class="ptag">Selenium</span><span class="ptag">pytest</span><span class="ptag">Page Object Model</span><span class="ptag">CI/CD</span></div>
         <span class="port-status port-status-prod">Delivered</span>
       </div>
@@ -1495,7 +1512,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
           <div class="tl-company">Crest Data Systems</div>
           <div class="tl-role">Senior QA Engineer — ServiceNow &amp; Morphisec</div>
           <div class="tl-period">February 2023 – July 2024 · Ahmedabad, India</div>
-          <div class="tl-desc">Led full QA certification of ServiceNow ITSM and Morphisec endpoint security platforms. Built Selenium + Python automation suite that reduced regression cycle time per sprint. Mentored junior QA engineers and represented QA on client calls. Delivered all milestones on schedule.</div>
+          <div class="tl-desc">Led full QA certification of ServiceNow ITSM and Morphisec endpoint security platforms. Built a Selenium + Python automation suite that automated the per-sprint regression pass. Mentored junior QA engineers and represented QA on client calls. Delivered all milestones on schedule.</div>
         </div>
       </div>
       <div class="tl-item rv">
@@ -1504,7 +1521,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
           <div class="tl-company">Secomind.AI</div>
           <div class="tl-role">Sr QA Engineer — 30mins.com</div>
           <div class="tl-period">August 2022 – February 2023 · Ahmedabad, India</div>
-          <div class="tl-desc">Spearheaded QA for 30mins.com web and mobile application across all phases of the STLC.</div>
+          <div class="tl-desc">Owned QA for the 30mins.com web and mobile app end to end — test planning, functional and regression passes, device-matrix testing, and release certification.</div>
         </div>
       </div>
       <div class="tl-item rv">
@@ -1513,7 +1530,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
           <div class="tl-company">Codal Inc.</div>
           <div class="tl-role">QA Engineer — GOREWEAR eCommerce</div>
           <div class="tl-period">September 2021 – August 2022 · Ahmedabad, India</div>
-          <div class="tl-desc">Managed all testing for GOREWEAR eCommerce. Created test cases in TestRail, executed milestone runs, delivered sprint-wise reports.</div>
+          <div class="tl-desc">Owned QA for GOREWEAR's eCommerce platform, including checkout and payment flows — authored and maintained the TestRail suite, ran milestone-linked test cycles, and delivered sprint-wise reports.</div>
         </div>
       </div>
       <div class="tl-item rv">
@@ -1539,7 +1556,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     <div class="skills-grid">
       <div class="skill-grp rv"><div class="skill-grp-title">🧪 Testing</div><div class="skills-list"><span class="skill">Manual Testing</span><span class="skill">Regression</span><span class="skill">Integration</span><span class="skill">API Testing</span><span class="skill">Smoke &amp; Sanity</span><span class="skill">Usability</span><span class="skill">E2E</span><span class="skill">Mobile Testing</span><span class="skill">Performance Testing</span></div></div>
       <div class="skill-grp rv"><div class="skill-grp-title">⚙️ Automation</div><div class="skills-list"><span class="skill">Selenium WebDriver</span><span class="skill">Playwright</span><span class="skill">Python</span><span class="skill">Java</span><span class="skill">TestNG</span><span class="skill">RestAssured</span><span class="skill">Postman</span><span class="skill">Maven</span><span class="skill">CI/CD</span></div></div>
-      <div class="skill-grp rv"><div class="skill-grp-title">🤖 AI QA Tooling</div><div class="skills-list"><span class="skill ai">Claude AI</span><span class="skill ai">Claude Code CLI</span><span class="skill ai">GitHub Copilot</span><span class="skill ai">Cursor IDE</span><span class="skill ai">VS Code</span><span class="skill ai">OpenAI APIs</span><span class="skill ai">MCP Servers</span><span class="skill ai">Prompt Engineering</span><span class="skill ai">Vibe Coding</span></div></div>
+      <div class="skill-grp rv"><div class="skill-grp-title">🤖 AI QA Tooling</div><div class="skills-list"><span class="skill ai">Claude AI</span><span class="skill ai">Claude Code CLI</span><span class="skill ai">GitHub Copilot</span><span class="skill ai">Cursor IDE</span><span class="skill ai">VS Code</span><span class="skill ai">OpenAI APIs</span><span class="skill ai">MCP Servers</span><span class="skill ai">Prompt Engineering</span><span class="skill ai">AI-Assisted Development</span></div></div>
       <div class="skill-grp rv"><div class="skill-grp-title">🛠 Dev Stack</div><div class="skills-list"><span class="skill">Node.js</span><span class="skill">React</span><span class="skill">TypeScript</span><span class="skill">SQL</span><span class="skill">SQLite</span><span class="skill">Express.js</span><span class="skill">Git</span><span class="skill">REST APIs</span></div></div>
       <div class="skill-grp rv"><div class="skill-grp-title">📋 Test Management</div><div class="skills-list"><span class="skill">JIRA</span><span class="skill">Zephyr Scale</span><span class="skill">Xray</span><span class="skill">TestRail</span><span class="skill">Confluence</span><span class="skill">Allure</span><span class="skill">Bugzilla</span></div></div>
       <div class="skill-grp rv"><div class="skill-grp-title">🏢 Domain &amp; Process</div><div class="skills-list"><span class="skill">Insurance · Nexsure</span><span class="skill">eCommerce</span><span class="skill">SaaS Enterprise</span><span class="skill">Agile / Scrum</span><span class="skill">STLC</span><span class="skill">Team Mentoring</span></div></div>
@@ -1548,7 +1565,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 </section>
 
 <!-- ══ CERTIFICATIONS ══ -->
-<section style="background:rgba(10,16,32,.72);" aria-label="Certifications and education">
+<section id="certs" style="background:rgba(10,16,32,.72);" aria-label="Certifications and education">
   <div class="con">
     <div class="sec-head">
       <div class="sec-tag">// Certified &amp; Educated</div>
@@ -1568,8 +1585,8 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   <div class="con">
     <div class="contact-grid">
       <div class="contact-info">
-        <h2 class="contact-h">Let's Connect</h2>
-        <p>Happy to connect with QA professionals, engineering leads, and teams exploring AI-driven testing workflows.</p>
+        <h2 class="contact-h">Open to Senior QA / QA-Tooling roles</h2>
+        <p>I'm open to Senior QA and QA-automation roles, especially with teams building AI into their testing. The fastest way to reach me is a direct message or email.</p>
         <a href="mailto:kunalrichards4@gmail.com" class="contact-link"><div class="contact-icon" aria-hidden="true">✉️</div>kunalrichards4@gmail.com</a>
         <a href="tel:+918200379330" class="contact-link"><div class="contact-icon" aria-hidden="true">📱</div>+91 82003 79330</a>
         <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank" rel="noopener noreferrer me" class="contact-link"><div class="contact-icon" aria-hidden="true">💼</div>linkedin.com/in/kunal-richards-qa</a>
@@ -1598,9 +1615,9 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
           <div id="form-success" role="status" aria-live="polite" style="display:none;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);border-radius:10px;padding:1rem 1.2rem;text-align:center;margin-top:.8rem;">
             <div style="font-size:1.4rem;margin-bottom:.3rem;">✅</div>
             <div style="font-weight:700;color:var(--gr);margin-bottom:.2rem;">Message sent successfully!</div>
-            <div style="font-size:.78rem;color:var(--dim);">Kunal will get back to you within 24 hours.</div>
+            <div style="font-size:.78rem;color:var(--dim);">I'll get back to you within 24 hours.</div>
           </div>
-          <div id="form-error-msg" role="status" aria-live="polite" style="display:none;border-radius:8px;padding:.8rem;text-align:center;margin-top:.8rem;font-size:.78rem;"></div>
+          <div id="form-error-msg" role="alert" aria-live="assertive" style="display:none;border-radius:8px;padding:.8rem;text-align:center;margin-top:.8rem;font-size:.78rem;"></div>
         </form>
       </div>
     </div>
@@ -1627,7 +1644,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
 <!-- MOBILE STICKY HIRE BTN — visibility toggled by scroll handler; keep focusable only when shown -->
 <div id="mob-hire">
-  <a href="#contact">Let's Talk →</a>
+  <a href="#contact">Hire Me →</a>
 </div>
 
 <!-- ANALYTICS PANEL — browser-local only; each visitor sees only their own data from this browser -->
@@ -1655,7 +1672,6 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 <script>
 /* ── ANTI-FLASH: fade in once DOM ready ── */
 document.addEventListener('DOMContentLoaded', () => {
-  document.documentElement.style.opacity = '1';
   handleScroll();
 });
 
@@ -1709,6 +1725,21 @@ hmb.addEventListener('click', () => {
   hmb.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
   document.body.style.overflow = isOpen ? 'hidden' : '';
   if (isOpen) { const first = drawer.querySelector('a'); if (first) first.focus(); }
+});
+
+// Focus trap while the mobile drawer is open (WCAG 2.4.3 Focus Order)
+document.addEventListener('keydown', function(e){
+  if (e.key !== 'Tab' || !drawer.classList.contains('open')) return;
+  const f = drawer.querySelectorAll('a[href],button');
+  if (!f.length) return;
+  const first = f[0], last = f[f.length - 1];
+  if (!drawer.contains(document.activeElement)) {
+    e.preventDefault();
+    (e.shiftKey ? last : first).focus();
+    return;
+  }
+  if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
 });
 
 // Close on any drawer link click (let the anchor take focus — don't pull it back to the button)
@@ -1779,12 +1810,12 @@ if (statsGrid) {
 
 /* ── TYPING ANIMATION ── */
 const phrases = [
-    'Senior QA Engineer',
-    'Selenium Automation Expert',
-    'AI QA Tool Builder',
+    'I build AI tools that test software',
+    'Senior QA Engineer · 7+ years',
+    'Selenium & API test automation',
     'ISTQB CTFL Certified',
-    'Insurance Domain Specialist',
-    'QA Team Mentor',
+    'Insurance-domain QA at scale',
+    'I mentor QA engineers to ship solo',
   ];
 let pIdx = 0, cIdx = 0, isDeleting = false;
 const typingEl = document.getElementById('typing-el');
@@ -1823,14 +1854,22 @@ rvEls.forEach(el => rvIO.observe(el));
 /* ── 3D TILT (desktop only) ── */
 const isTouch = () => window.matchMedia('(hover:none),(pointer:coarse)').matches || _reduceMotion;
 document.querySelectorAll('.proj-card').forEach(card => {
+  let _r = null, _raf = 0;
+  card.addEventListener('mouseenter', () => { if (!isTouch()) _r = card.getBoundingClientRect(); });
   card.addEventListener('mousemove', e => {
-    if (isTouch()) return;
-    const r = card.getBoundingClientRect();
-    const x = ((e.clientX - r.left) / r.width - 0.5);
-    const y = ((e.clientY - r.top) / r.height - 0.5);
-    card.style.transform = `translateY(-5px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg)`;
+    if (isTouch() || !_r) return;
+    const cx = e.clientX, cy = e.clientY;
+    if (_raf) return;
+    _raf = requestAnimationFrame(() => {
+      _raf = 0;
+      const x = ((cx - _r.left) / _r.width - 0.5);
+      const y = ((cy - _r.top) / _r.height - 0.5);
+      card.style.transform = `translateY(-5px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg)`;
+    });
   });
   card.addEventListener('mouseleave', () => {
+    if (_raf) { cancelAnimationFrame(_raf); _raf = 0; }
+    _r = null;
     card.style.transform = '';
   });
 });
@@ -1893,6 +1932,21 @@ function showAdminPanel() {
   admEl.style.display = 'block';
   admEl.removeAttribute('aria-hidden');
   document.body.style.overflow = 'hidden';
+  // a11y: hide background from AT and trap focus while the modal is open
+  const bgMain = document.getElementById('main');
+  const bgNav = document.querySelector('nav');
+  if (bgMain) bgMain.setAttribute('aria-hidden', 'true');
+  if (bgNav) bgNav.setAttribute('aria-hidden', 'true');
+  admEl._restoreFocus = document.activeElement;
+  admEl._trap = function (ev) {
+    if (ev.key !== 'Tab') return;
+    const f = admEl.querySelectorAll('button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (ev.shiftKey && document.activeElement === first) { ev.preventDefault(); last.focus(); }
+    else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
+  };
+  admEl.addEventListener('keydown', admEl._trap);
   const closeBtn = admEl.querySelector('button');
   if (closeBtn) closeBtn.focus();
 
@@ -1920,7 +1974,17 @@ function showAdminPanel() {
 
 function closeAdminPanel() {
   const adm = document.getElementById('kr-admin');
-  if (adm) { adm.style.display = 'none'; adm.setAttribute('aria-hidden', 'true'); }
+  if (adm) {
+    adm.style.display = 'none';
+    adm.setAttribute('aria-hidden', 'true');
+    if (adm._trap) { adm.removeEventListener('keydown', adm._trap); adm._trap = null; }
+    const bgMain = document.getElementById('main');
+    const bgNav = document.querySelector('nav');
+    if (bgMain) bgMain.removeAttribute('aria-hidden');
+    if (bgNav) bgNav.removeAttribute('aria-hidden');
+    if (adm._restoreFocus && typeof adm._restoreFocus.focus === 'function') adm._restoreFocus.focus();
+    adm._restoreFocus = null;
+  }
   document.body.style.overflow = '';
 }
 
@@ -1937,8 +2001,7 @@ document.addEventListener('keydown', e => {
 // filter clears .collapsed so the "first 6" nth-child rule can never hide filtered
 // results \u2014 preventing the empty-grid trap. The Show-All toggle is hidden when filtering.
 function filterPortfolio(btn, cat) {
-  document.querySelectorAll('.port-filter').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  document.querySelectorAll('.port-filter').forEach(b => { const on = b === btn; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
   document.querySelectorAll('.port-card').forEach(card => {
     const cats = (card.dataset.cat || '').split(' ');
     card.classList.toggle('hidden', !(cat === 'all' || cats.includes(cat)));
@@ -2128,7 +2191,7 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
     const email = (a.href||'').replace('mailto:','').split('?')[0];
     if (!email) return;
     if (navigator.clipboard && window.isSecureContext) {
-      e.preventDefault();
+      // copy as a convenience but do NOT preventDefault — let the mail client open (standard action)
       navigator.clipboard.writeText(email).then(()=>{
         krToast('📋  Copied: ' + email);
         if (window._krSound) window._krSound.click();
@@ -2140,8 +2203,8 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
 
 /* ── SECTION NAV DOTS + shared scrollspy ── */
 (function(){
-  const secs = ['about','ai','projects','portfolio','experience','skills','contact'];
-  const labs = ['About','AI QA','AI Tools','Work','Experience','Skills','Contact'];
+  const secs = ['about','ai','projects','portfolio','experience','skills','certs','contact'];
+  const labs = ['About','AI QA','AI Tools','Work','Experience','Skills','Certifications','Contact'];
   const wrap = document.createElement('div');
   wrap.id='sec-dots'; wrap.setAttribute('role','navigation'); wrap.setAttribute('aria-label','Jump to section');
   secs.forEach((id,i)=>{
@@ -2166,7 +2229,7 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
       if (on) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current');
     });
     const activeId = secs[idx];
-    deskLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === '#'+activeId));
+    deskLinks.forEach(a=>{const on=a.getAttribute('href')==='#'+activeId; a.classList.toggle('active',on); if(on)a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current');});
   };
   window._krSetActiveNav();
   window.addEventListener('resize', window._krSetActiveNav, { passive:true });
@@ -2213,11 +2276,17 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
     });
     animId = requestAnimationFrame(draw);
   }
-  function start(){ if(animId==null) animId=requestAnimationFrame(draw); }
+  let _activated = false;
+  function start(){ if(_activated && animId==null) animId=requestAnimationFrame(draw); }
   function stop(){ if(animId!=null){ cancelAnimationFrame(animId); animId=null; } }
   // Pause when the tab is hidden — no wasted CPU/battery in background
   document.addEventListener('visibilitychange', ()=> document.hidden ? stop() : start());
-  start();
+  // Skip entirely on genuinely low-end devices (very low memory / very few cores)
+  const _weak = (navigator.deviceMemory && navigator.deviceMemory <= 2) || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2);
+  if (_weak) { cv.style.display='none'; return; }
+  // Defer first frame off the load critical path so it never competes with LCP/TBT
+  const _kick = () => { _activated = true; ('requestIdleCallback' in window ? requestIdleCallback(start, {timeout:2000}) : setTimeout(start, 1200)); };
+  if (document.readyState === 'complete') _kick(); else addEventListener('load', _kick, {once:true});
 })();
 
 /* ── CURSOR GLOW ── */
@@ -2318,15 +2387,23 @@ document.querySelectorAll('a[href="#contact"].btn').forEach(b=>{
 (function(){
   const isT=()=>window.matchMedia('(hover:none),(pointer:coarse)').matches || _reduceMotion;
   document.querySelectorAll('.port-card,.tl-card,.cert-card,.ai-tool,.stat-card').forEach(card=>{
+    let _r=null,_raf=0;
+    card.addEventListener('mouseenter',()=>{ if(!isT()) _r=card.getBoundingClientRect(); });
     card.addEventListener('mousemove',e=>{
-      if(isT())return;
-      const r=card.getBoundingClientRect();
-      const x=(e.clientX-r.left)/r.width-.5;
-      const y=(e.clientY-r.top)/r.height-.5;
-      card.style.transform=`translateY(-4px) rotateX(${-y*5}deg) rotateY(${x*5}deg)`;
-      card.style.transition='transform .08s ease';
+      if(isT()||!_r)return;
+      const cx=e.clientX,cy=e.clientY;
+      if(_raf)return;
+      _raf=requestAnimationFrame(()=>{
+        _raf=0;
+        const x=(cx-_r.left)/_r.width-.5;
+        const y=(cy-_r.top)/_r.height-.5;
+        card.style.transform=`translateY(-4px) rotateX(${-y*5}deg) rotateY(${x*5}deg)`;
+        card.style.transition='transform .08s ease';
+      });
     });
     card.addEventListener('mouseleave',()=>{
+      if(_raf){cancelAnimationFrame(_raf);_raf=0;}
+      _r=null;
       card.style.transform='';
       card.style.transition='transform .5s ease,border-color .3s,box-shadow .3s';
     });
@@ -2337,14 +2414,20 @@ document.querySelectorAll('a[href="#contact"].btn').forEach(b=>{
 (function(){
   const isT=()=>window.matchMedia('(hover:none),(pointer:coarse)').matches || _reduceMotion;
   document.querySelectorAll('.btn-fill').forEach(btn=>{
+    let _r=null,_raf=0;
+    btn.addEventListener('mouseenter',()=>{ if(!isT()) _r=btn.getBoundingClientRect(); });
     btn.addEventListener('mousemove',e=>{
-      if(isT())return;
-      const r=btn.getBoundingClientRect();
-      const x=(e.clientX-r.left-r.width/2)*.22;
-      const y=(e.clientY-r.top-r.height/2)*.22;
-      btn.style.transform=`translate(${x}px,${y}px) translateY(-3px)`;
+      if(isT()||!_r)return;
+      const cx=e.clientX,cy=e.clientY;
+      if(_raf)return;
+      _raf=requestAnimationFrame(()=>{
+        _raf=0;
+        const x=(cx-_r.left-_r.width/2)*.22;
+        const y=(cy-_r.top-_r.height/2)*.22;
+        btn.style.transform=`translate(${x}px,${y}px) translateY(-3px)`;
+      });
     });
-    btn.addEventListener('mouseleave',()=>{ btn.style.transform=''; });
+    btn.addEventListener('mouseleave',()=>{ if(_raf){cancelAnimationFrame(_raf);_raf=0;} _r=null; btn.style.transform=''; });
   });
 })();
 
