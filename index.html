@@ -356,6 +356,8 @@ nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
 h1{font-size:clamp(2.8rem,5.5vw,5rem);font-weight:900;line-height:1.05;color:var(--hd);margin-bottom:.5rem;letter-spacing:-.025em;}
 .name-grad{background:var(--grd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 @keyframes grad-anim{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+.hero-value{font-size:clamp(1.05rem,2.1vw,1.4rem);font-weight:700;color:var(--hd);line-height:1.4;letter-spacing:-.01em;margin:.15rem 0 .5rem;max-width:34ch;}
+.hero-value strong{background:var(--grd);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .typing-line{font-size:1.05rem;color:var(--dim);min-height:1.7rem;margin-bottom:1rem;font-weight:400;}
 .pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.8rem;}
 .pill{padding:.24rem .62rem;border-radius:4px;font-size:.7rem;font-weight:700;border:1px solid;cursor:default;transition:transform .2s;}
@@ -615,6 +617,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   }
   .hero-photo{width:240px;height:310px;object-fit:cover;object-position:center 38%;}
   .hero-chips-row,.pills,.ctas,.socrow,.typing-line{justify-content:center;}
+  .hero-value{margin-left:auto;margin-right:auto;}
 
   section{padding:3.5rem var(--pad-x);}
 
@@ -1033,6 +1036,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         </div>
       </div>
       <h1>Kunal<br><span class="name-grad">Richards</span></h1>
+      <p class="hero-value">Helping teams ship <strong>faster</strong> — with fewer bugs and more confidence.</p>
       <div class="typing-line" id="typing-el" aria-hidden="true"><span id="typing-text">I build AI tools that test software</span><span id="typing-cursor" aria-hidden="true"></span></div>
       <p class="sr-only">I build AI tools that test software. Senior QA Engineer with 7+ years. Selenium and API test automation. ISTQB CTFL Certified. Insurance-domain QA at scale. I mentor QA engineers to ship solo.</p>
       <div class="pills">
@@ -1618,7 +1622,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     <div class="contact-grid">
       <div class="contact-info">
         <h2 class="contact-h">Open to Senior QA / QA-Tooling roles</h2>
-        <p>I'm open to Senior QA and QA-automation roles, especially with teams building AI into their testing. The fastest way to reach me is a direct message or email.</p>
+        <p>I'm open to Senior QA and QA-automation roles — and select freelance QA engagements — especially with teams building AI into their testing. The fastest way to reach me is a direct message or email.</p>
         <a href="mailto:kunalrichards4@gmail.com" class="contact-link"><div class="contact-icon" aria-hidden="true">✉️</div>kunalrichards4@gmail.com</a>
         <a href="tel:+918200379330" class="contact-link"><div class="contact-icon" aria-hidden="true">📱</div>+91 82003 79330</a>
         <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank" rel="noopener noreferrer me" class="contact-link"><div class="contact-icon" aria-hidden="true">💼</div>linkedin.com/in/kunal-richards-qa</a>
