@@ -957,6 +957,14 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 .svc-desc{font-size:.82rem;color:var(--dim);line-height:1.65;margin-bottom:1rem;flex:1;}
 .svc-link{align-self:flex-start;margin-top:auto;font-size:.76rem;font-weight:700;color:var(--ac);text-decoration:none;transition:gap .2s;}
 .svc-link:hover{text-decoration:underline;}
+.svc-industries{text-align:center;margin-top:2.6rem;}
+.svc-sub{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--gr);margin-bottom:1rem;}
+.svc-chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;}
+.svc-chip{background:var(--s2);border:1px solid var(--bd);color:var(--tx);padding:.42rem .95rem;border-radius:50px;font-size:.78rem;font-weight:600;}
+.svc-cta{text-align:center;margin-top:2.6rem;background:var(--s1);border:1px solid var(--bd);border-radius:18px;padding:2.4rem 1.5rem;box-shadow:var(--sh-card);}
+.svc-cta-title{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:900;color:var(--hd);letter-spacing:-.4px;margin-bottom:.5rem;}
+.svc-cta-sub{font-size:.86rem;color:var(--dim);max-width:480px;margin:0 auto 1.5rem;line-height:1.65;}
+.svc-cta-btns{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;}
 
 /* ─── ISTQB CERTIFICATE (hero credential card + lightbox) ─── */
 .hero-cert{display:inline-flex;align-items:center;gap:.7rem;max-width:100%;margin:0 0 1.4rem;background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.25);border-radius:12px;padding:.45rem .85rem .45rem .45rem;text-decoration:none;cursor:pointer;text-align:left;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;}
@@ -1160,7 +1168,27 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🤖</div><h3 class="svc-title">Test Automation</h3><p class="svc-desc">Selenium frameworks (Java/TestNG and Python) with Page Object Model and Allure reporting — turning slow, repetitive regression passes into reliable automated runs.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
       <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🔗</div><h3 class="svc-title">API Testing</h3><p class="svc-desc">REST API validation with Postman and RestAssured — status, schema, and integration checks wired into your regression suite.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
       <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🧠</div><h3 class="svc-title">AI-Assisted QA &amp; Tooling</h3><p class="svc-desc">Custom AI tools for QA — structured bug reports from tickets, test-case generation, and coverage dashboards — the same kind I run in production today.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
+      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🚀</div><h3 class="svc-title">Release QA</h3><p class="svc-desc">Pre-release regression, smoke, and release-validation passes — a clear go/no-go read on quality before you ship.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
       <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">📋</div><h3 class="svc-title">Test Strategy &amp; Process</h3><p class="svc-desc">Risk-based test planning, STLC setup, defect triage, and QA process documentation — structure for teams scaling their testing.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
+    </div>
+
+    <div class="svc-industries">
+      <h3 class="svc-sub">Who I Work With</h3>
+      <div class="svc-chips">
+        <span class="svc-chip">Insurance Platforms</span>
+        <span class="svc-chip">E-commerce</span>
+        <span class="svc-chip">SaaS Startups</span>
+        <span class="svc-chip">AI Companies</span>
+      </div>
+    </div>
+
+    <div class="svc-cta">
+      <h3 class="svc-cta-title">Let's discuss your project.</h3>
+      <p class="svc-cta-sub">Tell me what you're building and where QA is hurting — I'll tell you how I can help, no obligation.</p>
+      <div class="svc-cta-btns">
+        <a href="mailto:kunalrichards4@gmail.com?subject=Free%20QA%20consultation" class="btn btn-fill">Email me for a free consultation →</a>
+        <a href="#contact" class="btn btn-outline">Use the contact form</a>
+      </div>
     </div>
   </div>
 </section>
