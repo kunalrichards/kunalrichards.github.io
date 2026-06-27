@@ -74,8 +74,10 @@
     "@type":"EducationalOccupationalCredential",
     "name":"ISTQB Certified Tester Foundation Level (CTFL)",
     "credentialCategory":"certification",
+    "identifier":"117015",
     "recognizedBy":{"@type":"Organization","name":"ISTQB — International Software Testing Qualifications Board"},
-    "dateCreated":"2024-12-01T00:00:00+05:30"
+    "url":"https://scr.istqb.org/?name=kunal+richards",
+    "dateCreated":"2024-12-27T00:00:00+05:30"
   },
   "worksFor":{"@type":"Organization","name":"Dyad Tech","url":"https://dyadtech.com","address":{"@type":"PostalAddress","addressLocality":"Ahmedabad","addressCountry":"IN"}},
   "alumniOf":[
@@ -940,6 +942,29 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   #port-more-wrap.is-hidden{display:none!important;}
   #port-more-btn{min-height:44px;}
 }
+
+/* ─── ISTQB CERTIFICATE (hero credential card + lightbox) ─── */
+.hero-cert{display:inline-flex;align-items:center;gap:.7rem;max-width:100%;margin:0 0 1.4rem;background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.25);border-radius:12px;padding:.45rem .85rem .45rem .45rem;text-decoration:none;cursor:pointer;text-align:left;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;}
+.hero-cert:hover,.hero-cert:focus-visible{border-color:var(--gr);background:rgba(52,211,153,.13);transform:translateY(-1px);box-shadow:0 6px 22px rgba(52,211,153,.14);}
+.hero-cert-thumb{width:46px;height:65px;object-fit:cover;object-position:top;border-radius:6px;border:1px solid rgba(255,255,255,.14);flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.4);background:#fff;}
+.hero-cert-text{display:flex;flex-direction:column;gap:.12rem;min-width:0;}
+.hero-cert-title{font-size:.8rem;font-weight:800;color:var(--gr);letter-spacing:.2px;}
+.hero-cert-sub{font-size:.68rem;font-weight:600;color:var(--dim);}
+.pill-verify{cursor:pointer;text-decoration:none;}
+.pill-verify:hover{background:rgba(52,211,153,.16);border-color:var(--gr);transform:translateY(-2px);}
+.cert-verify{display:inline-block;margin-top:.45rem;font-size:.7rem;font-weight:700;color:var(--gr);text-decoration:none;cursor:pointer;}
+.cert-verify:hover{text-decoration:underline;}
+
+.cert-overlay{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(2,5,12,.86);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:1.5rem;overscroll-behavior:contain;}
+.cert-overlay.show{display:flex;}
+.cert-modal{position:relative;background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.4rem;max-width:560px;width:100%;max-height:94vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.6);}
+.cert-close{position:absolute;top:.8rem;right:.8rem;width:40px;height:40px;border-radius:50%;background:var(--s3);border:1px solid var(--bd);color:var(--tx);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;z-index:2;}
+.cert-close:hover{border-color:var(--ac);color:var(--ac);}
+.cert-modal-title{font-size:1rem;font-weight:800;color:var(--hd);margin:0 0 .9rem;padding-right:2.6rem;}
+.cert-modal-img{display:block;margin:0 auto;max-width:100%;max-height:66vh;width:auto;height:auto;border-radius:10px;border:1px solid var(--bd);background:#fff;}
+.cert-modal-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem;}
+.cert-modal-btn{flex:1;min-width:160px;justify-content:center;text-align:center;}
+@media(max-width:540px){.cert-modal{padding:1rem;}.cert-modal-btn{min-width:100%;}}
 </style>
 </head>
 <body>
@@ -1013,11 +1038,18 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       <div class="pills">
         <span class="pill pv">AI Tool Builder</span>
         <span class="pill pb">Selenium Automation</span>
-        <span class="pill pg">ISTQB CTFL 2024</span>
+        <a href="istqb-ctfl-certificate.pdf" target="_blank" rel="noopener noreferrer" onclick="event.preventDefault();openCert();" class="pill pg pill-verify" title="View Kunal's ISTQB CTFL certificate">ISTQB CTFL 2024 ↗</a>
         <span class="pill pb">7+ Years QA</span>
         <span class="pill pg">Insurance Domain</span>
         <span class="pill pv">Team Mentor</span>
       </div>
+      <a href="istqb-ctfl-certificate.pdf" target="_blank" rel="noopener noreferrer" onclick="event.preventDefault();openCert();" class="hero-cert" aria-haspopup="dialog" aria-label="View Kunal Richards's ISTQB CTFL certificate — number 117015, 27 December 2024">
+        <img src="istqb-cert-thumb.webp" alt="" class="hero-cert-thumb" loading="lazy" decoding="async" width="46" height="65">
+        <span class="hero-cert-text">
+          <span class="hero-cert-title">🛡️ ISTQB CTFL Certified</span>
+          <span class="hero-cert-sub">GASQ · Dec 2024 — view certificate ↗</span>
+        </span>
+      </a>
       <div class="ctas">
         <a href="#contact" class="btn btn-fill">Hire Me →</a>
         <a href="cv.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">View CV</a>
@@ -1572,7 +1604,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       <h2 class="sec-title">Certifications &amp; Education</h2>
     </div>
     <div class="certs-grid">
-      <div class="cert-card rv"><div class="cert-icon">🏆</div><div><div class="cert-name">ISTQB CTFL</div><div class="cert-org">Certified Tester Foundation Level · December 2024</div></div></div>
+      <div class="cert-card rv"><div class="cert-icon">🏆</div><div><div class="cert-name">ISTQB CTFL</div><div class="cert-org">Certified Tester Foundation Level · GASQ · December 2024</div><a href="istqb-ctfl-certificate.pdf" target="_blank" rel="noopener noreferrer" onclick="event.preventDefault();openCert();" class="cert-verify">View certificate ↗</a></div></div>
       <div class="cert-card rv"><div class="cert-icon">🎓</div><div><div class="cert-name">BCA — Computer Software Engineering</div><div class="cert-org">St. Xavier's College, Ahmedabad · 2015–2017</div></div></div>
       <div class="cert-card rv"><div class="cert-icon">⚙️</div><div><div class="cert-name">Selenium WebDriver Automation</div><div class="cert-org">Unicode Technologies Pvt. Ltd. · 2020</div></div></div>
       <div class="cert-card rv"><div class="cert-icon">📜</div><div><div class="cert-name">Software Testing</div><div class="cert-org">TOPS Technologies · 2018</div></div></div>
@@ -1641,6 +1673,19 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 </footer>
 
 <button id="btt" aria-label="Back to top">↑</button>
+
+<!-- ISTQB CERTIFICATE LIGHTBOX -->
+<div class="cert-overlay" id="cert-overlay" onclick="if(event.target===this)closeCert()">
+  <div class="cert-modal" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title">
+    <button class="cert-close" aria-label="Close certificate" onclick="closeCert()"><span aria-hidden="true">✕</span></button>
+    <h2 class="cert-modal-title" id="cert-modal-title">ISTQB CTFL Certificate · Kunal Richards</h2>
+    <img src="istqb-cert-full.webp" alt="ISTQB Certified Tester Foundation Level (CTFL) certificate awarded to Kunal Richards — certification number 117015, dated 27 December 2024, issued by GASQ, Syllabus Version v4.0" class="cert-modal-img" width="1100" height="1555" loading="lazy" decoding="async">
+    <div class="cert-modal-actions">
+      <a href="https://scr.istqb.org/?name=kunal+richards" target="_blank" rel="noopener noreferrer" class="btn btn-fill cert-modal-btn">Verify on ISTQB register ↗</a>
+      <a href="istqb-ctfl-certificate.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline cert-modal-btn">Open PDF ↗</a>
+    </div>
+  </div>
+</div>
 
 <!-- MOBILE STICKY HIRE BTN — visibility toggled by scroll handler; keep focusable only when shown -->
 <div id="mob-hire">
@@ -2174,6 +2219,43 @@ document.querySelectorAll('.btn').forEach(btn => {
     setTimeout(()=>s.remove(), 580);
   });
 });
+
+/* ── ISTQB CERTIFICATE LIGHTBOX ── */
+let _certRestoreFocus = null, _certTrap = null;
+function openCert() {
+  const ov = document.getElementById('cert-overlay');
+  if (!ov) return;
+  _certRestoreFocus = document.activeElement;
+  ov.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  const main = document.getElementById('main'), nav = document.querySelector('nav');
+  if (main) main.setAttribute('aria-hidden', 'true');
+  if (nav) nav.setAttribute('aria-hidden', 'true');
+  _certTrap = function (ev) {
+    if (ev.key === 'Escape') { ev.preventDefault(); closeCert(); return; }
+    if (ev.key !== 'Tab') return;
+    const f = ov.querySelectorAll('button, a[href]');
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (!ov.contains(document.activeElement)) { ev.preventDefault(); (ev.shiftKey ? last : first).focus(); return; }
+    if (ev.shiftKey && document.activeElement === first) { ev.preventDefault(); last.focus(); }
+    else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
+  };
+  document.addEventListener('keydown', _certTrap);
+  const cb = ov.querySelector('.cert-close'); if (cb) cb.focus();
+}
+function closeCert() {
+  const ov = document.getElementById('cert-overlay');
+  if (!ov) return;
+  ov.classList.remove('show');
+  document.body.style.overflow = '';
+  if (_certTrap) { document.removeEventListener('keydown', _certTrap); _certTrap = null; }
+  const main = document.getElementById('main'), nav = document.querySelector('nav');
+  if (main) main.removeAttribute('aria-hidden');
+  if (nav) nav.removeAttribute('aria-hidden');
+  if (_certRestoreFocus && typeof _certRestoreFocus.focus === 'function') _certRestoreFocus.focus();
+  _certRestoreFocus = null;
+}
 
 /* ── TOAST HELPER ── */
 function krToast(msg, dur) {
