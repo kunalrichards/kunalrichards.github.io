@@ -967,10 +967,10 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 .svc-cta-btns{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;}
 
 /* ─── RECOMMENDATIONS ─── */
-.rec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.2rem;}
-.rec-card{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.6rem;box-shadow:var(--sh-card);display:flex;flex-direction:column;transition:border-color .3s,transform .3s,box-shadow .3s;}
+.rec-grid{columns:300px;column-gap:1.2rem;}
+.rec-card{break-inside:avoid;-webkit-column-break-inside:avoid;margin-bottom:1.2rem;background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.5rem;box-shadow:var(--sh-card);transition:border-color .3s,transform .3s,box-shadow .3s;}
 .rec-card:hover{border-color:rgba(56,189,248,.3);transform:translateY(-4px);box-shadow:0 16px 50px rgba(56,189,248,.08);}
-.rec-quote{font-size:.86rem;color:var(--tx);line-height:1.7;margin-bottom:1.2rem;flex:1;}
+.rec-quote{font-size:.85rem;color:var(--tx);line-height:1.65;margin-bottom:1rem;}
 .rec-quote::before{content:'\201C';color:var(--ac);font-weight:800;margin-right:.05rem;}
 .rec-author{display:flex;align-items:center;gap:.75rem;}
 .rec-avatar{width:40px;height:40px;border-radius:50%;background:var(--grd);display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;color:#fff;flex-shrink:0;}
@@ -1705,13 +1705,33 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       <p class="sec-desc">Recommendations from colleagues and stakeholders I've worked with — all verified on <a href="https://www.linkedin.com/in/kunal-richards-qa/details/recommendations/" target="_blank" rel="noopener noreferrer" class="rec-li-link">LinkedIn</a>.</p>
     </div>
     <div class="rec-grid">
-      <div class="rec-card rv">
-        <p class="rec-quote">Kunal was able to quickly learn the nuance of the custom-built programs within our platform. He is very thorough with testing and communicates well throughout the process — and has a great attitude! He is willing to help out however he can and learn whatever is needed to help in other areas. It is a pleasure to work with Kunal!</p>
-        <div class="rec-author"><span class="rec-avatar" aria-hidden="true">R</span><span class="rec-meta"><span class="rec-name">Robin Ashby</span><span class="rec-role">Senior Business Analyst · worked with Kunal on the same team</span></span></div>
+      <div class="rec-card">
+        <p class="rec-quote">Kunal is an exceptional QA Engineer. Having worked closely with him, I've consistently been impressed by his expertise, work ethic, and positive attitude towards both quality assurance and teamwork. What also sets Kunal apart is his collaborative spirit. He is a natural team player who works exceptionally well with others. His ability to communicate effectively, listen to others, and contribute constructively to discussions makes him an invaluable part of any team.</p>
+        <div class="rec-author"><span class="rec-avatar" aria-hidden="true">H</span><span class="rec-meta"><span class="rec-name">Heena Vaghela</span><span class="rec-role">QA Engineer &amp; Manager · managed Kunal directly</span></span></div>
       </div>
-      <div class="rec-card rv">
+      <div class="rec-card">
+        <p class="rec-quote">Working with Kunal Richards has been a remarkable experience. As a Senior QA Engineer, he brings a rare combination of technical expertise, precision, and a solutions-oriented mindset. Kunal has a knack for identifying issues early and ensuring that the end product is flawless. What sets him apart is his collaborative spirit and willingness to guide others, fostering a strong sense of teamwork. Kunal's commitment to excellence and quality makes him an asset to any organization. I wholeheartedly recommend him for any endeavor he chooses to pursue.</p>
+        <div class="rec-author"><span class="rec-avatar" aria-hidden="true">K</span><span class="rec-meta"><span class="rec-name">Kashyapi Vora</span><span class="rec-role">QA Automation Engineer · ISTQB CTFL</span></span></div>
+      </div>
+      <div class="rec-card">
+        <p class="rec-quote">Kunal was able to quickly learn the nuance of the custom-built programs within our platform. He is very thorough with testing and communicates well throughout the process — and has a great attitude! He is willing to help out however he can and learn whatever is needed to help in other areas. It is a pleasure to work with Kunal!</p>
+        <div class="rec-author"><span class="rec-avatar" aria-hidden="true">R</span><span class="rec-meta"><span class="rec-name">Robin Ashby</span><span class="rec-role">Senior Business Analyst · worked on the same team</span></span></div>
+      </div>
+      <div class="rec-card">
+        <p class="rec-quote">I had the pleasure of working with Kunal on the Nexsure platform with DyadTech. As a Sr. Business Analyst, I was moved and impressed by his attention to detail and his willingness to resolve issues while he served as a Sr. Quality Assurance Engineer. Kunal pays close attention to details and is very thorough in his testing efforts. His professionalism is spot on and I would highly recommend Kunal for any role that would allow him to continue to display those mentioned characteristics.</p>
+        <div class="rec-author"><span class="rec-avatar" aria-hidden="true">M</span><span class="rec-meta"><span class="rec-name">Melonea Bussie</span><span class="rec-role">Sr. Business Analyst · worked on the same team</span></span></div>
+      </div>
+      <div class="rec-card">
         <p class="rec-quote">As a Senior QA Engineer, Kunal ensures that information relayed to him is understood in its entirety. His attention to detail and consistent communication has contributed to increasing efficiency across multiple parties and delivering results in a timely manner. If you have the chance to work alongside Kunal, I would highly recommend it!</p>
         <div class="rec-author"><span class="rec-avatar" aria-hidden="true">A</span><span class="rec-meta"><span class="rec-name">Arlyn Kho</span><span class="rec-role">Program Specialist · Dyad</span></span></div>
+      </div>
+      <div class="rec-card">
+        <p class="rec-quote">I highly recommend Kunal Richards as a Software Quality Assurance Engineer. Over the past 6 years, Kunal has shown exceptional technical skills, a sharp eye for detail, and a proactive approach to problem-solving. His dedication and expertise have significantly contributed to the success of the projects. Kunal is a true professional and a valuable asset to any team.</p>
+        <div class="rec-author"><span class="rec-avatar" aria-hidden="true">L</span><span class="rec-meta"><span class="rec-name">Love Patel</span><span class="rec-role">ServiceNow Certified Application Developer</span></span></div>
+      </div>
+      <div class="rec-card">
+        <p class="rec-quote">Kunal and I worked closely together in delivering a quality product to our customers. Kunal is articulate and detailed. His QA process was top notch. He draws attention to issues that need to be addressed and communicates them well. It is a pleasure to work with Kunal.</p>
+        <div class="rec-author"><span class="rec-avatar" aria-hidden="true">D</span><span class="rec-meta"><span class="rec-name">Donna Cutliffe</span><span class="rec-role">Business Analyst · XDimensional Technologies</span></span></div>
       </div>
     </div>
     <p class="rec-more"><a href="https://www.linkedin.com/in/kunal-richards-qa/details/recommendations/" target="_blank" rel="noopener noreferrer">See more recommendations on LinkedIn ↗</a></p>
