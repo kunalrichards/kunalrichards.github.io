@@ -150,7 +150,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 @keyframes kr-fade{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){body{animation:none;}}
 /* WCAG 2.2 SC 2.4.11 Focus Not Obscured — keep hash/focus targets clear of the fixed nav and bottom sticky bars */
-#about,#services,#ai,#projects,#experience,#skills,#contact,:target{scroll-margin-top:calc(var(--nav-h) + 8px);scroll-margin-bottom:6rem;}
+#about,#services,#ai,#projects,#experience,#skills,#recommendations,#contact,:target{scroll-margin-top:calc(var(--nav-h) + 8px);scroll-margin-bottom:6rem;}
 img{max-width:100%;height:auto;display:block;}
 a{color:inherit;-webkit-tap-highlight-color:transparent;}
 button{-webkit-tap-highlight-color:transparent;}
@@ -966,6 +966,23 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 .svc-cta-sub{font-size:.86rem;color:var(--dim);max-width:480px;margin:0 auto 1.5rem;line-height:1.65;}
 .svc-cta-btns{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;}
 
+/* ─── RECOMMENDATIONS ─── */
+.rec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.2rem;}
+.rec-card{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:1.6rem;box-shadow:var(--sh-card);display:flex;flex-direction:column;transition:border-color .3s,transform .3s,box-shadow .3s;}
+.rec-card:hover{border-color:rgba(56,189,248,.3);transform:translateY(-4px);box-shadow:0 16px 50px rgba(56,189,248,.08);}
+.rec-quote{font-size:.86rem;color:var(--tx);line-height:1.7;margin-bottom:1.2rem;flex:1;}
+.rec-quote::before{content:'\201C';color:var(--ac);font-weight:800;margin-right:.05rem;}
+.rec-author{display:flex;align-items:center;gap:.75rem;}
+.rec-avatar{width:40px;height:40px;border-radius:50%;background:var(--grd);display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:800;color:#fff;flex-shrink:0;}
+.rec-meta{display:flex;flex-direction:column;gap:.1rem;min-width:0;}
+.rec-name{font-size:.86rem;font-weight:800;color:var(--hd);}
+.rec-role{font-size:.72rem;color:var(--dim);line-height:1.4;}
+.rec-li-link{color:var(--ac);text-decoration:none;font-weight:700;}
+.rec-li-link:hover{text-decoration:underline;}
+.rec-more{text-align:center;margin-top:1.6rem;}
+.rec-more a{color:var(--ac);text-decoration:none;font-size:.82rem;font-weight:700;}
+.rec-more a:hover{text-decoration:underline;}
+
 /* ─── ISTQB CERTIFICATE (hero credential card + lightbox) ─── */
 .hero-cert{display:inline-flex;align-items:center;gap:.7rem;max-width:100%;margin:0 0 1.4rem;background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.25);border-radius:12px;padding:.45rem .85rem .45rem .45rem;text-decoration:none;cursor:pointer;text-align:left;transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;}
 .hero-cert:hover,.hero-cert:focus-visible{border-color:var(--gr);background:rgba(52,211,153,.13);transform:translateY(-1px);box-shadow:0 6px 22px rgba(52,211,153,.14);}
@@ -1111,7 +1128,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     <div class="stats-grid">
       <div class="stat-card rv"><div class="stat-num" data-target="7" data-suf="+" aria-hidden="true">0</div><span class="sr-only">7+</span><div class="stat-lbl">Years of Experience</div></div>
       <div class="stat-card rv"><div class="stat-num" data-target="5" data-suf="" aria-hidden="true">0</div><span class="sr-only">5</span><div class="stat-lbl">Companies Worked</div></div>
-      <div class="stat-card rv"><div class="stat-num" data-target="23" data-suf="" aria-hidden="true">0</div><span class="sr-only">23</span><div class="stat-lbl">Insurance Modules Owned</div></div>
+      <div class="stat-card rv"><div class="stat-num" data-target="20" data-suf="+" aria-hidden="true">0</div><span class="sr-only">20+</span><div class="stat-lbl">Projects Delivered</div></div>
       <div class="stat-card rv"><div class="stat-ctfl">CTFL</div><div class="stat-lbl">ISTQB Certified · Dec 2024</div></div>
     </div>
 
@@ -1676,6 +1693,28 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       <div class="cert-card rv"><div class="cert-icon">⚙️</div><div><div class="cert-name">Selenium WebDriver Automation</div><div class="cert-org">Unicode Technologies Pvt. Ltd. · 2020</div></div></div>
       <div class="cert-card rv"><div class="cert-icon">📜</div><div><div class="cert-name">Software Testing</div><div class="cert-org">TOPS Technologies · 2018</div></div></div>
     </div>
+  </div>
+</section>
+
+<!-- ══ RECOMMENDATIONS ══ -->
+<section id="recommendations" style="background:rgba(10,16,32,.72);" aria-label="Recommendations">
+  <div class="con">
+    <div class="sec-head">
+      <div class="sec-tag">// Recommendations</div>
+      <h2 class="sec-title">What People Say</h2>
+      <p class="sec-desc">Recommendations from colleagues and stakeholders I've worked with — all verified on <a href="https://www.linkedin.com/in/kunal-richards-qa/details/recommendations/" target="_blank" rel="noopener noreferrer" class="rec-li-link">LinkedIn</a>.</p>
+    </div>
+    <div class="rec-grid">
+      <div class="rec-card rv">
+        <p class="rec-quote">Kunal was able to quickly learn the nuance of the custom-built programs within our platform. He is very thorough with testing and communicates well throughout the process — and has a great attitude! He is willing to help out however he can and learn whatever is needed to help in other areas. It is a pleasure to work with Kunal!</p>
+        <div class="rec-author"><span class="rec-avatar" aria-hidden="true">R</span><span class="rec-meta"><span class="rec-name">Robin Ashby</span><span class="rec-role">Senior Business Analyst · worked with Kunal on the same team</span></span></div>
+      </div>
+      <div class="rec-card rv">
+        <p class="rec-quote">As a Senior QA Engineer, Kunal ensures that information relayed to him is understood in its entirety. His attention to detail and consistent communication has contributed to increasing efficiency across multiple parties and delivering results in a timely manner. If you have the chance to work alongside Kunal, I would highly recommend it!</p>
+        <div class="rec-author"><span class="rec-avatar" aria-hidden="true">A</span><span class="rec-meta"><span class="rec-name">Arlyn Kho</span><span class="rec-role">Program Specialist · Dyad</span></span></div>
+      </div>
+    </div>
+    <p class="rec-more"><a href="https://www.linkedin.com/in/kunal-richards-qa/details/recommendations/" target="_blank" rel="noopener noreferrer">See more recommendations on LinkedIn ↗</a></p>
   </div>
 </section>
 
@@ -2366,8 +2405,8 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
 
 /* ── SECTION NAV DOTS + shared scrollspy ── */
 (function(){
-  const secs = ['about','services','ai','projects','portfolio','experience','skills','certs','contact'];
-  const labs = ['About','Services','AI QA','AI Tools','Work','Experience','Skills','Certifications','Contact'];
+  const secs = ['about','services','ai','projects','portfolio','experience','skills','certs','recommendations','contact'];
+  const labs = ['About','Services','AI QA','AI Tools','Work','Experience','Skills','Certifications','Recommendations','Contact'];
   const wrap = document.createElement('div');
   wrap.id='sec-dots'; wrap.setAttribute('role','navigation'); wrap.setAttribute('aria-label','Jump to section');
   secs.forEach((id,i)=>{
