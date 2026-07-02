@@ -127,6 +127,8 @@
   ]
 }
 </script>
+<!-- Flag JS availability before first paint — the .rv reveal animation only hides content when JS can reveal it -->
+<script>document.documentElement.classList.add('js');</script>
 <style>
 /* ─── TOKENS ─── */
 :root{
@@ -593,8 +595,10 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 #btt:hover{transform:translateY(-3px);}
 
 /* ─── REVEAL ANIMATION ─── */
-.rv{opacity:0;transform:translateY(18px);transition:opacity .42s cubic-bezier(.4,0,.2,1),transform .42s cubic-bezier(.4,0,.2,1);}
-.rv.in{opacity:1;transform:translateY(0);}
+/* Hidden state is gated on .js (set in <head>) so content is never blank without JS */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .42s cubic-bezier(.4,0,.2,1),transform .42s cubic-bezier(.4,0,.2,1);}
+.js .rv.in{opacity:1;transform:translateY(0);}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;}}
 
 /* ══════════════════════════════════════
    TABLET  ≤ 900px
@@ -1005,6 +1009,17 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 .cert-modal-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem;}
 .cert-modal-btn{flex:1;min-width:160px;justify-content:center;text-align:center;}
 @media(max-width:540px){.cert-modal{padding:1rem;}.cert-modal-btn{min-width:100%;}}
+
+/* ─── PRINT — light theme so a printed/PDF'd page is readable, not white-on-dark ─── */
+@media print{
+  *{background:#fff!important;box-shadow:none!important;color:#111!important;-webkit-text-fill-color:#111!important;}
+  .name-grad,.stat-num,.stat-ctfl,.footer-name,.sec-tag{background:none!important;}
+  nav,#spb,#mob-hire,#btt,#sec-dots,#ptcl-cv,#cur-glow,.hero-orb{display:none!important;}
+  body::before,body::after{display:none!important;}
+  .svc-card,.rec-card,.stat-card{border:1px solid #ccc!important;}
+  .rec-grid{columns:auto!important;}
+  a{color:#111!important;text-decoration:underline;}
+}
 </style>
 </head>
 <body>
@@ -1094,7 +1109,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         </span>
       </a>
       <div class="ctas">
-        <a href="#contact" class="btn btn-fill">Work With Me →</a>
+        <a href="#contact" class="btn btn-fill">Work With Me <span aria-hidden="true">→</span></a>
         <a href="cv.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">View CV</a>
         <a href="#projects" class="btn btn-outline">View Projects</a>
       </div>
@@ -1181,13 +1196,13 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       <p class="sec-desc">Practical QA support for teams that need testing done right — from hands-on execution to automation and AI-assisted QA tooling. Available for consulting and select freelance engagements.</p>
     </div>
     <div class="svc-grid">
-      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🧪</div><h3 class="svc-title">Manual &amp; Functional QA</h3><p class="svc-desc">Exploratory, functional, regression, and UAT testing across web and mobile — clear, reproducible bug reports your developers can act on.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
-      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🤖</div><h3 class="svc-title">Test Automation</h3><p class="svc-desc">Selenium frameworks (Java/TestNG and Python) with Page Object Model and Allure reporting — turning slow, repetitive regression passes into reliable automated runs.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
-      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🔗</div><h3 class="svc-title">API Testing</h3><p class="svc-desc">REST API validation with Postman and RestAssured — status, schema, and integration checks wired into your regression suite.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
-      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🔒</div><h3 class="svc-title">Security Testing</h3><p class="svc-desc">Security-focused QA — testing authentication, authorization, access control, and input handling, and checking for common vulnerability classes before release.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
-      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🧠</div><h3 class="svc-title">AI-Assisted QA &amp; Tooling</h3><p class="svc-desc">Custom AI tools for QA — structured bug reports from tickets, test-case generation, and coverage dashboards — the same kind I run in production today.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
-      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🚀</div><h3 class="svc-title">Release QA</h3><p class="svc-desc">Pre-release regression, smoke, and release-validation passes — a clear go/no-go read on quality before you ship.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
-      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">📋</div><h3 class="svc-title">Test Strategy &amp; Process</h3><p class="svc-desc">Risk-based test planning, STLC setup, defect triage, and QA process documentation — structure for teams scaling their testing.</p><a href="#contact" class="svc-link">Get in touch →</a></div>
+      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🧪</div><h3 class="svc-title">Manual &amp; Functional QA</h3><p class="svc-desc">Exploratory, functional, regression, and UAT testing across web and mobile — clear, reproducible bug reports your developers can act on.</p><a href="#contact" class="svc-link">Get in touch <span aria-hidden="true">→</span></a></div>
+      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🤖</div><h3 class="svc-title">Test Automation</h3><p class="svc-desc">Selenium frameworks (Java/TestNG and Python) with Page Object Model and Allure reporting — turning slow, repetitive regression passes into reliable automated runs.</p><a href="#contact" class="svc-link">Get in touch <span aria-hidden="true">→</span></a></div>
+      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🔗</div><h3 class="svc-title">API Testing</h3><p class="svc-desc">REST API validation with Postman and RestAssured — status, schema, and integration checks wired into your regression suite.</p><a href="#contact" class="svc-link">Get in touch <span aria-hidden="true">→</span></a></div>
+      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🔒</div><h3 class="svc-title">Security Testing</h3><p class="svc-desc">Security-focused QA — testing authentication, authorization, access control, and input handling, and checking for common vulnerability classes before release.</p><a href="#contact" class="svc-link">Get in touch <span aria-hidden="true">→</span></a></div>
+      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🧠</div><h3 class="svc-title">AI-Assisted QA &amp; Tooling</h3><p class="svc-desc">Custom AI tools for QA — structured bug reports from tickets, test-case generation, and coverage dashboards — the same kind I run in production today.</p><a href="#contact" class="svc-link">Get in touch <span aria-hidden="true">→</span></a></div>
+      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">🚀</div><h3 class="svc-title">Release QA</h3><p class="svc-desc">Pre-release regression, smoke, and release-validation passes — a clear go/no-go read on quality before you ship.</p><a href="#contact" class="svc-link">Get in touch <span aria-hidden="true">→</span></a></div>
+      <div class="svc-card rv"><div class="svc-icon" aria-hidden="true">📋</div><h3 class="svc-title">Test Strategy &amp; Process</h3><p class="svc-desc">Risk-based test planning, STLC setup, defect triage, and QA process documentation — structure for teams scaling their testing.</p><a href="#contact" class="svc-link">Get in touch <span aria-hidden="true">→</span></a></div>
     </div>
 
     <div class="svc-industries">
@@ -1204,7 +1219,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       <h3 class="svc-cta-title">Let's discuss your project.</h3>
       <p class="svc-cta-sub">Tell me what you're building and where QA is hurting — I'll tell you how I can help, no obligation.</p>
       <div class="svc-cta-btns">
-        <a href="mailto:kunalrichards4@gmail.com?subject=Free%20QA%20consultation" class="btn btn-fill">Email me for a free consultation →</a>
+        <a href="mailto:kunalrichards4@gmail.com?subject=Free%20QA%20consultation" class="btn btn-fill">Email me for a free consultation <span aria-hidden="true">→</span></a>
         <a href="#contact" class="btn btn-outline">Use the contact form</a>
       </div>
     </div>
@@ -1734,7 +1749,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         <div class="rec-author"><span class="rec-avatar" aria-hidden="true">D</span><span class="rec-meta"><span class="rec-name">Donna Cutliffe</span><span class="rec-role">Business Analyst · XDimensional Technologies</span></span></div>
       </div>
     </div>
-    <p class="rec-more"><a href="https://www.linkedin.com/in/kunal-richards-qa/details/recommendations/" target="_blank" rel="noopener noreferrer">See more recommendations on LinkedIn ↗</a></p>
+    <p class="rec-more"><a href="https://www.linkedin.com/in/kunal-richards-qa/details/recommendations/" target="_blank" rel="noopener noreferrer">See more recommendations on LinkedIn <span aria-hidden="true">↗</span></a></p>
   </div>
 </section>
 
@@ -1815,7 +1830,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
 <!-- MOBILE STICKY HIRE BTN — visibility toggled by scroll handler; keep focusable only when shown -->
 <div id="mob-hire">
-  <a href="#contact">Work With Me →</a>
+  <a href="#contact">Work With Me <span aria-hidden="true">→</span></a>
 </div>
 
 <!-- ANALYTICS PANEL — browser-local only; each visitor sees only their own data from this browser -->
@@ -2450,7 +2465,12 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
       d.classList.toggle('active', on);
       if (on) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current');
     });
-    const activeId = secs[idx];
+    // Sections without a desk-nav link (#certs, #recommendations) fall back to the
+    // nearest preceding section that HAS a link, so the top nav stays highlighted.
+    const NAV_IDS = new Set([...deskLinks].map(a=>a.getAttribute('href').slice(1)));
+    let navIdx = idx;
+    while (navIdx > 0 && !NAV_IDS.has(secs[navIdx])) navIdx--;
+    const activeId = secs[navIdx];
     deskLinks.forEach(a=>{const on=a.getAttribute('href')==='#'+activeId; a.classList.toggle('active',on); if(on)a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current');});
   };
   window._krSetActiveNav();
