@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=26&pause=1000&color=0EA5E9&center=true&vCenter=true&width=750&lines=Hey+there!+I'm+Kunal+Richards+%F0%9F%91%8B;Senior+QA+Engineer+%7C+7%2B+Years;AI-Powered+Test+Automation+Expert;ISTQB+CTFL+Certified+2024;Building+AI+Tools+That+Eliminate+Manual+QA;Vibe+Coder+%7C+Claude+AI+%7C+Selenium+Expert" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=26&pause=1000&color=0EA5E9&center=true&vCenter=true&width=750&lines=Hey+there!+I'm+Kunal+Richards+%F0%9F%91%8B;Senior+QA+Engineer+%7C+7%2B+Years;Selenium+%26+API+Test+Automation;ISTQB+CTFL+Certified+2024;Building+AI+Tools+That+Eliminate+Manual+QA;AI-Assisted+Development+%7C+Claude+AI+%7C+Selenium" alt="Typing SVG" />
 
 <br/>
 
@@ -30,7 +30,7 @@ I'm **Kunal Richards** — a **Senior QA Engineer** with 7+ years in enterprise 
 - 🧪 Architected **Selenium automation framework** — JSON-driven, TestNG, Allure, REST Assured
 - 🔐 Security-conscious — JWT auth & bcrypt hashing on internal tools, following OWASP practices
 - 💡 Reduced test case writing time from **hours → seconds** with Claude AI integration
-- 📈 Full STLC ownership — requirements, planning, execution, defect tracking, release sign-off
+- 📈 Full STLC — requirements, planning, execution, defect tracking, release validation
 - 🏆 **ISTQB CTFL certified** (December 2024)
 
 ---
@@ -51,14 +51,14 @@ I'm **Kunal Richards** — a **Senior QA Engineer** with 7+ years in enterprise 
 ---
 
 ### 📊 [Test Coverage Analyser](https://kunalrichards.github.io)
-> Real data for QA leads — not spreadsheets
+> Real data for QA managers — not spreadsheets
 
-Connects Zephyr Scale + GitHub API to map test coverage across 23 Nexsure modules, detect gaps, and auto-generate AI-written QA manager reports. Tracks Coverlet `.NET` automated test coverage alongside manual QA.
+Connects Zephyr Scale + GitHub API to map test coverage across the Nexsure platform's modules, detect gaps, and auto-generate AI-written QA manager reports. Tracks Coverlet `.NET` automated test coverage alongside manual QA.
 
 | | |
 |---|---|
 | **Stack** | React · Node.js · Zephyr API · GitHub API · Claude AI · xlsx |
-| **Status** | 🟢 Production — used by QA leads weekly |
+| **Status** | 🟢 Production — used by QA managers weekly |
 | **Features** | 5 dashboard tabs · CSV upload · AI insights · Coverlet integration |
 
 ---
@@ -136,9 +136,9 @@ Custom dark theme, typing animation, animated stat counters, browser-local analy
 ## 🏅 Highlights
 
 ```
-🥇  Built 4 AI-powered QA tools from scratch — all in active production use
+🥇  Built a suite of AI-powered QA tools from scratch — all in active production use
 ⚡  Reduced test case generation from hours → seconds using Claude AI
-🎯  Full STLC ownership — requirements to release sign-off, every sprint
+🎯  Full STLC — requirements to release validation, every sprint
 🔒  Self-audited the codebase (CSP, XSS hygiene, dependency review) — no critical findings
 🤖  Architected 3-pass AI pipeline: baseline → gap fill → semantic check
 📊  Coverage visibility across 23 insurance platform modules via Zephyr + GitHub API
@@ -181,7 +181,7 @@ Certifications     ISTQB CTFL 2024 · Selenium WebDriver 2020 · Software Testin
 
 <div align="center">
 
-**Senior QA Engineer · AI Tool Builder · ISTQB CTFL · Vibe Coder**
+**Senior QA Engineer · AI Tool Builder · ISTQB CTFL**
 
 *Let's connect — [LinkedIn](https://www.linkedin.com/in/kunal-richards-qa) · [Portfolio](https://kunalrichards.github.io) · [Email](mailto:kunalrichards4@gmail.com)*
 
