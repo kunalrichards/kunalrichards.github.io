@@ -15,7 +15,7 @@
 ---
 
 > *"7+ years breaking things professionally so users don't have to."*  
-> *Automation obsessed. AI-augmented. Insurance domain specialist.*
+> *Automation obsessed. AI-augmented. Insurance domain QA.*
 
 </div>
 
@@ -141,7 +141,7 @@ Custom dark theme, typing animation, animated stat counters, browser-local analy
 🎯  Full STLC — requirements to release validation, every sprint
 🔒  Self-audited the codebase (CSP, XSS hygiene, dependency review) — no critical findings
 🤖  Architected 3-pass AI pipeline: baseline → gap fill → semantic check
-📊  Coverage visibility across 23 insurance platform modules via Zephyr + GitHub API
+📊  Coverage visibility across insurance platform modules via Zephyr + GitHub API
 🏆  ISTQB CTFL certified (December 2024)
 🌐  7+ years across 5 companies — insurance, SaaS, eCommerce, mobile
 ```
