@@ -1,0 +1,192 @@
+<div align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=26&pause=1000&color=0EA5E9&center=true&vCenter=true&width=750&lines=Hey+there!+I'm+Kunal+Richards+%F0%9F%91%8B;Senior+QA+Engineer+%7C+8+Years;Selenium+%26+API+Test+Automation;ISTQB+CTFL+Certified+2024;Building+AI+Tools+That+Eliminate+Manual+QA;AI-Assisted+Development+%7C+Claude+AI+%7C+Selenium" alt="Typing SVG" />
+
+<br/>
+
+[![Portfolio](https://img.shields.io/badge/🌐_Portfolio-kunalrichards.github.io-0ea5e9?style=for-the-badge&labelColor=0f172a)](https://kunalrichards.github.io)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Kunal_Richards-0077b5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kunal-richards-qa)
+[![Email](https://img.shields.io/badge/Email-kunalrichards4@gmail.com-ea4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:kunalrichards4@gmail.com)
+[![ISTQB](https://img.shields.io/badge/ISTQB-CTFL%202024-FFD700?style=for-the-badge)](https://www.istqb.org/)
+[![Claude AI](https://img.shields.io/badge/Powered%20by-Claude%20AI-7c3aed?style=for-the-badge&logo=anthropic&logoColor=white)](https://kunalrichards.github.io)
+
+📍 **Ahmedabad, India** &nbsp;·&nbsp; 🏢 **Senior QA Engineer @ Dyad Tech** &nbsp;·&nbsp; 🏆 **ISTQB CTFL 2024**
+
+---
+
+> *"8 years breaking things professionally so users don't have to."*  
+> *Automation obsessed. AI-augmented. Insurance domain QA.*
+
+</div>
+
+---
+
+## 🧑‍💼 About Me
+
+I'm **Kunal Richards** — a **Senior QA Engineer** with 8 years in enterprise QA, automation, and the insurance domain. I specialise in building AI-powered QA tools, Selenium automation frameworks, and end-to-end testing pipelines.
+
+- 🤖 Built **AI Bug Reporter** — Claude AI generates structured bug reports from Jira tickets in seconds
+- 📊 Built **Test Coverage Analyser** — maps Zephyr Scale + GitHub API across insurance platform modules
+- 🧪 Architected **Selenium automation framework** — JSON-driven, TestNG, Allure, REST Assured
+- 🔐 Security-conscious — JWT auth & bcrypt hashing on internal tools, following OWASP practices
+- 💡 Reduced test case writing time from **hours → seconds** with Claude AI integration
+- 📈 Full STLC — requirements, planning, execution, defect tracking, release validation
+- 🏆 **ISTQB CTFL certified** (December 2024)
+
+---
+
+## 🚀 Featured Projects
+
+### 🧪 Dyad TestPro
+> AI-powered test case generator for enterprise insurance platforms
+
+3-pass Claude AI pipeline streams test cases live, auto-detects coverage gaps, fills them, then runs a semantic check — all in seconds. One-click Zephyr Scale import. JWT-secured multi-user dashboard with real-time analytics, cost tracking, and CSV exports.
+
+| | |
+|---|---|
+| **Stack** | Node.js · React/TypeScript · Claude AI · JIRA REST · Zephyr Scale · SQLite · JWT |
+| **Status** | 🟢 Production use |
+| **Impact** | Hours of manual work → seconds · Consistent sprint coverage every time |
+
+---
+
+### 📊 [Test Coverage Analyser](https://kunalrichards.github.io)
+> Real data for QA managers — not spreadsheets
+
+Connects Zephyr Scale + GitHub API to map test coverage across the Nexsure platform's modules, detect gaps, and auto-generate AI-written QA manager reports. Tracks Coverlet `.NET` automated test coverage alongside manual QA.
+
+| | |
+|---|---|
+| **Stack** | React · Node.js · Zephyr API · GitHub API · Claude AI · xlsx |
+| **Status** | 🟢 Production — used by QA managers weekly |
+| **Features** | 5 dashboard tabs · CSV upload · AI insights · Coverlet integration |
+
+---
+
+### 🤖 [AI Bug Reporter](https://kunalrichards.github.io)
+> Structured Jira bug reports in seconds, not hours
+
+Fetches Jira ticket details, feeds them to Claude AI, and returns a fully structured bug report — preconditions, step-by-step guide, root cause hypothesis, severity, acceptance criteria. Saves 2+ hours per report.
+
+| | |
+|---|---|
+| **Stack** | Node.js · React · TypeScript · Claude AI · SQLite · Jira REST API v3 |
+| **Status** | 🟢 Production — actively used daily |
+
+---
+
+### 🌐 [Portfolio Website](https://kunalrichards.github.io)
+> Built from scratch — no frameworks, no templates
+
+Custom dark theme, typing animation, animated stat counters, browser-local analytics panel, fully working contact form, installable PWA. Responsive down to 360px. Single HTML file, 2,200+ lines, zero dependencies.
+
+---
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white)
+![TestNG](https://img.shields.io/badge/TestNG-FF6C37?style=for-the-badge)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Claude AI](https://img.shields.io/badge/Claude%20AI-7c3aed?style=for-the-badge&logo=anthropic&logoColor=white)
+![JIRA](https://img.shields.io/badge/JIRA-0052CC?style=for-the-badge&logo=jira&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+
+</div>
+
+---
+
+## 📊 GitHub Activity
+
+<div align="center">
+
+[![GitHub Streak](https://streak-stats.demolab.com?user=kunalrichards&theme=tokyonight&hide_border=true&date_format=j%20M%5B%20Y%5D)](https://github.com/kunalrichards)
+
+</div>
+
+<div align="center">
+
+[![Kunal's Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=kunalrichards&theme=tokyo-night&hide_border=true&area=true)](https://github.com/kunalrichards)
+
+</div>
+
+---
+
+## 💼 Experience
+
+| Period | Company | Role |
+|---|---|---|
+| Aug 2024 – Present | **Dyad Tech** | Senior QA Engineer |
+| Feb 2023 – Jul 2024 | **Crest Data Systems** | Senior QA Engineer |
+| Aug 2022 – Feb 2023 | **Secomind.AI** | Sr QA Engineer |
+| Sep 2021 – Aug 2022 | **Codal Inc.** | QA Engineer |
+| Nov 2018 – Sep 2021 | **KudosIntech** | QA Engineer |
+
+**5 companies · 8 years · 20 projects delivered**
+
+---
+
+## 🏅 Highlights
+
+```
+🥇  Built a suite of AI-powered QA tools from scratch — all in active production use
+⚡  Reduced test case generation from hours → seconds using Claude AI
+🎯  Full STLC — requirements to release validation, every sprint
+🔒  Self-audited the codebase (CSP, XSS hygiene, dependency review) — no critical findings
+🤖  Architected 3-pass AI pipeline: baseline → gap fill → semantic check
+📊  Coverage visibility across insurance platform modules via Zephyr + GitHub API
+🏆  ISTQB CTFL certified (December 2024)
+🌐  8 years across 5 companies — insurance, SaaS, eCommerce, mobile
+```
+
+---
+
+## 🧰 Full Skill Set
+
+```
+QA Automation      Selenium 4 · TestNG · JUnit · REST Assured · Allure · ChainTest
+Languages          Java 11 · JavaScript/TypeScript · Python · SQL
+AI & LLMs          Claude (Anthropic) · Prompt Engineering · Multi-pass pipelines
+API Testing        Postman · RestAssured · Jira REST · Zephyr API · GitHub API
+Frontend           React · TypeScript · Vite · HTML · CSS (zero-dependency builds)
+Backend            Node.js · Express · SQLite · JWT · bcrypt
+CI/CD              GitHub Actions · Jenkins · Azure DevOps
+Domain             Insurance (Nexsure) · SaaS · eCommerce · Mobile
+Certifications     ISTQB CTFL 2024 · Selenium WebDriver 2020 · Software Testing 2018
+```
+
+---
+
+## 📬 Get in Touch
+
+<div align="center">
+
+| | |
+|---|---|
+| 📧 **Email** | [kunalrichards4@gmail.com](mailto:kunalrichards4@gmail.com) |
+| 💼 **LinkedIn** | [linkedin.com/in/kunal-richards-qa](https://www.linkedin.com/in/kunal-richards-qa) |
+| 🌐 **Portfolio** | [kunalrichards.github.io](https://kunalrichards.github.io) |
+| 📍 **Location** | Ahmedabad, Gujarat, India |
+
+</div>
+
+---
+
+<div align="center">
+
+**Senior QA Engineer · AI Tool Builder · ISTQB CTFL**
+
+*Let's connect — [LinkedIn](https://www.linkedin.com/in/kunal-richards-qa) · [Portfolio](https://kunalrichards.github.io) · [Email](mailto:kunalrichards4@gmail.com)*
+
+![Profile Views](https://komarev.com/ghpvc/?username=kunalrichards&color=0ea5e9&style=for-the-badge&label=PROFILE+VIEWS)
+
+*Built with Claude AI + lots of coffee ☕*
+
+</div>
