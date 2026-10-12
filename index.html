@@ -162,9 +162,9 @@ html{scrollbar-width:thin;scrollbar-color:var(--ac) transparent;}
 
 /* ─── SCROLL PROGRESS BAR ─── */
 #spb{
-  position:fixed;top:0;left:0;height:3px;width:0%;
+  position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;
   background:var(--grd);z-index:2000;
-  transition:width .1s linear;
+  will-change:transform;
   border-radius:0 2px 2px 0;
   box-shadow:0 0 10px rgba(56,189,248,.6);
 }
@@ -175,10 +175,8 @@ html{scrollbar-width:thin;scrollbar-color:var(--ac) transparent;}
   position:fixed;bottom:0;left:0;right:0;
   z-index:900;
   padding:.7rem 1rem calc(.7rem + env(safe-area-inset-bottom));
-  background:rgba(4,8,15,.97);
+  background:rgba(4,8,15,.98);
   border-top:1px solid rgba(56,189,248,.15);
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
   opacity:0;
   visibility:hidden;
   pointer-events:none;
@@ -243,9 +241,7 @@ nav{
   display:flex;justify-content:space-between;align-items:center;
   padding:0 var(--pad-x);
   height:var(--nav-h);
-  background:rgba(4,8,15,.92);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
+  background:rgba(4,8,15,.96);
   border-bottom:1px solid rgba(56,189,248,.08);
   transition:box-shadow .3s ease,background .3s ease;
   transform:translateZ(0);
@@ -294,9 +290,7 @@ nav.scrolled{background:rgba(4,8,15,.98);box-shadow:0 4px 24px rgba(0,0,0,.4);}
   position:fixed;
   top:var(--nav-h);left:0;right:0;
   z-index:998;
-  background:rgba(4,8,15,.97);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
+  background:rgba(4,8,15,.98);
   border-bottom:1px solid rgba(56,189,248,.1);
   max-height:0;
   overflow:hidden;
@@ -823,7 +817,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   background-size:200% auto;
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
   background-clip:text;
-  animation:shimmer-tag 3.5s linear infinite;
+  animation:shimmer-tag 3.5s linear 2;
 }
 @keyframes shimmer-tag{to{background-position:200% center;}}
 
@@ -856,7 +850,6 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   font-size:.8rem;font-weight:600;white-space:normal;max-width:calc(100vw - 2rem);text-align:center;
   z-index:9998;opacity:0;pointer-events:none;
   transition:opacity .25s,transform .25s;
-  backdrop-filter:blur(14px);
   box-shadow:0 8px 32px rgba(0,0,0,.45);
 }
 #kr-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
@@ -1829,7 +1822,7 @@ function handleScroll() {
     const scrolled = window.scrollY;
     const total = document.documentElement.scrollHeight - window.innerHeight;
     // Progress bar
-    spb.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+    spb.style.transform = 'scaleX(' + (total > 0 ? scrolled / total : 0) + ')';  // transform: no re-layout per frame
     // Nav shadow
     navEl.classList.toggle('scrolled', scrolled > 20);
     // Back to top
@@ -2453,8 +2446,11 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
       c:COLS[Math.floor(Math.random()*COLS.length)]
     });
   }
-  let animId = null;
-  function draw(){
+  let animId = null, _last = 0, _scrolling = false, _sT;
+  function draw(t){
+    animId = requestAnimationFrame(draw);
+    if (_scrolling || t - _last < 33) return;  // 30 fps is plenty for slow drift; nothing while scrolling
+    _last = t;
     ctx.clearRect(0,0,W,H);
     ps.forEach(p=>{
       p.x+=p.vx; p.y+=p.vy;
@@ -2464,8 +2460,8 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
       ctx.fillStyle=p.c+Math.round(p.a*255).toString(16).padStart(2,'0');
       ctx.fill();
     });
-    animId = requestAnimationFrame(draw);
   }
+  addEventListener('scroll', ()=>{ _scrolling = true; clearTimeout(_sT); _sT = setTimeout(()=>{ _scrolling = false; }, 160); }, {passive:true});
   let _activated = false;
   function start(){ if(_activated && animId==null) animId=requestAnimationFrame(draw); }
   function stop(){ if(animId!=null){ cancelAnimationFrame(animId); animId=null; } }
