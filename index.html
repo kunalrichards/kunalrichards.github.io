@@ -652,7 +652,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   .hero-inner{gap:1.6rem;text-align:center;}
 
   /* Hide location/role chips — shown in pills below */
-  .hero-chips-row{display:none;}
+  .hero-chips-row .hero-chip:first-child{display:none;}  /* location is on the photo badge; keep the availability chip */
   /* Status badge: smaller so it fits one tidy line on most phones (wraps cleanly on tiny screens) */
   .hero-badge{font-size:.62rem;padding:.3rem .75rem;letter-spacing:.3px;}
 
@@ -672,7 +672,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
 
   /* Only show 2 CTAs on mobile — hide View Projects */
   .ctas{flex-direction:column;align-items:stretch;gap:.45rem;margin-bottom:1rem;}
-  .ctas .btn:nth-child(3){display:none;}
+  .ctas .btn:nth-child(2){display:none;}
   .ctas .btn{justify-content:center;padding:.85rem 1rem;font-size:.9rem;min-height:46px;}
 
   /* Inline social links, compact */
@@ -1079,7 +1079,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         </div>
       </div>
       <h1>Kunal<br><span class="name-grad">Richards</span></h1>
-      <p class="hero-value">Senior QA Engineer for remote teams: <strong>manual &amp; functional testing first</strong>, backed by <strong>AI-assisted automation</strong> (Selenium, Postman / REST APIs). 8 years across insurance, cybersecurity, ITSM, SaaS and eCommerce.</p>
+      <p class="hero-value">QA for remote teams: <strong>manual &amp; functional testing first</strong>, sped up with <strong>AI-assisted automation</strong>.</p>
       <div class="typing-line" id="typing-el" aria-hidden="true"><span id="typing-text">Manual-first QA, AI-assisted automation</span><span id="typing-cursor" aria-hidden="true"></span></div>
       <p class="sr-only">Manual-first QA with AI-assisted automation. Senior QA Engineer with 8 years. Selenium and API testing. ISTQB CTFL Certified. Insurance, cybersecurity and ITSM domains. Open to remote roles and QA consulting.</p>
       <div class="pills">
