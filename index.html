@@ -148,9 +148,7 @@
 /* ─── RESET ─── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;font-size:16px;-webkit-text-size-adjust:100%;scroll-padding-top:var(--nav-h);}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;animation:kr-fade .25s ease both;}
-@keyframes kr-fade{from{opacity:0}to{opacity:1}}
-@media(prefers-reduced-motion:reduce){body{animation:none;}}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 /* WCAG 2.2 SC 2.4.11 Focus Not Obscured — keep hash/focus targets clear of the fixed nav and bottom sticky bars */
 #about,#ai,#projects,#experience,#skills,#recommendations,#contact,:target{scroll-margin-top:calc(var(--nav-h) + 8px);scroll-margin-bottom:6rem;}
 img{max-width:100%;height:auto;display:block;}
@@ -1070,27 +1068,27 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
   <div class="hero-inner">
 
     <div class="hero-text">
-      <div class="hero-badge"><span class="hero-badge-dot" aria-hidden="true"></span>Senior QA Engineer · AI/QA tool builder · ISTQB CTFL Certified</div>
+      <div class="hero-badge"><span class="hero-badge-dot" aria-hidden="true"></span>Senior QA Engineer · Manual-first, AI-assisted QA · ISTQB CTFL</div>
       <div class="hero-chips-row">
         <div class="hero-chip" style="margin-bottom:0;background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.2);color:var(--ac);">
           📍 Ahmedabad, India
         </div>
         <div class="hero-chip" style="margin-bottom:0;background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.2);color:var(--gr);">
           <span class="hc-dot" aria-hidden="true"></span>
-          Senior QA Engineer · Dyad Tech
+          Open to remote roles &amp; QA consulting
         </div>
       </div>
       <h1>Kunal<br><span class="name-grad">Richards</span></h1>
-      <p class="hero-value">I help teams ship quality software — <strong>manual, automation &amp; API testing</strong>, plus AI tools that take the grind out of QA.</p>
-      <div class="typing-line" id="typing-el" aria-hidden="true"><span id="typing-text">I build AI tools that test software</span><span id="typing-cursor" aria-hidden="true"></span></div>
-      <p class="sr-only">I build AI tools that test software. Senior QA Engineer with 8 years. Selenium and API test automation. ISTQB CTFL Certified. Insurance-domain QA at scale. I mentor QA engineers to ship solo.</p>
+      <p class="hero-value">Senior QA Engineer for remote teams: <strong>manual &amp; functional testing first</strong>, backed by <strong>AI-assisted automation</strong> (Selenium, Postman / REST APIs). 8 years across insurance, cybersecurity, ITSM, SaaS and eCommerce.</p>
+      <div class="typing-line" id="typing-el" aria-hidden="true"><span id="typing-text">Manual-first QA, AI-assisted automation</span><span id="typing-cursor" aria-hidden="true"></span></div>
+      <p class="sr-only">Manual-first QA with AI-assisted automation. Senior QA Engineer with 8 years. Selenium and API testing. ISTQB CTFL Certified. Insurance, cybersecurity and ITSM domains. Open to remote roles and QA consulting.</p>
       <div class="pills">
-        <span class="pill pv">AI/QA Tool Builder</span>
-        <span class="pill pb">Selenium Automation</span>
+        <span class="pill pb">Manual &amp; Functional QA</span>
+        <span class="pill pv">AI-assisted QA</span>
         <a href="istqb-ctfl-certificate.pdf" target="_blank" rel="noopener noreferrer" onclick="event.preventDefault();openCert();" class="pill pg pill-verify" title="View Kunal's ISTQB CTFL certificate">ISTQB CTFL 2024 ↗</a>
         <span class="pill pb">8 Years QA</span>
-        <span class="pill pv">API Testing</span>
-        <span class="pill pg">Insurance Domain</span>
+        <span class="pill pv">Selenium · API Testing</span>
+        <span class="pill pg">Security Testing</span>
       </div>
       <a href="istqb-ctfl-certificate.pdf" target="_blank" rel="noopener noreferrer" onclick="event.preventDefault();openCert();" class="hero-cert" aria-haspopup="dialog" aria-label="View Kunal Richards's ISTQB CTFL certificate — number 117015, 27 December 2024">
         <img src="istqb-cert-thumb.webp" alt="" class="hero-cert-thumb" fetchpriority="high" width="46" height="65">
@@ -1100,9 +1098,9 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
         </span>
       </a>
       <div class="ctas">
-        <a href="#contact" class="btn btn-fill">Contact Me <span aria-hidden="true">→</span></a>
+        <a href="mailto:kunalrichards4@gmail.com?subject=Remote%20QA%20role%20%2F%20consulting" class="btn btn-fill">Email Me <span aria-hidden="true">→</span></a>
+        <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn</a>
         <a href="cv.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">View CV</a>
-        <a href="#projects" class="btn btn-outline">View Projects</a>
       </div>
       <div class="socrow">
         <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank" rel="noopener noreferrer" class="soc" aria-label="LinkedIn">
@@ -1160,17 +1158,19 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
       </div>
 
       <div class="about-text">
-        <h2 class="about-h">A senior QA engineer who ships the tools, not just the test plans</h2>
+        <h2 class="about-h">Careful manual testing first, AI where it removes the busywork</h2>
         <p>I'm a <strong style="color:var(--hd)">Senior QA Engineer</strong> with <strong style="color:var(--hd)">8 years</strong> of experience across enterprise insurance, SaaS, eCommerce, and mobile. At <strong style="color:var(--hd)">Dyad Tech</strong>, I work on QA for the <strong style="color:var(--hd)">Nexsure Insurance Platform</strong> — policy, claims, and accounting workflows — from test planning through release validation.</p>
-        <p>I've built <strong style="color:var(--hd)">a suite of AI/QA tools</strong>, built and demoed to my team — generating structured bug reports from Jira tickets, automating test-case drafting, and giving QA managers coverage dashboards without manual collation.</p>
+        <p>Earlier I tested <strong style="color:var(--hd)">cybersecurity products</strong> (Morphisec, CrowdStrike) and <strong style="color:var(--hd)">ServiceNow ITSM</strong>, plus SaaS, eCommerce, web and mobile apps — functional, regression, API and security testing.</p>
+        <p>I use <strong style="color:var(--hd)">Claude Code, Cursor and GitHub Copilot</strong> to speed up the repetitive parts of QA, and have built AI-assisted QA tools as <strong style="color:var(--hd)">working prototypes</strong>, demoed to my team — structured bug reports from tickets, test-case drafting and coverage views.</p>
+        <p><strong style="color:var(--hd)">Available for remote Senior QA roles (India-based, worldwide teams) and QA consulting.</strong> <a href="mailto:kunalrichards4@gmail.com" style="color:var(--ac)">Email me</a> or message me on <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank" rel="noopener noreferrer" style="color:var(--ac)">LinkedIn</a>.</p>
         <p>ISTQB CTFL certified (Dec 2024). I run risk-based test planning and defect triage across the insurance domain, drove QA process documentation in Confluence, and have mentored junior QA engineers from supervised work to independent delivery — at both Dyad Tech and Crest Data Systems.</p>
         <div class="tag-row">
-          <span class="tag">Test Automation</span>
+          <span class="tag">Manual &amp; Functional QA</span>
           <span class="tag">Risk-Based Test Planning</span>
           <span class="tag">Mentoring</span>
           <span class="tag">ISTQB CTFL</span>
           <span class="tag">Nexsure · Insurance</span>
-          <span class="tag">AI Tool Builder</span>
+          <span class="tag">AI-assisted QA</span>
         </div>
       </div>
     </div>
@@ -1700,7 +1700,7 @@ footer{background:var(--bg);border-top:1px solid var(--bd);padding:2rem var(--pa
     <div class="contact-grid">
       <div class="contact-info">
         <h2 class="contact-h">Let's connect</h2>
-        <p>Happy to talk about QA, testing practices, and AI-assisted quality engineering. The fastest way to reach me is a direct message or email.</p>
+        <p>Open to <strong>remote Senior QA roles</strong> (India-based, working with teams worldwide) and <strong>QA consulting</strong>. Email is the fastest way to reach me — I usually reply within a day.</p>
         <a href="mailto:kunalrichards4@gmail.com" class="contact-link"><div class="contact-icon" aria-hidden="true">✉️</div>kunalrichards4@gmail.com</a>
         <a href="tel:+918200379330" class="contact-link"><div class="contact-icon" aria-hidden="true">📱</div>+91 82003 79330</a>
         <a href="https://www.linkedin.com/in/kunal-richards-qa" target="_blank" rel="noopener noreferrer me" class="contact-link"><div class="contact-icon" aria-hidden="true">💼</div>linkedin.com/in/kunal-richards-qa</a>
@@ -1937,12 +1937,12 @@ if (statsGrid) {
 
 /* ── TYPING ANIMATION ── */
 const phrases = [
-    'I build AI tools that test software',
+    'Manual-first QA, AI-assisted automation',
     'Senior QA Engineer · 8 years',
     'Selenium & API test automation',
     'ISTQB CTFL Certified',
-    'Insurance-domain QA at scale',
-    'I mentor QA engineers to ship solo',
+    'Insurance · cybersecurity · ITSM',
+    'Open to remote roles & QA consulting',
   ];
 let pIdx = 0, cIdx = 0, isDeleting = false;
 const typingEl = document.getElementById('typing-el');
@@ -1962,7 +1962,11 @@ function type() {
   }
   setTimeout(type, isDeleting ? 38 : 88);
 }
-if (_reduceMotion) { typingText.textContent = phrases[0]; } else { type(); }
+// First phrase is already in the HTML (stable LCP, no load-time churn); start erasing it a few seconds after load
+if (!_reduceMotion) {
+  const _startTyping = () => setTimeout(() => { isDeleting = true; cIdx = phrases[0].length; type(); }, 3000);
+  if (document.readyState === 'complete') _startTyping(); else addEventListener('load', _startTyping, { once:true });
+}
 
 /* ── SCROLL REVEAL ── */
 const rvEls = document.querySelectorAll('.rv');
@@ -2414,7 +2418,7 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
     const activeId = secs[navIdx];
     deskLinks.forEach(a=>{const on=a.getAttribute('href')==='#'+activeId; a.classList.toggle('active',on); if(on)a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current');});
   };
-  window._krSetActiveNav();
+  requestAnimationFrame(window._krSetActiveNav);  // after first layout — no forced sync layout during parse
   window.addEventListener('resize', window._krSetActiveNav, { passive:true });
 })();
 
