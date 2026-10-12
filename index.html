@@ -129,7 +129,7 @@
 }
 </script>
 <!-- Flag JS availability before first paint — the .rv reveal animation only hides content when JS can reveal it -->
-<script>document.documentElement.classList.add('js');</script>
+<script>document.documentElement.classList.add('js');if(!location.hash)document.documentElement.classList.add('lay-defer');</script>
 <style>
 /* ─── TOKENS ─── */
 :root{
@@ -223,6 +223,9 @@ body::after{
   background:radial-gradient(ellipse 80% 100% at 50% -5%,rgba(56,189,248,.055) 0%,transparent 70%);
   transform:translateZ(0);
 }
+/* ─── PERF: during load only, below-the-fold sections skip layout (one huge first-layout task otherwise);
+   JS unhides them one per idle callback right after load, or all at once on any in-page link click / print ─── */
+html.lay-defer main>section:not(.hero):not(.ld-done),html.lay-defer footer:not(.ld-done){content-visibility:auto!important;contain-intrinsic-size:auto 900px!important;}
 /* ─── PERF: skip paint for off-screen sections until they scroll into view ─── */
 /* Only the top two sections keep content-visibility — the 600px intrinsic-size estimate on
    deeper sections made first-click anchor nav mis-land on a cold desktop load (browser summed
@@ -2623,6 +2626,27 @@ document.querySelectorAll('a[href="#contact"].btn').forEach(b=>{
   });
 })();
 
+
+/* ── DEFERRED LAYOUT: unhide below-the-fold sections one per idle slot after load (see html.lay-defer CSS) ── */
+(function(){
+  const H = document.documentElement;
+  if (!H.classList.contains('lay-defer')) return;
+  const els = [...document.querySelectorAll('main>section:not(.hero),footer')];
+  const idle = window.requestIdleCallback || (fn => setTimeout(fn, 16));
+  const done = () => H.classList.remove('lay-defer');
+  // An in-page link click before we finish: lay everything out first so the target lands exactly
+  document.addEventListener('click', e => { if (e.target.closest && e.target.closest('a[href^="#"]')) done(); }, true);
+  addEventListener('beforeprint', done);
+  let i = 0;
+  const step = () => {
+    if (!H.classList.contains('lay-defer')) return;
+    if (i >= els.length) { done(); return; }
+    els[i++].classList.add('ld-done');
+    idle(step, { timeout:400 });
+  };
+  const go = () => idle(step, { timeout:1000 });
+  if (document.readyState === 'complete') go(); else addEventListener('load', go, { once:true });
+})();
 </script>
 </body>
 </html>
