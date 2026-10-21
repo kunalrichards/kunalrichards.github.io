@@ -1,0 +1,4 @@
+node_modules/
+.claude/
+AGENTS.md
+ULTIMATE_PROMPT.md
